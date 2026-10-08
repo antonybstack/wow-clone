@@ -30,7 +30,19 @@ Wait for Vite reloads to settle before navigating/capturing; simultaneous reload
 - `player.getMotion()` / `getGrounded()` report controller state; they are not proof of visual sole contact. Hold Space across render frames when testing held-key jump input; a zero-duration synthetic press can be missed.
 - For module-level probes, import the game's exact optimized Lite URL from transformed `/src/ashen-reach/main.js`, including its query. Do not separately import raw `/node_modules/@babylonjs/lite/lib/index.js`: duplicate caches/registries caused misleading black-scene and pipeline failures.
 - Inspect actual renderable descendants/materials. A named glTF transform may own several primitives; its parent is not necessarily the mesh.
+- For mesh-isolation probes, use Lite's public `setMeshVisible` / `setSubtreeVisible`
+  from that same module graph. A bare `mesh.visible = false` can leave a cached
+  opaque render bundle unchanged and invalidate the diagnosis. Wait for the next
+  GPU frame and confirm the intended surface actually disappears before assigning
+  its origin. Restore the previous visibility through the same helper. See the
+  [pinned native visibility implementation](https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/scene/visibility.ts).
 - Direct camera/state changes are allowed for diagnostic views but must be labelled. Gameplay claims require actual inputs and verified state transitions.
+
+Before handing a prepared candidate to a capture worker, verify the preparation
+process's actual successful exit and the complete receipt/output directory.
+Starting preparation or seeing an intermediate artifact does not establish
+readiness. Keep failed attempts; do not capture stale derivatives after a failed
+assembly or relax source-preservation assertions to make it runnable.
 
 ## Browser ownership and performance isolation
 

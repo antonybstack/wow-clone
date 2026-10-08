@@ -69,6 +69,15 @@ test('release guard rejects stale garment rules even in a correctly addressed id
    file==='public'+entry.url?Promise.resolve(bytes):fs.readFile(file,...args)}),/stale shared garment coverage/);
  }
 });
+test('release guard rejects the old incomplete ankle mask in an addressed identity descriptor',async()=>{
+ const tampered=structuredClone(index),entry=tampered.presets['prime-ponytail'];
+ entry.manifest.identity.footCoverage.revision='human-ankle-foot-v1';
+ const bytes=Buffer.from(JSON.stringify(entry.manifest)),hash=createHash('sha256').update(bytes).digest('hex');
+ Object.assign(entry,{url:`/ashen-reach/human-identity-v1/manifest-test-${hash.slice(0,12)}.json`,bytes:bytes.length,sha256:hash});
+ await assert.rejects(verifyProductionHumanIdentities({readFile:(file,...args)=>
+  file==='public/ashen-reach/human-identity-v1/manifest.json'?Promise.resolve(Buffer.from(JSON.stringify(tampered))):
+  file==='public'+entry.url?Promise.resolve(bytes):fs.readFile(file,...args)}),/Stale identity foot coverage/);
+});
 test('playable contract includes directional, channel, carry, hit and all spell layers',()=>{
  const definition={...resolvePlayableBody('?character=human-source'),...ASHEN_PLAYABLE_MOTION};
  const resolved=resolvePlayableClips(ASHEN_PLAYABLE_CLIP_NAMES,definition);

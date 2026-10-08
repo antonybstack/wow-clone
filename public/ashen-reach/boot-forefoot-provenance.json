@@ -1,0 +1,1443 @@
+{
+  "schema": 1,
+  "generatedBy": "scripts/character-assets/prepare-boot-sole.mjs",
+  "arguments": [
+    "--publish",
+    "--forefoot"
+  ],
+  "localPacksPublished": true,
+  "productionReleased": false,
+  "byteIdenticalRebuild": true,
+  "forefootReport": {
+    "candidateOnly": true,
+    "descriptor": {
+      "path": "blender/characters/wardrobe/boot-forefoot.json",
+      "sha256": "355d7f6ad8531191b889306b015c2150968e56111992f7d916652002034bde56"
+    },
+    "rows": [
+      {
+        "race": "human",
+        "source": {
+          "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-forefoot.glb",
+          "sha256": "52c5c2f6df2b0234f4920d08635556469167446ef18e913a38adc41416d3e680",
+          "body": "public/ashen-reach/equipment/body.glb",
+          "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+          "bodyMesh": "HumanV1Body"
+        },
+        "artifact": {
+          "file": ".cache/character-mmo/boot-forefoot/publication-ZWUlE4/first/human/wayfarerBoots.glb",
+          "bytes": 243044,
+          "sha256": "657fd4ed66dec70e7d3c689376ca61637dba86ed99497944ae46e33d3e7e98dd"
+        },
+        "feet": [
+          {
+            "side": "Left",
+            "stations": [
+              {
+                "sy": 0.015,
+                "ty": 0.02,
+                "source": {
+                  "count": 12045,
+                  "center": [
+                    0.022912227523786695,
+                    0.06953020333146268
+                  ],
+                  "half": [
+                    0.055364968953228365,
+                    0.13115176288410704
+                  ]
+                },
+                "target": {
+                  "count": 187,
+                  "center": [
+                    0.019393072557372534,
+                    0.06861698152123838
+                  ],
+                  "half": [
+                    0.0630317959467329,
+                    0.13975712721509975
+                  ]
+                },
+                "sc": [
+                  0.022912227523786695,
+                  0.06953020333146268
+                ],
+                "tc": [
+                  0.019393072557372534,
+                  0.06861698152123838
+                ],
+                "ratio": [
+                  1.1384779426135212,
+                  1.0656137907852363
+                ]
+              },
+              {
+                "sy": 0.06,
+                "ty": 0.065,
+                "source": {
+                  "count": 1078,
+                  "center": [
+                    0.009663907484506868,
+                    0.038051710569648074
+                  ],
+                  "half": [
+                    0.03895678452286379,
+                    0.10068541094044445
+                  ]
+                },
+                "target": {
+                  "count": 36,
+                  "center": [
+                    0.0026475622894070253,
+                    0.029652215450017255
+                  ],
+                  "half": [
+                    0.04207851102182629,
+                    0.09890297247257365
+                  ]
+                },
+                "sc": [
+                  0.009663907484506868,
+                  0.038051710569648074
+                ],
+                "tc": [
+                  0.0026475622894070253,
+                  0.029652215450017255
+                ],
+                "ratio": [
+                  1.0801330637832893,
+                  0.982296953935808
+                ]
+              },
+              {
+                "sy": 0.1,
+                "ty": 0.12,
+                "source": {
+                  "count": 946,
+                  "center": [
+                    0.004345155414049309,
+                    0.0030227025971941435
+                  ],
+                  "half": [
+                    0.03139537056785684,
+                    0.057066506876488385
+                  ]
+                },
+                "target": {
+                  "count": 34,
+                  "center": [
+                    -0.009955404491404165,
+                    0.0015295957891802506
+                  ],
+                  "half": [
+                    0.04197035649892773,
+                    0.0560956020908377
+                  ]
+                },
+                "sc": [
+                  0.004345155414049309,
+                  0.0030227025971941435
+                ],
+                "tc": [
+                  -0.009955404491404165,
+                  0.0015295957891802506
+                ],
+                "ratio": [
+                  1.3368326520693392,
+                  0.9829864339208275
+                ]
+              },
+              {
+                "sy": 0.16,
+                "ty": 0.18,
+                "source": {
+                  "count": 231,
+                  "center": [
+                    -0.0035540669841684722,
+                    -0.010933476039390957
+                  ],
+                  "half": [
+                    0.03244358732580005,
+                    0.042331584205854186
+                  ]
+                },
+                "target": {
+                  "count": 15,
+                  "center": [
+                    -0.01274818338791773,
+                    -0.01313209483740253
+                  ],
+                  "half": [
+                    0.02539687755404784,
+                    0.03993059076284215
+                  ]
+                },
+                "sc": [
+                  -0.0035540669841684722,
+                  -0.010933476039390957
+                ],
+                "tc": [
+                  -0.01274818338791773,
+                  -0.01313209483740253
+                ],
+                "ratio": [
+                  0.7828011526287517,
+                  0.9432812759537595
+                ]
+              }
+            ],
+            "vertices": 1765,
+            "maxMoveM": 0.058758674343728626
+          },
+          {
+            "side": "Right",
+            "stations": [
+              {
+                "sy": 0.015,
+                "ty": 0.02,
+                "source": {
+                  "count": 12045,
+                  "center": [
+                    -0.02291220164837801,
+                    0.06952996397986613
+                  ],
+                  "half": [
+                    0.055364930667855874,
+                    0.13115171185262992
+                  ]
+                },
+                "target": {
+                  "count": 187,
+                  "center": [
+                    -0.026260565805740554,
+                    0.0689604510244149
+                  ],
+                  "half": [
+                    0.06302970483730706,
+                    0.1397576450403772
+                  ]
+                },
+                "sc": [
+                  -0.02291220164837801,
+                  0.06952996397986613
+                ],
+                "tc": [
+                  -0.026260565805740554,
+                  0.0689604510244149
+                ],
+                "ratio": [
+                  1.138440960315358,
+                  1.0656181537105474
+                ]
+              },
+              {
+                "sy": 0.06,
+                "ty": 0.065,
+                "source": {
+                  "count": 1078,
+                  "center": [
+                    -0.00966389607550847,
+                    0.03805148058572775
+                  ],
+                  "half": [
+                    0.038956761292420955,
+                    0.10068537692922841
+                  ]
+                },
+                "target": {
+                  "count": 36,
+                  "center": [
+                    -0.009515595276611243,
+                    0.029995526966320185
+                  ],
+                  "half": [
+                    0.04207694768492758,
+                    0.09890370550629402
+                  ]
+                },
+                "sc": [
+                  -0.00966389607550847,
+                  0.03805148058572775
+                ],
+                "tc": [
+                  -0.009515595276611243,
+                  0.029995526966320185
+                ],
+                "ratio": [
+                  1.0800935778281358,
+                  0.9823045661915063
+                ]
+              },
+              {
+                "sy": 0.1,
+                "ty": 0.12,
+                "source": {
+                  "count": 946,
+                  "center": [
+                    -0.004345118551411321,
+                    0.003022504654400803
+                  ],
+                  "half": [
+                    0.03139535432236229,
+                    0.05706649180469757
+                  ]
+                },
+                "target": {
+                  "count": 34,
+                  "center": [
+                    0.0030846607723770472,
+                    0.0018718963157050364
+                  ],
+                  "half": [
+                    0.04196956679468273,
+                    0.05609630560911222
+                  ]
+                },
+                "sc": [
+                  -0.004345118551411321,
+                  0.003022504654400803
+                ],
+                "tc": [
+                  0.0030846607723770472,
+                  0.0018718963157050364
+                ],
+                "ratio": [
+                  1.3368081902738278,
+                  0.982999021581602
+                ]
+              },
+              {
+                "sy": 0.16,
+                "ty": 0.18,
+                "source": {
+                  "count": 231,
+                  "center": [
+                    0.0035541342616437696,
+                    -0.010933670771714303
+                  ],
+                  "half": [
+                    0.03244354074432627,
+                    0.042331573707364685
+                  ]
+                },
+                "target": {
+                  "count": 15,
+                  "center": [
+                    0.005873642106137909,
+                    -0.012791143700037599
+                  ],
+                  "half": [
+                    0.02539684024465199,
+                    0.03993064826742866
+                  ]
+                },
+                "sc": [
+                  0.0035541342616437696,
+                  -0.010933670771714303
+                ],
+                "tc": [
+                  0.005873642106137909,
+                  -0.012791143700037599
+                ],
+                "ratio": [
+                  0.7828011265722714,
+                  0.9432828683258161
+                ]
+              }
+            ],
+            "vertices": 1765,
+            "maxMoveM": 0.06139312942780069
+          }
+        ],
+        "verificationBefore": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2892144024372101,
+              -0.006006903015077114,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.2892993092536926,
+              0.40249019861221313,
+              0.1737712025642395
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2870166301727295,
+              -0.006000000052154064,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.28782325983047485,
+              0.40249019861221313,
+              0.17935916781425476
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "skinAndUvExact": true,
+        "orderedWoundTrianglesExact": true
+      },
+      {
+        "race": "undead",
+        "source": {
+          "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-forefoot.glb",
+          "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5",
+          "body": "public/ashen-reach/equipment-undead/body.glb",
+          "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+          "bodyMesh": "UndeadV1Body"
+        },
+        "artifact": {
+          "file": ".cache/character-mmo/boot-forefoot/publication-ZWUlE4/first/undead/wayfarerBoots.glb",
+          "bytes": 243000,
+          "sha256": "664e048978ab7a4fadd7b0d3f251694c0d746c2e049b4983426db15f44ec07dd"
+        },
+        "feet": [
+          {
+            "side": "Left",
+            "stations": [
+              {
+                "sy": 0.015,
+                "ty": 0.02,
+                "source": {
+                  "count": 12045,
+                  "center": [
+                    0.022912227523786695,
+                    0.06953020333146268
+                  ],
+                  "half": [
+                    0.055364968953228365,
+                    0.13115176288410704
+                  ]
+                },
+                "target": {
+                  "count": 496,
+                  "center": [
+                    0.011568896606844022,
+                    0.07261381769122383
+                  ],
+                  "half": [
+                    0.06942222908511445,
+                    0.15462252640702212
+                  ]
+                },
+                "sc": [
+                  0.022912227523786695,
+                  0.06953020333146268
+                ],
+                "tc": [
+                  0.011568896606844022,
+                  0.07261381769122383
+                ],
+                "ratio": [
+                  1.2539017071202818,
+                  1.1789588108217435
+                ]
+              },
+              {
+                "sy": 0.06,
+                "ty": 0.065,
+                "source": {
+                  "count": 1078,
+                  "center": [
+                    0.009663907484506868,
+                    0.038051710569648074
+                  ],
+                  "half": [
+                    0.03895678452286379,
+                    0.10068541094044445
+                  ]
+                },
+                "target": {
+                  "count": 154,
+                  "center": [
+                    0.002032363624888768,
+                    0.05098623259309099
+                  ],
+                  "half": [
+                    0.050275287595921855,
+                    0.13660306444034517
+                  ]
+                },
+                "sc": [
+                  0.009663907484506868,
+                  0.038051710569648074
+                ],
+                "tc": [
+                  0.002032363624888768,
+                  0.05098623259309099
+                ],
+                "ratio": [
+                  1.2905399717067312,
+                  1.3567314585540706
+                ]
+              },
+              {
+                "sy": 0.1,
+                "ty": 0.12,
+                "source": {
+                  "count": 946,
+                  "center": [
+                    0.004345155414049309,
+                    0.0030227025971941435
+                  ],
+                  "half": [
+                    0.03139537056785684,
+                    0.057066506876488385
+                  ]
+                },
+                "target": {
+                  "count": 130,
+                  "center": [
+                    -0.013236065271959217,
+                    0.02267454297013741
+                  ],
+                  "half": [
+                    0.04737214133402711,
+                    0.08117069077605167
+                  ]
+                },
+                "sc": [
+                  0.004345155414049309,
+                  0.0030227025971941435
+                ],
+                "tc": [
+                  -0.013236065271959217,
+                  0.02267454297013741
+                ],
+                "ratio": [
+                  1.5088893832814825,
+                  1.4223875828203933
+                ]
+              },
+              {
+                "sy": 0.16,
+                "ty": 0.18,
+                "source": {
+                  "count": 231,
+                  "center": [
+                    -0.0035540669841684722,
+                    -0.010933476039390957
+                  ],
+                  "half": [
+                    0.03244358732580005,
+                    0.042331584205854186
+                  ]
+                },
+                "target": {
+                  "count": 73,
+                  "center": [
+                    -0.00860961087172361,
+                    -0.0017808277843624036
+                  ],
+                  "half": [
+                    0.03723949107228565,
+                    0.04161588958675885
+                  ]
+                },
+                "sc": [
+                  -0.0035540669841684722,
+                  -0.010933476039390957
+                ],
+                "tc": [
+                  -0.00860961087172361,
+                  -0.0017808277843624036
+                ],
+                "ratio": [
+                  1.1478228562805002,
+                  0.983093129337778
+                ]
+              }
+            ],
+            "vertices": 1765,
+            "maxMoveM": 0.07479075314801005
+          },
+          {
+            "side": "Right",
+            "stations": [
+              {
+                "sy": 0.015,
+                "ty": 0.02,
+                "source": {
+                  "count": 12045,
+                  "center": [
+                    -0.02291220164837801,
+                    0.06952996397986613
+                  ],
+                  "half": [
+                    0.055364930667855874,
+                    0.13115171185262992
+                  ]
+                },
+                "target": {
+                  "count": 506,
+                  "center": [
+                    -0.018304626144038938,
+                    0.07367646494226801
+                  ],
+                  "half": [
+                    0.06912333113563962,
+                    0.15359257473495472
+                  ]
+                },
+                "sc": [
+                  -0.02291220164837801,
+                  0.06952996397986613
+                ],
+                "tc": [
+                  -0.018304626144038938,
+                  0.07367646494226801
+                ],
+                "ratio": [
+                  1.248503886879636,
+                  1.171106137810391
+                ]
+              },
+              {
+                "sy": 0.06,
+                "ty": 0.065,
+                "source": {
+                  "count": 1078,
+                  "center": [
+                    -0.00966389607550847,
+                    0.03805148058572775
+                  ],
+                  "half": [
+                    0.038956761292420955,
+                    0.10068537692922841
+                  ]
+                },
+                "target": {
+                  "count": 155,
+                  "center": [
+                    -0.012408624241004633,
+                    0.05216926759157365
+                  ],
+                  "half": [
+                    0.04837290253683793,
+                    0.13567345360286992
+                  ]
+                },
+                "sc": [
+                  -0.00966389607550847,
+                  0.03805148058572775
+                ],
+                "tc": [
+                  -0.012408624241004633,
+                  0.05216926759157365
+                ],
+                "ratio": [
+                  1.2417074965173989,
+                  1.3474990881569087
+                ]
+              },
+              {
+                "sy": 0.1,
+                "ty": 0.12,
+                "source": {
+                  "count": 946,
+                  "center": [
+                    -0.004345118551411321,
+                    0.003022504654400803
+                  ],
+                  "half": [
+                    0.03139535432236229,
+                    0.05706649180469757
+                  ]
+                },
+                "target": {
+                  "count": 144,
+                  "center": [
+                    -0.0006407287685433714,
+                    0.024269209752280335
+                  ],
+                  "half": [
+                    0.047363337182936574,
+                    0.08165767524008478
+                  ]
+                },
+                "sc": [
+                  -0.004345118551411321,
+                  0.003022504654400803
+                ],
+                "tc": [
+                  -0.0006407287685433714,
+                  0.024269209752280335
+                ],
+                "ratio": [
+                  1.508609735587555,
+                  1.4309215908969357
+                ]
+              },
+              {
+                "sy": 0.16,
+                "ty": 0.18,
+                "source": {
+                  "count": 231,
+                  "center": [
+                    0.0035541342616437696,
+                    -0.010933670771714303
+                  ],
+                  "half": [
+                    0.03244354074432627,
+                    0.042331573707364685
+                  ]
+                },
+                "target": {
+                  "count": 72,
+                  "center": [
+                    -0.0057577754848598915,
+                    -0.0005621919572720013
+                  ],
+                  "half": [
+                    0.03763001286480534,
+                    0.04146984536479779
+                  ]
+                },
+                "sc": [
+                  0.0035541342616437696,
+                  -0.010933670771714303
+                ],
+                "tc": [
+                  -0.0057577754848598915,
+                  -0.0005621919572720013
+                ],
+                "ratio": [
+                  1.1598614701567702,
+                  0.9796433662371268
+                ]
+              }
+            ],
+            "vertices": 1765,
+            "maxMoveM": 0.0952756340675056
+          }
+        ],
+        "verificationBefore": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.3074204921722412,
+              -0.005999705288559198,
+              -0.1521732658147812
+            ],
+            "max": [
+              0.3116702735424042,
+              0.4573856592178345,
+              0.18858177959918976
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 1,
+          "primitives": 1,
+          "vertices": 3530,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.31102195382118225,
+              -0.006000000052154064,
+              -0.14951768517494202
+            ],
+            "max": [
+              0.31209319829940796,
+              0.4573856592178345,
+              0.1897033452987671
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "skinAndUvExact": true,
+        "orderedWoundTrianglesExact": true
+      }
+    ]
+  },
+  "duskguard": {
+    "sourceReport": {
+      "schema": 1,
+      "candidateOnly": true,
+      "toolSources": [
+        {
+          "path": "scripts/character-assets/build-duskguard-armor.mjs",
+          "sha256": "4a7c993e7a72030bbdfde7a240737e188f9b8ac8ff864a0f191173f04f07248e"
+        },
+        {
+          "path": "scripts/character-assets/author-duskguard-plates.py",
+          "sha256": "d38b7a28202a7d5f081a44d536120a67c0dcefea7e0faf7a7aec96482d31cbf0"
+        },
+        {
+          "path": "scripts/character-assets/normalize-human-bind.mjs",
+          "sha256": "c2781998b91d42fcb3225caa2f7bee0b8309ee30f047916751189a67d7d08f68"
+        },
+        {
+          "path": "scripts/character-assets/verify-factory-equipment-bind.mjs",
+          "sha256": "5994c7a38681514b2b83c3a8b858d181867d160efa349fc95aa84ece34032684"
+        },
+        {
+          "path": "scripts/character-assets/native_cloth_panels.py",
+          "sha256": "b8a226729fb532ca2393b5ae0d7886cbb3d2dccb8f3cbca12fdae87597f1788b"
+        }
+      ],
+      "tooling": {
+        "blender": "5.2.1",
+        "node": "22.18.0"
+      },
+      "descriptor": {
+        "path": "blender/characters/wardrobe/duskguard-armor.json",
+        "sha256": "33f93254e58031f8418b6c19bcef2b26db182e67e273d76d21ac9de79fd8aa9f"
+      },
+      "rights": "Project-authored native plate on the accepted body surfaces, reusing accepted CC0 cloth underlayers. Existing Tripo/Mixamo body/rig source grant limitations retained.",
+      "rows": [
+        {
+          "race": "human",
+          "id": "duskguardCuirass",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardCuirass.glb",
+          "sha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+          "bytes": 296596,
+          "meshes": [
+            "DuskguardUndercoat",
+            "DuskguardCuirass",
+            "DuskguardGussets"
+          ],
+          "rigidVertices": 1230,
+          "rigidTriangles": 1428,
+          "verification": {
+            "joints": 65,
+            "meshes": 3,
+            "primitives": 4,
+            "vertices": 5217,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.6857295036315918,
+                0.7521871328353882,
+                -0.2072688341140747
+              ],
+              "max": [
+                0.6904424428939819,
+                1.514944314956665,
+                0.15997488796710968
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "human",
+          "id": "duskguardTassets",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardTassets.glb",
+          "sha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+          "bytes": 155136,
+          "meshes": [
+            "DuskguardTrousers",
+            "DuskguardTrouserCuffs",
+            "DuskguardTassets"
+          ],
+          "rigidVertices": 178,
+          "rigidTriangles": 212,
+          "verification": {
+            "joints": 65,
+            "meshes": 3,
+            "primitives": 4,
+            "vertices": 2938,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.22918584942817688,
+                0.17471309006214142,
+                -0.14927007257938385
+              ],
+              "max": [
+                0.23214922845363617,
+                1.0970656871795654,
+                0.13863077759742737
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "human",
+          "id": "duskguardGreaves",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardGreaves.glb",
+          "sha256": "fc4519dbc0c2ff30d4ebe5d891bde6800450ac2eb16f57a2e1147ed6216d44cd",
+          "bytes": 250084,
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "rigidVertices": 112,
+          "rigidTriangles": 112,
+          "verification": {
+            "joints": 65,
+            "meshes": 2,
+            "primitives": 3,
+            "vertices": 3642,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.2870166301727295,
+                -0.006000000052154064,
+                -0.1525457799434662
+              ],
+              "max": [
+                0.28782325983047485,
+                0.4542638063430786,
+                0.17935916781425476
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "human",
+          "id": "duskguardVambraces",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardVambraces.glb",
+          "sha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+          "bytes": 182164,
+          "meshes": [
+            "DuskguardGloveUnderlayer",
+            "DuskguardVambraces"
+          ],
+          "rigidVertices": 158,
+          "rigidTriangles": 212,
+          "verification": {
+            "joints": 65,
+            "meshes": 2,
+            "primitives": 3,
+            "vertices": 2754,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.9207277894020081,
+                1.2895855903625488,
+                -0.1527949869632721
+              ],
+              "max": [
+                0.9167165756225586,
+                1.481928825378418,
+                0.06354129314422607
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "human",
+          "native": {
+            "source": "public/ashen-reach/equipment/body.glb",
+            "bodyMesh": "HumanV1Body",
+            "greaveBootEnvelope": null,
+            "heightUnit": 1.0079867745700635,
+            "halfTorsoWidth": 0.14953159780008718,
+            "pieces": [
+              {
+                "name": "UnderarmGussets",
+                "itemMesh": "DuskguardGussets",
+                "deformation": "soft-skin",
+                "vertices": 215,
+                "standoffM": 0.014111814843980889
+              },
+              {
+                "name": "Breastplate",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine2",
+                "sourcePoints": 132,
+                "vertices": 230,
+                "faces": 308,
+                "standoffM": 0.03527953710995223
+              },
+              {
+                "name": "UpperFauld",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine1",
+                "sourcePoints": 97,
+                "vertices": 148,
+                "faces": 167,
+                "standoffM": 0.03527953710995223
+              },
+              {
+                "name": "LowerFauld",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine",
+                "sourcePoints": 128,
+                "vertices": 142,
+                "faces": 153,
+                "standoffM": 0.03527953710995223
+              },
+              {
+                "name": "WaistPlate",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Hips",
+                "sourcePoints": 186,
+                "vertices": 198,
+                "faces": 240,
+                "standoffM": 0.03527953710995223
+              },
+              {
+                "name": "LeftTasset",
+                "itemMesh": "DuskguardTassets",
+                "bone": "LeftUpLeg",
+                "sourcePoints": 88,
+                "vertices": 64,
+                "faces": 95,
+                "standoffM": 0.03225557678624203
+              },
+              {
+                "name": "LeftGreave",
+                "itemMesh": "DuskguardGreaves",
+                "bone": "LeftLeg",
+                "sourcePoints": 26,
+                "vertices": 36,
+                "faces": 44,
+                "standoffM": 0.030239603237101904
+              },
+              {
+                "name": "LeftVambrace",
+                "itemMesh": "DuskguardVambraces",
+                "bone": "LeftForeArm",
+                "sourcePoints": 30,
+                "vertices": 54,
+                "faces": 95,
+                "standoffM": 0.03527953710995223
+              },
+              {
+                "name": "RightTasset",
+                "itemMesh": "DuskguardTassets",
+                "bone": "RightUpLeg",
+                "sourcePoints": 77,
+                "vertices": 52,
+                "faces": 83,
+                "standoffM": 0.03225557678624203
+              },
+              {
+                "name": "RightGreave",
+                "itemMesh": "DuskguardGreaves",
+                "bone": "RightLeg",
+                "sourcePoints": 25,
+                "vertices": 34,
+                "faces": 42,
+                "standoffM": 0.030239603237101904
+              },
+              {
+                "name": "RightVambrace",
+                "itemMesh": "DuskguardVambraces",
+                "bone": "RightForeArm",
+                "sourcePoints": 30,
+                "vertices": 54,
+                "faces": 92,
+                "standoffM": 0.03527953710995223
+              }
+            ],
+            "blenderVersion": "5.2.1 LTS",
+            "candidateOnly": true
+          },
+          "compileSeconds": 1.4167907499999999
+        },
+        {
+          "race": "undead",
+          "id": "duskguardCuirass",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardCuirass.glb",
+          "sha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+          "bytes": 338520,
+          "meshes": [
+            "DuskguardUndercoat",
+            "DuskguardCuirass",
+            "DuskguardGussets"
+          ],
+          "rigidVertices": 1550,
+          "rigidTriangles": 1808,
+          "verification": {
+            "joints": 65,
+            "meshes": 3,
+            "primitives": 4,
+            "vertices": 6522,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.7263170480728149,
+                0.8306885957717896,
+                -0.22223696112632751
+              ],
+              "max": [
+                0.7268720269203186,
+                1.6179382801055908,
+                0.15750759840011597
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "undead",
+          "id": "duskguardTassets",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardTassets.glb",
+          "sha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+          "bytes": 156516,
+          "meshes": [
+            "DuskguardTrousers",
+            "DuskguardTrouserCuffs",
+            "DuskguardTassets"
+          ],
+          "rigidVertices": 224,
+          "rigidTriangles": 268,
+          "verification": {
+            "joints": 65,
+            "meshes": 3,
+            "primitives": 4,
+            "vertices": 2984,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.23588018119335175,
+                0.21912257373332977,
+                -0.15668149292469025
+              ],
+              "max": [
+                0.24347379803657532,
+                1.1609355211257935,
+                0.1285923719406128
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "undead",
+          "id": "duskguardGreaves",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardGreaves.glb",
+          "sha256": "060d679644d6a4f792f204123e6737e18706538ba497b46870d766ebebb26fd3",
+          "bytes": 249884,
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "rigidVertices": 104,
+          "rigidTriangles": 112,
+          "verification": {
+            "joints": 65,
+            "meshes": 2,
+            "primitives": 3,
+            "vertices": 3634,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.31102195382118225,
+                -0.006000000052154064,
+                -0.14951768517494202
+              ],
+              "max": [
+                0.31209319829940796,
+                0.5287650227546692,
+                0.1897033452987671
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "undead",
+          "id": "duskguardVambraces",
+          "artifact": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardVambraces.glb",
+          "sha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+          "bytes": 184260,
+          "meshes": [
+            "DuskguardGloveUnderlayer",
+            "DuskguardVambraces"
+          ],
+          "rigidVertices": 236,
+          "rigidTriangles": 272,
+          "verification": {
+            "joints": 65,
+            "meshes": 2,
+            "primitives": 3,
+            "vertices": 2832,
+            "worstPaletteDelta": 0,
+            "inverseBindExact": true,
+            "bounds": {
+              "min": [
+                -0.9661502242088318,
+                1.3904681205749512,
+                -0.14816047251224518
+              ],
+              "max": [
+                0.959929883480072,
+                1.5781785249710083,
+                0.11089785397052765
+              ],
+              "frame": "accepted body mesh"
+            }
+          }
+        },
+        {
+          "race": "undead",
+          "native": {
+            "source": "public/ashen-reach/equipment-undead/body.glb",
+            "bodyMesh": "UndeadV1Body",
+            "greaveBootEnvelope": null,
+            "heightUnit": 1.0703888042528826,
+            "halfTorsoWidth": 0.15088449699338524,
+            "pieces": [
+              {
+                "name": "UnderarmGussets",
+                "itemMesh": "DuskguardGussets",
+                "deformation": "soft-skin",
+                "vertices": 1354,
+                "standoffM": 0.014985443259540357
+              },
+              {
+                "name": "Breastplate",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine2",
+                "sourcePoints": 1625,
+                "vertices": 260,
+                "faces": 345,
+                "standoffM": 0.03746360814885089
+              },
+              {
+                "name": "UpperFauld",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine1",
+                "sourcePoints": 1302,
+                "vertices": 276,
+                "faces": 342,
+                "standoffM": 0.03746360814885089
+              },
+              {
+                "name": "LowerFauld",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Spine",
+                "sourcePoints": 1013,
+                "vertices": 152,
+                "faces": 152,
+                "standoffM": 0.03746360814885089
+              },
+              {
+                "name": "WaistPlate",
+                "itemMesh": "DuskguardCuirass",
+                "bone": "Hips",
+                "sourcePoints": 1169,
+                "vertices": 216,
+                "faces": 274,
+                "standoffM": 0.03746360814885089
+              },
+              {
+                "name": "LeftTasset",
+                "itemMesh": "DuskguardTassets",
+                "bone": "LeftUpLeg",
+                "sourcePoints": 236,
+                "vertices": 86,
+                "faces": 111,
+                "standoffM": 0.034252441736092244
+              },
+              {
+                "name": "LeftGreave",
+                "itemMesh": "DuskguardGreaves",
+                "bone": "LeftLeg",
+                "sourcePoints": 48,
+                "vertices": 32,
+                "faces": 45,
+                "standoffM": 0.03211166412758648
+              },
+              {
+                "name": "LeftVambrace",
+                "itemMesh": "DuskguardVambraces",
+                "bone": "LeftForeArm",
+                "sourcePoints": 128,
+                "vertices": 74,
+                "faces": 111,
+                "standoffM": 0.03746360814885089
+              },
+              {
+                "name": "RightTasset",
+                "itemMesh": "DuskguardTassets",
+                "bone": "RightUpLeg",
+                "sourcePoints": 244,
+                "vertices": 88,
+                "faces": 114,
+                "standoffM": 0.034252441736092244
+              },
+              {
+                "name": "RightGreave",
+                "itemMesh": "DuskguardGreaves",
+                "bone": "RightLeg",
+                "sourcePoints": 46,
+                "vertices": 32,
+                "faces": 45,
+                "standoffM": 0.03211166412758648
+              },
+              {
+                "name": "RightVambrace",
+                "itemMesh": "DuskguardVambraces",
+                "bone": "RightForeArm",
+                "sourcePoints": 127,
+                "vertices": 74,
+                "faces": 111,
+                "standoffM": 0.03746360814885089
+              }
+            ],
+            "blenderVersion": "5.2.1 LTS",
+            "candidateOnly": true
+          },
+          "compileSeconds": 1.464596
+        }
+      ]
+    },
+    "rows": [
+      {
+        "race": "human",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/human/duskguardGreaves.glb",
+          "sha256": "fc4519dbc0c2ff30d4ebe5d891bde6800450ac2eb16f57a2e1147ed6216d44cd"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment/duskguardGreaves-fc4519dbc0c2.glb",
+          "bytes": 250084,
+          "sha256": "fc4519dbc0c2ff30d4ebe5d891bde6800450ac2eb16f57a2e1147ed6216d44cd",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-human",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 3642,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.2870166301727295,
+              -0.006000000052154064,
+              -0.1525457799434662
+            ],
+            "max": [
+              0.28782325983047485,
+              0.4542638063430786,
+              0.17935916781425476
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": true,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": true,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true
+      },
+      {
+        "race": "undead",
+        "id": "duskguardGreaves",
+        "source": {
+          "path": ".cache/character-mmo/wardrobe-v1/duskguard/undead/duskguardGreaves.glb",
+          "sha256": "060d679644d6a4f792f204123e6737e18706538ba497b46870d766ebebb26fd3"
+        },
+        "artifact": {
+          "url": "/ashen-reach/equipment-undead/duskguardGreaves-060d679644d6.glb",
+          "bytes": 249884,
+          "sha256": "060d679644d6a4f792f204123e6737e18706538ba497b46870d766ebebb26fd3",
+          "meshes": [
+            "DuskguardBootUnderlayer",
+            "DuskguardGreaves"
+          ],
+          "fit": {
+            "body": "ashen-undead",
+            "rig": "source-65",
+            "bind": 1,
+            "shape": 1
+          }
+        },
+        "verification": {
+          "joints": 65,
+          "meshes": 2,
+          "primitives": 3,
+          "vertices": 3634,
+          "worstPaletteDelta": 0,
+          "inverseBindExact": true,
+          "bounds": {
+            "min": [
+              -0.31102195382118225,
+              -0.006000000052154064,
+              -0.14951768517494202
+            ],
+            "max": [
+              0.31209319829940796,
+              0.5287650227546692,
+              0.1897033452987671
+            ],
+            "frame": "accepted body mesh"
+          }
+        },
+        "existingPlateArraysExact": true,
+        "reviewedUnderlayerArraysExact": true,
+        "existingPlateSemanticArraysExact": true,
+        "orderedWoundTrianglesExact": true,
+        "encodedReadbackArraysAndTrianglesVerified": true
+      }
+    ]
+  },
+  "tools": [
+    {
+      "path": "scripts/character-assets/prepare-boot-sole.mjs",
+      "sha256": "5e0ace5b56d4533f60ef134e383d7fe241dba1e62d3818209005b0d726b37638"
+    },
+    {
+      "path": "scripts/character-assets/build-boot-last.mjs",
+      "sha256": "a7e742da93c42f65a61bdb1a2d2390cf03ed2d97b7d41eb3b384ed3046b44098"
+    },
+    {
+      "path": "scripts/character-assets/equipment-factory-contract.mjs",
+      "sha256": "97ba4cf8691aaaf1c6d96dc7a174283923c02aa001e4168bb89aec1aa83e86b1"
+    },
+    {
+      "path": "scripts/character-assets/triangle-index-contract.mjs",
+      "sha256": "f06a74d050be88163dab29b36ca3465932942289ed62cecb8bdf9589db5b5764"
+    },
+    {
+      "path": "blender/characters/wardrobe/boot-forefoot.json",
+      "sha256": "355d7f6ad8531191b889306b015c2150968e56111992f7d916652002034bde56"
+    },
+    {
+      "path": "blender/characters/wardrobe/duskguard-armor.json",
+      "sha256": "33f93254e58031f8418b6c19bcef2b26db182e67e273d76d21ac9de79fd8aa9f"
+    }
+  ]
+}

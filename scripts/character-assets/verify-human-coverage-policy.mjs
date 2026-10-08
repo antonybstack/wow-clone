@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {HUMAN_FOOT_COVERAGE_REVISION} from './derive-coverage-geosets.mjs';
 
 /** The adapter revision describes semantic mesh visibility; these separate
  * source policies pin the actually reviewed index partitions. A historical
@@ -10,8 +11,11 @@ export function verifyHumanCoveragePolicy(manifest,{identity=false}={}){
  const torso=identity?row?.torsoCoverage:row,foot=identity?row?.footCoverage:row?.footCoverage;
  assert.equal(identity?torso?.revision:torso?.partitionPolicy,'human-medial-back-v1','Missing reviewed Human back policy');
  assert.equal(torso?.partition?.coveredTriangles,446,'Unreviewed Human torso partition');
- assert.equal(foot?.revision,'human-ankle-foot-v1','Missing reviewed Human foot policy');
- assert.equal(foot?.partition?.coveredTriangles,448,'Unreviewed Human foot partition');
+ assert.equal(foot?.revision,HUMAN_FOOT_COVERAGE_REVISION,'Stale identity foot coverage policy');
+ // Written native source census and reviewed motion: the original 448 faces
+ // plus 382 mixed shin/foot faces below the same anatomical ankle boundary.
+ // Preserve an exact reviewed partition; future source changes need new proof.
+ assert.equal(foot?.partition?.coveredTriangles,830,'Unreviewed Human foot partition');
  const proof=identity?torso?.verification:row?.verification;
  assert.equal(proof?.triangles,torso.partition.originalTriangles,'Invalid Human triangle union');
  assert.equal(foot.partition.originalTriangles,proof.triangles-torso.partition.coveredTriangles,'Invalid Human sequential partition');

@@ -10,9 +10,9 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment/manifest.json",
-      "sourceManifestSha256": "45c0b3a6709b534bd99404245b720895ef5a067dc323313e672d09fc3b1b4807",
+      "sourceManifestSha256": "734c3034c7c8603f4ce4ac022a072b661560e21c5d0a346a77afa5eb294e6bc7",
       "artifacts": [
-        "body-coverage-75f772ab0d3d.glb",
+        "body-coverage-ec8f60d3ac38.glb",
         "wayfarerTrousers-coverage-48d4f61d94cf.glb",
         "duskguardTassets-coverage-e813d3927fc0.glb"
       ],
@@ -30,9 +30,9 @@
             ]
           },
           "output": {
-            "url": "/ashen-reach/equipment/body-coverage-75f772ab0d3d.glb",
-            "sha256": "75f772ab0d3d3f641f23e23d296db12a3d23aa2aefe7bd9474beca8b39d793b1",
-            "bytes": 3400908
+            "url": "/ashen-reach/equipment/body-coverage-ec8f60d3ac38.glb",
+            "sha256": "ec8f60d3ac384124f8b01a32334fe80ea67d84574b79671858c1b579313d8e7e",
+            "bytes": 3400888
           },
           "partition": {
             "source": "HumanV1Body",
@@ -59,13 +59,13 @@
           },
           "partitionPolicy": "human-medial-back-v1",
           "footCoverage": {
-            "revision": "human-ankle-foot-v1",
+            "revision": "human-anatomical-foot-v2",
             "partition": {
               "source": "HumanV1Body",
               "covered": "HumanFootCore",
               "originalTriangles": 4879,
-              "coveredTriangles": 448,
-              "exposedTriangles": 4431,
+              "coveredTriangles": 830,
+              "exposedTriangles": 4049,
               "vertexReindexing": false
             },
             "landmarks": {
@@ -203,12 +203,12 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/human-shape-v1/manifest.json",
       "sourceManifest": "public/ashen-reach/human-shape-v1/manifest.json",
-      "sourceManifestSha256": "a656e6408696081189234c7781611ad03780fa5e8e6bc082f1ec063bcc383003",
+      "sourceManifestSha256": "2912f4587e9102a915ed66f73a8be362c61092087d68046a81ecb1266cf0776f",
       "artifacts": [
-        "body-coverage-e6892517e0a4.bin",
+        "body-coverage-08276b07dac6.bin",
         "wayfarerTrousers-coverage-b1eb36e8f614.bin",
         "duskguardTassets-coverage-ee06988dee5f.bin",
-        "body-coverage-1d8f3dc454d6.bin",
+        "body-coverage-e07ffbc25295.bin",
         "wayfarerTrousers-compact-coverage-d76b155ae777.bin"
       ],
       "rows": [
@@ -236,10 +236,10 @@
             ]
           },
           "output": {
-            "url": "/ashen-reach/human-shape-v1/body-coverage-e6892517e0a4.bin",
-            "sha256": "56c4c88d8c226916ce933d2ab992a1536f8ea5ef1b36401599f5cf0b5d42c736",
-            "bytes": 1913064,
-            "encodedBytes": 991365
+            "url": "/ashen-reach/human-shape-v1/body-coverage-08276b07dac6.bin",
+            "sha256": "b25be35cdcfbeb163400a02dd994fc72a5d34faa34f9112e08868da99915bcc6",
+            "bytes": 1913044,
+            "encodedBytes": 991358
           },
           "partition": {
             "source": "HumanV1Body",
@@ -266,13 +266,13 @@
           },
           "partitionPolicy": "human-medial-back-v1",
           "footCoverage": {
-            "revision": "human-ankle-foot-v1",
+            "revision": "human-anatomical-foot-v2",
             "partition": {
               "source": "HumanV1Body",
               "covered": "HumanFootCore",
               "originalTriangles": 4879,
-              "coveredTriangles": 448,
-              "exposedTriangles": 4431,
+              "coveredTriangles": 830,
+              "exposedTriangles": 4049,
               "vertexReindexing": false
             },
             "landmarks": {
@@ -482,10 +482,10 @@
             }
           },
           "output": {
-            "url": "/ashen-reach/human-shape-v1/body-coverage-1d8f3dc454d6.bin",
-            "sha256": "316c4d5aecaf15cc73886b5ae90ab2a1f06cbad884ecc412a9e61fdd532c462e",
-            "bytes": 986540,
-            "encodedBytes": 543465
+            "url": "/ashen-reach/human-shape-v1/body-coverage-e07ffbc25295.bin",
+            "sha256": "2054d0b8b620b75b169ee1cd8d2a1ad1cc0cc5845fe6a7d7644f77e8d9e86606",
+            "bytes": 986520,
+            "encodedBytes": 543448
           },
           "partition": {
             "source": "HumanV1Body",
@@ -512,13 +512,13 @@
           },
           "partitionPolicy": "human-medial-back-v1",
           "footCoverage": {
-            "revision": "human-ankle-foot-v1",
+            "revision": "human-anatomical-foot-v2",
             "partition": {
               "source": "HumanV1Body",
               "covered": "HumanFootCore",
               "originalTriangles": 4879,
-              "coveredTriangles": 448,
-              "exposedTriangles": 4431,
+              "coveredTriangles": 830,
+              "exposedTriangles": 4049,
               "vertexReindexing": false
             },
             "landmarks": {
@@ -626,9 +626,9 @@
       "manifestName": "manifest.json",
       "publicationManifest": "public/ashen-reach/startup/character/manifest.json",
       "sourceManifest": "public/ashen-reach/startup/character/manifest.json",
-      "sourceManifestSha256": "fc35b0010468d908682b1c55bab8084d170d9be3167b653f3db8f8de8c58da4d",
+      "sourceManifestSha256": "5ac7c4600d637c3f8d8fa8c43f5ab8b89b849211012dbc2c9ea390b3c55541ad",
       "artifacts": [
-        "body-coverage-843a7f392521.bin",
+        "body-coverage-6e8a0c1a7f30.bin",
         "wayfarerTrousers-coverage-18aaf5475c09.bin",
         "duskguardTassets-coverage-e813d3927fc0.glb"
       ],
@@ -673,10 +673,10 @@
             ]
           },
           "output": {
-            "url": "/ashen-reach/startup/character/body-coverage-843a7f392521.bin",
-            "sha256": "11404f784ddb042b8c92452d6cc0f850de350a422c4e56ab6cd5bc2d390cdd3e",
-            "bytes": 896072,
-            "encodedBytes": 471314
+            "url": "/ashen-reach/startup/character/body-coverage-6e8a0c1a7f30.bin",
+            "sha256": "bd3761b399e344cacb717024215e8d609930351ac294f85c21859c3f5c3b55a5",
+            "bytes": 896052,
+            "encodedBytes": 471312
           },
           "partition": {
             "source": "HumanV1Body",
@@ -703,13 +703,13 @@
           },
           "partitionPolicy": "human-medial-back-v1",
           "footCoverage": {
-            "revision": "human-ankle-foot-v1",
+            "revision": "human-anatomical-foot-v2",
             "partition": {
               "source": "HumanV1Body",
               "covered": "HumanFootCore",
               "originalTriangles": 4879,
-              "coveredTriangles": 448,
-              "exposedTriangles": 4431,
+              "coveredTriangles": 830,
+              "exposedTriangles": 4049,
               "vertexReindexing": false
             },
             "landmarks": {
@@ -1029,9 +1029,9 @@
       "manifestName": "manifest-coverage-v1.json",
       "publicationManifest": "public/ashen-reach/equipment-undead/manifest-coverage-v1.json",
       "sourceManifest": "public/ashen-reach/equipment-undead/manifest.json",
-      "sourceManifestSha256": "2cb48b57643417c6dfb019cf21ac34cdfbb9c0204cce862e140f062a45684b40",
+      "sourceManifestSha256": "105456a1df334dca650b9bdfe3fd2001435880a3418c95417facf5cb9b119483",
       "artifacts": [
-        "body-coverage-2f778c68a013.glb",
+        "body-coverage-e8da1baff8a1.glb",
         "graveweaverSkirt-coverage-8be75fe7dc39.glb",
         "wayfarerTrousers-coverage-051b2a33d0e2.glb",
         "duskguardTassets-coverage-3fd0a9c51a6b.glb"
@@ -1051,9 +1051,9 @@
             ]
           },
           "output": {
-            "url": "/ashen-reach/equipment-undead/body-coverage-2f778c68a013.glb",
-            "sha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
-            "bytes": 8372040
+            "url": "/ashen-reach/equipment-undead/body-coverage-e8da1baff8a1.glb",
+            "sha256": "e8da1baff8a1d15b5a373daa1ea70c466016e216f0f91c4159d7f4824bc003d3",
+            "bytes": 8371992
           },
           "partition": {
             "source": "UndeadV1Body",
@@ -1078,13 +1078,13 @@
           },
           "partitionPolicy": "conservative-geosets-v1",
           "footCoverage": {
-            "revision": "undead-ankle-foot-v1",
+            "revision": "undead-anatomical-foot-v2",
             "partition": {
               "source": "UndeadV1Body",
               "covered": "UndeadFootCore",
               "originalTriangles": 7389,
-              "coveredTriangles": 659,
-              "exposedTriangles": 6730,
+              "coveredTriangles": 1032,
+              "exposedTriangles": 6357,
               "vertexReindexing": false
             },
             "landmarks": {

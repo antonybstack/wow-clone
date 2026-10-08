@@ -19,12 +19,13 @@ import {FITS_BY_RACE,assertAssetFit} from '../../src/ashen-reach/equipment-contr
 import {assertTriangleRotations} from './triangle-index-contract.mjs';
 
 const args=process.argv.slice(2),strapPass=args.length===2&&args[0]==='--publish'&&args[1]==='--straps';
-const lastPass=args.length===2&&args[0]==='--publish'&&args[1]==='--last',codecPass=strapPass||lastPass;
-assert(codecPass||JSON.stringify(args)===JSON.stringify(['--publish']),'Use --publish [--straps|--last] for local source packs; this does not deploy');
+const lastPass=args.length===2&&args[0]==='--publish'&&args[1]==='--last';
+const forefootPass=args.length===2&&args[0]==='--publish'&&args[1]==='--forefoot',codecPass=strapPass||lastPass||forefootPass;
+assert(codecPass||JSON.stringify(args)===JSON.stringify(['--publish']),'Use --publish [--straps|--last|--forefoot] for local source packs; this does not deploy');
 const sha=b=>createHash('sha256').update(b).digest('hex');
 // Reuse the same immutable-file/manifest publication and Duskguard compiler
 // for the reviewed strap derivative; do not introduce another asset publisher.
-const pass=lastPass?'last':strapPass?'straps':'sole',builder=`scripts/character-assets/build-boot-${pass}.mjs`;
+const pass=forefootPass?'forefoot':lastPass?'last':strapPass?'straps':'sole',builder=`scripts/character-assets/build-boot-${forefootPass?'last':pass}.mjs`;
 const descriptorPath=`blender/characters/wardrobe/boot-${pass}.json`;
 const descriptorBytes=await fs.readFile(descriptorPath),descriptor=JSON.parse(descriptorBytes);
 const races=lastPass?['orc']:strapPass?['human','undead','orc']:['human','undead'],directory={human:'equipment',undead:'equipment-undead',orc:'equipment-orc'};
@@ -35,8 +36,8 @@ await Promise.all([MeshoptDecoder.ready,MeshoptEncoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({'meshopt.decoder':MeshoptDecoder,'meshopt.encoder':MeshoptEncoder}).setVertexLayout(VertexLayout.SEPARATE);
 const oldPlates=new Map();
 for(const race of races)oldPlates.set(race,(await io.read(`public/ashen-reach/${directory[race]}/duskguardGreaves.glb`)).getRoot().listMeshes().find(m=>m.getName()==='DuskguardGreaves'));
-run(builder,[`${work}/first`]);
-run(builder,[`${work}/repeat`]);
+run(builder,[`${work}/first`,...(forefootPass?[descriptorPath]:[])]);
+run(builder,[`${work}/repeat`,...(forefootPass?[descriptorPath]:[])]);
 const builds={},manifests={},fits={};
 const armorDescriptorPath='blender/characters/wardrobe/duskguard-armor.json';
 const armorDescriptor=JSON.parse(await fs.readFile(armorDescriptorPath,'utf8'));
@@ -52,7 +53,7 @@ for(const race of races){
 }
 assert.equal(sha(await fs.readFile(descriptorPath)),sha(descriptorBytes),'Boot descriptor changed');
 const buildReport=JSON.parse(await fs.readFile(`${work}/first/report.json`,'utf8'));
-const provenance={schema:1,generatedBy:'scripts/character-assets/prepare-boot-sole.mjs',...(codecPass?{arguments:args}:{}),localPacksPublished:true,productionReleased:false,byteIdenticalRebuild:true,[lastPass?'lastReport':strapPass?'strapReport':'soleReport']:buildReport};
+const provenance={schema:1,generatedBy:'scripts/character-assets/prepare-boot-sole.mjs',...(codecPass?{arguments:args}:{}),localPacksPublished:true,productionReleased:false,byteIdenticalRebuild:true,[forefootPass?'forefootReport':lastPass?'lastReport':strapPass?'strapReport':'soleReport']:buildReport};
 // The established publication primitive writes immutable assets and canonical
 // authoring copies first, then atomically replaces each advertised manifest.
 // No game check or release is permitted until the remaining derivatives finish.

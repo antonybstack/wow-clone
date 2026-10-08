@@ -7,9 +7,9 @@
   "bindSha256": "6a7f392c9301863bbcc17b5e57cef5fe6dbe0f89e3736fbcb788be0c4fc62295",
   "items": {
     "body": {
-      "url": "/ashen-reach/equipment-undead/body-coverage-2f778c68a013.glb",
-      "bytes": 8372040,
-      "sha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+      "url": "/ashen-reach/equipment-undead/body-coverage-e8da1baff8a1.glb",
+      "bytes": 8371992,
+      "sha256": "e8da1baff8a1d15b5a373daa1ea70c466016e216f0f91c4159d7f4824bc003d3",
       "meshes": [
         "UndeadV1Body",
         "UndeadV1Eyes",
@@ -165,9 +165,9 @@
       }
     },
     "wayfarerBoots": {
-      "url": "/ashen-reach/equipment-undead/wayfarerBoots-96df888598dd.glb",
-      "bytes": 242344,
-      "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5",
+      "url": "/ashen-reach/equipment-undead/wayfarerBoots-664e048978ab.glb",
+      "bytes": 243000,
+      "sha256": "664e048978ab7a4fadd7b0d3f251694c0d746c2e049b4983426db15f44ec07dd",
       "meshes": [
         "WayfarerBoots"
       ],
@@ -257,9 +257,9 @@
       }
     },
     "duskguardGreaves": {
-      "url": "/ashen-reach/equipment-undead/duskguardGreaves-20cffe52ddaf.glb",
-      "bytes": 249228,
-      "sha256": "20cffe52ddaff4ddaea0da596f506e47e1c45dcb794d59943d42a04b03c7a1a2",
+      "url": "/ashen-reach/equipment-undead/duskguardGreaves-060d679644d6.glb",
+      "bytes": 249884,
+      "sha256": "060d679644d6a4f792f204123e6737e18706538ba497b46870d766ebebb26fd3",
       "meshes": [
         "DuskguardBootUnderlayer",
         "DuskguardGreaves"

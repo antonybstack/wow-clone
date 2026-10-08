@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "id": "wayfarer-forefoot",
+  "revision": 1,
+  "sourceRights": "Existing vendored CC0 MakeHuman suits02 footwear on accepted Human/Undead native source-65 skins; retain existing documented body/rig grants. No new body or rig.",
+  "authored": {
+    "source": "blender/characters/sources/human-catalogue/wayfarerBoots.glb",
+    "sha256": "0f4091ff26d40cf3a3567b8770105f51b79a346caa21ead40577391704f81ae2",
+    "body": "blender/characters/sources/human-catalogue/body.glb",
+    "bodySha256": "e813a40bbb00a9a8499cbabf3a042dd781ef806e69d8c2378756330428dae92d"
+  },
+  "fits": {
+    "human": {
+      "source": "blender/characters/wardrobe/sources/human-wayfarerBoots-before-forefoot.glb",
+      "sha256": "52c5c2f6df2b0234f4920d08635556469167446ef18e913a38adc41416d3e680",
+      "body": "public/ashen-reach/equipment/body.glb",
+      "bodySha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "bodyMesh": "HumanV1Body"
+    },
+    "undead": {
+      "source": "blender/characters/wardrobe/sources/undead-wayfarerBoots-before-forefoot.glb",
+      "sha256": "96df888598dd48ea09871a605d573a1538581225d690cb95a4f3bca646590da5",
+      "body": "public/ashen-reach/equipment-undead/body.glb",
+      "bodySha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "bodyMesh": "UndeadV1Body"
+    }
+  },
+  "sections": [
+    [
+      0.015,
+      0.02,
+      0.025
+    ],
+    [
+      0.06,
+      0.065,
+      0.02
+    ],
+    [
+      0.1,
+      0.12,
+      0.025
+    ],
+    [
+      0.16,
+      0.18,
+      0.025
+    ]
+  ],
+  "heightKnots": [
+    [
+      -0.01036334,
+      -0.006
+    ],
+    [
+      0,
+      0.0064
+    ],
+    [
+      0.06,
+      0.065
+    ],
+    [
+      0.1,
+      0.115
+    ],
+    [
+      0.16,
+      0.18
+    ]
+  ],
+  "strapClearanceM": 0.006,
+  "scope": "Restore only the authored forefoot form on Human/Undead. Smoothly retain the accepted ankle/cuff above authored Y 0.14 m. Native skin, topology, UVs and materials exact; Orc last and rigid greave plates unchanged. Local candidate until reviewed motion.",
+  "forefootBlend": {
+    "fullBelowM": 0.065,
+    "fadeEndM": 0.14
+  }
+}

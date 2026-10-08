@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {Document,NodeIO} from '@gltf-transform/core';
 import {deriveHumanFootCore,deriveFootCore,HUMAN_FOOT_COVERAGE_REVISION,UNDEAD_FOOT_COVERAGE_REVISION} from './character-assets/derive-coverage-geosets.mjs';
 import {verifyCoveragePartition} from './character-assets/verify-coverage-partition.mjs';
+import {repairFootCoverage,restoreFootCoverageUnion} from './character-assets/repair-foot-coverage.mjs';
 import fs from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {ALL_EXTENSIONS} from '@gltf-transform/extensions';
@@ -10,7 +11,7 @@ import {MeshoptDecoder,MeshoptEncoder} from 'meshoptimizer';
 
 function fixture(race='human'){
  const doc=new Document(),buffer=doc.createBuffer(),scene=doc.createScene(),parent=doc.createNode('Actor').setTranslation([3,4,5]);scene.addChild(parent);
- const rest={Hips:[0,1,0],Neck:[0,1.46,0],LeftFoot:[.18,.13,-.04],RightFoot:[-.18,.13,-.04],LeftToeBase:[.19,.02,.10],RightToeBase:[-.19,.02,.10],LeftLeg:[.18,.5,0]};
+ const rest={Hips:[0,1,0],Neck:[0,1.46,0],LeftFoot:[.18,.13,-.04],RightFoot:[-.18,.13,-.04],LeftToeBase:[.19,.02,.10],RightToeBase:[-.19,.02,.10],LeftLeg:[.18,.5,0],RightLeg:[-.18,.5,0]};
  const joints=Object.entries(rest).map(([name,position])=>doc.createNode(`mixamorig:${name}`).setTranslation(position));for(const joint of joints)parent.addChild(joint);
  const skin=doc.createSkin();for(const joint of joints)skin.addJoint(joint);
  const accessor=(type,array)=>doc.createAccessor().setType(type).setArray(array).setBuffer(buffer);
@@ -32,10 +33,10 @@ function fixture(race='human'){
 
 test('Human foot split preserves bare restoration and exact native morph, skin, frame and gait streams',async()=>{
  const doc=fixture(),io=new NodeIO(),source=(await io.readBinary(await io.writeBinary(doc))).getRoot();
- const result=deriveHumanFootCore(doc);assert.equal(result.revision,HUMAN_FOOT_COVERAGE_REVISION);assert.equal(result.partition.coveredTriangles,2);
+ const result=deriveHumanFootCore(doc);assert.equal(result.revision,HUMAN_FOOT_COVERAGE_REVISION);assert.equal(result.partition.coveredTriangles,3);
  const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
- assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='HumanFootCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5]);
- assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='HumanV1Body').listPrimitives()[0].getIndices().getArray()),[6,7,8,9,10,11,12,13,14]);
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='HumanFootCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5,9,10,11]);
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='HumanV1Body').listPrimitives()[0].getIndices().getArray()),[6,7,8,12,13,14]);
  assert.equal(verifyCoveragePartition(source,actual,'HumanV1Body','HumanFootCore').triangles,5);
 });
 
@@ -46,14 +47,48 @@ test('missing native foot landmarks are refused before changing the body',()=>{
  assert.equal(doc.getRoot().listMeshes().length,1);assert.deepEqual(mesh.listPrimitives()[0].getIndices().getArray(),indices);
 });
 
-test('Undead foot split uses its own mesh frame and leaves calf and mixed influences in the restored body',async()=>{
+test('Undead foot split uses its own mesh frame and hides mixed ankle influences while retaining the calf',async()=>{
  const doc=fixture('undead'),io=new NodeIO(),source=(await io.readBinary(await io.writeBinary(doc))).getRoot();
  const result=deriveFootCore(doc,'undead');assert.equal(result.revision,UNDEAD_FOOT_COVERAGE_REVISION);
- assert.equal(result.partition.coveredTriangles,2);
+ assert.equal(result.partition.coveredTriangles,3);
  const actual=(await io.readBinary(await io.writeBinary(doc))).getRoot();
- assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadFootCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5]);
- assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadV1Body').listPrimitives()[0].getIndices().getArray()),[6,7,8,9,10,11,12,13,14]);
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadFootCore').listPrimitives()[0].getIndices().getArray()),[0,1,2,3,4,5,9,10,11]);
+ assert.deepEqual(Array.from(actual.listMeshes().find(m=>m.getName()==='UndeadV1Body').listPrimitives()[0].getIndices().getArray()),[6,7,8,12,13,14]);
  assert.equal(verifyCoveragePartition(source,actual,'UndeadV1Body','UndeadFootCore').triangles,5);
+});
+
+test('historical foot partitions remain reproducible through an explicit revision',()=>{
+ for(const race of ['human','undead']){
+  const doc=fixture(race),result=deriveFootCore(doc,race,{revision:`${race}-ankle-foot-v1`});
+  assert.equal(result.partition.coveredTriangles,2);
+  assert.throws(()=>deriveFootCore(fixture(race),race,{revision:'unknown'}),/Unknown foot coverage/);
+ }
+});
+
+test('a crossing corner or a morph that rises above the ankle must remain visible',()=>{
+ const doc=fixture(),p=doc.getRoot().listMeshes()[0].listPrimitives()[0];
+ p.getAttribute('POSITION').getArray()[2*3+1]=.15; // One corner crosses; the whole face stays.
+ p.listTargets()[0].getAttribute('POSITION').getArray()[5*3+1]=.2;
+ const result=deriveHumanFootCore(doc);assert.equal(result.partition.coveredTriangles,1);
+ assert.deepEqual(Array.from(doc.getRoot().listMeshes().find(m=>m.getName()==='HumanFootCore').listPrimitives()[0].getIndices().getArray()),[9,10,11]);
+});
+
+test('an authored identity foot repair preserves source anatomy and is idempotent',async()=>{
+ const io=new NodeIO(),doc=fixture();
+ deriveHumanFootCore(doc,{revision:'human-ankle-foot-v1'});
+ const reference=await io.readBinary(await io.writeBinary(doc));restoreFootCoverageUnion(reference,'human');
+ const repaired=repairFootCoverage(doc,'human');assert.equal(repaired.addedTriangles,1);
+ const actual=await io.readBinary(await io.writeBinary(doc));
+ assert.equal(verifyCoveragePartition(reference.getRoot(),actual.getRoot(),'HumanV1Body','HumanFootCore').triangles,5);
+ assert.equal(repairFootCoverage(actual,'human').addedTriangles,0);
+});
+
+test('a larger new mask cannot conceal loss of a previously covered foot face',()=>{
+ const doc=fixture();deriveHumanFootCore(doc,{revision:'human-ankle-foot-v1'});
+ // New mixed-influence face replaces one old face numerically; counts alone pass.
+ const p=doc.getRoot().listMeshes().find(m=>m.getName()==='HumanFootCore').listPrimitives()[0];
+ p.listTargets()[0].getAttribute('POSITION').getArray()[0*3+1]=.2;
+ assert.throws(()=>repairFootCoverage(doc,'human'),/revealed previously covered anatomy/);
 });
 
 test('source foot compiler refuses unsupported races and incomplete Undead landmarks without changing indices',()=>{

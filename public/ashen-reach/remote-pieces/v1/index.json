@@ -1,12 +1,12 @@
 {
  "schema": 1,
  "version": 1,
- "publishedAt": "2026-10-08T04:59:51.051Z",
+ "publishedAt": "2026-10-08T09:35:25.655Z",
  "lite": "1.31.1",
  "catalogVersion": "appearance-catalog-v9",
  "sourceCompilerSha256": "10e465898c8e04283e2bd8bf78520375a257356e32ae9bff058ff5b633d1e1f8",
  "uniqueFiles": 51,
- "totalBytes": 21062924,
+ "totalBytes": 21064404,
  "authoredProps": [
   {
    "id": "bastionShield",
@@ -40,6 +40,13 @@
    "sha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb"
   },
   {
+   "race": "human",
+   "id": "body",
+   "file": "body-1463bea4c69ecce82c1038c8b302a0a29c7143ae082a02b8769b117f4757fd8d.glb",
+   "bytes": 1944428,
+   "sha256": "1463bea4c69ecce82c1038c8b302a0a29c7143ae082a02b8769b117f4757fd8d"
+  },
+  {
    "race": "orc",
    "id": "body",
    "file": "body-4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e.glb",
@@ -47,18 +54,11 @@
    "sha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e"
   },
   {
-   "race": "human",
-   "id": "body",
-   "file": "body-b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e.glb",
-   "bytes": 1944448,
-   "sha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e"
-  },
-  {
    "race": "undead",
    "id": "body",
-   "file": "body-c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520.glb",
-   "bytes": 2984888,
-   "sha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520"
+   "file": "body-b4639635ac8bdee32514d0ece155bee3c3920d9a014de1c357bdc765595e8df4.glb",
+   "bytes": 2984840,
+   "sha256": "b4639635ac8bdee32514d0ece155bee3c3920d9a014de1c357bdc765595e8df4"
   },
   {
    "race": "human",
@@ -84,16 +84,16 @@
   {
    "race": "human",
    "id": "duskguardGreaves",
-   "file": "duskguardGreaves-7211138162dbea7a60cb8b2016ab8908e059baa128024859ee3edea424be804b.glb",
-   "bytes": 328016,
-   "sha256": "7211138162dbea7a60cb8b2016ab8908e059baa128024859ee3edea424be804b"
+   "file": "duskguardGreaves-05dabf19a593af971fed858e8fa25322177c1a7befb886fda968a9887f66950a.glb",
+   "bytes": 328136,
+   "sha256": "05dabf19a593af971fed858e8fa25322177c1a7befb886fda968a9887f66950a"
   },
   {
    "race": "undead",
    "id": "duskguardGreaves",
-   "file": "duskguardGreaves-7995745f32c575de68a2e6c73df41b28fdcd75f526051cd7e25296c1a4ca4caa.glb",
-   "bytes": 176596,
-   "sha256": "7995745f32c575de68a2e6c73df41b28fdcd75f526051cd7e25296c1a4ca4caa"
+   "file": "duskguardGreaves-65f58e9d339b3a93df906f60425fc37d74b97a7870e51ae46e76a9a5dfd744a5.glb",
+   "bytes": 177252,
+   "sha256": "65f58e9d339b3a93df906f60425fc37d74b97a7870e51ae46e76a9a5dfd744a5"
   },
   {
    "race": "orc",
@@ -313,6 +313,13 @@
    "sha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f"
   },
   {
+   "race": "human",
+   "id": "wayfarerBoots",
+   "file": "wayfarerBoots-12a8b739ed25e726bdd34c11743ab5a87d98a769ea5fe4aaca2467d479f59e5d.glb",
+   "bytes": 314536,
+   "sha256": "12a8b739ed25e726bdd34c11743ab5a87d98a769ea5fe4aaca2467d479f59e5d"
+  },
+  {
    "race": "orc",
    "id": "wayfarerBoots",
    "file": "wayfarerBoots-3848ef25168a2ef44c3a6f12ab7805732e2f68942509dff84ada7df54aacfacf.glb",
@@ -322,16 +329,9 @@
   {
    "race": "undead",
    "id": "wayfarerBoots",
-   "file": "wayfarerBoots-e5b764c96692a24f41b7eec7e9241a03c5764b948d691328abba213f63f4e870.glb",
-   "bytes": 169712,
-   "sha256": "e5b764c96692a24f41b7eec7e9241a03c5764b948d691328abba213f63f4e870"
-  },
-  {
-   "race": "human",
-   "id": "wayfarerBoots",
-   "file": "wayfarerBoots-f40a67f90fcb11efc5d915f16c71039dedb3db0391280205c969b8998e0f868e.glb",
-   "bytes": 314420,
-   "sha256": "f40a67f90fcb11efc5d915f16c71039dedb3db0391280205c969b8998e0f868e"
+   "file": "wayfarerBoots-aac6801c53305161ef54112b2c15ff4ef3b6dc170d4e89d76347afa3f1fb6a9e.glb",
+   "bytes": 170368,
+   "sha256": "aac6801c53305161ef54112b2c15ff4ef3b6dc170d4e89d76347afa3f1fb6a9e"
   },
   {
    "race": "orc",

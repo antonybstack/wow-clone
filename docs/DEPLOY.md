@@ -49,6 +49,22 @@ comparison without publishing. Run the cold-load and performance gates against
 that `dist`, using the compressed startup preview. Once they pass, seal it and
 upload **those exact bytes** without a rebuild:
 
+For the current accepted startup profile, preserve all four build flags:
+
+```bash
+ASHEN_BUILD_ONLY=1 ASHEN_SAVED_BOOTSTRAP=1 ASHEN_PRIME_STARTER_WORLD=1 \
+  ASHEN_LAZY_WORLD_BUFFERS=1 ASHEN_DEFER_COVERED_HAIR=1 npm run deploy
+```
+
+Use the flags recorded with the candidate being verified. The current profile
+coalesces the pure saved-character bootstrap, primes the starting world, defers
+untouched world buffers and defers completely covered hair. Omitting the saved
+bootstrap flag caused the October 8 local build to fail the early-entry import
+guard; restoring the recorded profile passed without changing that guard.
+Preparation, a successful build and local motion do not qualify production.
+Changing flags requires a new build and its corresponding gates; an upload from
+a seal uses the already verified bytes.
+
 ```bash
 node scripts/character-assets/pages-seal.mjs seal --dist dist --out .cache/<release>/pages-seal.json --scope "<what was gated>"
 # commit/push the product inputs (a seal taken before the commit is fine)

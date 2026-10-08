@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "status": "local functional, fit and performance gates pass; media publication pending; production unchanged",
+  "task": "authored forefoot and anatomical foot coverage v2",
+  "localDate": "2026-10-08",
+  "sourceHeadBeforeCommit": "76af7c90b6269e02ea49acd1bb1c349c60c4785a",
+  "finalProductInputs": {
+    "sha256": "bc5d04279d899434b5454549f6291857f06469537d1742e40cf9a1c890022deb",
+    "files": 1227,
+    "uncommitted": 60
+  },
+  "captureProductInputs": {
+    "sha256": "1d894168858fe588177e9ad320b2d4d25da6f300188df33aafe5939977d2b99d",
+    "files": 1226,
+    "uncommitted": 57
+  },
+  "geometryUnchangedAfterCapture": "Only exact covered-hair proof pins, the reusable proof tool and test:character registration changed before final current-build controls and FPS.",
+  "production": {
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pages": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "promotionRun": false
+  },
+  "gates": {
+    "characterTests": 240,
+    "equipmentTests": 115,
+    "nativeBounds": {
+      "pieces": 51,
+      "points": 162782025,
+      "escaped": 0,
+      "errors": []
+    },
+    "servedResources": 347,
+    "nativeRestorationControls": 3,
+    "maximumCompactBytes": 2170019,
+    "previousAcceptedMaximum": 2170524,
+    "discoveredRegressionMaximum": 2367719,
+    "hoodedBytesSaved": 263156,
+    "allPipelineChildExits": 0
+  },
+  "performance": {
+    "conditions": {
+      "cpu": "Apple M1 Max",
+      "url": "http://127.0.0.1:7074/?play=&clean=&pixelRatio=1&dev=&verifyAssets=&gpuTiming=",
+      "viewport": [
+        1280,
+        720
+      ],
+      "seconds": 12,
+      "runs": 3,
+      "uncappedRequired": true,
+      "recording": false,
+      "race": "human",
+      "outfit": null,
+      "orcAssetsOverride": null,
+      "routes": [
+        "meadow",
+        "town",
+        "bridge",
+        "cathedral",
+        "forest"
+      ],
+      "recordCapped": true,
+      "savedAppearance": {
+        "schemaVersion": 2,
+        "catalogVersion": "appearance-catalog-v9",
+        "race": "human",
+        "fitFamily": "ashen-human",
+        "fit": {
+          "rig": "source-65",
+          "bind": 1,
+          "shape": 1
+        },
+        "shape": {
+          "family": "ashen-human-shape-v1",
+          "height": 1.15,
+          "build": -0.95
+        },
+        "components": {
+          "head": "human-prime-v1",
+          "hair": "human-ponytail01-v1"
+        },
+        "dyes": {
+          "torso": "oxblood",
+          "legs": "indigo"
+        },
+        "equipment": {
+          "helmet": null,
+          "torso": "duskguardCuirass",
+          "legs": "graveweaverSkirt",
+          "boots": "duskguardGreaves",
+          "gloves": "duskguardVambraces",
+          "mainHand": "graveweaverStaff",
+          "offHand": "bastionShield",
+          "shoulders": "bastionShoulders"
+        }
+      }
+    },
+    "summary": {
+      "windows": 15,
+      "minFps": 203.013970227444,
+      "maxFps": 237.1274841322561,
+      "maxP95": 5.899999976158142,
+      "maxP99": 6.100000023841858,
+      "worst": 14.400000035762787,
+      "possiblePacingWindows": [
+        {
+          "route": "bridge",
+          "run": 1,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.249 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.900-9.500 ms)"
+          }
+        },
+        {
+          "route": "bridge",
+          "run": 2,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.246 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.400-5.500 ms (full range 2.700-9.600 ms)"
+          }
+        },
+        {
+          "route": "bridge",
+          "run": 3,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.238 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.500 ms (full range 2.800-9.200 ms)"
+          }
+        },
+        {
+          "route": "cathedral",
+          "run": 1,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.217 ms and median 4.100 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-9.400 ms)"
+          }
+        },
+        {
+          "route": "cathedral",
+          "run": 2,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.227 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.400 ms (full range 2.900-13.100 ms)"
+          }
+        },
+        {
+          "route": "cathedral",
+          "run": 3,
+          "cap": {
+            "vsyncCapped": true,
+            "capHz": 240,
+            "capMs": 4.166666666666667,
+            "capReason": "mean 4.221 ms and median 4.200 ms sit on 240 Hz (4.167 ms); 1st-99th percentile 3.500-5.500 ms (full range 2.500-9.200 ms)"
+          }
+        }
+      ],
+      "uncappedClaim": "Any flagged window is an observed lower bound, not clean uncapped maximum throughput."
+    },
+    "intervals": 39922,
+    "above16_67": 0,
+    "recoveries": 0,
+    "errors": []
+  },
+  "motion": [
+    {
+      "path": ".cache/character-mmo/armor-fit-2026-10-08/canonical-motion/motion.mp4",
+      "sha256": "4286fb475f5c6d1f8a5f5973867aafd1e5cacc04f793b5da89796928ed606e59",
+      "bytes": 31220990,
+      "rootReview": {
+        "rootReviewed": true,
+        "clip": ".cache/character-mmo/armor-fit-2026-10-08/canonical-motion/motion.mp4",
+        "sha256": "4286fb475f5c6d1f8a5f5973867aafd1e5cacc04f793b5da89796928ed606e59",
+        "nativeDimensions": [
+          1280,
+          720
+        ],
+        "duration": 32.930136,
+        "normalPlaybackReachedEnd": true,
+        "halfSpeedCases": [
+          "prime-short-stout-wayfarerBoots",
+          "undead-duskguardGreaves"
+        ],
+        "videoError": null,
+        "visualOutcome": "Demonstrated Human ankle peeks and Undead body spur absent in reviewed canonical motion; toe form restored.",
+        "limits": [
+          "Cuff/knot/plate-edge overlap, leather pleats, proud straps and aliasing remain.",
+          "Diagnostic inspection framing/fill light are not normal gameplay or FPS evidence."
+        ],
+        "browserClosed": true,
+        "reviewServerStopped": true
+      }
+    },
+    {
+      "path": ".cache/character-mmo/armor-fit-2026-10-08/covered-hair-current/motion/covered-hair.mp4",
+      "sha256": "fad37c061a8ae55a6c497eff1eb73b4474f6b25602b898baa7d4ffd6230891af",
+      "bytes": 10591438,
+      "rootReview": {
+        "reviewer": "root",
+        "kind": "actual native MP4 playback",
+        "sha256": "fad37c061a8ae55a6c497eff1eb73b4474f6b25602b898baa7d4ffd6230891af",
+        "bytes": 10591438,
+        "url": "http://127.0.0.1:7075/",
+        "browser": "Edge",
+        "browserPid": 2931,
+        "tab": "1147995980",
+        "normal": {
+          "rate": 1,
+          "observedStart": 0.259814,
+          "end": 17.944797,
+          "ended": true
+        },
+        "slow": {
+          "rate": 0.5,
+          "observedStart": 0.122876,
+          "advancingSample": 6.332023,
+          "end": 17.944797,
+          "ended": true
+        },
+        "accepted": true,
+        "scope": "Covered first play, ponytail visible after restoration, return to ordinary Havok movement; held-transfer diagnostic, not FPS/startup timing",
+        "limits": "Telegram/direct VE delivery still pending; actual app fullscreen and current physical iPhone unverified"
+      }
+    }
+  ],
+  "delivery": {
+    "status": "pending"
+  },
+  "retainedFailures": [
+    "Attempt 1 stale v1/448 identity coverage guard",
+    "Attempt 2 stale starter-world provenance",
+    "Targeted finish omitted ASHEN_SAVED_BOOTSTRAP and hit import guard",
+    "Two Grok CLI turn caps; native controllers continued and passed; parent confirmed child exits and no duplicate operation",
+    "First retained FPS used enlarged covered recipe; final FPS uses corrected true uncovered maximum"
+  ],
+  "limits": [
+    "Possible 240 Hz pacing on six windows; observed lower bounds, no clean maximum-throughput claim",
+    "Public required-texture failure cause unresolved; no unchanged cohorts or promotion",
+    "Current physical iPhone unavailable",
+    "Knot/cuff/plate-edge overlap, pleats, proud straps and aliasing remain",
+    "Actual Telegram application fullscreen not verified"
+  ],
+  "cleanup": {
+    "ownedGameProcesses": 0,
+    "ownedReviewTab": "1147995980 closed",
+    "ownedReviewServer": "76762 SIGTERM; terminal 143 expected",
+    "referenceTelegramMedia": "messages 947/948 restored to playing after FPS; currentTime 16.437933/8.467322"
+  },
+  "evidence": {
+    "file": "evidence.json.gz",
+    "sha256": "d4e8f3d61eefa688d193c18dc99a4d2cecf93bc30393755c789017fa536bb40d",
+    "bytes": 221735,
+    "contents": "Raw native controls, preparation attempts, bounds, decoded proof, capture manifests, both retained performance runs, root reviews and independent reviews"
+  }
+}

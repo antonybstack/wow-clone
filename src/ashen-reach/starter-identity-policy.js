@@ -8,8 +8,12 @@ import {manifestBodyCoverage} from './coverage-manifest.js';
 // and 22 source curves match; texture authoring names are metadata.
 // See docs/plans/character-mmo/results/startup-covered-hair-2026-10-07.md.
 // https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes
-const PROVED_PONYTAIL='272526ffaf7c177105325b49844dff5bf84551593f6f3e1eb2632936c05b4a1a';
-const PROVED_BALD='cca5feaedec0db51f4c751454ad6cd792df6fa63cebdb3f64790a3188d06bc2d';
+// Anatomical foot-v2 repartition changes both decoded byte hashes. Re-proved
+// with scripts/character-assets/prove-covered-hair-substitution.mjs; the visible
+// pair still matches exactly. Keep the hash gate and fail closed for new bodies.
+// See docs/plans/character-mmo/results/boot-forefoot-2026-10-08.md.
+const PROVED_PONYTAIL='9658aa0de327997c562a3bcc2ec3ccb2803db56c47ae15a2669828b9e7a4dc66';
+const PROVED_BALD='a3b6c6ab6d5f4dd529449490c7838697a205ce0c37ce65d4b134e2652a9a128f';
 
 /** Keep the saved identity intact while choosing only currently visible bytes.
  * The existing semantic coverage resolver owns the decision. The selected

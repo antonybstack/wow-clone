@@ -142,3 +142,34 @@ that exact cached buffer generation. The next explicit equipment request retries
 there is no automatic retry. A stale consumer cannot evict a newer transfer.
 References: [Web Crypto digest](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest),
 [implementation and fit values](plans/character-mmo/authored-shield.md).
+
+## Body partition changes and covered-hair startup
+
+The current Human/Undead anatomical foot policy partitions existing triangle
+indices below the source ankle, including the source's mixed shin/foot weights.
+Crossing triangles and supported morph endpoints above the boundary stay visible;
+boots-off restores the complete source union. Human retains 830 covered faces,
+including all 448 faces from v1. This policy is reviewed for the two current opaque
+boots; open footwear needs its own policy. The authored forefoot derivative reuses
+`build-boot-last.mjs` with `boot-forefoot.json`, retaining native skin, UVs and
+topology. [Implementation and acceptance](plans/character-mmo/results/boot-forefoot-2026-10-08.md).
+
+Repartitioning a body changes its decoded byte hash even when its complete surface
+is preserved. Covered-hair startup intentionally accepts only a proved pair of
+compact bald/ponytail bodies. After changing those bytes, run the existing decoded
+comparison before refreshing the two pins in `starter-identity-policy.js`:
+
+```sh
+node scripts/character-assets/prove-covered-hair-substitution.mjs .cache/<task>/covered-hair-proof
+npm run test:character
+```
+
+The comparison requires all non-hair geometry, morphs, bind, native curves, scene
+roots and visible material pixels/samplers to match. Character tests include the
+current-pair selector and safe fallback controls. Keep the strict hash gate;
+refresh it only after the new proof passes. Enumerate the actual maximum startup
+payload afterwards and verify native held/failed restoration and uncovered hair.
+A safe fallback can still increase initial transfer size, as the October 8
+repartition demonstrated. This uses the existing semantic visibility and source
+transaction paths; [glTF mesh structure](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html#meshes)
+explains the shared surface boundary.

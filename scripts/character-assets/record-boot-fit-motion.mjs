@@ -20,7 +20,8 @@ const relative=path.relative(path.resolve('.cache'),dir);assert(relative&&!relat
 const cache=path.dirname(dir),root=path.resolve(process.env.ASHEN_CAPTURE_DIST||'dist');
 const url='http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev&verifyAssets';
 await fs.mkdir(cache,{recursive:true});await fs.mkdir(dir);await fs.mkdir(path.join(dir,'frames'));
-const report={url,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productInputs:await productInputsSha256(process.cwd(),await productPaths(process.cwd())),purpose:'Canonical boot sole/forefoot and Undead source-foot coverage in native Lite; diagnostic Armory + ordinary Havok traversal; no FPS',errors:[],cases:[],passed:false};
+const captureLabel=process.env.ASHEN_CAPTURE_LABEL||'Canonical boot sole';
+const report={url,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),productInputs:await productInputsSha256(process.cwd(),await productPaths(process.cwd())),purpose:`${captureLabel} in native Lite; diagnostic Armory + ordinary Havok traversal; no FPS`,errors:[],cases:[],passed:false};
 const expected={};
 for(const [key,folder,file]of [['human','equipment','manifest-coverage-v1.json'],['shaped','human-shape-v1','manifest.json'],['undead','equipment-undead','manifest-coverage-v1.json'],['starter','startup/character','manifest.json']]){
  const m=JSON.parse(await fs.readFile(`public/ashen-reach/${folder}/${file}`,'utf8'));

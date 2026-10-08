@@ -36,17 +36,31 @@ last/plate corrections, parallel native sound buffers and canonical Bastion
 shield. Production catalogue is v8; local catalogue v9 freezes v8. The shield
 uses native rigid loading, evaluated sockets, transactions, rollback/retry,
 saved prefetch and shared remote rendering. Maximum compact payload is
-**2,170,524 bytes**. Its implementation is **421a889**, acceptance checkpoint
+**2,170,019 bytes** (current forefoot correction; previous shield maximum 2,170,524). Its implementation is **421a889**, acceptance checkpoint
 **ca60242**. Root-reviewed motion is Telegram **887** and identical VE. Seven
 fits, 35 native motion chapters, nine remote chapters and three-race ordinary
 Havok run/jump pass. Local shield route windows observe 203.1–237.9 FPS, p99≤6.2 ms;
 six of fifteen retain possible pacing flags and do not establish clean uncapped
 maximum throughput. [Canonical shield result](plans/character-mmo/results/authored-shield-canonical-2026-10-07.md).
+The subsequent authored forefoot and anatomical foot coverage correction is
+locally verified: the reproduced Human ankle peeks and Undead body spur are gone;
+boots-off restores the complete body. All 240 character/115 equipment tests,
+51-piece native bounds and fresh live motion pass. The body update initially
+invalidated the strict covered-hair hash pins and raised startup payload to
+2,367,719 bytes. Fresh decoded equivalence proof and exact updated pins preserve
+the existing deferral/restoration path; three native restoration controls pass.
+Fifteen separate corrected-maximum route windows observe **203.0–237.1 FPS**,
+p99≤6.1 ms, worst 14.4 ms, zero intervals over 16.67 ms/errors/recoveries, under
+the same M1 Max/1280×720/DPR1/seven-enemy conditions. Six possible 240 Hz pacing
+flags remain; this is observed throughput, not clean maximum throughput.
+[Forefoot result](plans/character-mmo/results/boot-forefoot-2026-10-08.md).
+Media publication and the implementation checkpoint are being finished.
 Further sets, Elf, additional regions, multiplayer and crowd expansion stay parked.
 
 ## Next priorities, in execution order
 
-The next executable slice is one demonstrated armor-fit correction in priority 3.
+The current demonstrated forefoot/ankle correction is verified locally. Finish its
+publication/checkpoint, then choose another reproduced armor seam in priority 3.
 The native GPU-timer arm in priority 2 is complete and closed; it does not justify
 a shader/geometry/scheduler change or another unchanged visit. The release outcome
 stays first, but unchanged startup campaigns are exhausted until a material lead exists.
@@ -89,7 +103,7 @@ stays first, but unchanged startup campaigns are exhausted until a material lead
    [Raw GPU result](plans/character-mmo/results/completion-gpu-raw-2026-10-08.md).
    No further repeats of either diagnostic or scheduler arm. Preserve the
    first-play fence, input/resources and independent unprofiled acceptance.
-3. **Finish demonstrated armor seams.** Boot corrections and focused mixed
+3. **Finish demonstrated armor seams.** Boot/forefoot/anatomical ankle corrections and focused mixed
    neck/waist/wrist motion are locally accepted. Knot/cuff/plate-edge overlap,
    leather pleats, proud straps and aliasing remain. Inspect a specific defect
    at Human shape endpoints and neutral Orc/Undead, correct it through the
