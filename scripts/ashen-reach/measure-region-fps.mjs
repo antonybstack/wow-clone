@@ -17,11 +17,10 @@ assert(file, "Specify report.json");
 const url = new URL(
   process.env.ASHEN_TEST_URL || "http://127.0.0.1:7074/?play&clean",
 );
-for (const [k, v] of [
-  ["pixelRatio", "1"],
-  ["gpuTiming", ""],
-])
-  url.searchParams.set(k, v);
+url.searchParams.set("pixelRatio", "1");
+// main.js checks presence, so an empty gpuTiming value still enables queries.
+// Keep throughput acceptance separate from profiling (docs/debug-view.md).
+url.searchParams.delete("gpuTiming");
 const runs = Number(process.env.ASHEN_FPS_RUNS || 3),
   seconds = 12;
 const race = process.env.ASHEN_BENCH_RACE || 'human';
@@ -61,6 +60,7 @@ const report = {
     runs,
     uncappedRequired: true,
     recording: false,
+    gpuTimestampQueries: false,
     race,
     outfit: outfit || null,
     orcAssetsOverride: orcAssetsOverride || null,
@@ -91,6 +91,8 @@ try {
   await page.waitForFunction(() => globalThis.ASHEN?.ready, null, {
     timeout: 90000,
   });
+  assert.equal(await page.evaluate(() => ASHEN.metrics.summary().gpuTimingEnabled), false,
+    'Timestamp queries must be disabled for throughput acceptance');
   if(savedAppearance){
     assert.deepEqual(await page.evaluate(()=>ASHEN.getAppearance()),expectedAppearance);
     // Settle full clothing detail through the existing equipment transaction.
@@ -186,6 +188,7 @@ try {
       report.rows.push(row);
       await fs.writeFile(file, JSON.stringify(report, null, 2));
       assert(row.physics);
+      assert.equal(row.summary.gpuTimingEnabled, false);
       assert.equal(row.enemies, 7);
       assert.equal(row.recoveries, before.recoveries);
       assert.deepEqual(row.summary.resolution, [1280, 720]);

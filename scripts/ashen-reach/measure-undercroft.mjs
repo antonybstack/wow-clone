@@ -15,9 +15,10 @@ await fs.mkdir(path.dirname(destination),{recursive:true});
 const browser=await chromium.connectOverCDP(CDP_URL);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Another owned renderer is active');
 const context=await browser.newContext({viewport:{width:1280,height:720}}),page=await context.newPage();
-const url=process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean&pixelRatio=1';
+const target=new URL(process.env.ASHEN_TEST_URL||'http://127.0.0.1:5173/ashen-reach.html?play&clean&pixelRatio=1');
+target.searchParams.delete('gpuTiming');const url=target.href;
 const ownership=await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url,purpose:'Undercroft performance; no recording/builds/other game',renderingClients:1});
-const errors=[],report={at:new Date().toISOString(),ownership,conditions:{cpu:os.cpus()[0]?.model,browser:browser.version(),viewport:{width:1280,height:720},enemyCount:7,runSeconds:12,recording:false,controller:'Real W/A/D, native Havok; sampled keyboard steering adds driver overhead'},rows:[],errors};
+const errors=[],report={at:new Date().toISOString(),ownership,conditions:{cpu:os.cpus()[0]?.model,browser:browser.version(),viewport:{width:1280,height:720},enemyCount:7,runSeconds:12,recording:false,gpuTimestampQueries:false,controller:'Real W/A/D, native Havok; sampled keyboard steering adds driver overhead'},rows:[],errors};
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
 const state=()=>page.evaluate(()=>{
   const a=ASHEN,p=a.player.body.position,c=document.getElementById('renderCanvas');
@@ -25,6 +26,7 @@ const state=()=>page.evaluate(()=>{
 });
 try{
   await page.goto(url,{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});
+  assert.equal(await page.evaluate(()=>ASHEN.metrics.summary().gpuTimingEnabled),false,'Timestamp queries must be disabled for throughput acceptance');
   const y=await page.evaluate(()=>{ASHEN.metrics.setInternalResolution(1280,720);ASHEN.dev.god=true;return ASHEN.world.cathedral.exploration.undercroft.floorY;});
   const circuit=[[-10,334],[-10,325],[-4,325],[-4,334],[-7,337]];
   for(let run=1;run<=3;run++){
