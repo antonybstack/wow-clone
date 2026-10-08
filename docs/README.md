@@ -4,7 +4,8 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 ## Current direction and plans
 
-- **[Deferred mobile findings and known iPhone specifications](backlog/mobile-2026-10-08.md)** — backlogged at the user's request; substantial game progress is the current direction.
+- **[Gothic exploration: Vaelmark undercroft and following slices](plans/gothic-exploration/plan.md)** — active game development; connected spaces and normal-control traversal.
+- **[Deferred mobile findings and known iPhone specifications](backlog/mobile-2026-10-08.md)** — backlogged at the user's request.
 - **[Previous release and factory execution plan](plans/character-mmo/next-12-hours-2026-10-05.md)** — retained requirements and evidence; follow CURRENT for the latest focus.
 - **[Workflow review and immediate changes](reviews/workflow-2026-10-05.md)**
 

@@ -146,3 +146,32 @@ test('gallery and parapet rails leave their turning junctions open',()=>{
   const a=path[i-1],b=path[i];assert.equal(hit([a[0],a[1]+h,a[2]],[b[0],b[1]+h,b[2]]),null,`rail crosses route ${a} to ${b}`);
  }
 });
+
+test('undercroft circuit has continuous support, body clearance and terrain separation',()=>{
+ const u=cathedral.exploration.undercroft;
+ assert(u.terrainClearance>.5);assert(u.stair.gradeDegrees<20);assert(u.stair.width>=2.4);
+ for(let i=1;i<u.route.length;i++){
+  const a=u.route[i-1],b=u.route[i],steps=Math.ceil(Math.hypot(b[0]-a[0],b[2]-a[2])/.5);
+  for(let j=0;j<=steps;j++){
+   const p=a.map((v,k)=>v+(b[k]-v)*j/steps),floor=hit([p[0],p[1]+.4,p[2]],[p[0],p[1]-.4,p[2]]);
+   assert(floor&&floor.normal[1]>0,`undercroft support ${i}/${j}: ${p}`);
+   assert(Math.abs(floor.fraction-.5)<.02,`undercroft surface ${i}/${j}: ${p}`);
+   assert(p[1]-height(p[0],p[2])>.5,`undercroft terrain ${i}/${j}: ${p}`);
+   for(const x of [p[0]-.38,p[0],p[0]+.38])assert.equal(hit([x,p[1]+.2,p[2]],[x,p[1]+1.9,p[2]]),null,`undercroft headroom ${i}/${j}: ${p}`);
+  }
+  for(const h of [.4,1.7])assert.equal(hit([a[0],a[1]+h,a[2]],[b[0],b[1]+h,b[2]]),null,`undercroft travel ${i}: ${a} to ${b}`);
+ }
+});
+test('stair opening is real in collision and the upper slab still supports both sides',()=>{
+ const fy=cathedral.floorY;
+ for(const z of [333,338,343]){
+  assert.equal(hit([-14.5,fy+.2,z],[-14.5,fy-.8,z]),null,`open slab ${z}`);
+  for(const x of [-16.5,-12.5])assert(hit([x,fy+.2,z],[x,fy-.2,z]),`slab return ${x},${z}`);
+  for(const x of [-16,-13])assert(hit([x-.25,fy+.5,z],[x+.25,fy+.5,z]),`guard at ${x},${z}`);
+ }
+});
+test('authoring rejects terrain beneath the lower connector outside the chamber',()=>{
+ const empty=Object.fromEntries(['stone','roof','glow','rock'].map(name=>[name,new Batch(name)]));
+ const groundHeight=(x,z)=>x>=-8.6&&x<=-5.4&&z>=348?cathedral.floorY-.1:height(x,z);
+ assert.throws(()=>buildGothicCathedral({...empty,groundHeight,colliders:[]}),/undercroft intersects terrain/);
+});

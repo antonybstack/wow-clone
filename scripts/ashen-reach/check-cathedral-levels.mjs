@@ -29,6 +29,7 @@ try{
  const routes=await p.evaluate(()=>{
   const a=ASHEN,k=a.world.cathedral,e=k.exploration,y=k.floorY;
   const routes=e.towers.map(t=>({id:t.id,path:[t.entrance,[t.entrance[0],y,302.8],...t.route,t.landing]}));
+  if(e.undercroft)routes.unshift({id:'undercroft',path:[[0,y,298],[0,y,310],...e.undercroft.route]});
   for(const [i,q] of e.chapels.entries())routes.push({id:i?'east-chapel':'west-chapel',path:[[0,y,328],q.entry,q.interior,...q.stairs,q.gallery]});
   const q=e.chapels[0];routes.push({id:'gallery-parapet',path:[[0,y,328],q.entry,q.interior,...q.stairs,q.gallery,...e.gallery.slice(1),e.chapels[1].stairs.at(-1),e.chapels[1].parapet,...e.parapet.slice().reverse().slice(1),q.stairs.at(-1),q.gallery]});
   return routes;

@@ -5,6 +5,11 @@ import {getEffectiveAspectRatio,resolveCameraViewport} from '@babylonjs/lite';
 import {desiredLocalLights,advanceLocalSlots,LOCAL_LIGHT_UNIFORMS,LOCAL_LIGHT_COUNT} from '../src/ashen-reach/local-light-shared.js';
 const lights=[44,50,58].map(z=>({id:String(z),position:[0,3,z]}));
 test('nearest two lights fit the shadow budget',()=>{assert.equal(LOCAL_LIGHT_COUNT,2);assert.deepEqual(desiredLocalLights(lights,[],{x:0,z:43}),lights.slice(0,2));});
+test('stacked floors select the local fixtures within the same two-map budget',()=>{
+ const upper={id:'chapel',position:[-7,48,335]},lower={id:'crypt',position:[-7,42.8,337]},end={id:'memorial',position:[-7,42.8,325]};
+ assert.deepEqual(desiredLocalLights([upper,lower,end],[],{x:-7,y:40.2,z:331}),[lower,end]);
+ assert.equal(desiredLocalLights([upper,lower,end],[],{x:-7,y:46,z:335})[0],upper);
+});
 test('hysteresis retains an established light near the midpoint',()=>{const slots=[{light:lights[0],weight:1},{light:lights[1],weight:1}];assert.deepEqual(desiredLocalLights(lights,slots,{x:0,z:51.5}).map(l=>l.id),['50','44']);});
 test('slots fade out before replacing a fixture, without duplicates',()=>{
  const slots=[{light:lights[0],weight:1},{light:lights[1],weight:1}];

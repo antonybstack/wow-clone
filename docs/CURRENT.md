@@ -2,7 +2,11 @@
 
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
-**Latest user direction: backlog mobile work and focus on substantial game progress.**
+**Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
+The active slice is [G01: Vaelmark undercroft](plans/gothic-exploration/plan.md):
+a connected lower chamber, guarded descent from the west chapel and a normal-control
+return route. Existing chapels/gallery/towers/parapet already exist. Root is
+implementing against the preserved Gothic references and a reviewed live baseline.
 The [mobile backlog](backlog/mobile-2026-10-08.md) preserves the user's known
 iPhone 14 Pro Max / iOS 26.7.1 / Safari / Low Power Mode off specifications,
 successful startup/walking/rotation/background-resume checks and the newly reported

@@ -1,15 +1,41 @@
+// Isolated ISC Earcut 3.0.1 leaf already shipped in the pinned tooling package.
+// It imports no Three renderer/scene code; Babylon Lite owns every runtime mesh.
+// https://github.com/mrdoob/three.js/blob/r180/src/extras/lib/earcut.js
+import earcut, {deviation} from 'three/src/extras/lib/earcut.js';
+import {UNDERCROFT,buildCathedralUndercroft} from './cathedral-undercroft.js';
 // Original architectural additions use the cathedral's existing masonry helpers.
 const STONE=[.67,.71,.76,0],TRIM=[.82,.83,.85,0],SHADE=[.44,.49,.55,0],ROCK=[.50,.48,.53,0];
 export function buildCathedralFoundation({stone,rock,collisionBatch,floorY,groundHeight,solid,wall,beam,box}){
  const outline=[[-7,270],[7,270],[29,277],[35,294],[32,317],[36,338],[27,365],[-26,365],[-35,344],[-31,320],[-35,294],[-27,277]],n=outline.length;
  const ring=outline.map(([x,z])=>[x,floorY-.65,z]);
- const vertices=[...ring.map(([x,y,z])=>[x,y+.65,z]),...ring];
- const faces=[Array.from({length:n},(_,i)=>i),Array.from({length:n},(_,i)=>n+i),...Array.from({length:n},(_,i)=>[i,(i+1)%n,(i+1)%n+n,i+n])];
- for(const batch of [stone,collisionBatch])solid(batch,vertices,faces,STONE);
+ // Earcut handles this concave outline and the real stair hole in both meshes.
+ // A convex face fan silently covers holes. No Three.js runtime/CSG is needed.
+ // https://github.com/mapbox/earcut/tree/v3.0.1#usage
+ const area=points=>points.reduce((a,p,i)=>{const q=points[(i+1)%points.length];return a+p[0]*q[1]-q[0]*p[1];},0);
+ const outer=area(outline)>0?outline:[...outline].reverse();
+ const hole=area(UNDERCROFT.opening)<0?UNDERCROFT.opening:[...UNDERCROFT.opening].reverse();
+ const flat=[...outer,...hole].flat(),indices=earcut(flat,[outer.length]);
+ if(deviation(flat,[outer.length],2,indices)>1e-8)throw Error('Invalid cathedral slab triangulation');
+ const uvPerM=(1/8/.45)/.20;
+ for(const batch of [stone,collisionBatch]){
+  for(let i=0;i<indices.length;i+=3){
+   const triangle=indices.slice(i,i+3).map(j=>[flat[j*2],floorY,flat[j*2+1]]);
+   const uv=triangle.map(p=>[p[0]*uvPerM,p[2]*uvPerM]);
+   batch.tri(triangle[0],triangle[2],triangle[1],[uv[0],uv[2],uv[1]],STONE);
+   batch.tri(...triangle.map(p=>[p[0],p[1]-.65,p[2]]),uv,STONE);
+  }
+  for(const contour of [outer,hole])for(let i=0;i<contour.length;i++){
+   const a=contour[i],b=contour[(i+1)%contour.length],len=Math.hypot(b[0]-a[0],b[1]-a[1])*uvPerM;
+   batch.quad([a[0],floorY,a[1]],[b[0],floorY,b[1]],[b[0],floorY-.65,b[1]],[a[0],floorY-.65,a[1]],[[0,0],[len,0],[len,.65*uvPerM],[0,.65*uvPerM]],STONE);
+  }
+ }
  const rings=[ring,outline.map(([x,z],i)=>[x*(.94+.05*Math.sin(i*2)),floorY-6-(i%3),317+(z-317)*(.93+.04*Math.cos(i))]),outline.map(([x,z])=>[x*1.12,Math.min(floorY-10,groundHeight(x*1.12,317+(z-317)*1.08)-2),317+(z-317)*1.08])];
  for(let j=0;j<2;j++)for(let i=0;i<n;i++){
-  const k=(i+1)%n,p=[rings[j][i],rings[j][k],rings[j+1][k],rings[j+1][i]],center=[0,Math.min(...p.map(v=>v[1]))-1,317];
-  for(const batch of [rock,collisionBatch])solid(batch,[...p,center],[[0,1,2,3],[0,4,1],[1,4,2],[2,4,3],[3,4,0]],ROCK);
+  const k=(i+1)%n,p=[rings[j][i],rings[j][k],rings[j+1][k],rings[j+1][i]];
+  // Closed thin cliff facets preserve the exterior. Former radial wedge caps
+  // crossed the entire interior and would become invisible walls in the crypt.
+  const inner=p.map(([x,y,z])=>[x*.97,y,317+(z-317)*.97]);
+  for(const batch of [rock,collisionBatch])solid(batch,[...p,...inner],[[0,1,2,3],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]],ROCK);
  }
  // Masonry supports follow selected rock facets, leaving the rock mass legible.
  for(let i=2;i<n;i+=2){const [x,z]=outline[i],bottom=groundHeight(x,z)-.6,top=floorY-.5;if(top>bottom)wall([x*.94,(bottom+top)/2,317+(z-317)*.94],[2.1,top-bottom,2.4],SHADE);}
@@ -18,7 +44,7 @@ export function buildCathedralFoundation({stone,rock,collisionBatch,floorY,groun
   const a=outline[i],b=outline[(i+1)%n];if(i===0){rail(a,[-4.4,270]);rail([4.4,270],b);}else rail(a,b);
   box(stone,[a[0],floorY+1,a[1]],[1.6,2,1.6],TRIM);
  }
- return {outline};
+ return {outline,opening:UNDERCROFT.opening};
 }
 
 export function buildCathedralExploration(ctx){
@@ -79,7 +105,7 @@ export function buildCathedralExploration(ctx){
   for(const z of [318,334,352])wall([side*27,fy+4.1,z],[1.4,8.2,1.4],SHADE);
   // Chapel furnishings stay beside the approach and clear of stair travel.
   for(const z of [327,333,339]){wall([side*22,fy+.42,z],[1.4,.84,2],SHADE);box(stone,[side*22,fy+.88,z],[1.6,.12,2.2],TRIM);}
-  wall([side*14.5,fy+.6,343],[2.3,1.2,1.8],SHADE);
+  wall(side<0?[-22,fy+.6,346]:[side*14.5,fy+.6,343],[2.3,1.2,1.8],SHADE);
   const lamp=[side*14.4,fy+3.2,335];box(glow,lamp,[.28,.65,.28],[.52,.25,.065,0]);beam(stone,[side*12.8,fy+3,335],lamp,.13,SHADE);
   metadata.lamps.push({id:`cathedral-chapel-${side}`,position:lamp,strength:4});
   metadata.chapels.push({name,entry:[side*12,fy,328],interior:[side*15.5,fy,328],stairs:[[side*15.5,fy,322.5],[x,fy,322.5],[x,fy,324],[x,fy+8.5,345],[x,fy+8.5,347]],gallery:[side*7,fy+8.5,347],parapet:[side*27,fy+8.5,347]});
@@ -110,5 +136,7 @@ export function buildCathedralExploration(ctx){
   ctx.solid(stone,bellVertices,faces,bronze);beam(stone,[x,fy+bell+2.92,306],[x,fy+bell+4.3,306],.12,bronze);
   metadata.towers.push({id:x<0?'west-bell':'east-bell',entrance:[x,fy,299],base:[x-2.2,fy,302.8],route,landing:[x-2.2,fy+bell,306]});
  }
+ metadata.undercroft=buildCathedralUndercroft(ctx,{flight,rail});
+ metadata.lamps.push(...metadata.undercroft.lamps);
  return metadata;
 }

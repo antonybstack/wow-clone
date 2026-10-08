@@ -35,7 +35,11 @@ fn localIrradiance(p:vec3<f32>,normal:vec3<f32>)->vec3<f32>{
 
 /** Keep established slots until a challenger is appreciably closer. */
 export function desiredLocalLights(lights,slots,position){
- const distance=l=>Math.hypot(l.position[0]-position.x,l.position[2]-position.z);
+ // Stacked cathedral floors share XZ. Select nearby fixtures in world space so
+ // a lamp above the slab cannot displace an undercroft lamp. Retain planar
+ // callers which do not supply height and the existing two-map fade budget.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/03-lights.md
+ const distance=l=>Math.hypot(l.position[0]-position.x,Number.isFinite(position.y)?l.position[1]-position.y:0,l.position[2]-position.z);
  return [...lights].sort((a,b)=>(distance(a)-(slots.some(s=>s.light===a)?2:0))-(distance(b)-(slots.some(s=>s.light===b)?2:0))).slice(0,LOCAL_LIGHT_COUNT);
 }
 export function advanceLocalSlots(slots,desired,dt){
