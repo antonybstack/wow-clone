@@ -5,7 +5,8 @@ and decodes. All three declared local pairs improve readiness by **45.6–58.1 m
 nine corrected native game cases and three probe controls pass. Root reviewed
 the actual live MP4, delivered as Telegram **882** and
 [identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4).
-This is local acceptance. Production remains **7d00c56 / 5723a4ab**; the required
+Implementation is committed/pushed as **9fe4511**. This is local acceptance.
+Production remains **7d00c56 / 5723a4ab**; the required
 texture failure still holds release. The native AudioContext constructor hitch
 remains.
 

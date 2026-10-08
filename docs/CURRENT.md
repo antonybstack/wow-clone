@@ -120,7 +120,8 @@ windows average 130.8–132.4 FPS with p99 21.7–21.9 ms and a large interval e
 this is not new settled route FPS or a removed hitch. Baseline bytes are
 reproduced exactly, public payloads remain exact and JS increases by 85 bytes.
 Root reviewed the actual MP4; motion/native game mix is Telegram **882** and
-identical VE. Local acceptance only: production stays **5723a4ab**, release hold
+identical VE. Implementation is committed/pushed as **9fe4511**. Local acceptance
+only: production stays **5723a4ab**, release hold
 and all original exits remain open. Next productive feature package is the
 retained cuff/strap fit while startup cause evidence remains unresolved.
 
