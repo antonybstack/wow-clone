@@ -1,5 +1,5 @@
 import {sceneLifetime} from './scene-lifetime.js';
-import {createAudioEngineAsync,createSoundAsync,playSound,stopSound,unlockAudioEngineAsync,createAudioEngineMediaStream,disposeAudioEngineMediaStream,disposeAudioEngine,onSceneDispose,setMasterVolume} from '@babylonjs/lite';
+import {createAudioEngineAsync,createSoundBufferAsync,createSoundAsync,playSound,stopSound,unlockAudioEngineAsync,createAudioEngineMediaStream,disposeAudioEngineMediaStream,disposeAudioEngine,onSceneDispose,setMasterVolume} from '@babylonjs/lite';
 
 /** Reuse Lite's decoded-buffer playback, gesture unlock, and master-mix capture. */
 export async function createFireBlastAudio(scene){
@@ -22,9 +22,18 @@ export async function createFireBlastAudio(scene){
    const created=await createAudioEngineAsync({volume:0});
    if(lifetime.aborted){disposeAudioEngine(created);lifetime.throwIfAborted();}
    engine=created;
-   sound=await createSoundAsync(engine,'/ashen-reach/fire-blast/fireball-julien-matthey.wav',{maxInstances:4,volume:.8,playbackRate:.90});
+   // Independent native fetch/decode jobs overlap after explicit activation.
+   // Load buffers before creating sound graphs: if a sibling fails or the scene
+   // closes, a late decode cannot attach another sound to a disposed engine.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/audio/sound-buffer.ts
+   const [blastBuffer,chargeBuffer]=await Promise.all([
+    createSoundBufferAsync(created,'/ashen-reach/fire-blast/fireball-julien-matthey.wav'),
+    createSoundBufferAsync(created,'/ashen-reach/fire-blast/lava-charge.wav'),
+   ]);
    lifetime.throwIfAborted();
-   charge=await createSoundAsync(engine,'/ashen-reach/fire-blast/lava-charge.wav',{maxInstances:1,volume:.48});
+   sound=await createSoundAsync(created,blastBuffer,{maxInstances:4,volume:.8,playbackRate:.90});
+   lifetime.throwIfAborted();
+   charge=await createSoundAsync(created,chargeBuffer,{maxInstances:1,volume:.48});
    lifetime.throwIfAborted();
    setMasterVolume(engine,muted?0:.65);
    unlock();

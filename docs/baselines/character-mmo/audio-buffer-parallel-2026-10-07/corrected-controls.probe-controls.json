@@ -1,0 +1,17 @@
+{
+  "graph": {
+    "attempts": 1,
+    "afterClose": 1,
+    "constructorError": null
+  },
+  "promises": {
+    "lateDone": true,
+    "caught": "controlled early",
+    "allUnhandled": [],
+    "negativeControlUnhandled": [
+      "controlled bare rejection"
+    ]
+  },
+  "passed": true,
+  "nativeBlankPage": true
+}

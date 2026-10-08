@@ -1,0 +1,38 @@
+{
+  "file": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4",
+  "sha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c",
+  "bytes": 24334362,
+  "ve": {
+    "key": "wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+    "uploadExit": 0,
+    "uploadPid": 68163,
+    "elapsedSeconds": 7.88,
+    "checksPassed": true,
+    "checksPath": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/ve-checks.json"
+  },
+  "telegram": {
+    "exit": 0,
+    "pid": 69738,
+    "elapsedSeconds": 13.247,
+    "messageId": 882,
+    "verified": true,
+    "expected": {
+      "width": 1280,
+      "height": 720,
+      "duration": 23.875289,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "returned": {
+      "width": 1280,
+      "height": 720,
+      "duration": 24
+    },
+    "sentAt": "2026-10-08T00:43:49.065738+00:00",
+    "receiptPath": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4.telegram.json",
+    "ledger": "2026-10-08T00:43:49.110421+00:00 be87434f709f2ea9f64e3fde874a0338237ab2c4 .cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4"
+  },
+  "failures": []
+}

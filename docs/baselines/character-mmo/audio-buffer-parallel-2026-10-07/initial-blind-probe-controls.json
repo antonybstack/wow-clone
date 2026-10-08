@@ -1,0 +1,347 @@
+{
+  "url": "http://127.0.0.1:7074/?play&clean&pixelRatio=1&dev",
+  "cases": [
+    {
+      "name": "muted movement/cast; pointer sound; capture; remute/keyboard resume",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "muted": {
+        "contexts": 0,
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null
+        },
+        "casts": 1,
+        "lastResult": "hit"
+      },
+      "playback": {
+        "played": 1,
+        "sourceStarts": 1,
+        "tracks": [
+          {
+            "kind": "audio",
+            "state": "live"
+          }
+        ],
+        "contexts": 1
+      },
+      "final": {
+        "audio": {
+          "ready": true,
+          "initializing": false,
+          "state": "running",
+          "played": 1,
+          "lavaPlayed": 0,
+          "error": null,
+          "duration": 1.9623958333333333
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "running"
+        ],
+        "constructorMs": [
+          145.19999998807907
+        ],
+        "closeCalls": 0,
+        "sourceStarts": 1,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "first request through keyboard activation",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "final": {
+        "audio": {
+          "ready": true,
+          "initializing": false,
+          "state": "running",
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null,
+          "duration": 1.9623958333333333
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "running"
+        ],
+        "constructorMs": [
+          0.7999999523162842
+        ],
+        "closeCalls": 0,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "first request through mobile menu touch activation",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": true,
+      "final": {
+        "audio": {
+          "ready": true,
+          "initializing": false,
+          "state": "running",
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null,
+          "duration": 1.9623958333333333
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "running"
+        ],
+        "constructorMs": [
+          1.0999999642372131
+        ],
+        "closeCalls": 0,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "explicit capture preparation shares one native engine",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "final": {
+        "audio": {
+          "ready": true,
+          "initializing": false,
+          "state": "running",
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null,
+          "duration": 1.9623958333333333
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "running"
+        ],
+        "constructorMs": [
+          0.8999999761581421
+        ],
+        "closeCalls": 0,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "construction failure disables sound; movement remains live",
+      "errors": [],
+      "requests": [],
+      "touchEmulation": false,
+      "failureStatus": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": "Error: Controlled AudioContext construction failure"
+      },
+      "final": {
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": "Error: Controlled AudioContext construction failure"
+        },
+        "muted": false,
+        "contexts": 0,
+        "contextStates": [],
+        "constructorMs": [],
+        "closeCalls": 0,
+        "sourceStarts": 0,
+        "decodeSettled": 0,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "dispose during held native sound fetch",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "disposed": {
+        "meshes": 0,
+        "ready": false,
+        "contexts": 1,
+        "closes": 1
+      },
+      "final": {
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "closed"
+        ],
+        "constructorMs": [
+          1
+        ],
+        "closeCalls": 1,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": false,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "failed fireball-julien-matthey.wav decode with held sibling",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "failureStatus": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": "EncodingError: Unable to decode audio data"
+      },
+      "final": {
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": "EncodingError: Unable to decode audio data"
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "closed"
+        ],
+        "constructorMs": [
+          0.9000000357627869
+        ],
+        "closeCalls": 1,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "failed lava-charge.wav decode with held sibling",
+      "errors": [],
+      "requests": [
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/fireball-julien-matthey.wav",
+        "http://127.0.0.1:7074/ashen-reach/fire-blast/lava-charge.wav"
+      ],
+      "touchEmulation": false,
+      "failureStatus": {
+        "ready": false,
+        "initializing": false,
+        "played": 0,
+        "lavaPlayed": 0,
+        "error": "EncodingError: Unable to decode audio data"
+      },
+      "final": {
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": "EncodingError: Unable to decode audio data"
+        },
+        "muted": false,
+        "contexts": 1,
+        "contextStates": [
+          "closed"
+        ],
+        "constructorMs": [
+          4.399999976158142
+        ],
+        "closeCalls": 1,
+        "sourceStarts": 0,
+        "decodeSettled": 2,
+        "gainsAfterClose": 0,
+        "physics": true,
+        "recoveries": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "dispose without any sound request creates nothing",
+      "errors": [],
+      "requests": [],
+      "touchEmulation": false,
+      "final": {
+        "audio": {
+          "ready": false,
+          "initializing": false,
+          "played": 0,
+          "lavaPlayed": 0,
+          "error": null
+        },
+        "muted": true,
+        "contexts": 0,
+        "contextStates": [],
+        "constructorMs": [],
+        "closeCalls": 0,
+        "sourceStarts": 0,
+        "decodeSettled": 0,
+        "gainsAfterClose": 0,
+        "physics": false,
+        "recoveries": 0
+      },
+      "passed": true
+    }
+  ],
+  "diagnosticOnly": true
+}

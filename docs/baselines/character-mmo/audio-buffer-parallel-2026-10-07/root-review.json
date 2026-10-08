@@ -1,0 +1,23 @@
+{
+  "owner": "root-audio-media-review",
+  "serverPid": 59682,
+  "serverSession": 91588,
+  "browserPid": 2931,
+  "browser": "user Edge Profile 2",
+  "cdpPort": null,
+  "url": "http://127.0.0.1:7075/motion.mp4",
+  "purpose": "Root actual live MP4 review, no game or performance measurement",
+  "active": false,
+  "tabId": "1147995896",
+  "reviewed": true,
+  "mediaSha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c",
+  "tabClosed": true,
+  "serverStopped": true,
+  "observations": [
+    "Actual MP4 replayed at native normal rate; startup fence, dressed Human motion, sound activation, Fire Blast and subsequent movement reviewed",
+    "Ending movement also observed at 0.5 playback rate",
+    "Exact 1280x720 natural video dimensions; square-pixel encode; no visible proportion change",
+    "Close-camera native hero culling and recording HUD retained; not new geometry acceptance or FPS proof",
+    "Native game mix retained; nonzero PCM verified, no physical speaker latency or subjective audio acceptance"
+  ]
+}

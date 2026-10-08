@@ -1,0 +1,68 @@
+{
+  "sequential": {
+    "jsFiles": 194,
+    "jsTotalBytes": 1873350,
+    "ashen-reach-": [
+      {
+        "file": "assets/v2/ashen-reach-DbYXollz.js",
+        "bytes": 63493,
+        "sha256": "420fdbef8c0b203689b4185530b0110cd7fbb50810b8156e6b920a0edf08cba8"
+      }
+    ],
+    "lite-runtime-": [
+      {
+        "file": "assets/v2/lite-runtime-WizfYVCp.js",
+        "bytes": 759100,
+        "sha256": "5f817f86854f7c2254ce6e6f61eb888da3ccd45828a54d3a008b366f654cf249"
+      }
+    ],
+    "ashen-boot-": [
+      {
+        "file": "assets/v2/ashen-boot-B8FhY9vs.js",
+        "bytes": 265842,
+        "sha256": "e77e5ad2b530fd48cc2da4f948e2b973a5942a0e2e35f8e2b0193fee7bfc0102"
+      }
+    ],
+    "ashenReach-": [
+      {
+        "file": "assets/v2/ashenReach-C3uM2PpW.js",
+        "bytes": 50,
+        "sha256": "c737d522f64d2eaf31a6b15ee54b62b12c9282da59aead816abc2c4017614b9c"
+      }
+    ]
+  },
+  "parallel": {
+    "jsFiles": 194,
+    "jsTotalBytes": 1873435,
+    "ashen-reach-": [
+      {
+        "file": "assets/v2/ashen-reach-CJbVAGn4.js",
+        "bytes": 63493,
+        "sha256": "0a4e8499e4f2ad0586578f90f4ec4c69accee430f50383de509b297e999a3e65"
+      }
+    ],
+    "lite-runtime-": [
+      {
+        "file": "assets/v2/lite-runtime-jiMw178y.js",
+        "bytes": 759123,
+        "sha256": "ca63f8d9c80d39ccbfcb3298ee0fd592cbb926e36fb505f6d7ab3bd3a9953f4d"
+      }
+    ],
+    "ashen-boot-": [
+      {
+        "file": "assets/v2/ashen-boot-tr1YvfcT.js",
+        "bytes": 265842,
+        "sha256": "c1084f986cd575303a0c728881eeea0d46e2711e879a426f36a6f92a399e0878"
+      }
+    ],
+    "ashenReach-": [
+      {
+        "file": "assets/v2/ashenReach-D4JpPcVp.js",
+        "bytes": 50,
+        "sha256": "fdae68d1a454af9c7d2b626d041d665ac4f84310f419c4f4704681c6c79f0850"
+      }
+    ]
+  },
+  "deltaTotalJsBytes": 85,
+  "scope": "Generated uncompressed JS sizes, not cold-start transfer or first-play timing."
+}

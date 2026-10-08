@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-07",
+  "baselineHead": "be87434f709f2ea9f64e3fde874a0338237ab2c4",
+  "baselineCompiledProductInputs": "38875fe66c005e0188ec4e906fea8961836c8386a743677ada9dd1484abdfa77",
+  "baselineAudioSha256": "d0011098f2c9bc393c49b7d31a30ab770ed7b035703168d57cada52355e84471",
+  "candidateAudioSha256": "37fa200c43acd70cb1834999b6bb9a78b6d1f4c4498d74b821e82258a73062a1",
+  "candidateProductInputs": {
+    "sha256": "9ebfe7facd14280ffd11603118902a6ca303c77b5418f4d1b0cccaafd70d9ec4",
+    "files": 1157,
+    "uncommitted": 2
+  },
+  "recipeFile": ".cache/character-mmo/boot-forefoot-2026-10-07/startup-budget/seed-maximum-compact.json",
+  "order": [
+    "sequential",
+    "parallel",
+    "parallel",
+    "sequential",
+    "sequential",
+    "parallel"
+  ],
+  "conditions": {
+    "machine": "Apple M1 Max",
+    "nativeChrome": "uncapped WebGPU",
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "enemies": 7,
+    "network": {
+      "latency": 40,
+      "downloadThroughput": 6250000,
+      "uploadThroughput": 1250000
+    },
+    "cache": "disabled; fresh native Chrome process/profile per visit; OS/driver/CDN uncontrolled",
+    "recording": false,
+    "cpuSampling": false,
+    "observation": "native AudioContext constructor duration and RAF readiness observation; not isolated GPU/display latency",
+    "activationWindow": "After full world/enemy readiness and 1200 ms settling; real held W and sound button click; 1500 ms after sound ready"
+  },
+  "gate": {
+    "minAfterConstructorGainMs": 30,
+    "minActivationGainMs": 20,
+    "maxPostReadyP99RegressionMs": 1,
+    "allNativeControlsMustPass": true
+  },
+  "release": "Local experiment only. Required-texture startup hold remains; production unchanged. Original five-priority exits preserved."
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node_modules/.bin/vite",
+    "build",
+    "--config",
+    ".cache/character-mmo/audio-buffer-parallel-2026-10-07/baseline-config.mjs",
+    "--outDir",
+    ".cache/character-mmo/audio-buffer-parallel-2026-10-07/reproduced-baseline"
+  ],
+  "pid": 56057,
+  "exitCode": 0
+}

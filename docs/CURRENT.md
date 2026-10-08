@@ -111,6 +111,19 @@ Reviewed motion is Telegram **881** and identical VE, with matching API dimensio
 Implementation is committed/pushed as **833ab62**; source fingerprint and native
 evidence are in the result receipt.
 
+The [parallel native sound-buffer pass](plans/character-mmo/results/audio-buffer-parallel-2026-10-07.md)
+now overlaps the two existing fetch/decode jobs after explicit activation. All
+three local pairs save **45.6–58.1 ms** on first sound readiness; nine corrected
+native game cases and three probe controls pass. The native constructor still
+takes 151.2–160.4 ms in these fresh headless visits. Actual complete activation
+windows average 130.8–132.4 FPS with p99 21.7–21.9 ms and a large interval each;
+this is not new settled route FPS or a removed hitch. Baseline bytes are
+reproduced exactly, public payloads remain exact and JS increases by 85 bytes.
+Root reviewed the actual MP4; motion/native game mix is Telegram **882** and
+identical VE. Local acceptance only: production stays **5723a4ab**, release hold
+and all original exits remain open. Next productive feature package is the
+retained cuff/strap fit while startup cause evidence remains unresolved.
+
 ### Next five priorities, in execution order
 
 1. **Resolve the startup failure, then release the canonical boot correction.**

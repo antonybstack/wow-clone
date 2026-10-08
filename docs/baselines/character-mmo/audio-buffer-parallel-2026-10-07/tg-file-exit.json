@@ -1,0 +1,12 @@
+{
+  "command": [
+    "bash",
+    "scripts/tg",
+    "file",
+    ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4",
+    "<caption>"
+  ],
+  "pid": 69738,
+  "exitCode": 0,
+  "elapsedSeconds": 13.247
+}

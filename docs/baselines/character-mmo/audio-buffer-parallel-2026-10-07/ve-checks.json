@@ -1,0 +1,52 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+  "key": "wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+  "local": {
+    "bytes": 24334362,
+    "sha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c"
+  },
+  "head": {
+    "status": "HTTP/2 200",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "24334362",
+      "accept-ranges": "bytes",
+      "etag": "\"29da35785c1ec8e57c4774ab0906e8f5\"",
+      "last-modified": "Thu, 08 Oct 2026 00:42:51 GMT"
+    }
+  },
+  "get": {
+    "status": "HTTP/2 200",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "24334362",
+      "accept-ranges": "bytes",
+      "etag": "\"29da35785c1ec8e57c4774ab0906e8f5\"",
+      "last-modified": "Thu, 08 Oct 2026 00:42:51 GMT"
+    }
+  },
+  "range": {
+    "request": "bytes=0-1023",
+    "status": "HTTP/2 206",
+    "headers": {
+      "content-type": "video/mp4",
+      "content-length": "1024",
+      "content-range": "bytes 0-1023/24334362",
+      "etag": "\"29da35785c1ec8e57c4774ab0906e8f5\"",
+      "last-modified": "Thu, 08 Oct 2026 00:42:51 GMT"
+    },
+    "bodyBytes": 1024,
+    "contentRangeOk": true,
+    "bodyLengthOk": true,
+    "http206": true
+  },
+  "download": {
+    "bytes": 24334362,
+    "sha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c",
+    "bytesEqual": true,
+    "shaEqual": true,
+    "mime": "video/mp4",
+    "http200": true
+  },
+  "passed": true
+}

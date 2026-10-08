@@ -1,0 +1,3077 @@
+{
+  "files": [
+    {
+      "file": "ashen-reach/ANIMATION-SOURCES.md",
+      "baselineSha256": "f50993df9a7f443a845e70520fc6d81b9bf5356fd64c652ed22cb8d65cec8414",
+      "candidateSha256": "f50993df9a7f443a845e70520fc6d81b9bf5356fd64c652ed22cb8d65cec8414",
+      "reproducedSha256": "f50993df9a7f443a845e70520fc6d81b9bf5356fd64c652ed22cb8d65cec8414",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/animation-provenance.json",
+      "baselineSha256": "38ccab919a035bd484261d1530867a56fcd99903f1768d944a83fe632f8ceb0b",
+      "candidateSha256": "38ccab919a035bd484261d1530867a56fcd99903f1768d944a83fe632f8ceb0b",
+      "reproducedSha256": "38ccab919a035bd484261d1530867a56fcd99903f1768d944a83fe632f8ceb0b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/bastionShoulders-provenance.json",
+      "baselineSha256": "8cb2e732fed776f3d995d2c55cbec3357e81f390e9fb85ec094a734d26f6979f",
+      "candidateSha256": "8cb2e732fed776f3d995d2c55cbec3357e81f390e9fb85ec094a734d26f6979f",
+      "reproducedSha256": "8cb2e732fed776f3d995d2c55cbec3357e81f390e9fb85ec094a734d26f6979f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/boot-sole-provenance.json",
+      "baselineSha256": "8dca98b9adf62a2c0aa74d8e79cafb948dff465c4646486da17c4d90d713c0bf",
+      "candidateSha256": "8dca98b9adf62a2c0aa74d8e79cafb948dff465c4646486da17c4d90d713c0bf",
+      "reproducedSha256": "8dca98b9adf62a2c0aa74d8e79cafb948dff465c4646486da17c4d90d713c0bf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/coverage-provenance.json",
+      "baselineSha256": "9d3e634ff740e4334c4d339845b974cbcdf2cf6bb34d19bbef5892212d53170a",
+      "candidateSha256": "9d3e634ff740e4334c4d339845b974cbcdf2cf6bb34d19bbef5892212d53170a",
+      "reproducedSha256": "9d3e634ff740e4334c4d339845b974cbcdf2cf6bb34d19bbef5892212d53170a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/bastionShoulders-7ae3f575fcf3.glb",
+      "baselineSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "candidateSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "reproducedSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/bastionShoulders.glb",
+      "baselineSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "candidateSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "reproducedSha256": "7ae3f575fcf36e4c32ebec87bcfdb206ac696909379d1b6d506ae2a1491ee3c3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/body-coverage-0388c68822fa.glb",
+      "baselineSha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+      "candidateSha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+      "reproducedSha256": "0388c68822fa3406a9c36fddba3ce9cef31f9b88684c561e95278f082c1aea98",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/body-coverage-75f772ab0d3d.glb",
+      "baselineSha256": "75f772ab0d3d3f641f23e23d296db12a3d23aa2aefe7bd9474beca8b39d793b1",
+      "candidateSha256": "75f772ab0d3d3f641f23e23d296db12a3d23aa2aefe7bd9474beca8b39d793b1",
+      "reproducedSha256": "75f772ab0d3d3f641f23e23d296db12a3d23aa2aefe7bd9474beca8b39d793b1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/body.glb",
+      "baselineSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "candidateSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "reproducedSha256": "585f916ec8aea2041daf27ae45c96f04453f7c66a902eb399527a27b12ca96b0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardCuirass-064de522c22b.glb",
+      "baselineSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "candidateSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "reproducedSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardCuirass.glb",
+      "baselineSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "candidateSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "reproducedSha256": "064de522c22b31601c63f02708ec8b139bedd11c410b5718e35ada649a893832",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardGreaves-1f6f014fb480.glb",
+      "baselineSha256": "1f6f014fb480980233825b7a345b9919781d5caaae6a2c8839693a01d1378ed3",
+      "candidateSha256": "1f6f014fb480980233825b7a345b9919781d5caaae6a2c8839693a01d1378ed3",
+      "reproducedSha256": "1f6f014fb480980233825b7a345b9919781d5caaae6a2c8839693a01d1378ed3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardGreaves-2f96cb31cf35.glb",
+      "baselineSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "candidateSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "reproducedSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardGreaves-ebcd55139ab6.glb",
+      "baselineSha256": "ebcd55139ab62ddb4e4c378f0565079df6cba2e8b52e66a385dc234405b9fdda",
+      "candidateSha256": "ebcd55139ab62ddb4e4c378f0565079df6cba2e8b52e66a385dc234405b9fdda",
+      "reproducedSha256": "ebcd55139ab62ddb4e4c378f0565079df6cba2e8b52e66a385dc234405b9fdda",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardGreaves.glb",
+      "baselineSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "candidateSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "reproducedSha256": "2f96cb31cf3523920a25a5ba53efe526c191ed50c59ef0f69b7b7b043f815b18",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardTassets-bd6b56f08764.glb",
+      "baselineSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "candidateSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "reproducedSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardTassets-coverage-e813d3927fc0.glb",
+      "baselineSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "candidateSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "reproducedSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardTassets.glb",
+      "baselineSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "candidateSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "reproducedSha256": "bd6b56f087649dd0b27343817f64f24bdc06e77c13d1374b2330486a6c9bd65d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardVambraces-d5d57dde6128.glb",
+      "baselineSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "candidateSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "reproducedSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/duskguardVambraces.glb",
+      "baselineSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "candidateSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "reproducedSha256": "d5d57dde612831a70ec72eb50273276612ebc2ba177a847ccd3ab7405d1024eb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/fieldcoat-75c5c4d770f9.glb",
+      "baselineSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "candidateSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "reproducedSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/fieldcoat.glb",
+      "baselineSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "candidateSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "reproducedSha256": "75c5c4d770f94ed15713f0d7018030dd2876d5255280f0de41cf4c19a9f39d83",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/graveweaverGloves.glb",
+      "baselineSha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75",
+      "candidateSha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75",
+      "reproducedSha256": "ae3a162fc15b038bbf713f924b0b6b69d88fcd18ff2cfcb676112d5c91bb6e75",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/graveweaverHood.glb",
+      "baselineSha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
+      "candidateSha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
+      "reproducedSha256": "828b7e66b2edfc4d8fb2411c87c0fe7f1da52359b192691774d0c34392c63799",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/graveweaverSkirt.glb",
+      "baselineSha256": "5a9b020c3e2ed0e7e099ba11caa2d86ebc11b036c4f03b0d1a0c9cfe9f818063",
+      "candidateSha256": "5a9b020c3e2ed0e7e099ba11caa2d86ebc11b036c4f03b0d1a0c9cfe9f818063",
+      "reproducedSha256": "5a9b020c3e2ed0e7e099ba11caa2d86ebc11b036c4f03b0d1a0c9cfe9f818063",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/graveweaverTop.glb",
+      "baselineSha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
+      "candidateSha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
+      "reproducedSha256": "935bc9c509c562e08161bac0d7babc60b5273c38aea6764258966dcc060f1b78",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/lectorCoat-aa01a6300d3d.glb",
+      "baselineSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "candidateSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "reproducedSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/lectorCoat.glb",
+      "baselineSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "candidateSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "reproducedSha256": "aa01a6300d3d8e73efd4eaf1e6832c67a75d6aa9c400aa48946fc7bc2b2101e3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/manifest-coverage-v1.json",
+      "baselineSha256": "263ace0a9025bbd362b30764d7581178b5b1ec47055ca05b8d3a039f7ffeca71",
+      "candidateSha256": "263ace0a9025bbd362b30764d7581178b5b1ec47055ca05b8d3a039f7ffeca71",
+      "reproducedSha256": "263ace0a9025bbd362b30764d7581178b5b1ec47055ca05b8d3a039f7ffeca71",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/manifest.json",
+      "baselineSha256": "fc55440ad32f54df5b0668626bdcb46ea3be4ffa9aeb1b8fbb7f3fc964ed13fc",
+      "candidateSha256": "fc55440ad32f54df5b0668626bdcb46ea3be4ffa9aeb1b8fbb7f3fc964ed13fc",
+      "reproducedSha256": "fc55440ad32f54df5b0668626bdcb46ea3be4ffa9aeb1b8fbb7f3fc964ed13fc",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/pilgrimTunic-3e3d45a4b03a.glb",
+      "baselineSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "candidateSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "reproducedSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/pilgrimTunic.glb",
+      "baselineSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "candidateSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "reproducedSha256": "3e3d45a4b03a6207ec0fa9b4d46cec50596816960c5cf19dc7aa71ca70bbf445",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/provenance.json",
+      "baselineSha256": "c1fd244beef29607a36adcbee36bcbb92f5467d9ab35686036da33b35c296853",
+      "candidateSha256": "c1fd244beef29607a36adcbee36bcbb92f5467d9ab35686036da33b35c296853",
+      "reproducedSha256": "c1fd244beef29607a36adcbee36bcbb92f5467d9ab35686036da33b35c296853",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wardenPauldrons-30914318b15c.glb",
+      "baselineSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "candidateSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "reproducedSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wardenPauldrons.glb",
+      "baselineSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "candidateSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "reproducedSha256": "30914318b15c23321dd9378f3043a69536473b00771d3e63fd0dde4c69d77e92",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerBoots-84539c7633fd.glb",
+      "baselineSha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c",
+      "candidateSha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c",
+      "reproducedSha256": "84539c7633fd5b17d7e0ed27e45d74d6dcb8f4c5eb244a6f3e4ff8ba5134aa0c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerBoots-dfce594f2e21.glb",
+      "baselineSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "candidateSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "reproducedSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerBoots.glb",
+      "baselineSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "candidateSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "reproducedSha256": "dfce594f2e2187f25703b185f843d9f47c43481aa18ff320f940b6fe651dd8a4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerTrousers-coverage-48d4f61d94cf.glb",
+      "baselineSha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+      "candidateSha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+      "reproducedSha256": "48d4f61d94cf7b464890797b479f66408de52a65eeb05e05abbe2730299205b3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerTrousers.glb",
+      "baselineSha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+      "candidateSha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+      "reproducedSha256": "169ad0333e5746e72512b8160008aefbf3d8bef7d75f2ff70203feca08538def",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment/wayfarerTunic.glb",
+      "baselineSha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "candidateSha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "reproducedSha256": "3b4c929df3708afd760f3f056f0dc706e780552cfe1966d8ef3f5083b8749cd6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/bastionShoulders-4dd06c4dd966.glb",
+      "baselineSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "candidateSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "reproducedSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/bastionShoulders.glb",
+      "baselineSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "candidateSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "reproducedSha256": "4dd06c4dd9665dda77076efc87bb5cfbd4c405a32cc22a81878684a7ed574d2b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/body.glb",
+      "baselineSha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "candidateSha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "reproducedSha256": "b055e29393ca3a22998f19ec83f600390ec583f2f7b677ede902bea149a0250b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardCuirass-a54e8b60c1f1.glb",
+      "baselineSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "candidateSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "reproducedSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardCuirass.glb",
+      "baselineSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "candidateSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "reproducedSha256": "a54e8b60c1f152d0e3fcaf351edbcd859afde8499bca82e0dfef9666da51f159",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardGreaves-5c047b0fbea0.glb",
+      "baselineSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "candidateSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "reproducedSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardGreaves.glb",
+      "baselineSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "candidateSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "reproducedSha256": "5c047b0fbea0de4f8b3048b9fe72f2ba272f5bb32b798cbf5282f9ff1deeb1da",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardTassets-8acdbf29f9ac.glb",
+      "baselineSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "candidateSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "reproducedSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardTassets-coverage-ac83724683f0.glb",
+      "baselineSha256": "ac83724683f007f757d4e43978ebd47e3fd284f0bbf2a50de5ecd98aef8beacb",
+      "candidateSha256": "ac83724683f007f757d4e43978ebd47e3fd284f0bbf2a50de5ecd98aef8beacb",
+      "reproducedSha256": "ac83724683f007f757d4e43978ebd47e3fd284f0bbf2a50de5ecd98aef8beacb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardTassets.glb",
+      "baselineSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "candidateSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "reproducedSha256": "8acdbf29f9aca5f0e1147b00e98dde9df7502ed245a5238b395a1981a1d0b702",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardVambraces-358c47ffff40.glb",
+      "baselineSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "candidateSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "reproducedSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/duskguardVambraces.glb",
+      "baselineSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "candidateSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "reproducedSha256": "358c47ffff40888390ff98a0d94a6fbc61a90d14dcf5845f436a840c755a0e03",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/fieldcoat-e24f3dcfd8d8.glb",
+      "baselineSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "candidateSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "reproducedSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/fieldcoat.glb",
+      "baselineSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "candidateSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "reproducedSha256": "e24f3dcfd8d86875444d5cf4d7c7157850bd91f5b296c597b04a5e64edf87da6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/graveweaverGloves.glb",
+      "baselineSha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+      "candidateSha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+      "reproducedSha256": "ae551225a6ceb06388b491342070e00a5c7ac2a377df1bac8ffcff13930331af",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/graveweaverHood.glb",
+      "baselineSha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
+      "candidateSha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
+      "reproducedSha256": "e07841563d560e1f766e4cf52689574df6ed8b5a6862a98d2a1abcc56bb24e35",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/graveweaverSkirt-coverage-aefdea6ff724.glb",
+      "baselineSha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+      "candidateSha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+      "reproducedSha256": "aefdea6ff7247859248de6fbd6a681d0f13de5f9c48f870f0fe560dff216af46",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/graveweaverSkirt.glb",
+      "baselineSha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+      "candidateSha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+      "reproducedSha256": "d0eb5d0a032558c1d95a2758f5d0573eea8f8615136424111cfeb9db4a9abef2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/graveweaverTop.glb",
+      "baselineSha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
+      "candidateSha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
+      "reproducedSha256": "8b044f691641ba7c197db148f82bf1315dabe287f16ae8cd7e2b28d83bfa7ea9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/lectorCoat-6b60897773e6.glb",
+      "baselineSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "candidateSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "reproducedSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/lectorCoat.glb",
+      "baselineSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "candidateSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "reproducedSha256": "6b60897773e608d5176b58f5914cb77a87c34ce476d51bd8e3e1611ea86a5b37",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/manifest-coverage-v1.json",
+      "baselineSha256": "4f10390474776dbccee950bc047fd3b3e916e250a4b70a19a9b956c500097f4e",
+      "candidateSha256": "4f10390474776dbccee950bc047fd3b3e916e250a4b70a19a9b956c500097f4e",
+      "reproducedSha256": "4f10390474776dbccee950bc047fd3b3e916e250a4b70a19a9b956c500097f4e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/manifest.json",
+      "baselineSha256": "47d5ec385ec1f079a7a38eded9cc814ec29b4f96bd6a61a9e1086d171ccd0480",
+      "candidateSha256": "47d5ec385ec1f079a7a38eded9cc814ec29b4f96bd6a61a9e1086d171ccd0480",
+      "reproducedSha256": "47d5ec385ec1f079a7a38eded9cc814ec29b4f96bd6a61a9e1086d171ccd0480",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/pilgrimTunic.glb",
+      "baselineSha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
+      "candidateSha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
+      "reproducedSha256": "91fc9c23dddcd1b54efb8b3356cb6f93fcbfba97bc90241b176f18ef0e406270",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/provenance.json",
+      "baselineSha256": "2377846e88e807081e7530569d8da30bf60c6a61b650e4cf5b2291b339ecfd2b",
+      "candidateSha256": "2377846e88e807081e7530569d8da30bf60c6a61b650e4cf5b2291b339ecfd2b",
+      "reproducedSha256": "2377846e88e807081e7530569d8da30bf60c6a61b650e4cf5b2291b339ecfd2b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wardenPauldrons-0eeed07f0db4.glb",
+      "baselineSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "candidateSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "reproducedSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wardenPauldrons.glb",
+      "baselineSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "candidateSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "reproducedSha256": "0eeed07f0db49a6b74dd2042121c1bec2b7ccd9418a07d88df219e513e3f75b2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wayfarerBoots.glb",
+      "baselineSha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+      "candidateSha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+      "reproducedSha256": "800fc2b7cb43a30a4b103dcf607ddae68692b1bd9ee8f64325199fd043583be6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wayfarerTrousers-coverage-124da6c75972.glb",
+      "baselineSha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+      "candidateSha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+      "reproducedSha256": "124da6c75972eb432d77739bd27d051dcce9f3208f95202009187bf91a6cbffb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wayfarerTrousers.glb",
+      "baselineSha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+      "candidateSha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+      "reproducedSha256": "de739d3ac403b757b94b13f98213ffb2cce103a1a1cb49f6142aca620ad72df5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-orc/wayfarerTunic.glb",
+      "baselineSha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+      "candidateSha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+      "reproducedSha256": "291c8ccdd6891c21aeb74342bc72ad0110ef2a658f22f9b10ba2099d59bebc1b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-provenance.json",
+      "baselineSha256": "094d8c50333e453318c30f630b0f9dfea7e9172dd228629dc98f1026b89e19d3",
+      "candidateSha256": "094d8c50333e453318c30f630b0f9dfea7e9172dd228629dc98f1026b89e19d3",
+      "reproducedSha256": "094d8c50333e453318c30f630b0f9dfea7e9172dd228629dc98f1026b89e19d3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/bastionShoulders-c4008ce240e4.glb",
+      "baselineSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "candidateSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "reproducedSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/bastionShoulders.glb",
+      "baselineSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "candidateSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "reproducedSha256": "c4008ce240e47c5134f5014df41bb6a00933baece722f945b439093e4b7c50d4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/body-coverage-02cb6c3cc877.glb",
+      "baselineSha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+      "candidateSha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+      "reproducedSha256": "02cb6c3cc8777b527676959528093a7bc97ad7c24282ca4ec27570c3b7de8038",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/body-coverage-2f778c68a013.glb",
+      "baselineSha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+      "candidateSha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+      "reproducedSha256": "2f778c68a0136b35b6ab27679ab1747fdb89b8ae2ad2b80b251d7230220ef784",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/body.glb",
+      "baselineSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "candidateSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "reproducedSha256": "0564b7b360511dbc3533bab0ba6179162d854b39e138de37ec3b70d8cccbdb8d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardCuirass-a3dac0cc75be.glb",
+      "baselineSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "candidateSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "reproducedSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardCuirass.glb",
+      "baselineSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "candidateSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "reproducedSha256": "a3dac0cc75bef392f9561447daaf2462d11dbad691e9619264b6dfbe4731c636",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardGreaves-117d0fc78bdb.glb",
+      "baselineSha256": "117d0fc78bdbff35e2b9c23a7ab74ae474a330c6894da43b965e1bc1dc9cda23",
+      "candidateSha256": "117d0fc78bdbff35e2b9c23a7ab74ae474a330c6894da43b965e1bc1dc9cda23",
+      "reproducedSha256": "117d0fc78bdbff35e2b9c23a7ab74ae474a330c6894da43b965e1bc1dc9cda23",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardGreaves-65e92cf980bd.glb",
+      "baselineSha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
+      "candidateSha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
+      "reproducedSha256": "65e92cf980bd0a91cd0d9ed37c9964a42ba61472ce424e8254bfb24526fae5a7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardGreaves-979dad0c170c.glb",
+      "baselineSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "candidateSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "reproducedSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardGreaves.glb",
+      "baselineSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "candidateSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "reproducedSha256": "979dad0c170cfa19c37fd371de4fa3533d6f41cd6134cd5c14db5fdcb2c0f9ba",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardTassets-c4f3c202054b.glb",
+      "baselineSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "candidateSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "reproducedSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardTassets-coverage-3fd0a9c51a6b.glb",
+      "baselineSha256": "3fd0a9c51a6bd3d51fcb381486e4d6396c91af648ebcb0ec9f13f757249647b4",
+      "candidateSha256": "3fd0a9c51a6bd3d51fcb381486e4d6396c91af648ebcb0ec9f13f757249647b4",
+      "reproducedSha256": "3fd0a9c51a6bd3d51fcb381486e4d6396c91af648ebcb0ec9f13f757249647b4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardTassets.glb",
+      "baselineSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "candidateSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "reproducedSha256": "c4f3c202054b27ba2549e07cfe917097d0cbc26c3605f5af2ae9203b04ffe39c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardVambraces-172dbebdd269.glb",
+      "baselineSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "candidateSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "reproducedSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/duskguardVambraces.glb",
+      "baselineSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "candidateSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "reproducedSha256": "172dbebdd2699eb4ee1e0a48b6fd8b98f69e85ff8b4a76d1c18e9e61fa279395",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/fieldcoat-c9a2030aad08.glb",
+      "baselineSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "candidateSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "reproducedSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/fieldcoat.glb",
+      "baselineSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "candidateSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "reproducedSha256": "c9a2030aad08319b6a7ba1093c062034d9f43bccc560d4f8b970648c8ab48a4c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/graveweaverGloves.glb",
+      "baselineSha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864",
+      "candidateSha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864",
+      "reproducedSha256": "5c136ecbaca3b6f583d88b6ccdc298d014ebd18ee089d60e29546f2ba1698864",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/graveweaverHood.glb",
+      "baselineSha256": "5e67a23def5c9ea04a97e9f6844500296d832be20840c676463b1fd857f9af4e",
+      "candidateSha256": "5e67a23def5c9ea04a97e9f6844500296d832be20840c676463b1fd857f9af4e",
+      "reproducedSha256": "5e67a23def5c9ea04a97e9f6844500296d832be20840c676463b1fd857f9af4e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/graveweaverSkirt-coverage-8be75fe7dc39.glb",
+      "baselineSha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+      "candidateSha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+      "reproducedSha256": "8be75fe7dc3901c5820972168d87d99d6859a16f4caed5a55987d5bdb07a7040",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/graveweaverSkirt.glb",
+      "baselineSha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
+      "candidateSha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
+      "reproducedSha256": "95451b57ba7c1199aab3825f416d8d21c96eb842ee3e432e79bdb4a6b01d3933",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/graveweaverTop.glb",
+      "baselineSha256": "dccc6949b8ac9672954101de1bffdca0b7f5a8fae6f0b4ef0ad90e9a02cc031a",
+      "candidateSha256": "dccc6949b8ac9672954101de1bffdca0b7f5a8fae6f0b4ef0ad90e9a02cc031a",
+      "reproducedSha256": "dccc6949b8ac9672954101de1bffdca0b7f5a8fae6f0b4ef0ad90e9a02cc031a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/lectorCoat-711447547e62.glb",
+      "baselineSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "candidateSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "reproducedSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/lectorCoat.glb",
+      "baselineSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "candidateSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "reproducedSha256": "711447547e62bbff736ddb03b66d26075af2f399e0884a32868214807d0f68dd",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/manifest-coverage-v1.json",
+      "baselineSha256": "416f6d3c8867be94692ce0ea7befe8048847e57a70e7dc76c0cd53888b5ec199",
+      "candidateSha256": "416f6d3c8867be94692ce0ea7befe8048847e57a70e7dc76c0cd53888b5ec199",
+      "reproducedSha256": "416f6d3c8867be94692ce0ea7befe8048847e57a70e7dc76c0cd53888b5ec199",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/manifest.json",
+      "baselineSha256": "f9f7c8545f201f3ee31a2ba800714375511df5f965d13b76abbf1962c6285dd8",
+      "candidateSha256": "f9f7c8545f201f3ee31a2ba800714375511df5f965d13b76abbf1962c6285dd8",
+      "reproducedSha256": "f9f7c8545f201f3ee31a2ba800714375511df5f965d13b76abbf1962c6285dd8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/pilgrimTunic.glb",
+      "baselineSha256": "4a832e759069b96f66eedcebb3ca85915d612ca43bee2c0bcb60992d5e485d95",
+      "candidateSha256": "4a832e759069b96f66eedcebb3ca85915d612ca43bee2c0bcb60992d5e485d95",
+      "reproducedSha256": "4a832e759069b96f66eedcebb3ca85915d612ca43bee2c0bcb60992d5e485d95",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/provenance.json",
+      "baselineSha256": "bccfe99f19b7a42e1be2f86795ddbf0752767756c14285f3807e5f3d206173f5",
+      "candidateSha256": "bccfe99f19b7a42e1be2f86795ddbf0752767756c14285f3807e5f3d206173f5",
+      "reproducedSha256": "bccfe99f19b7a42e1be2f86795ddbf0752767756c14285f3807e5f3d206173f5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wardenPauldrons-48130ebf8564.glb",
+      "baselineSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "candidateSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "reproducedSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wardenPauldrons.glb",
+      "baselineSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "candidateSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "reproducedSha256": "48130ebf8564bcfda94a806e74fd998b8f03cdba8917b7bbf22f517054d3c961",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerBoots-a2e61858969e.glb",
+      "baselineSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "candidateSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "reproducedSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerBoots-d92d6e57807b.glb",
+      "baselineSha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac",
+      "candidateSha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac",
+      "reproducedSha256": "d92d6e57807b91cc19886c634b3ff3c84b21909c63ecaa68fbc5a66af44dbeac",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerBoots.glb",
+      "baselineSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "candidateSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "reproducedSha256": "a2e61858969e38dc07e895c2127a9fef9924bea8373d1b659f21bb2711bdac62",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerTrousers-coverage-051b2a33d0e2.glb",
+      "baselineSha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+      "candidateSha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+      "reproducedSha256": "051b2a33d0e25bd476f486cf3d8071d76d91cd04be625d298fe3b59bcc379e18",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerTrousers.glb",
+      "baselineSha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
+      "candidateSha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
+      "reproducedSha256": "566bee577d31b5f961a20790b4c6697825ef955bb4da2fa77700069690aa6467",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead/wayfarerTunic.glb",
+      "baselineSha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
+      "candidateSha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
+      "reproducedSha256": "40ef02c1b771dcbc6272b63bc8b7039033698b847439a57527a82e367a6e8c9b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/body.glb",
+      "baselineSha256": "96dba89080f0e6facf9875ae2f7be6ec3e5c0fc2516b42150551ebe72e06ea58",
+      "candidateSha256": "96dba89080f0e6facf9875ae2f7be6ec3e5c0fc2516b42150551ebe72e06ea58",
+      "reproducedSha256": "96dba89080f0e6facf9875ae2f7be6ec3e5c0fc2516b42150551ebe72e06ea58",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/graveweaverGloves.glb",
+      "baselineSha256": "ece81c36b26f75f2136990b60c3c41c234b1e8e2c99212c4ff7dc6812e0c423e",
+      "candidateSha256": "ece81c36b26f75f2136990b60c3c41c234b1e8e2c99212c4ff7dc6812e0c423e",
+      "reproducedSha256": "ece81c36b26f75f2136990b60c3c41c234b1e8e2c99212c4ff7dc6812e0c423e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/graveweaverHood.glb",
+      "baselineSha256": "57a6fd3af7f299c5d6cdf707a7e21cad06f89feb9ee0fd6c5fb25e253b73f899",
+      "candidateSha256": "57a6fd3af7f299c5d6cdf707a7e21cad06f89feb9ee0fd6c5fb25e253b73f899",
+      "reproducedSha256": "57a6fd3af7f299c5d6cdf707a7e21cad06f89feb9ee0fd6c5fb25e253b73f899",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/graveweaverSkirt.glb",
+      "baselineSha256": "4a5c74ea61b77f0deac05f4c1f03e700f51b1c7b7be7e4871ca84a5d21182fce",
+      "candidateSha256": "4a5c74ea61b77f0deac05f4c1f03e700f51b1c7b7be7e4871ca84a5d21182fce",
+      "reproducedSha256": "4a5c74ea61b77f0deac05f4c1f03e700f51b1c7b7be7e4871ca84a5d21182fce",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/graveweaverTop.glb",
+      "baselineSha256": "e558b6cd25f4b6b55f82e425d508c756a67c28493da39ca324bf3b08ccb239de",
+      "candidateSha256": "e558b6cd25f4b6b55f82e425d508c756a67c28493da39ca324bf3b08ccb239de",
+      "reproducedSha256": "e558b6cd25f4b6b55f82e425d508c756a67c28493da39ca324bf3b08ccb239de",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/manifest.json",
+      "baselineSha256": "cba8f777f60bb1672f165e412b3b477eccbc9128a6e36ef84b1fb9fba0945f6a",
+      "candidateSha256": "cba8f777f60bb1672f165e412b3b477eccbc9128a6e36ef84b1fb9fba0945f6a",
+      "reproducedSha256": "cba8f777f60bb1672f165e412b3b477eccbc9128a6e36ef84b1fb9fba0945f6a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/pilgrimTunic.glb",
+      "baselineSha256": "50f95c148cf20554fdb84ac3db8b55efcc0727303ed12154dcfc2ba9e359d110",
+      "candidateSha256": "50f95c148cf20554fdb84ac3db8b55efcc0727303ed12154dcfc2ba9e359d110",
+      "reproducedSha256": "50f95c148cf20554fdb84ac3db8b55efcc0727303ed12154dcfc2ba9e359d110",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/provenance.json",
+      "baselineSha256": "7bd450aca4962cdaedfab3fd5f9ed9a53711d57a30615d4c5ddbe0a0d983b073",
+      "candidateSha256": "7bd450aca4962cdaedfab3fd5f9ed9a53711d57a30615d4c5ddbe0a0d983b073",
+      "reproducedSha256": "7bd450aca4962cdaedfab3fd5f9ed9a53711d57a30615d4c5ddbe0a0d983b073",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/wayfarerBoots.glb",
+      "baselineSha256": "e4dcb7b9c44d2fc1688147bc8404b6ebff06821cca749b507aa27a67c08219c8",
+      "candidateSha256": "e4dcb7b9c44d2fc1688147bc8404b6ebff06821cca749b507aa27a67c08219c8",
+      "reproducedSha256": "e4dcb7b9c44d2fc1688147bc8404b6ebff06821cca749b507aa27a67c08219c8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/wayfarerTrousers.glb",
+      "baselineSha256": "451d377e6a06a05637f715aaba9c1ebc923cedd3bc172c0da962f7da97a67e47",
+      "candidateSha256": "451d377e6a06a05637f715aaba9c1ebc923cedd3bc172c0da962f7da97a67e47",
+      "reproducedSha256": "451d377e6a06a05637f715aaba9c1ebc923cedd3bc172c0da962f7da97a67e47",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/equipment-undead-provisional/wayfarerTunic.glb",
+      "baselineSha256": "83ad28dfba4888137f0b7174efcffdc76f3e46b6e7425686c359889b2ce71cc3",
+      "candidateSha256": "83ad28dfba4888137f0b7174efcffdc76f3e46b6e7425686c359889b2ce71cc3",
+      "reproducedSha256": "83ad28dfba4888137f0b7174efcffdc76f3e46b6e7425686c359889b2ce71cc3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/favicon.png",
+      "baselineSha256": "856382e7da7d90baacac9da86119e0ebf258ee5052fbf2aa77fa2796fe59ed67",
+      "candidateSha256": "856382e7da7d90baacac9da86119e0ebf258ee5052fbf2aa77fa2796fe59ed67",
+      "reproducedSha256": "856382e7da7d90baacac9da86119e0ebf258ee5052fbf2aa77fa2796fe59ed67",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fieldcoat-provenance.json",
+      "baselineSha256": "428b977b000e6561578488671ef3e64bc504a3004ff9e2cf1d10f5070b2c15cf",
+      "candidateSha256": "428b977b000e6561578488671ef3e64bc504a3004ff9e2cf1d10f5070b2c15cf",
+      "reproducedSha256": "428b977b000e6561578488671ef3e64bc504a3004ff9e2cf1d10f5070b2c15cf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/AUDIO-SOURCES.md",
+      "baselineSha256": "5a8cfa91e8a33210e22974b11209c4a0abc17da90b6c402fb85fa874c919f11c",
+      "candidateSha256": "5a8cfa91e8a33210e22974b11209c4a0abc17da90b6c402fb85fa874c919f11c",
+      "reproducedSha256": "5a8cfa91e8a33210e22974b11209c4a0abc17da90b6c402fb85fa874c919f11c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/License.txt",
+      "baselineSha256": "ee1f83147b2915d62a92095e8b10a287e4a6d756276ece65ddb5b1b6b8d5cc4b",
+      "candidateSha256": "ee1f83147b2915d62a92095e8b10a287e4a6d756276ece65ddb5b1b6b8d5cc4b",
+      "reproducedSha256": "ee1f83147b2915d62a92095e8b10a287e4a6d756276ece65ddb5b1b6b8d5cc4b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/SOURCES.md",
+      "baselineSha256": "2428bd87aa13f4022695904246402bb6a421d083ab7282746adcfd47c39f2c27",
+      "candidateSha256": "2428bd87aa13f4022695904246402bb6a421d083ab7282746adcfd47c39f2c27",
+      "reproducedSha256": "2428bd87aa13f4022695904246402bb6a421d083ab7282746adcfd47c39f2c27",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/fire_01.png",
+      "baselineSha256": "9727a9743ac6ab8dd4dd79f5fc5b0266290efae45f4d4452279eb5e4bcf3a978",
+      "candidateSha256": "9727a9743ac6ab8dd4dd79f5fc5b0266290efae45f4d4452279eb5e4bcf3a978",
+      "reproducedSha256": "9727a9743ac6ab8dd4dd79f5fc5b0266290efae45f4d4452279eb5e4bcf3a978",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/fireball-julien-matthey.wav",
+      "baselineSha256": "3992598c814de25c318780e506aeda673a7e410b7b3c4f0793883483ff9766b8",
+      "candidateSha256": "3992598c814de25c318780e506aeda673a7e410b7b3c4f0793883483ff9766b8",
+      "reproducedSha256": "3992598c814de25c318780e506aeda673a7e410b7b3c4f0793883483ff9766b8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/lava-audio-provenance.json",
+      "baselineSha256": "1c6b96d4b0ce2f2d0f5d25f0a9fa8cde4e4412a062fbf442b5b52a9962dc3cf7",
+      "candidateSha256": "1c6b96d4b0ce2f2d0f5d25f0a9fa8cde4e4412a062fbf442b5b52a9962dc3cf7",
+      "reproducedSha256": "1c6b96d4b0ce2f2d0f5d25f0a9fa8cde4e4412a062fbf442b5b52a9962dc3cf7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/lava-charge.wav",
+      "baselineSha256": "69792f0c4e89af3b11a152695a48bc6906b14f95878ec92dfe46d2576cd84d42",
+      "candidateSha256": "69792f0c4e89af3b11a152695a48bc6906b14f95878ec92dfe46d2576cd84d42",
+      "reproducedSha256": "69792f0c4e89af3b11a152695a48bc6906b14f95878ec92dfe46d2576cd84d42",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/smoke_01.png",
+      "baselineSha256": "e8724c219e8d35859167fc0a7e207e13c72ccf0c29704909b9bb3d3dc71c6cf7",
+      "candidateSha256": "e8724c219e8d35859167fc0a7e207e13c72ccf0c29704909b9bb3d3dc71c6cf7",
+      "reproducedSha256": "e8724c219e8d35859167fc0a7e207e13c72ccf0c29704909b9bb3d3dc71c6cf7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-blast/spark_05.png",
+      "baselineSha256": "9624ea2017b8b2767a9d3b82e978b7fdf5154d83e6756cd919da51447bb97138",
+      "candidateSha256": "9624ea2017b8b2767a9d3b82e978b7fdf5154d83e6756cd919da51447bb97138",
+      "reproducedSha256": "9624ea2017b8b2767a9d3b82e978b7fdf5154d83e6756cd919da51447bb97138",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/fire-cast-provenance.json",
+      "baselineSha256": "74f8024d1f94390724f06a2016060ce8d3f8115d1317241faaffb5f00486d296",
+      "candidateSha256": "74f8024d1f94390724f06a2016060ce8d3f8115d1317241faaffb5f00486d296",
+      "reproducedSha256": "74f8024d1f94390724f06a2016060ce8d3f8115d1317241faaffb5f00486d296",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/foliage-atlas.png",
+      "baselineSha256": "d478683b7219654f74646f4abd14d0f9adaff9c93d75acea3631efdf282da710",
+      "candidateSha256": "d478683b7219654f74646f4abd14d0f9adaff9c93d75acea3631efdf282da710",
+      "reproducedSha256": "d478683b7219654f74646f4abd14d0f9adaff9c93d75acea3631efdf282da710",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/grave-face.jpg",
+      "baselineSha256": "fceaab1167bb3f2558c45edbfc8fe931240021b56b15b671d6d618881fdb6df1",
+      "candidateSha256": "fceaab1167bb3f2558c45edbfc8fe931240021b56b15b671d6d618881fdb6df1",
+      "reproducedSha256": "fceaab1167bb3f2558c45edbfc8fe931240021b56b15b671d6d618881fdb6df1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/grave-face.png",
+      "baselineSha256": "ab1e42e0de1a6fd882be4948f910a24f4eded1a88b11c8032b0ca4ea876c6964",
+      "candidateSha256": "ab1e42e0de1a6fd882be4948f910a24f4eded1a88b11c8032b0ca4ea876c6964",
+      "reproducedSha256": "ab1e42e0de1a6fd882be4948f910a24f4eded1a88b11c8032b0ca4ea876c6964",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/horizon-rock-source.md",
+      "baselineSha256": "032f353fa86a98811a16261a06f58f726db2e6752009efac6ee8c55237a29862",
+      "candidateSha256": "032f353fa86a98811a16261a06f58f726db2e6752009efac6ee8c55237a29862",
+      "reproducedSha256": "032f353fa86a98811a16261a06f58f726db2e6752009efac6ee8c55237a29862",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/horizon-rock.jpg",
+      "baselineSha256": "0db307aa7e5a86af0c6cb8a94a826c8a6233828087d436821fbd1380f07d7f60",
+      "candidateSha256": "0db307aa7e5a86af0c6cb8a94a826c8a6233828087d436821fbd1380f07d7f60",
+      "reproducedSha256": "0db307aa7e5a86af0c6cb8a94a826c8a6233828087d436821fbd1380f07d7f60",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-24f3d4bacadc.bin",
+      "baselineSha256": "24f3d4bacadc26052c22f358a2b38982d857f45678ee65c56e277741238e5c8a",
+      "candidateSha256": "24f3d4bacadc26052c22f358a2b38982d857f45678ee65c56e277741238e5c8a",
+      "reproducedSha256": "24f3d4bacadc26052c22f358a2b38982d857f45678ee65c56e277741238e5c8a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-550d028c0a11.bin",
+      "baselineSha256": "550d028c0a1188e642fba1b2d86718d027d194fc0235c5b3d892faaaea3f728a",
+      "candidateSha256": "550d028c0a1188e642fba1b2d86718d027d194fc0235c5b3d892faaaea3f728a",
+      "reproducedSha256": "550d028c0a1188e642fba1b2d86718d027d194fc0235c5b3d892faaaea3f728a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-5f8c401b0968.bin",
+      "baselineSha256": "5f8c401b0968dc11cdf18677ba71605b59eef77528196a8599bab79bbfe46fd8",
+      "candidateSha256": "5f8c401b0968dc11cdf18677ba71605b59eef77528196a8599bab79bbfe46fd8",
+      "reproducedSha256": "5f8c401b0968dc11cdf18677ba71605b59eef77528196a8599bab79bbfe46fd8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-compact-4a8882628c79.bin",
+      "baselineSha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628",
+      "candidateSha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628",
+      "reproducedSha256": "4a8882628c7998ca5389e60eef50f981c345c820a12dc27e4c79a79c0153d628",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-compact-bac266faf4f8.bin",
+      "baselineSha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021",
+      "candidateSha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021",
+      "reproducedSha256": "bac266faf4f81e7186f7afc192e005719e2f4ac27f96cd8d6403efdb0a5af021",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/body-compact-cd6850610c02.bin",
+      "baselineSha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325",
+      "candidateSha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325",
+      "reproducedSha256": "cd6850610c02f7c2d9766d801280c58ea245a99309c33d6e7dbdceb0df3b5325",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/graveweaverHood-9f3b17772a7f.bin",
+      "baselineSha256": "9f3b17772a7f79a657b59c51dbdc12974793f34b2e9a34e39300cfd062313b1a",
+      "candidateSha256": "9f3b17772a7f79a657b59c51dbdc12974793f34b2e9a34e39300cfd062313b1a",
+      "reproducedSha256": "9f3b17772a7f79a657b59c51dbdc12974793f34b2e9a34e39300cfd062313b1a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/graveweaverHood-a9d24c7d258a.bin",
+      "baselineSha256": "a9d24c7d258a573ae7c8edca8abb5c58dca0474c8d08bbcc4ce421736ace526f",
+      "candidateSha256": "a9d24c7d258a573ae7c8edca8abb5c58dca0474c8d08bbcc4ce421736ace526f",
+      "reproducedSha256": "a9d24c7d258a573ae7c8edca8abb5c58dca0474c8d08bbcc4ce421736ace526f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/graveweaverHood-compact-d0aac250ac39.bin",
+      "baselineSha256": "d0aac250ac39c9590f1295f83d19b09ff7d8aec209b10abe7ecc866e0bed64a9",
+      "candidateSha256": "d0aac250ac39c9590f1295f83d19b09ff7d8aec209b10abe7ecc866e0bed64a9",
+      "reproducedSha256": "d0aac250ac39c9590f1295f83d19b09ff7d8aec209b10abe7ecc866e0bed64a9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/graveweaverHood-compact-e35c2fd3b285.bin",
+      "baselineSha256": "e35c2fd3b285192ee13dc1c01250c7c8f4e607a231b78bb1442f39cafe22b515",
+      "candidateSha256": "e35c2fd3b285192ee13dc1c01250c7c8f4e607a231b78bb1442f39cafe22b515",
+      "reproducedSha256": "e35c2fd3b285192ee13dc1c01250c7c8f4e607a231b78bb1442f39cafe22b515",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-bald-03b225330805.json",
+      "baselineSha256": "03b22533080508547dda562031f3b7977daf6ed857c78605465016e844abe8e9",
+      "candidateSha256": "03b22533080508547dda562031f3b7977daf6ed857c78605465016e844abe8e9",
+      "reproducedSha256": "03b22533080508547dda562031f3b7977daf6ed857c78605465016e844abe8e9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-bald-7c853eb4c42e.json",
+      "baselineSha256": "7c853eb4c42e21fd5b2c5b75d30baf5707e7688262e38ee76db05ba6b716b28e",
+      "candidateSha256": "7c853eb4c42e21fd5b2c5b75d30baf5707e7688262e38ee76db05ba6b716b28e",
+      "reproducedSha256": "7c853eb4c42e21fd5b2c5b75d30baf5707e7688262e38ee76db05ba6b716b28e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-bald-97a758ddd6e0.json",
+      "baselineSha256": "97a758ddd6e04823ada5a93788874f29724f83f51ce11d79a648ab1d37ed7d7f",
+      "candidateSha256": "97a758ddd6e04823ada5a93788874f29724f83f51ce11d79a648ab1d37ed7d7f",
+      "reproducedSha256": "97a758ddd6e04823ada5a93788874f29724f83f51ce11d79a648ab1d37ed7d7f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-bald-b98c9bd59372.json",
+      "baselineSha256": "b98c9bd59372ba99bc732a1eae3b7608b47ca7175babf5138e9bb59451dcc732",
+      "candidateSha256": "b98c9bd59372ba99bc732a1eae3b7608b47ca7175babf5138e9bb59451dcc732",
+      "reproducedSha256": "b98c9bd59372ba99bc732a1eae3b7608b47ca7175babf5138e9bb59451dcc732",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-ponytail-79f5a2e32243.json",
+      "baselineSha256": "79f5a2e32243fca2426b5df777cb1423c0818701df22ba5b4652b5eab7600abf",
+      "candidateSha256": "79f5a2e32243fca2426b5df777cb1423c0818701df22ba5b4652b5eab7600abf",
+      "reproducedSha256": "79f5a2e32243fca2426b5df777cb1423c0818701df22ba5b4652b5eab7600abf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-ponytail-980d7629f411.json",
+      "baselineSha256": "980d7629f4112208ce02c71b8621271af95e3eb2bd7c001a2aa405b77933d82a",
+      "candidateSha256": "980d7629f4112208ce02c71b8621271af95e3eb2bd7c001a2aa405b77933d82a",
+      "reproducedSha256": "980d7629f4112208ce02c71b8621271af95e3eb2bd7c001a2aa405b77933d82a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-ponytail-c3bb0cbe9ed4.json",
+      "baselineSha256": "c3bb0cbe9ed41b4a80cfb347687c58bcd41f8047241a22416c8bb4063145d273",
+      "candidateSha256": "c3bb0cbe9ed41b4a80cfb347687c58bcd41f8047241a22416c8bb4063145d273",
+      "reproducedSha256": "c3bb0cbe9ed41b4a80cfb347687c58bcd41f8047241a22416c8bb4063145d273",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-prime-ponytail-ee1c052dd0bf.json",
+      "baselineSha256": "ee1c052dd0bf84a71e97cf12d4832b7f2fca110de4173b2b126689bd4f432708",
+      "candidateSha256": "ee1c052dd0bf84a71e97cf12d4832b7f2fca110de4173b2b126689bd4f432708",
+      "reproducedSha256": "ee1c052dd0bf84a71e97cf12d4832b7f2fca110de4173b2b126689bd4f432708",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-weathered-bald-4ec3f5065301.json",
+      "baselineSha256": "4ec3f50653015883d098894d6ff159d64064adebd0a152bac6483507dbadc6d9",
+      "candidateSha256": "4ec3f50653015883d098894d6ff159d64064adebd0a152bac6483507dbadc6d9",
+      "reproducedSha256": "4ec3f50653015883d098894d6ff159d64064adebd0a152bac6483507dbadc6d9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-weathered-bald-56fa468219de.json",
+      "baselineSha256": "56fa468219de4abefc348c2802f473782999ccede044929e11c9c56e8552b8cf",
+      "candidateSha256": "56fa468219de4abefc348c2802f473782999ccede044929e11c9c56e8552b8cf",
+      "reproducedSha256": "56fa468219de4abefc348c2802f473782999ccede044929e11c9c56e8552b8cf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-weathered-bald-6f3723a661c2.json",
+      "baselineSha256": "6f3723a661c25f77c3b876944a539081dad958b240e08c4910eb4de31eac9244",
+      "candidateSha256": "6f3723a661c25f77c3b876944a539081dad958b240e08c4910eb4de31eac9244",
+      "reproducedSha256": "6f3723a661c25f77c3b876944a539081dad958b240e08c4910eb4de31eac9244",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest-weathered-bald-ebf7918fa41a.json",
+      "baselineSha256": "ebf7918fa41a68b3a5d49dee238cddd987592e1c3d91b5a6501b764fa15a2567",
+      "candidateSha256": "ebf7918fa41a68b3a5d49dee238cddd987592e1c3d91b5a6501b764fa15a2567",
+      "reproducedSha256": "ebf7918fa41a68b3a5d49dee238cddd987592e1c3d91b5a6501b764fa15a2567",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/manifest.json",
+      "baselineSha256": "438f23b1f833075f1073c3792ab29282d2ee2a34909c4c143eb42e4933284993",
+      "candidateSha256": "438f23b1f833075f1073c3792ab29282d2ee2a34909c4c143eb42e4933284993",
+      "reproducedSha256": "438f23b1f833075f1073c3792ab29282d2ee2a34909c4c143eb42e4933284993",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/preparation.json",
+      "baselineSha256": "3ffc54036309f72d1318e4115b25a96bad67178d62194c577ace1feb737f5aea",
+      "candidateSha256": "3ffc54036309f72d1318e4115b25a96bad67178d62194c577ace1feb737f5aea",
+      "reproducedSha256": "3ffc54036309f72d1318e4115b25a96bad67178d62194c577ace1feb737f5aea",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-099440732c1f.png",
+      "baselineSha256": "099440732c1ff3bd1dfdb7127da3edfee517a4326107d572ce9b441ed9b6c707",
+      "candidateSha256": "099440732c1ff3bd1dfdb7127da3edfee517a4326107d572ce9b441ed9b6c707",
+      "reproducedSha256": "099440732c1ff3bd1dfdb7127da3edfee517a4326107d572ce9b441ed9b6c707",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-0c2e3d315bb3.png",
+      "baselineSha256": "0c2e3d315bb3cf80c23b742742358e3b80d19b735394f5efb49a6cf273679869",
+      "candidateSha256": "0c2e3d315bb3cf80c23b742742358e3b80d19b735394f5efb49a6cf273679869",
+      "reproducedSha256": "0c2e3d315bb3cf80c23b742742358e3b80d19b735394f5efb49a6cf273679869",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-242ee5c2d82d.webp",
+      "baselineSha256": "242ee5c2d82d337b1708bd6e6b6cb00370e287f81a84cc03267cc5d3b8873a0e",
+      "candidateSha256": "242ee5c2d82d337b1708bd6e6b6cb00370e287f81a84cc03267cc5d3b8873a0e",
+      "reproducedSha256": "242ee5c2d82d337b1708bd6e6b6cb00370e287f81a84cc03267cc5d3b8873a0e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-681b40f22cda.png",
+      "baselineSha256": "681b40f22cda5a26301a95b1e9d69f6fb17dcfa43a3ff13bfefd09fafa275bc1",
+      "candidateSha256": "681b40f22cda5a26301a95b1e9d69f6fb17dcfa43a3ff13bfefd09fafa275bc1",
+      "reproducedSha256": "681b40f22cda5a26301a95b1e9d69f6fb17dcfa43a3ff13bfefd09fafa275bc1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-9940f7d0b1b2.png",
+      "baselineSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "candidateSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "reproducedSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-identity-v1/texture-e5bb21f35558.png",
+      "baselineSha256": "e5bb21f3555841ecf9b74cef9bc72221ff71944272ef875475c2ce2ff4056141",
+      "candidateSha256": "e5bb21f3555841ecf9b74cef9bc72221ff71944272ef875475c2ce2ff4056141",
+      "reproducedSha256": "e5bb21f3555841ecf9b74cef9bc72221ff71944272ef875475c2ce2ff4056141",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/bastionShoulders-f494b2e91fe7.bin",
+      "baselineSha256": "f494b2e91fe764dd7adc7cf36c72e36d6d42c970db7368214687c95a218c703f",
+      "candidateSha256": "f494b2e91fe764dd7adc7cf36c72e36d6d42c970db7368214687c95a218c703f",
+      "reproducedSha256": "f494b2e91fe764dd7adc7cf36c72e36d6d42c970db7368214687c95a218c703f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-compact-a3f35e3b6440.bin",
+      "baselineSha256": "a3f35e3b6440fe63b9b4bc42e079b08f114ebaded92d5bf05032fe4654c1c302",
+      "candidateSha256": "a3f35e3b6440fe63b9b4bc42e079b08f114ebaded92d5bf05032fe4654c1c302",
+      "reproducedSha256": "a3f35e3b6440fe63b9b4bc42e079b08f114ebaded92d5bf05032fe4654c1c302",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-coverage-1d8f3dc454d6.bin",
+      "baselineSha256": "1d8f3dc454d66484784b43c9fdbccfbb9776d16aebf7621c9927047c61b00b06",
+      "candidateSha256": "1d8f3dc454d66484784b43c9fdbccfbb9776d16aebf7621c9927047c61b00b06",
+      "reproducedSha256": "1d8f3dc454d66484784b43c9fdbccfbb9776d16aebf7621c9927047c61b00b06",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-coverage-a59b206b45da.bin",
+      "baselineSha256": "a59b206b45dad3082915a0a0c6eaf80843242a436d465e204360532ca3b4809d",
+      "candidateSha256": "a59b206b45dad3082915a0a0c6eaf80843242a436d465e204360532ca3b4809d",
+      "reproducedSha256": "a59b206b45dad3082915a0a0c6eaf80843242a436d465e204360532ca3b4809d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-coverage-b93fb71aa490.bin",
+      "baselineSha256": "b93fb71aa49031d067f1b743a6f95041e1f453ce07c25864b87ff7da0daa01ce",
+      "candidateSha256": "b93fb71aa49031d067f1b743a6f95041e1f453ce07c25864b87ff7da0daa01ce",
+      "reproducedSha256": "b93fb71aa49031d067f1b743a6f95041e1f453ce07c25864b87ff7da0daa01ce",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-coverage-e6892517e0a4.bin",
+      "baselineSha256": "e6892517e0a4ce3104a483e7d18589df7cc159790d693a791d06bbd45a381abd",
+      "candidateSha256": "e6892517e0a4ce3104a483e7d18589df7cc159790d693a791d06bbd45a381abd",
+      "reproducedSha256": "e6892517e0a4ce3104a483e7d18589df7cc159790d693a791d06bbd45a381abd",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/body-e69a14d75176.bin",
+      "baselineSha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "candidateSha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "reproducedSha256": "e69a14d75176717920bae9ec438c80a4b842a8f014da256aec97db44ae743d9c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardCuirass-87f33adb1a29.bin",
+      "baselineSha256": "87f33adb1a29a339438682970b0593d40f0d74be38c93879c4a403bd8ef6db5e",
+      "candidateSha256": "87f33adb1a29a339438682970b0593d40f0d74be38c93879c4a403bd8ef6db5e",
+      "reproducedSha256": "87f33adb1a29a339438682970b0593d40f0d74be38c93879c4a403bd8ef6db5e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardGreaves-030d302cbaf6.bin",
+      "baselineSha256": "030d302cbaf6599eaf49ff86c7d12ca190103c0ff7ef0505cdf6da92d1aff2ec",
+      "candidateSha256": "030d302cbaf6599eaf49ff86c7d12ca190103c0ff7ef0505cdf6da92d1aff2ec",
+      "reproducedSha256": "030d302cbaf6599eaf49ff86c7d12ca190103c0ff7ef0505cdf6da92d1aff2ec",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardGreaves-7fec0024072b.bin",
+      "baselineSha256": "7fec0024072bb73f9aaeff4ba8f4e5d312db9a5cc934608af449b1d5653c133a",
+      "candidateSha256": "7fec0024072bb73f9aaeff4ba8f4e5d312db9a5cc934608af449b1d5653c133a",
+      "reproducedSha256": "7fec0024072bb73f9aaeff4ba8f4e5d312db9a5cc934608af449b1d5653c133a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardGreaves-f1a97f05f939.bin",
+      "baselineSha256": "f1a97f05f9398e94cc22563b722428a796ea77b4fe813685724b2e9c4961391c",
+      "candidateSha256": "f1a97f05f9398e94cc22563b722428a796ea77b4fe813685724b2e9c4961391c",
+      "reproducedSha256": "f1a97f05f9398e94cc22563b722428a796ea77b4fe813685724b2e9c4961391c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardTassets-2ec5cfae9131.bin",
+      "baselineSha256": "2ec5cfae913119671efcb98a788828174f7744612ee583ba75888d55c347e732",
+      "candidateSha256": "2ec5cfae913119671efcb98a788828174f7744612ee583ba75888d55c347e732",
+      "reproducedSha256": "2ec5cfae913119671efcb98a788828174f7744612ee583ba75888d55c347e732",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardTassets-coverage-ee06988dee5f.bin",
+      "baselineSha256": "ee06988dee5f4c8dcb3c9ebc04a958b27ef19b7b3dc5fa5ffa26d6cfbbe3bab2",
+      "candidateSha256": "ee06988dee5f4c8dcb3c9ebc04a958b27ef19b7b3dc5fa5ffa26d6cfbbe3bab2",
+      "reproducedSha256": "ee06988dee5f4c8dcb3c9ebc04a958b27ef19b7b3dc5fa5ffa26d6cfbbe3bab2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/duskguardVambraces-b67e2bcbac26.bin",
+      "baselineSha256": "b67e2bcbac26c82706b2304fce53ead15f2409c87494344ac9aa60a727bcef24",
+      "candidateSha256": "b67e2bcbac26c82706b2304fce53ead15f2409c87494344ac9aa60a727bcef24",
+      "reproducedSha256": "b67e2bcbac26c82706b2304fce53ead15f2409c87494344ac9aa60a727bcef24",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/fieldcoat-7ddd737b7b0b.bin",
+      "baselineSha256": "7ddd737b7b0be16604f2cab04ec021221468d38c6651e1e39f8945c3a64a6b84",
+      "candidateSha256": "7ddd737b7b0be16604f2cab04ec021221468d38c6651e1e39f8945c3a64a6b84",
+      "reproducedSha256": "7ddd737b7b0be16604f2cab04ec021221468d38c6651e1e39f8945c3a64a6b84",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/fieldcoat-compact-c56633eb08ef.bin",
+      "baselineSha256": "c56633eb08ef5546674fa8f2768277528ebf88a4c371d47aef9adb014cfecfde",
+      "candidateSha256": "c56633eb08ef5546674fa8f2768277528ebf88a4c371d47aef9adb014cfecfde",
+      "reproducedSha256": "c56633eb08ef5546674fa8f2768277528ebf88a4c371d47aef9adb014cfecfde",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverGloves-5d2803e1bc07.bin",
+      "baselineSha256": "5d2803e1bc07c4a05e0d6ac752479f5d12068587f0f3015e3c290070003bc3a8",
+      "candidateSha256": "5d2803e1bc07c4a05e0d6ac752479f5d12068587f0f3015e3c290070003bc3a8",
+      "reproducedSha256": "5d2803e1bc07c4a05e0d6ac752479f5d12068587f0f3015e3c290070003bc3a8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverGloves-compact-7b88fa180cdf.bin",
+      "baselineSha256": "7b88fa180cdf4cb34fdbcdae76522ca7a0f06a1dcc3113de879e093e51b4f0ae",
+      "candidateSha256": "7b88fa180cdf4cb34fdbcdae76522ca7a0f06a1dcc3113de879e093e51b4f0ae",
+      "reproducedSha256": "7b88fa180cdf4cb34fdbcdae76522ca7a0f06a1dcc3113de879e093e51b4f0ae",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverHood-c80ece48d7d5.bin",
+      "baselineSha256": "c80ece48d7d5ee0a096e204396ec7d1b186db6037f125f9b7653cabe0d161a68",
+      "candidateSha256": "c80ece48d7d5ee0a096e204396ec7d1b186db6037f125f9b7653cabe0d161a68",
+      "reproducedSha256": "c80ece48d7d5ee0a096e204396ec7d1b186db6037f125f9b7653cabe0d161a68",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverHood-compact-6976171552b8.bin",
+      "baselineSha256": "6976171552b8028f5cb02dabb4018dd1afdb69fc5b36b34817b566455b302d04",
+      "candidateSha256": "6976171552b8028f5cb02dabb4018dd1afdb69fc5b36b34817b566455b302d04",
+      "reproducedSha256": "6976171552b8028f5cb02dabb4018dd1afdb69fc5b36b34817b566455b302d04",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverSkirt-3c310deed571.bin",
+      "baselineSha256": "3c310deed571db7990d087b90b71edb281a93bf2313a4969a6163a43640c6f4a",
+      "candidateSha256": "3c310deed571db7990d087b90b71edb281a93bf2313a4969a6163a43640c6f4a",
+      "reproducedSha256": "3c310deed571db7990d087b90b71edb281a93bf2313a4969a6163a43640c6f4a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverSkirt-compact-f52f181bec28.bin",
+      "baselineSha256": "f52f181bec2878e9095db0a6471719fc0b284aef260eb55a943e5c630218c620",
+      "candidateSha256": "f52f181bec2878e9095db0a6471719fc0b284aef260eb55a943e5c630218c620",
+      "reproducedSha256": "f52f181bec2878e9095db0a6471719fc0b284aef260eb55a943e5c630218c620",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverTop-25fe071857bb.bin",
+      "baselineSha256": "25fe071857bb1298e857adf17a7b80de784c621ec011997f3423d95c7e1dcb99",
+      "candidateSha256": "25fe071857bb1298e857adf17a7b80de784c621ec011997f3423d95c7e1dcb99",
+      "reproducedSha256": "25fe071857bb1298e857adf17a7b80de784c621ec011997f3423d95c7e1dcb99",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/graveweaverTop-compact-79d914eff80f.bin",
+      "baselineSha256": "79d914eff80fef42f6cbd660f9238bddd0cf068f4cf9509ad40b4c9a1af1202d",
+      "candidateSha256": "79d914eff80fef42f6cbd660f9238bddd0cf068f4cf9509ad40b4c9a1af1202d",
+      "reproducedSha256": "79d914eff80fef42f6cbd660f9238bddd0cf068f4cf9509ad40b4c9a1af1202d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/lectorCoat-aa746caae4d7.bin",
+      "baselineSha256": "aa746caae4d7e9ec1284be39dd79cf01c69b2e6c569514a121bcec3027160c73",
+      "candidateSha256": "aa746caae4d7e9ec1284be39dd79cf01c69b2e6c569514a121bcec3027160c73",
+      "reproducedSha256": "aa746caae4d7e9ec1284be39dd79cf01c69b2e6c569514a121bcec3027160c73",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/lectorCoat-compact-a05bc33a25fb.bin",
+      "baselineSha256": "a05bc33a25fb9e215344ac8a8f5bf8f2d643700e36d684c681678aa1efea9fae",
+      "candidateSha256": "a05bc33a25fb9e215344ac8a8f5bf8f2d643700e36d684c681678aa1efea9fae",
+      "reproducedSha256": "a05bc33a25fb9e215344ac8a8f5bf8f2d643700e36d684c681678aa1efea9fae",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/manifest.json",
+      "baselineSha256": "17d50a2748cfdfe7e46466d3648f1b9146381c53328ff2baa7f7b1051a2d5f11",
+      "candidateSha256": "17d50a2748cfdfe7e46466d3648f1b9146381c53328ff2baa7f7b1051a2d5f11",
+      "reproducedSha256": "17d50a2748cfdfe7e46466d3648f1b9146381c53328ff2baa7f7b1051a2d5f11",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/pilgrimTunic-be2fd3a1ff9d.bin",
+      "baselineSha256": "be2fd3a1ff9d1155557fabf569bd974c556a1b1dd38250f795382432ba67385a",
+      "candidateSha256": "be2fd3a1ff9d1155557fabf569bd974c556a1b1dd38250f795382432ba67385a",
+      "reproducedSha256": "be2fd3a1ff9d1155557fabf569bd974c556a1b1dd38250f795382432ba67385a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/pilgrimTunic-compact-383a7d96ea51.bin",
+      "baselineSha256": "383a7d96ea513e48490a1327f1908131122a315e38940dfc167312bfdbc60500",
+      "candidateSha256": "383a7d96ea513e48490a1327f1908131122a315e38940dfc167312bfdbc60500",
+      "reproducedSha256": "383a7d96ea513e48490a1327f1908131122a315e38940dfc167312bfdbc60500",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-29d4e4e4bece.png",
+      "baselineSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+      "candidateSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+      "reproducedSha256": "29d4e4e4beced64700aee7723b34dc6f6ac6d5c1b4f684ce2fdd2ba9e60c46f3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-423c672df75a.png",
+      "baselineSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "candidateSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "reproducedSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-767ac140ff4d.png",
+      "baselineSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+      "candidateSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+      "reproducedSha256": "767ac140ff4d0c5f28d91ce0050b90a11f4d921c485eca74d56ad356d527fc99",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-8cca22d0af15.png",
+      "baselineSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+      "candidateSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+      "reproducedSha256": "8cca22d0af154c160f1f8f279ea82165ef265dd8dad740f47a6562a76065cb20",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-f465517766cc.png",
+      "baselineSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+      "candidateSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+      "reproducedSha256": "f465517766ccc5bd04e613c51aed5eb479406cfa838f3ee3612966310b58ac0d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/texture-feb2ba6d8d36.png",
+      "baselineSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+      "candidateSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+      "reproducedSha256": "feb2ba6d8d36f52eadf576515ee26d1f84587d7f4186ea4139ccb24beaa6bc84",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wardenPauldrons-3daf20061e0e.bin",
+      "baselineSha256": "3daf20061e0e88fe6c98067e47f4bafc95488c01bba887dd2e133038a4601754",
+      "candidateSha256": "3daf20061e0e88fe6c98067e47f4bafc95488c01bba887dd2e133038a4601754",
+      "reproducedSha256": "3daf20061e0e88fe6c98067e47f4bafc95488c01bba887dd2e133038a4601754",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-14b43ef82011.bin",
+      "baselineSha256": "14b43ef8201155c75c27712c2154c7464b5d5dc375365db012d5a645c3f948a7",
+      "candidateSha256": "14b43ef8201155c75c27712c2154c7464b5d5dc375365db012d5a645c3f948a7",
+      "reproducedSha256": "14b43ef8201155c75c27712c2154c7464b5d5dc375365db012d5a645c3f948a7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-compact-059929feeb87.bin",
+      "baselineSha256": "059929feeb87e9e9324d39fc738a8eb0b710f555669df112bd7f033c58f9db5d",
+      "candidateSha256": "059929feeb87e9e9324d39fc738a8eb0b710f555669df112bd7f033c58f9db5d",
+      "reproducedSha256": "059929feeb87e9e9324d39fc738a8eb0b710f555669df112bd7f033c58f9db5d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-compact-badc235310a5.bin",
+      "baselineSha256": "badc235310a51c84b67224aed1d781c5ff9d91eaa995eebe056c910336741d16",
+      "candidateSha256": "badc235310a51c84b67224aed1d781c5ff9d91eaa995eebe056c910336741d16",
+      "reproducedSha256": "badc235310a51c84b67224aed1d781c5ff9d91eaa995eebe056c910336741d16",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-compact-ed60f44068e2.bin",
+      "baselineSha256": "ed60f44068e2c615d4f5619dc03fe7cff89eb16dbcf181d1e804c361f9ab13f7",
+      "candidateSha256": "ed60f44068e2c615d4f5619dc03fe7cff89eb16dbcf181d1e804c361f9ab13f7",
+      "reproducedSha256": "ed60f44068e2c615d4f5619dc03fe7cff89eb16dbcf181d1e804c361f9ab13f7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-daa3552b9c57.bin",
+      "baselineSha256": "daa3552b9c5783a7de4679c51adb5f16a358e710a412487fad5868d9f76dc291",
+      "candidateSha256": "daa3552b9c5783a7de4679c51adb5f16a358e710a412487fad5868d9f76dc291",
+      "reproducedSha256": "daa3552b9c5783a7de4679c51adb5f16a358e710a412487fad5868d9f76dc291",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerBoots-f6d8919ac353.bin",
+      "baselineSha256": "f6d8919ac3533ec1aa48559ce8100c8733f76ecb4980b590639eb3c6efa5ac4c",
+      "candidateSha256": "f6d8919ac3533ec1aa48559ce8100c8733f76ecb4980b590639eb3c6efa5ac4c",
+      "reproducedSha256": "f6d8919ac3533ec1aa48559ce8100c8733f76ecb4980b590639eb3c6efa5ac4c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTrousers-b4e889479817.bin",
+      "baselineSha256": "b4e8894798176faf04d9cc00c13b95693c74275b2de6c4602ba28ab3e554586d",
+      "candidateSha256": "b4e8894798176faf04d9cc00c13b95693c74275b2de6c4602ba28ab3e554586d",
+      "reproducedSha256": "b4e8894798176faf04d9cc00c13b95693c74275b2de6c4602ba28ab3e554586d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-5b06eacd8241.bin",
+      "baselineSha256": "5b06eacd8241ec0f2cdc7d34e970bb9dd5132143353c041adcc0433e65bd8968",
+      "candidateSha256": "5b06eacd8241ec0f2cdc7d34e970bb9dd5132143353c041adcc0433e65bd8968",
+      "reproducedSha256": "5b06eacd8241ec0f2cdc7d34e970bb9dd5132143353c041adcc0433e65bd8968",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-d76b155ae777.bin",
+      "baselineSha256": "d76b155ae777ad984db9cb1cdc183ea32f79fa58d9011e1dc1fdef01d13360f2",
+      "candidateSha256": "d76b155ae777ad984db9cb1cdc183ea32f79fa58d9011e1dc1fdef01d13360f2",
+      "reproducedSha256": "d76b155ae777ad984db9cb1cdc183ea32f79fa58d9011e1dc1fdef01d13360f2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTrousers-compact-coverage-f834210550a3.bin",
+      "baselineSha256": "f834210550a30bc9bd1d6168ee4710e802ba7ecc65752c2b9d959e8af4b16a80",
+      "candidateSha256": "f834210550a30bc9bd1d6168ee4710e802ba7ecc65752c2b9d959e8af4b16a80",
+      "reproducedSha256": "f834210550a30bc9bd1d6168ee4710e802ba7ecc65752c2b9d959e8af4b16a80",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTrousers-coverage-b1eb36e8f614.bin",
+      "baselineSha256": "b1eb36e8f6143e1cfbb1ed5cb29b24ee747cfb6060ee5862f12d052fd276b433",
+      "candidateSha256": "b1eb36e8f6143e1cfbb1ed5cb29b24ee747cfb6060ee5862f12d052fd276b433",
+      "reproducedSha256": "b1eb36e8f6143e1cfbb1ed5cb29b24ee747cfb6060ee5862f12d052fd276b433",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTunic-compact-b31e1c8fa7e7.bin",
+      "baselineSha256": "b31e1c8fa7e71bfc19081dd19ad9157b077b87c89061fe64e8c7d6c84a3edcea",
+      "candidateSha256": "b31e1c8fa7e71bfc19081dd19ad9157b077b87c89061fe64e8c7d6c84a3edcea",
+      "reproducedSha256": "b31e1c8fa7e71bfc19081dd19ad9157b077b87c89061fe64e8c7d6c84a3edcea",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/human-shape-v1/wayfarerTunic-e65b2868e12f.bin",
+      "baselineSha256": "e65b2868e12f0257f1b69c1ba0a03e290414de5cc11d80aaa3eeef2b2bdb5382",
+      "candidateSha256": "e65b2868e12f0257f1b69c1ba0a03e290414de5cc11d80aaa3eeef2b2bdb5382",
+      "reproducedSha256": "e65b2868e12f0257f1b69c1ba0a03e290414de5cc11d80aaa3eeef2b2bdb5382",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/lava-cast-provenance.json",
+      "baselineSha256": "b07deb36e2b2821bdf7428f3d4b35ea39128fe4424ed8f2318cecd6058f66094",
+      "candidateSha256": "b07deb36e2b2821bdf7428f3d4b35ea39128fe4424ed8f2318cecd6058f66094",
+      "reproducedSha256": "b07deb36e2b2821bdf7428f3d4b35ea39128fe4424ed8f2318cecd6058f66094",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/pilgrim-front-corrective-provenance.json",
+      "baselineSha256": "34f655c427d36634da9168b20bff7452b178eb74b736dfa9a5129fe5875a02b4",
+      "candidateSha256": "34f655c427d36634da9168b20bff7452b178eb74b736dfa9a5129fe5875a02b4",
+      "reproducedSha256": "34f655c427d36634da9168b20bff7452b178eb74b736dfa9a5129fe5875a02b4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/pyre-cast-provenance.json",
+      "baselineSha256": "d413590919c4b05a0b9e45dc9c572e041b7187e5ce2d9763888ad50518199134",
+      "candidateSha256": "d413590919c4b05a0b9e45dc9c572e041b7187e5ce2d9763888ad50518199134",
+      "reproducedSha256": "d413590919c4b05a0b9e45dc9c572e041b7187e5ce2d9763888ad50518199134",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/reach-sky.hdr",
+      "baselineSha256": "370c3f50bc0f6483815b7f0c083a154878b535a28d484a7c05a9cab1f8e470f1",
+      "candidateSha256": "370c3f50bc0f6483815b7f0c083a154878b535a28d484a7c05a9cab1f8e470f1",
+      "reproducedSha256": "370c3f50bc0f6483815b7f0c083a154878b535a28d484a7c05a9cab1f8e470f1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/31b67f5921b0e80bad5bc5bb6de1264b972c78088d6203535aefe94645184c58.glb",
+      "baselineSha256": "31b67f5921b0e80bad5bc5bb6de1264b972c78088d6203535aefe94645184c58",
+      "candidateSha256": "31b67f5921b0e80bad5bc5bb6de1264b972c78088d6203535aefe94645184c58",
+      "reproducedSha256": "31b67f5921b0e80bad5bc5bb6de1264b972c78088d6203535aefe94645184c58",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a.json",
+      "baselineSha256": "46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a",
+      "candidateSha256": "46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a",
+      "reproducedSha256": "46c726f07044d09f00aaf64d7e3e0347b3b4c5c641703d1f08ff993c326de05a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d.glb",
+      "baselineSha256": "51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d",
+      "candidateSha256": "51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d",
+      "reproducedSha256": "51e6433acb29345134304ea2c35f9855326be8afc7688ea5394fe4f64a1ed04d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4.glb",
+      "baselineSha256": "7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4",
+      "candidateSha256": "7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4",
+      "reproducedSha256": "7b8784032cbd92ff81db63363e1895ce19993ec1b38495ad9343fa4fa0d029a4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/85ed96fa3ff713bda0531d9fe4c4d40fa7dab45ed860e9d864a631e321a124be.json",
+      "baselineSha256": "85ed96fa3ff713bda0531d9fe4c4d40fa7dab45ed860e9d864a631e321a124be",
+      "candidateSha256": "85ed96fa3ff713bda0531d9fe4c4d40fa7dab45ed860e9d864a631e321a124be",
+      "reproducedSha256": "85ed96fa3ff713bda0531d9fe4c4d40fa7dab45ed860e9d864a631e321a124be",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/b4473de698a6fea020fe230de50daa4e17f7d592f62246e59837ec278b37ab40.glb",
+      "baselineSha256": "b4473de698a6fea020fe230de50daa4e17f7d592f62246e59837ec278b37ab40",
+      "candidateSha256": "b4473de698a6fea020fe230de50daa4e17f7d592f62246e59837ec278b37ab40",
+      "reproducedSha256": "b4473de698a6fea020fe230de50daa4e17f7d592f62246e59837ec278b37ab40",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed.bin",
+      "baselineSha256": "e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed",
+      "candidateSha256": "e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed",
+      "reproducedSha256": "e24ad02f33cfbcb1a2015026fd73edcb56453e0310216290095674ada700a6ed",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/region-actors-v1/manifest.json",
+      "baselineSha256": "c4353e389005da531b999e33eabea5684d0bd9bbe0d92f48b979ac65975c6b80",
+      "candidateSha256": "c4353e389005da531b999e33eabea5684d0bd9bbe0d92f48b979ac65975c6b80",
+      "reproducedSha256": "c4353e389005da531b999e33eabea5684d0bd9bbe0d92f48b979ac65975c6b80",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/bastionShoulders-04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69.glb",
+      "baselineSha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+      "candidateSha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+      "reproducedSha256": "04799fbd208a7cf9efa8d4775ce5c64551155c529cb94c8425e5888675c60e69",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/bastionShoulders-5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc.glb",
+      "baselineSha256": "5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc",
+      "candidateSha256": "5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc",
+      "reproducedSha256": "5f041f152113805554b63a9b9421a3831e8a9ea6fbf071965f7669ee604809fc",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/bastionShoulders-6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb.glb",
+      "baselineSha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb",
+      "candidateSha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb",
+      "reproducedSha256": "6cc27a15b31966a12e353d0a7294ef9bad4d917687d7a7000df57862e16f97bb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/body-4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e.glb",
+      "baselineSha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e",
+      "candidateSha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e",
+      "reproducedSha256": "4f153d5594deebe5d825b5740a5dd092568971a5fef2643d52971f006b1cd96e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/body-96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552.glb",
+      "baselineSha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+      "candidateSha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+      "reproducedSha256": "96e0f64514c98b475f3b00314c17fe37544506080e87c4dc354fb6b13ea6d552",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/body-b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262.glb",
+      "baselineSha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+      "candidateSha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+      "reproducedSha256": "b2193ae173473e5bfbb8bb056dfc00399945a8895e9d70c13318931094b7f262",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/body-b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e.glb",
+      "baselineSha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e",
+      "candidateSha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e",
+      "reproducedSha256": "b34e5fe6362fad3ab0193121a43e96845f7c4b3a636905b7dd951d4b955f127e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/body-c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520.glb",
+      "baselineSha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520",
+      "candidateSha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520",
+      "reproducedSha256": "c2b269a2e5e300e451fb917125fddda8da91a277c91902d7e35d8daa744ba520",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228.glb",
+      "baselineSha256": "1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228",
+      "candidateSha256": "1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228",
+      "reproducedSha256": "1a82ab5f9f6fde14e93ea652496450ab2a035f2fbb25a8146dc1ce9caa2d9228",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70.glb",
+      "baselineSha256": "1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70",
+      "candidateSha256": "1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70",
+      "reproducedSha256": "1fc77396037a9305dcfc6aecc43da0f94fd24b0815b97ef6a30f94fdaf4dbf70",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardCuirass-b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac.glb",
+      "baselineSha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac",
+      "candidateSha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac",
+      "reproducedSha256": "b9db83552771c3582b2e60d5abab1f2970b1b4b9bbd04999ec6e9a14ba46e7ac",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99.glb",
+      "baselineSha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99",
+      "candidateSha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99",
+      "reproducedSha256": "1675033cddfe5c2208ddd48cc8018f7c494f2e07f040934b1f0d29dc765f6d99",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc.glb",
+      "baselineSha256": "1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc",
+      "candidateSha256": "1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc",
+      "reproducedSha256": "1b2cdb7021d90f82dc427f3420b86df2aaa90152efdff94471da36679fd5a3dc",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b.glb",
+      "baselineSha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+      "candidateSha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+      "reproducedSha256": "30524af703a0c2d3e178da20b06019e22453e82e3ec831924923fc128c494d6b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c.glb",
+      "baselineSha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c",
+      "candidateSha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c",
+      "reproducedSha256": "57fb78844549c2c0cfab87917dd274c6fc39adecf66260969c712f66cd320c7c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e.glb",
+      "baselineSha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e",
+      "candidateSha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e",
+      "reproducedSha256": "9649079113258dd9315a28c7ff43f0bee7fd1724b96f29252bf7736706042e2e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10.glb",
+      "baselineSha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+      "candidateSha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+      "reproducedSha256": "ae5f46bd2066ca25b7e1e514b51b3c6ba18475b5732ac44245ca734753badf10",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardGreaves-dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230.glb",
+      "baselineSha256": "dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230",
+      "candidateSha256": "dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230",
+      "reproducedSha256": "dcf5c67aedd8ff11cab2d8cfbaeef6be7f0de0bbaba5d47abb7c32e1d1e41230",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardTassets-5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb.glb",
+      "baselineSha256": "5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb",
+      "candidateSha256": "5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb",
+      "reproducedSha256": "5bc6fb9a19e4bc19622e64cfcb6d0156417453fe97581c0abd6117992eec7ccb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardTassets-8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea.glb",
+      "baselineSha256": "8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea",
+      "candidateSha256": "8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea",
+      "reproducedSha256": "8f2c3d990e5c75cc0b25ee651fca5d2b049175a8f52b1a5045b9e458c1075dea",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardTassets-dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a.glb",
+      "baselineSha256": "dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a",
+      "candidateSha256": "dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a",
+      "reproducedSha256": "dff03b24114bfc955b9964c7a77d583f96f6c5f62f2bb238303e34fc37e95e0a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7.glb",
+      "baselineSha256": "205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7",
+      "candidateSha256": "205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7",
+      "reproducedSha256": "205050450611ff7f63364fcae87bfa41ac1702a914720fd363221c4b1ad279f7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78.glb",
+      "baselineSha256": "3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78",
+      "candidateSha256": "3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78",
+      "reproducedSha256": "3ebe071c27f1c236074b9a4470ab8fb91ba2a4076b74922e4068d24f960f8f78",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/duskguardVambraces-731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4.glb",
+      "baselineSha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4",
+      "candidateSha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4",
+      "reproducedSha256": "731fa0e3fb9e94c4b92b51f18b6a7c7717b853ba435a438ace3c6181d4a7e8d4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/fieldcoat-1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e.glb",
+      "baselineSha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+      "candidateSha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+      "reproducedSha256": "1b19b607a3d43483c6575b8553b5418c508b2dcdf35060e78d877103f32a1a4e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/fieldcoat-3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1.glb",
+      "baselineSha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+      "candidateSha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+      "reproducedSha256": "3349d25b6a305faf5db9276e6c6f9f09f0f5cc62c666aa339a59b71c0b9e1de1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/fieldcoat-f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529.glb",
+      "baselineSha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+      "candidateSha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+      "reproducedSha256": "f708626ab3e310b8d9afc3229744521e66eb99102273ff16c233909bfffbb529",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a.glb",
+      "baselineSha256": "577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a",
+      "candidateSha256": "577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a",
+      "reproducedSha256": "577dbcd2a62ad4674681ce3a525b7be383995b3b0443cfb8c9e888bd28a6309a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60.glb",
+      "baselineSha256": "6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60",
+      "candidateSha256": "6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60",
+      "reproducedSha256": "6c1c3f48280270082327700a80ef886895ca5a2aee6076d9cb832dc7e4825e60",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverGloves-b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5.glb",
+      "baselineSha256": "b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5",
+      "candidateSha256": "b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5",
+      "reproducedSha256": "b98353385f6caafb798f0db12309bb8125ba22a2fafa6d61faa47f3dccdf8cc5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverHood-291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330.glb",
+      "baselineSha256": "291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330",
+      "candidateSha256": "291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330",
+      "reproducedSha256": "291e25c5c270a34a1e655e751cd26e69c47110aa8f420987c07a1fc56def7330",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverHood-d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74.glb",
+      "baselineSha256": "d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74",
+      "candidateSha256": "d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74",
+      "reproducedSha256": "d61b39f528888424ac96498a78af1d57ace8192840b5c125354f6680ff632b74",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverHood-f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991.glb",
+      "baselineSha256": "f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991",
+      "candidateSha256": "f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991",
+      "reproducedSha256": "f2d9e07fd0fa0c2f8863fe0d1ad89ddde7076fc833436e1a63544f8ccb72c991",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2.glb",
+      "baselineSha256": "062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2",
+      "candidateSha256": "062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2",
+      "reproducedSha256": "062e714aae5306d91b59205412b935deab8e50f0842c9353a6a9bfda81ddcdb2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b.glb",
+      "baselineSha256": "2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b",
+      "candidateSha256": "2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b",
+      "reproducedSha256": "2e6115ef3c7ab3f69211481797f641e910fb799b284f806ceaac5ac69b84110b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverSkirt-a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf.glb",
+      "baselineSha256": "a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf",
+      "candidateSha256": "a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf",
+      "reproducedSha256": "a860476ec787dc0bb2960bc61c5e28426cffa0e7b68797b6dba5f88e903a1bcf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverTop-5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc.glb",
+      "baselineSha256": "5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc",
+      "candidateSha256": "5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc",
+      "reproducedSha256": "5231e9370725b8225eacfd623e290f95672af75f594bb94886a6bd4b7e3fb9cc",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverTop-62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7.glb",
+      "baselineSha256": "62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7",
+      "candidateSha256": "62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7",
+      "reproducedSha256": "62e942afd726d5975c0098f808267a621e68625ab72365bea10c92034bb4aba7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/graveweaverTop-d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3.glb",
+      "baselineSha256": "d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3",
+      "candidateSha256": "d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3",
+      "reproducedSha256": "d482435af141f88d1a7a3397d3bcd68cd0e8ae2086b32c743fb86ce74e387ea3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/index.json",
+      "baselineSha256": "ba14ca3887006f88a78a18e9f43d50fef829e5cf123ee8eccc61e398726254c5",
+      "candidateSha256": "ba14ca3887006f88a78a18e9f43d50fef829e5cf123ee8eccc61e398726254c5",
+      "reproducedSha256": "ba14ca3887006f88a78a18e9f43d50fef829e5cf123ee8eccc61e398726254c5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/lectorCoat-5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66.glb",
+      "baselineSha256": "5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66",
+      "candidateSha256": "5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66",
+      "reproducedSha256": "5d9814aca230669f8f936480218574e641355bb5ad2372eb6ddc5d03db7c4b66",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/lectorCoat-8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b.glb",
+      "baselineSha256": "8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b",
+      "candidateSha256": "8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b",
+      "reproducedSha256": "8ca42033a4650f6af67fe2c41baee60d17ef638614592d44fe2558bb6b85b26b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/lectorCoat-aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946.glb",
+      "baselineSha256": "aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946",
+      "candidateSha256": "aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946",
+      "reproducedSha256": "aa9693c785e4b8c8596126e7752369ff30198c951b0042b9d185e2ea5a66b946",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967.glb",
+      "baselineSha256": "157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967",
+      "candidateSha256": "157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967",
+      "reproducedSha256": "157cbbc373128013136ea7a8b1f60ff6b0349992bede2055f0d8fa594e941967",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600.glb",
+      "baselineSha256": "7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600",
+      "candidateSha256": "7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600",
+      "reproducedSha256": "7894d553378aa2787ce6f7f676c5a3bbbc15c2b947ae2e79b7c75b3f5bba2600",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/pilgrimTunic-88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535.glb",
+      "baselineSha256": "88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535",
+      "candidateSha256": "88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535",
+      "reproducedSha256": "88cfa80986606c62b36ca30c442cea46a4ce70b8f9ce091dad758ebb5a927535",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/prepared.json",
+      "baselineSha256": "08726f8d525a31a40eb260046af478f74006a6ac0466a7de88cf7f0852fdba80",
+      "candidateSha256": "08726f8d525a31a40eb260046af478f74006a6ac0466a7de88cf7f0852fdba80",
+      "reproducedSha256": "08726f8d525a31a40eb260046af478f74006a6ac0466a7de88cf7f0852fdba80",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c.glb",
+      "baselineSha256": "0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c",
+      "candidateSha256": "0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c",
+      "reproducedSha256": "0f34d3b6cf4c6bf75ecde7698d7334d0ab8ea26322417af3a65d0c0262f5b21c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857.glb",
+      "baselineSha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+      "candidateSha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+      "reproducedSha256": "46a04d5e1a9952113d84d0174fbc5ab9c2adf2d1c33de6c6a8091ca9e7d3e857",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wardenPauldrons-9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f.glb",
+      "baselineSha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f",
+      "candidateSha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f",
+      "reproducedSha256": "9936911092d9fef8c138321a14ec178bd2db7bb21d927e2e39ddbc25cd33b45f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20.glb",
+      "baselineSha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20",
+      "candidateSha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20",
+      "reproducedSha256": "008837effe845afe1e325d40aa2568d5da28c9d87b7ebd801bda81365b0c8e20",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60.glb",
+      "baselineSha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+      "candidateSha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+      "reproducedSha256": "0ee7a31c0ffe5d592ab4bf42b38b6f84c8a6c6ed70a65cc4b7997d6304ca4e60",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0.glb",
+      "baselineSha256": "2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0",
+      "candidateSha256": "2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0",
+      "reproducedSha256": "2b40841ebb0da2415a655cd00acd5c3cdc9247efe9dbb7f06c456e59245b20e0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8.glb",
+      "baselineSha256": "41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8",
+      "candidateSha256": "41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8",
+      "reproducedSha256": "41931c772a4ba96131772da020715aae5e0b59865b0685e1d12c44f4b293b3d8",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753.glb",
+      "baselineSha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753",
+      "candidateSha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753",
+      "reproducedSha256": "9f1a4b40c964f46563cb0cad5ef43587b728d2746eb2c3732a67f881e16ff753",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81.glb",
+      "baselineSha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+      "candidateSha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+      "reproducedSha256": "a3b7a9391a6bf9874cdff19586ac614c772bd7f16f3328405c3bfc1a7252dd81",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerBoots-ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05.glb",
+      "baselineSha256": "ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05",
+      "candidateSha256": "ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05",
+      "reproducedSha256": "ff50c61ef80d214e7eea53d67c226506002dfe4e8711c7e532a79d18c1e00b05",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e.glb",
+      "baselineSha256": "3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e",
+      "candidateSha256": "3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e",
+      "reproducedSha256": "3095f6da9c866ec49df978efb47761405322c1693a61751e94bee720fd962e0e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1.glb",
+      "baselineSha256": "31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1",
+      "candidateSha256": "31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1",
+      "reproducedSha256": "31bb8994d757721d4437b14c44e7c23327523f8c7967735199a99f64c49f33b1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTrousers-6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523.glb",
+      "baselineSha256": "6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523",
+      "candidateSha256": "6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523",
+      "reproducedSha256": "6e07a485fc3765029b22a78ed7a9e5eb722d8d9363248b0f01ffbfecee675523",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c.glb",
+      "baselineSha256": "56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c",
+      "candidateSha256": "56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c",
+      "reproducedSha256": "56dd6ced7fc7dd57c66705a6128971024208687d68df294faf167398fe13965c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b.glb",
+      "baselineSha256": "95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b",
+      "candidateSha256": "95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b",
+      "reproducedSha256": "95dc7e84116f0ed5931f28af123af6418eacaf698884a33358ff74cf9aa7399b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/remote-pieces/v1/wayfarerTunic-9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24.glb",
+      "baselineSha256": "9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24",
+      "candidateSha256": "9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24",
+      "reproducedSha256": "9fd1076fae8d175a53ac9ffb2ba0099c8a2a0ea4b1b80b0f9c7daab42365dd24",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/sky-generated.jpg",
+      "baselineSha256": "3c97e172bb5b4f05548839806ad7bde4977e19d89fe68098588b239aa2add3df",
+      "candidateSha256": "3c97e172bb5b4f05548839806ad7bde4977e19d89fe68098588b239aa2add3df",
+      "reproducedSha256": "3c97e172bb5b4f05548839806ad7bde4977e19d89fe68098588b239aa2add3df",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/body-52077db3d449.bin",
+      "baselineSha256": "52077db3d4496b7fe5c625f7bf31bbe18318f0d91dbb8e7fd2f28c5ec0fd06a2",
+      "candidateSha256": "52077db3d4496b7fe5c625f7bf31bbe18318f0d91dbb8e7fd2f28c5ec0fd06a2",
+      "reproducedSha256": "52077db3d4496b7fe5c625f7bf31bbe18318f0d91dbb8e7fd2f28c5ec0fd06a2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/body-coverage-843a7f392521.bin",
+      "baselineSha256": "843a7f3925218185b9cc4930075e7dc663f00a7529693f0efd45235c54275eea",
+      "candidateSha256": "843a7f3925218185b9cc4930075e7dc663f00a7529693f0efd45235c54275eea",
+      "reproducedSha256": "843a7f3925218185b9cc4930075e7dc663f00a7529693f0efd45235c54275eea",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/body-texture-423c672df75a.png",
+      "baselineSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "candidateSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "reproducedSha256": "423c672df75a5caabb65bd8ef20c8602c90abb81f6ab31d299e2c3483625afe3",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/duskguardTassets-coverage-e813d3927fc0.glb",
+      "baselineSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "candidateSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "reproducedSha256": "e813d3927fc0643bf3c0d2f4e09f931a2ab9b21f4b20c948de4ae10de039beff",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/manifest.json",
+      "baselineSha256": "720ad193d32096434b7902a36483b183844bd0816d06ad4935bd1d2c2690a7be",
+      "candidateSha256": "720ad193d32096434b7902a36483b183844bd0816d06ad4935bd1d2c2690a7be",
+      "reproducedSha256": "720ad193d32096434b7902a36483b183844bd0816d06ad4935bd1d2c2690a7be",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerBoots-6227a92db0c7.bin",
+      "baselineSha256": "6227a92db0c7e15cb6f1f1ffa068fbc577d53d9c1900e2dbbbeea424747e6961",
+      "candidateSha256": "6227a92db0c7e15cb6f1f1ffa068fbc577d53d9c1900e2dbbbeea424747e6961",
+      "reproducedSha256": "6227a92db0c7e15cb6f1f1ffa068fbc577d53d9c1900e2dbbbeea424747e6961",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerBoots-9dd7133af9dc.bin",
+      "baselineSha256": "9dd7133af9dc9138efd9c9df52df25190cf5d0da7e218266d21c8273cba806ee",
+      "candidateSha256": "9dd7133af9dc9138efd9c9df52df25190cf5d0da7e218266d21c8273cba806ee",
+      "reproducedSha256": "9dd7133af9dc9138efd9c9df52df25190cf5d0da7e218266d21c8273cba806ee",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerBoots-a6e5007a8a19.bin",
+      "baselineSha256": "a6e5007a8a194c14d42826ceb48f3ae8ba652de7290ada012fc3bda7e1a2993d",
+      "candidateSha256": "a6e5007a8a194c14d42826ceb48f3ae8ba652de7290ada012fc3bda7e1a2993d",
+      "reproducedSha256": "a6e5007a8a194c14d42826ceb48f3ae8ba652de7290ada012fc3bda7e1a2993d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerTrousers-coverage-18aaf5475c09.bin",
+      "baselineSha256": "18aaf5475c094cd7cfe3448c62a0d68ddfa9d83ef616230c95b892bbd60ef68e",
+      "candidateSha256": "18aaf5475c094cd7cfe3448c62a0d68ddfa9d83ef616230c95b892bbd60ef68e",
+      "reproducedSha256": "18aaf5475c094cd7cfe3448c62a0d68ddfa9d83ef616230c95b892bbd60ef68e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerTrousers-f595aace8ff8.bin",
+      "baselineSha256": "f595aace8ff86db045951e35b5832181e6585e927600ba436a3f33e9251bd9d0",
+      "candidateSha256": "f595aace8ff86db045951e35b5832181e6585e927600ba436a3f33e9251bd9d0",
+      "reproducedSha256": "f595aace8ff86db045951e35b5832181e6585e927600ba436a3f33e9251bd9d0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/character/wayfarerTunic-f1e3357c0bba.bin",
+      "baselineSha256": "f1e3357c0bba73fcf0b15b0e27438f3def9dcae3f0eebde643e59bf12eb2e8c7",
+      "candidateSha256": "f1e3357c0bba73fcf0b15b0e27438f3def9dcae3f0eebde643e59bf12eb2e8c7",
+      "reproducedSha256": "f1e3357c0bba73fcf0b15b0e27438f3def9dcae3f0eebde643e59bf12eb2e8c7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/manifest.json",
+      "baselineSha256": "d45be20b5010a39859035004fdc16f9e1df40cd2cbbea43994d661ee9955c58f",
+      "candidateSha256": "d45be20b5010a39859035004fdc16f9e1df40cd2cbbea43994d661ee9955c58f",
+      "reproducedSha256": "d45be20b5010a39859035004fdc16f9e1df40cd2cbbea43994d661ee9955c58f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/near-669ce12a9c1e.bin.gz",
+      "baselineSha256": "669ce12a9c1e33d6f48c6102f63d18dcc512b61784073d38be6dbda9f19e5dd6",
+      "candidateSha256": "669ce12a9c1e33d6f48c6102f63d18dcc512b61784073d38be6dbda9f19e5dd6",
+      "reproducedSha256": "669ce12a9c1e33d6f48c6102f63d18dcc512b61784073d38be6dbda9f19e5dd6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/near-ccb9dc565ff6.br",
+      "baselineSha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "candidateSha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "reproducedSha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/skyline-7df8e0435c0d.br",
+      "baselineSha256": "7df8e0435c0d3fccfc42a6963d6653abbe0e489ff82adaedd25baba63e95c61f",
+      "candidateSha256": "7df8e0435c0d3fccfc42a6963d6653abbe0e489ff82adaedd25baba63e95c61f",
+      "reproducedSha256": "7df8e0435c0d3fccfc42a6963d6653abbe0e489ff82adaedd25baba63e95c61f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-4b862185d5f5.webp",
+      "baselineSha256": "4b862185d5f5f14de289020e2d5f191fcaececec6a902fb95ca837a272a64cf4",
+      "candidateSha256": "4b862185d5f5f14de289020e2d5f191fcaececec6a902fb95ca837a272a64cf4",
+      "reproducedSha256": "4b862185d5f5f14de289020e2d5f191fcaececec6a902fb95ca837a272a64cf4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-582e83089a5d.webp",
+      "baselineSha256": "582e83089a5d1ed62cb93e7a2581b60fd7e49a9473387215dd63d010f4eff7e1",
+      "candidateSha256": "582e83089a5d1ed62cb93e7a2581b60fd7e49a9473387215dd63d010f4eff7e1",
+      "reproducedSha256": "582e83089a5d1ed62cb93e7a2581b60fd7e49a9473387215dd63d010f4eff7e1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-6dc86c298450.webp",
+      "baselineSha256": "6dc86c298450e65b4cb80480f4574bde088bcf31aaa7c630e71a401f9292fec4",
+      "candidateSha256": "6dc86c298450e65b4cb80480f4574bde088bcf31aaa7c630e71a401f9292fec4",
+      "reproducedSha256": "6dc86c298450e65b4cb80480f4574bde088bcf31aaa7c630e71a401f9292fec4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-876257499921.webp",
+      "baselineSha256": "876257499921e818b414e56eafc9367660e891bbf7bd2c3e761762771c718596",
+      "candidateSha256": "876257499921e818b414e56eafc9367660e891bbf7bd2c3e761762771c718596",
+      "reproducedSha256": "876257499921e818b414e56eafc9367660e891bbf7bd2c3e761762771c718596",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-a659b1767619.webp",
+      "baselineSha256": "a659b17676198f17495e08648cd3287df4d5259e3cc17ac3bc097215f314b4b4",
+      "candidateSha256": "a659b17676198f17495e08648cd3287df4d5259e3cc17ac3bc097215f314b4b4",
+      "reproducedSha256": "a659b17676198f17495e08648cd3287df4d5259e3cc17ac3bc097215f314b4b4",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-b3820d8e9f99.webp",
+      "baselineSha256": "b3820d8e9f9943609f7aff3547142fbaefc133aa156b71b58b1f12739266ea1c",
+      "candidateSha256": "b3820d8e9f9943609f7aff3547142fbaefc133aa156b71b58b1f12739266ea1c",
+      "reproducedSha256": "b3820d8e9f9943609f7aff3547142fbaefc133aa156b71b58b1f12739266ea1c",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-b4691e418e94.webp",
+      "baselineSha256": "b4691e418e94d6f4304db89b086639812534a96c85225d7f4a8564ef58d2d877",
+      "candidateSha256": "b4691e418e94d6f4304db89b086639812534a96c85225d7f4a8564ef58d2d877",
+      "reproducedSha256": "b4691e418e94d6f4304db89b086639812534a96c85225d7f4a8564ef58d2d877",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-b999b46aa8e9.webp",
+      "baselineSha256": "b999b46aa8e9b7d07e47b9f7940b9f5a1587d54cd687654989bfb4790b94e6f9",
+      "candidateSha256": "b999b46aa8e9b7d07e47b9f7940b9f5a1587d54cd687654989bfb4790b94e6f9",
+      "reproducedSha256": "b999b46aa8e9b7d07e47b9f7940b9f5a1587d54cd687654989bfb4790b94e6f9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/startup/starter/texture-db0580d45a99.webp",
+      "baselineSha256": "db0580d45a9931bab6bfeb515c7b5e25a26e24e1ac67e7cbdaf1e1ad8239fda7",
+      "candidateSha256": "db0580d45a9931bab6bfeb515c7b5e25a26e24e1ac67e7cbdaf1e1ad8239fda7",
+      "reproducedSha256": "db0580d45a9931bab6bfeb515c7b5e25a26e24e1ac67e7cbdaf1e1ad8239fda7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/stone-detail-source.md",
+      "baselineSha256": "dea4e7a048ed9a7ec2f46fa4802dbc7848572d4067a89aea9a78214596ccf388",
+      "candidateSha256": "dea4e7a048ed9a7ec2f46fa4802dbc7848572d4067a89aea9a78214596ccf388",
+      "reproducedSha256": "dea4e7a048ed9a7ec2f46fa4802dbc7848572d4067a89aea9a78214596ccf388",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/stone-detail.png",
+      "baselineSha256": "2b1491418f73289f509218ecb4b29e63d85580748c1e7164f2a690190ee5e331",
+      "candidateSha256": "2b1491418f73289f509218ecb4b29e63d85580748c1e7164f2a690190ee5e331",
+      "reproducedSha256": "2b1491418f73289f509218ecb4b29e63d85580748c1e7164f2a690190ee5e331",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/training-dummy.glb",
+      "baselineSha256": "0f7ee07ec5d82443b82febc0b35f30ae7bea2cf574513974da7851483af36c7f",
+      "candidateSha256": "0f7ee07ec5d82443b82febc0b35f30ae7bea2cf574513974da7851483af36c7f",
+      "reproducedSha256": "0f7ee07ec5d82443b82febc0b35f30ae7bea2cf574513974da7851483af36c7f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/warden-pauldrons-provenance.json",
+      "baselineSha256": "2e086f749f032d7cf4c1e295d4532f5feeb87e377b73963460e1569e3052a961",
+      "candidateSha256": "2e086f749f032d7cf4c1e295d4532f5feeb87e377b73963460e1569e3052a961",
+      "reproducedSha256": "2e086f749f032d7cf4c1e295d4532f5feeb87e377b73963460e1569e3052a961",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/wardrobe-designs-provenance.json",
+      "baselineSha256": "f0188f4311ddd212555ea70737b7cc6e0028091d20871e23be0d30055542202d",
+      "candidateSha256": "f0188f4311ddd212555ea70737b7cc6e0028091d20871e23be0d30055542202d",
+      "reproducedSha256": "f0188f4311ddd212555ea70737b7cc6e0028091d20871e23be0d30055542202d",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/wayfarerBoots-provenance.json",
+      "baselineSha256": "63f74606df8d08ae08422c6a3d6ee3b4eea52688b2239418d357b3de1983946b",
+      "candidateSha256": "63f74606df8d08ae08422c6a3d6ee3b4eea52688b2239418d357b3de1983946b",
+      "reproducedSha256": "63f74606df8d08ae08422c6a3d6ee3b4eea52688b2239418d357b3de1983946b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/woodland/LICENSE-EZ-TREE.txt",
+      "baselineSha256": "20e4afadfb10c67952b3d73cd2982d21d165ab4ae82b0dd9e4d6f2166ee349b6",
+      "candidateSha256": "20e4afadfb10c67952b3d73cd2982d21d165ab4ae82b0dd9e4d6f2166ee349b6",
+      "reproducedSha256": "20e4afadfb10c67952b3d73cd2982d21d165ab4ae82b0dd9e4d6f2166ee349b6",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/woodland/SOURCE.md",
+      "baselineSha256": "fa8c9ab729447d7900391f784f7ecd8f43c8b4454a72a144e6ee9e2d1a8a72cd",
+      "candidateSha256": "fa8c9ab729447d7900391f784f7ecd8f43c8b4454a72a144e6ee9e2d1a8a72cd",
+      "reproducedSha256": "fa8c9ab729447d7900391f784f7ecd8f43c8b4454a72a144e6ee9e2d1a8a72cd",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "ashen-reach/woodland/trees.json",
+      "baselineSha256": "bf6fec356454beb5dbcd66ace842992c325405d4162343e66e4e9f317e23c922",
+      "candidateSha256": "bf6fec356454beb5dbcd66ace842992c325405d4162343e66e4e9f317e23c922",
+      "reproducedSha256": "bf6fec356454beb5dbcd66ace842992c325405d4162343e66e4e9f317e23c922",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "assets/v2/HavokPhysics-BqNY-4N9.wasm",
+      "baselineSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "candidateSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "reproducedSha256": "026917766f534c156286f07975850978dabf17c42e742bbfaaebbcb2215e4e11",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/animations/human-mage-armed-v1.json",
+      "baselineSha256": "dc370528f772c90d528bc22678a643688138f753a779d9364c839848021c58a2",
+      "candidateSha256": "dc370528f772c90d528bc22678a643688138f753a779d9364c839848021c58a2",
+      "reproducedSha256": "dc370528f772c90d528bc22678a643688138f753a779d9364c839848021c58a2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/base-thirdperson.glb",
+      "baselineSha256": "8bd0dd451eea8f9e9170c5d7c3e75a93b1f633e2c7bfcea618813b7edc176f31",
+      "candidateSha256": "8bd0dd451eea8f9e9170c5d7c3e75a93b1f633e2c7bfcea618813b7edc176f31",
+      "reproducedSha256": "8bd0dd451eea8f9e9170c5d7c3e75a93b1f633e2c7bfcea618813b7edc176f31",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/base.glb",
+      "baselineSha256": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
+      "candidateSha256": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
+      "reproducedSha256": "d8a14bb2421ed4ce7e4cc3651432494e1f27ac1d6944646ca9bf434a12a401ad",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-animated-v1.glb",
+      "baselineSha256": "6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+      "candidateSha256": "6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+      "reproducedSha256": "6e87eb1b31c301d8adccf134043dca7983786c48e931f0d94f185aaa93dddbe9",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/albedo.png",
+      "baselineSha256": "28a9ef1a5b210938d0d31dc7a19a38e2c1def4eb5197e5d3fbe87e55fa2fe0d7",
+      "candidateSha256": "28a9ef1a5b210938d0d31dc7a19a38e2c1def4eb5197e5d3fbe87e55fa2fe0d7",
+      "reproducedSha256": "28a9ef1a5b210938d0d31dc7a19a38e2c1def4eb5197e5d3fbe87e55fa2fe0d7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/brown_eye.png",
+      "baselineSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "candidateSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "reproducedSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/eye-rough.png",
+      "baselineSha256": "b74c4d7cb998a2532e3300ccc6412db976873ef9851d1f0a7d6788848c12ae4b",
+      "candidateSha256": "b74c4d7cb998a2532e3300ccc6412db976873ef9851d1f0a7d6788848c12ae4b",
+      "reproducedSha256": "b74c4d7cb998a2532e3300ccc6412db976873ef9851d1f0a7d6788848c12ae4b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/eye.png",
+      "baselineSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "candidateSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "reproducedSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/eyebrow.png",
+      "baselineSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "candidateSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "reproducedSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/hair-normal.png",
+      "baselineSha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5",
+      "candidateSha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5",
+      "reproducedSha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/hair.png",
+      "baselineSha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f",
+      "candidateSha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f",
+      "reproducedSha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/normal.png",
+      "baselineSha256": "29e72ab5f13f372ce11d87c5e3069571ad8d567cd3aca000e614b32d922ce722",
+      "candidateSha256": "29e72ab5f13f372ce11d87c5e3069571ad8d567cd3aca000e614b32d922ce722",
+      "reproducedSha256": "29e72ab5f13f372ce11d87c5e3069571ad8d567cd3aca000e614b32d922ce722",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1-textures/roughness.png",
+      "baselineSha256": "62b987d56930c07c2c603c34da0efa3a307ce7f05bbf4f5e2d9e6f223bcb6fb0",
+      "candidateSha256": "62b987d56930c07c2c603c34da0efa3a307ce7f05bbf4f5e2d9e6f223bcb6fb0",
+      "reproducedSha256": "62b987d56930c07c2c603c34da0efa3a307ce7f05bbf4f5e2d9e6f223bcb6fb0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1.glb",
+      "baselineSha256": "ce441880c06a89ff1689a9482785e320f6b31f6e79a1c8d45e2a6e302479a75e",
+      "candidateSha256": "ce441880c06a89ff1689a9482785e320f6b31f6e79a1c8d45e2a6e302479a75e",
+      "reproducedSha256": "ce441880c06a89ff1689a9482785e320f6b31f6e79a1c8d45e2a6e302479a75e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/human-v1.profile.json",
+      "baselineSha256": "2f7fd91a9960002943d61e22f29e472d5efb6bb0ea02b3c4acf79ee8d533e690",
+      "candidateSha256": "2f7fd91a9960002943d61e22f29e472d5efb6bb0ea02b3c4acf79ee8d533e690",
+      "reproducedSha256": "2f7fd91a9960002943d61e22f29e472d5efb6bb0ea02b3c4acf79ee8d533e690",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-animated-v1.glb",
+      "baselineSha256": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+      "candidateSha256": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+      "reproducedSha256": "3b817c2ed69f59fa7946a35a900a3ae817c6b50ae3a3f0c6d339b2856b61389e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/albedo.png",
+      "baselineSha256": "00a05c2b38a6a58c51d35c206b05583f3b59df762e636177bba374feb76e5f86",
+      "candidateSha256": "00a05c2b38a6a58c51d35c206b05583f3b59df762e636177bba374feb76e5f86",
+      "reproducedSha256": "00a05c2b38a6a58c51d35c206b05583f3b59df762e636177bba374feb76e5f86",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/brown_eye.png",
+      "baselineSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "candidateSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "reproducedSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/eye.png",
+      "baselineSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "candidateSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "reproducedSha256": "ec15490fa980c3fbea5854d5866871cc63638b521cbb90a82c996d1b0be1bc85",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/eyebrow.png",
+      "baselineSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "candidateSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "reproducedSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/hair.png",
+      "baselineSha256": "8a7c907e1d9cc7ebea0b31cd798041192b07211e474d64bf4d964b7ded815730",
+      "candidateSha256": "8a7c907e1d9cc7ebea0b31cd798041192b07211e474d64bf4d964b7ded815730",
+      "reproducedSha256": "8a7c907e1d9cc7ebea0b31cd798041192b07211e474d64bf4d964b7ded815730",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/normal.png",
+      "baselineSha256": "f54769c37be02b5edca42abad45cd9e430f74fb3c06cdb6ba4a6745608d84ddf",
+      "candidateSha256": "f54769c37be02b5edca42abad45cd9e430f74fb3c06cdb6ba4a6745608d84ddf",
+      "reproducedSha256": "f54769c37be02b5edca42abad45cd9e430f74fb3c06cdb6ba4a6745608d84ddf",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1-textures/roughness.png",
+      "baselineSha256": "1821c2771845d5cb35b2256f7424eceadd874f40186d062cc277ea8a6cc42be1",
+      "candidateSha256": "1821c2771845d5cb35b2256f7424eceadd874f40186d062cc277ea8a6cc42be1",
+      "reproducedSha256": "1821c2771845d5cb35b2256f7424eceadd874f40186d062cc277ea8a6cc42be1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1.glb",
+      "baselineSha256": "ed8aebbeddd8302199ccb835eeaba9d2cc0516cd8205ef89f77313d35330c621",
+      "candidateSha256": "ed8aebbeddd8302199ccb835eeaba9d2cc0516cd8205ef89f77313d35330c621",
+      "reproducedSha256": "ed8aebbeddd8302199ccb835eeaba9d2cc0516cd8205ef89f77313d35330c621",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/orc-v1.profile.json",
+      "baselineSha256": "41a318c2cabf79b5bdc70b9d39e81706dcee88c8e00d648f7eaba8bf915fc8e2",
+      "candidateSha256": "41a318c2cabf79b5bdc70b9d39e81706dcee88c8e00d648f7eaba8bf915fc8e2",
+      "reproducedSha256": "41a318c2cabf79b5bdc70b9d39e81706dcee88c8e00d648f7eaba8bf915fc8e2",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-animated-v1.glb",
+      "baselineSha256": "59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+      "candidateSha256": "59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+      "reproducedSha256": "59891e708862f86e96fef5daa3119365fb02dacb2238d1026631a25856d9251f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/albedo.png",
+      "baselineSha256": "bfb59f56623b6923c440f46eaf30b968d09a8abf43503da67333cfe9cec2993b",
+      "candidateSha256": "bfb59f56623b6923c440f46eaf30b968d09a8abf43503da67333cfe9cec2993b",
+      "reproducedSha256": "bfb59f56623b6923c440f46eaf30b968d09a8abf43503da67333cfe9cec2993b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/brown_eye.png",
+      "baselineSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "candidateSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "reproducedSha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/eye.png",
+      "baselineSha256": "b3b20de03301fb0bdbef12751d0b1d50b6701ce84684cf33d894d12496dcdca1",
+      "candidateSha256": "b3b20de03301fb0bdbef12751d0b1d50b6701ce84684cf33d894d12496dcdca1",
+      "reproducedSha256": "b3b20de03301fb0bdbef12751d0b1d50b6701ce84684cf33d894d12496dcdca1",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/eyebrow.png",
+      "baselineSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "candidateSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "reproducedSha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/hair.png",
+      "baselineSha256": "8a28954fd198b1187b1e6b90085427dc7a2e3dd3fe71c7358aa0068768d5f664",
+      "candidateSha256": "8a28954fd198b1187b1e6b90085427dc7a2e3dd3fe71c7358aa0068768d5f664",
+      "reproducedSha256": "8a28954fd198b1187b1e6b90085427dc7a2e3dd3fe71c7358aa0068768d5f664",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/normal.png",
+      "baselineSha256": "e2cb3f00d6f324f9fbbe57d0bf460fbb7b21daaeae6bfd53d9efc06caaa94f75",
+      "candidateSha256": "e2cb3f00d6f324f9fbbe57d0bf460fbb7b21daaeae6bfd53d9efc06caaa94f75",
+      "reproducedSha256": "e2cb3f00d6f324f9fbbe57d0bf460fbb7b21daaeae6bfd53d9efc06caaa94f75",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1-textures/roughness.png",
+      "baselineSha256": "b2f2255c8ac90d02b43b0e06f77f38bca8d58764029b22ff03e60884c8b430d0",
+      "candidateSha256": "b2f2255c8ac90d02b43b0e06f77f38bca8d58764029b22ff03e60884c8b430d0",
+      "reproducedSha256": "b2f2255c8ac90d02b43b0e06f77f38bca8d58764029b22ff03e60884c8b430d0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1.glb",
+      "baselineSha256": "f96d7c27c06505fe852a1d269a793073e3a2ca74c2a06e83a7722d4d81b854ad",
+      "candidateSha256": "f96d7c27c06505fe852a1d269a793073e3a2ca74c2a06e83a7722d4d81b854ad",
+      "reproducedSha256": "f96d7c27c06505fe852a1d269a793073e3a2ca74c2a06e83a7722d4d81b854ad",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/bodies/undead-v1.profile.json",
+      "baselineSha256": "5be1e7b0ecbccc76006345ec7894505801bbf7f85abaf352b48ab2eadf3e68af",
+      "candidateSha256": "5be1e7b0ecbccc76006345ec7894505801bbf7f85abaf352b48ab2eadf3e68af",
+      "reproducedSha256": "5be1e7b0ecbccc76006345ec7894505801bbf7f85abaf352b48ab2eadf3e68af",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/mage-leather.png",
+      "baselineSha256": "59478c6fbb55e5a55cf2a3799f46afbf5573739a747ab740ee020f7fe874e726",
+      "candidateSha256": "59478c6fbb55e5a55cf2a3799f46afbf5573739a747ab740ee020f7fe874e726",
+      "reproducedSha256": "59478c6fbb55e5a55cf2a3799f46afbf5573739a747ab740ee020f7fe874e726",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/mage-wool.png",
+      "baselineSha256": "16affd1da413747d1b483d4b2232cd463a332a013a52c27b1eb493a8270d1783",
+      "candidateSha256": "16affd1da413747d1b483d4b2232cd463a332a013a52c27b1eb493a8270d1783",
+      "reproducedSha256": "16affd1da413747d1b483d4b2232cd463a332a013a52c27b1eb493a8270d1783",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/mageBoots.human-v1.v1.glb",
+      "baselineSha256": "1a329901daffbd5bac195003ffbe17659cb174a5cce73063a89c24f2af2746c0",
+      "candidateSha256": "1a329901daffbd5bac195003ffbe17659cb174a5cce73063a89c24f2af2746c0",
+      "reproducedSha256": "1a329901daffbd5bac195003ffbe17659cb174a5cce73063a89c24f2af2746c0",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/mageCoat.human-v1.v1.glb",
+      "baselineSha256": "c69b392f07c8835ea2bf8cf3c52bea04bbe904d8234533c66ebc374d5ae495fa",
+      "candidateSha256": "c69b392f07c8835ea2bf8cf3c52bea04bbe904d8234533c66ebc374d5ae495fa",
+      "reproducedSha256": "c69b392f07c8835ea2bf8cf3c52bea04bbe904d8234533c66ebc374d5ae495fa",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starter-fits.v1.json",
+      "baselineSha256": "98a833506ad2f67d0d90e4b75177d3f9ee02e38182c40a870fe5776f5763051e",
+      "candidateSha256": "98a833506ad2f67d0d90e4b75177d3f9ee02e38182c40a870fe5776f5763051e",
+      "reproducedSha256": "98a833506ad2f67d0d90e4b75177d3f9ee02e38182c40a870fe5776f5763051e",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterBoots.human-v1.v1.glb",
+      "baselineSha256": "96fdc8a7e5e130de5ea570d96764d5b67ded52897c79bb62b878cfcdb4fb72d5",
+      "candidateSha256": "96fdc8a7e5e130de5ea570d96764d5b67ded52897c79bb62b878cfcdb4fb72d5",
+      "reproducedSha256": "96fdc8a7e5e130de5ea570d96764d5b67ded52897c79bb62b878cfcdb4fb72d5",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterBoots.orc-v1.v1.glb",
+      "baselineSha256": "3ff6fce72dc61140ada08ff9cfd92f966fe8e93cc02f6f43a9f1c93f86a9a1ae",
+      "candidateSha256": "3ff6fce72dc61140ada08ff9cfd92f966fe8e93cc02f6f43a9f1c93f86a9a1ae",
+      "reproducedSha256": "3ff6fce72dc61140ada08ff9cfd92f966fe8e93cc02f6f43a9f1c93f86a9a1ae",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterBoots.undead-v1.v1.glb",
+      "baselineSha256": "f67f67cd82aabae097bc96686d76222b670aeeb2285e5746a428275cc4e2df01",
+      "candidateSha256": "f67f67cd82aabae097bc96686d76222b670aeeb2285e5746a428275cc4e2df01",
+      "reproducedSha256": "f67f67cd82aabae097bc96686d76222b670aeeb2285e5746a428275cc4e2df01",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterShirt.human-v1.v1.glb",
+      "baselineSha256": "183d61d40a45e365a4a17df2e22bffe904acc21ec59293a6ff4ad2a2e9e5ce18",
+      "candidateSha256": "183d61d40a45e365a4a17df2e22bffe904acc21ec59293a6ff4ad2a2e9e5ce18",
+      "reproducedSha256": "183d61d40a45e365a4a17df2e22bffe904acc21ec59293a6ff4ad2a2e9e5ce18",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterShirt.orc-v1.v1.glb",
+      "baselineSha256": "6a1e746e5931d301fd8f779df2b5558c8ca3a55944532356c00763aeb554073a",
+      "candidateSha256": "6a1e746e5931d301fd8f779df2b5558c8ca3a55944532356c00763aeb554073a",
+      "reproducedSha256": "6a1e746e5931d301fd8f779df2b5558c8ca3a55944532356c00763aeb554073a",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterShirt.undead-v1.v1.glb",
+      "baselineSha256": "1bac02e2e8d660b6b5289ac4b019c5b834f1dd92aecd0dfe9e8dc01738015ae7",
+      "candidateSha256": "1bac02e2e8d660b6b5289ac4b019c5b834f1dd92aecd0dfe9e8dc01738015ae7",
+      "reproducedSha256": "1bac02e2e8d660b6b5289ac4b019c5b834f1dd92aecd0dfe9e8dc01738015ae7",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterTrousers.human-v1.v1.glb",
+      "baselineSha256": "f4e9ec790b4f10fec814203f56e7ec81be92c87c67e1caa81f24b84f2cdc22ae",
+      "candidateSha256": "f4e9ec790b4f10fec814203f56e7ec81be92c87c67e1caa81f24b84f2cdc22ae",
+      "reproducedSha256": "f4e9ec790b4f10fec814203f56e7ec81be92c87c67e1caa81f24b84f2cdc22ae",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterTrousers.orc-v1.v1.glb",
+      "baselineSha256": "14253f92de67ad324b070b2dc8b0389a6cb0d6b95e0b97ff40cc95a2df356133",
+      "candidateSha256": "14253f92de67ad324b070b2dc8b0389a6cb0d6b95e0b97ff40cc95a2df356133",
+      "reproducedSha256": "14253f92de67ad324b070b2dc8b0389a6cb0d6b95e0b97ff40cc95a2df356133",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "characters/garments/starterTrousers.undead-v1.v1.glb",
+      "baselineSha256": "8268f1cb4b5f08a7e2bacfba22a9e38e27e2ae00ed1538eb244976595b2f051f",
+      "candidateSha256": "8268f1cb4b5f08a7e2bacfba22a9e38e27e2ae00ed1538eb244976595b2f051f",
+      "reproducedSha256": "8268f1cb4b5f08a7e2bacfba22a9e38e27e2ae00ed1538eb244976595b2f051f",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "physics/HavokPhysics-8f4493dae88a.wasm.br",
+      "baselineSha256": "8f4493dae88a4907c8609a78b04244bd419a9c9c5bcdba221f696b48ea1f6314",
+      "candidateSha256": "8f4493dae88a4907c8609a78b04244bd419a9c9c5bcdba221f696b48ea1f6314",
+      "reproducedSha256": "8f4493dae88a4907c8609a78b04244bd419a9c9c5bcdba221f696b48ea1f6314",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "tex/bark_brown_02/diff.jpg",
+      "baselineSha256": "8a4e4d61c1df71852d68d783486fcb72f9b8f04eda8366be5e440df4f3594897",
+      "candidateSha256": "8a4e4d61c1df71852d68d783486fcb72f9b8f04eda8366be5e440df4f3594897",
+      "reproducedSha256": "8a4e4d61c1df71852d68d783486fcb72f9b8f04eda8366be5e440df4f3594897",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "tex/forrest_ground_01/diff.jpg",
+      "baselineSha256": "ca15680d21699e7da35c8debd8488d3ea53981ec565464b67f07da56ff65fc71",
+      "candidateSha256": "ca15680d21699e7da35c8debd8488d3ea53981ec565464b67f07da56ff65fc71",
+      "reproducedSha256": "ca15680d21699e7da35c8debd8488d3ea53981ec565464b67f07da56ff65fc71",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "tex/rock_wall_08/diff.jpg",
+      "baselineSha256": "41d3dd7987ab8b82924050a2204b0f3238771eaa33124d40e9ccea1acb56c630",
+      "candidateSha256": "41d3dd7987ab8b82924050a2204b0f3238771eaa33124d40e9ccea1acb56c630",
+      "reproducedSha256": "41d3dd7987ab8b82924050a2204b0f3238771eaa33124d40e9ccea1acb56c630",
+      "exactCandidate": true,
+      "exactReproduced": true
+    },
+    {
+      "file": "tex/wood_planks_grey/diff.jpg",
+      "baselineSha256": "d24aff4ab5d045e4f81e5f7970400d9278f0e9831f1e44de844f3df500363deb",
+      "candidateSha256": "d24aff4ab5d045e4f81e5f7970400d9278f0e9831f1e44de844f3df500363deb",
+      "reproducedSha256": "d24aff4ab5d045e4f81e5f7970400d9278f0e9831f1e44de844f3df500363deb",
+      "exactCandidate": true,
+      "exactReproduced": true
+    }
+  ],
+  "passed": true,
+  "scope": "All 382 baseline served public payloads excluding generated _headers metadata; candidate and reproduced baseline exact",
+  "generatedHeader": {
+    "rows": [
+      {
+        "file": "_headers",
+        "baselineSha256": "a082906300e6367b2496fee6b7b06fd035df73a99720581db11d41925722601a",
+        "candidateSha256": "5f7e590f12b6cd29abe74782ee9693ef4c03a7cefe689a8a797481fc7f437214",
+        "reproducedSha256": "a082906300e6367b2496fee6b7b06fd035df73a99720581db11d41925722601a",
+        "exactCandidate": false,
+        "exactReproduced": true
+      }
+    ],
+    "baselineReproductionExact": true,
+    "candidateDifferences": "Only generated Link headers reference the new hashed JS filenames; other header text is unchanged",
+    "localTimingServer": "serve-startup-preview.mjs does not apply _headers Link preload metadata"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "passed": false,
+  "scope": "Every baseline served non-compiled payload; candidate and separately reproduced baseline",
+  "filesCompared": 383,
+  "differences": [
+    {
+      "file": "_headers",
+      "baselineSha256": "a082906300e6367b2496fee6b7b06fd035df73a99720581db11d41925722601a",
+      "candidateSha256": "5f7e590f12b6cd29abe74782ee9693ef4c03a7cefe689a8a797481fc7f437214",
+      "reproducedSha256": "a082906300e6367b2496fee6b7b06fd035df73a99720581db11d41925722601a",
+      "exactCandidate": false,
+      "exactReproduced": true
+    }
+  ],
+  "fullRawReport": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/initial-public-equality-including-headers.json",
+  "note": "Generated candidate Link headers differ in hashed JS references; reproduced baseline headers exact. Payload-only classification corrected without repeating timings."
+}

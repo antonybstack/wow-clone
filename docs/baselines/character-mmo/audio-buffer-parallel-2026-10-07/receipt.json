@@ -1,0 +1,312 @@
+{
+  "date": "2026-10-07",
+  "scope": "Local audio-buffer overlap, no Pages deployment or new public cold-start qualification",
+  "baselineHead": "be87434f709f2ea9f64e3fde874a0338237ab2c4",
+  "source": {
+    "measuredProductInputs": {
+      "sha256": "b5bed4b02d3b726ca49a15dea253b92cb1fa9deafe8b88cd73829cff21c79c97",
+      "files": 1157,
+      "uncommitted": 1
+    },
+    "finalProductInputs": {
+      "sha256": "3a4ad1ad960c0f2d009b3fbc827f49009f3b1c5e642c8e478e05e0507d801840",
+      "files": 1157,
+      "uncommitted": 2
+    },
+    "runtimeAudioSha256": "37fa200c43acd70cb1834999b6bb9a78b6d1f4c4498d74b821e82258a73062a1",
+    "changesAfterMeasurement": "QA-only probe correction; runtime audio and compiled candidate remain unchanged"
+  },
+  "accepted": {
+    "functional": true,
+    "declaredThreePairGate": true,
+    "baselineCompiledEquality": true,
+    "baselinePublicPayloadEquality": true,
+    "nativeGameControls": 9,
+    "nativeProbeControls": 3,
+    "rootActualMp4Review": true,
+    "deliveryPending": false
+  },
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "nativeBrowser": "Chrome 154.0.8037.98 headless, uncapped WebGPU",
+    "resolution": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "enemies": 7,
+    "network": "decimal 50 Mbit/s down, 10 Mbit/s up, 40 ms; HTTP cache disabled; fresh process/profile per visit",
+    "cacheLimit": "OS, DNS, driver and CDN caches uncontrolled",
+    "isolation": "One intended game renderer per visit; no recording, profiling, encoding, build or other owned game renderer",
+    "timingScope": "After full world/enemy readiness and 1200 ms settling; real held W + sound-button input; includes activation +1500 ms after ready",
+    "postReadyTails": "Secondary RAF readiness observer intervals, not actual game render-loop FPS"
+  },
+  "production": {
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "pages": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "unchanged": true
+  },
+  "remaining": [
+    "AudioContext constructor hitch",
+    "Streaming tails",
+    "Required-texture preview failure",
+    "Original 14/60 fetch failures",
+    "Original 362 ms input upper-bound outlier",
+    "Current physical iPhone acceptance",
+    "Mixed armor fit and shield proof"
+  ],
+  "workers": [
+    {
+      "pass": "operations",
+      "model": "grok-4.6",
+      "effort": "high",
+      "sessionId": "01a118de-65c2-70e0-81e5-0f34b17c6f45",
+      "stopReason": "end_turn",
+      "turns": 9,
+      "nativeCliExitCode": 0
+    },
+    {
+      "pass": "review",
+      "model": "grok-4.6",
+      "effort": "high",
+      "sessionId": "01a118de-65d7-7fb1-bee2-d585243125e1",
+      "stopReason": "end_turn",
+      "turns": 14,
+      "nativeCliExitCode": 0
+    },
+    {
+      "pass": "capture",
+      "model": "grok-4.6",
+      "effort": "high",
+      "sessionId": "01a118de-65c2-70e0-81e5-0f34b17c6f45",
+      "stopReason": "end_turn",
+      "turns": 7,
+      "nativeCliExitCode": 0
+    },
+    {
+      "pass": "corrected",
+      "model": "grok-4.6",
+      "effort": "high",
+      "sessionId": "01a118de-65c2-70e0-81e5-0f34b17c6f45",
+      "stopReason": "end_turn",
+      "turns": 9,
+      "nativeCliExitCode": 0
+    },
+    {
+      "pass": "exact-media-delivery",
+      "model": "grok-4.6",
+      "effort": "high",
+      "sessionId": "01a118de-65c2-70e0-81e5-0f34b17c6f45",
+      "stopReason": "end_turn",
+      "turns": 9,
+      "nativeCliExitCode": 0
+    }
+  ],
+  "evidence": [
+    "declaration.json",
+    "comparison.json",
+    "comparison-native-exit.json",
+    "operation-exits.json",
+    "controls-child-exit.json",
+    "corrected-controls.json",
+    "corrected-controls.probe-controls.json",
+    "corrected-controls-child-exit.json",
+    "baseline-reproduction.json",
+    "reproduce-baseline-exit.json",
+    "public-payload-equality.json",
+    "compiled-size-comparison.json",
+    "initial-public-equality-including-headers.json",
+    "candidate-product-inputs.json",
+    "final-product-inputs.json",
+    "capture-source.json",
+    "capture-child-exit.json",
+    "ownership-history.jsonl",
+    "root-review.json",
+    "review.md",
+    "root-review-response.md",
+    "corrected-result.md",
+    "initial-blind-probe-controls.json",
+    "motion-report.json",
+    "capture-manifest.json",
+    "media.json",
+    "media-delivery.json",
+    "ve-checks.json",
+    "ve-upload-exit.json",
+    "tg-file-exit.json",
+    "telegram.json",
+    "final-cleanup.json"
+  ],
+  "rawCache": ".cache/character-mmo/audio-buffer-parallel-2026-10-07",
+  "motionRecovery": "Identical VE MP4 after authorized upload; native capture manifest committed, source frames remain ignored cache",
+  "mediaDelivery": {
+    "file": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4",
+    "sha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c",
+    "bytes": 24334362,
+    "ve": {
+      "key": "wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+      "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4",
+      "uploadExit": 0,
+      "uploadPid": 68163,
+      "elapsedSeconds": 7.88,
+      "checksPassed": true,
+      "checksPath": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/ve-checks.json"
+    },
+    "telegram": {
+      "exit": 0,
+      "pid": 69738,
+      "elapsedSeconds": 13.247,
+      "messageId": 882,
+      "verified": true,
+      "expected": {
+        "width": 1280,
+        "height": 720,
+        "duration": 23.875289,
+        "sampleAspectRatio": "1:1",
+        "rotation": 0,
+        "codec": "h264"
+      },
+      "returned": {
+        "width": 1280,
+        "height": 720,
+        "duration": 24
+      },
+      "sentAt": "2026-10-08T00:43:49.065738+00:00",
+      "receiptPath": ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4.telegram.json",
+      "ledger": "2026-10-08T00:43:49.110421+00:00 be87434f709f2ea9f64e3fde874a0338237ab2c4 .cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4"
+    },
+    "failures": []
+  },
+  "cleanup": {
+    "ownedPidChecks": [
+      {
+        "pid": 20140,
+        "alive": false
+      },
+      {
+        "pid": 20164,
+        "alive": false
+      },
+      {
+        "pid": 20298,
+        "alive": false
+      },
+      {
+        "pid": 20664,
+        "alive": false
+      },
+      {
+        "pid": 20686,
+        "alive": false
+      },
+      {
+        "pid": 20714,
+        "alive": false
+      },
+      {
+        "pid": 21144,
+        "alive": false
+      },
+      {
+        "pid": 21165,
+        "alive": false
+      },
+      {
+        "pid": 21169,
+        "alive": false
+      },
+      {
+        "pid": 21604,
+        "alive": false
+      },
+      {
+        "pid": 21625,
+        "alive": false
+      },
+      {
+        "pid": 21629,
+        "alive": false
+      },
+      {
+        "pid": 22021,
+        "alive": false
+      },
+      {
+        "pid": 22022,
+        "alive": false
+      },
+      {
+        "pid": 22026,
+        "alive": false
+      },
+      {
+        "pid": 22609,
+        "alive": false
+      },
+      {
+        "pid": 22610,
+        "alive": false
+      },
+      {
+        "pid": 22614,
+        "alive": false
+      },
+      {
+        "pid": 23149,
+        "alive": false
+      },
+      {
+        "pid": 23170,
+        "alive": false
+      },
+      {
+        "pid": 23174,
+        "alive": false
+      },
+      {
+        "pid": 38997,
+        "alive": false
+      },
+      {
+        "pid": 38998,
+        "alive": false
+      },
+      {
+        "pid": 39024,
+        "alive": false
+      },
+      {
+        "pid": 56465,
+        "alive": false
+      },
+      {
+        "pid": 56466,
+        "alive": false
+      },
+      {
+        "pid": 56472,
+        "alive": false
+      },
+      {
+        "pid": 59682,
+        "alive": false
+      }
+    ],
+    "allOwnedGone": true,
+    "ports": [
+      7074,
+      7075,
+      10037,
+      5173
+    ],
+    "lsofExitCode": 1,
+    "lsofOutput": "",
+    "portsFree": true,
+    "ownedMediaTab": "1147995896 closed through CUA",
+    "nativeBrowserInventory": "Chrome not running; twelve nongame user Edge tabs remain",
+    "preservedUserApplications": {
+      "EdgePid": 2931,
+      "OrcaPid": 98938
+    },
+    "workers": "Operations, independent review, capture, corrected checks and exact delivery all terminal native CLI exit 0"
+  }
+}

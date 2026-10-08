@@ -1,0 +1,26 @@
+{
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 23.875289,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "bytes": 24334362,
+  "sha256": "c1a04873fa9069a6a483a762e8158703417e55df5d809a605f49b76481959c3c",
+  "nativeAudio": {
+    "startedEpochSeconds": 1791419238.5221999,
+    "mimeType": "audio/webm;codecs=opus",
+    "microphone": false,
+    "source": "Lite game master mix",
+    "videoFirstFrameEpochSeconds": 1791419233.674921,
+    "offsetSeconds": 4.847278833389282
+  },
+  "pcm": {
+    "samples": 914432,
+    "monoDecodedPeak": 0.7400707006454468,
+    "monoDecodedRms": 0.03761120653479256
+  },
+  "noMicrophoneOrSystemAudio": true
+}

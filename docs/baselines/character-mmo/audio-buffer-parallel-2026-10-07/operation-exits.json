@@ -1,0 +1,55 @@
+[
+  {
+    "name": "preserve-baseline",
+    "command": [
+      "cp",
+      "-cR",
+      "dist",
+      ".cache/character-mmo/audio-buffer-parallel-2026-10-07/sequential-dist"
+    ],
+    "exitCode": 0,
+    "pid": 19857,
+    "elapsedSeconds": 0.107
+  },
+  {
+    "name": "build-candidate",
+    "command": [
+      "bash",
+      "scripts/deploy-pages.sh"
+    ],
+    "exitCode": 0,
+    "pid": 19859,
+    "elapsedSeconds": 6.319
+  },
+  {
+    "name": "syntax",
+    "command": [
+      "node",
+      "--check",
+      ".cache/character-mmo/audio-buffer-parallel-2026-10-07/run-comparison.mjs"
+    ],
+    "exitCode": 0,
+    "pid": 20095,
+    "elapsedSeconds": 0.026
+  },
+  {
+    "name": "comparison",
+    "command": [
+      "node",
+      ".cache/character-mmo/audio-buffer-parallel-2026-10-07/run-comparison.mjs"
+    ],
+    "exitCode": 0,
+    "pid": 20096,
+    "elapsedSeconds": 93.135
+  },
+  {
+    "name": "native-controls",
+    "command": [
+      "node",
+      ".cache/character-mmo/audio-buffer-parallel-2026-10-07/run-controls.mjs"
+    ],
+    "exitCode": 0,
+    "pid": 23148,
+    "elapsedSeconds": 38.275
+  }
+]

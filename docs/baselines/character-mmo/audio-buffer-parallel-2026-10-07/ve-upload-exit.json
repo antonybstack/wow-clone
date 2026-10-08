@@ -1,0 +1,11 @@
+{
+  "command": [
+    "bash",
+    "scripts/ve-upload.sh",
+    ".cache/character-mmo/audio-buffer-parallel-2026-10-07/motion/motion.mp4",
+    "wow-clone/ashen-reach/audio-buffer-parallel-2026-10-07/motion.mp4"
+  ],
+  "pid": 68163,
+  "exitCode": 0,
+  "elapsedSeconds": 7.88
+}

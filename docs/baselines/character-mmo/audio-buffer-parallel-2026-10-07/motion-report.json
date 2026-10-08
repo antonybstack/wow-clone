@@ -1,0 +1,253 @@
+{
+  "start": {
+    "x": -0.00005691226143525128,
+    "z": -0.00010043339646875189,
+    "recoveries": 0
+  },
+  "end": {
+    "x": -10.285147500557455,
+    "z": 70.7189565179607
+  },
+  "recoveries": 0,
+  "physics": true,
+  "dev": {
+    "enabled": true,
+    "god": true,
+    "flying": false
+  },
+  "marks": {
+    "begin": 192.39999997615814,
+    "engine-created": 202.89999997615814,
+    "gpu-probe-end": 204.60000002384186,
+    "world-start": 206.5,
+    "havok-runtime-available": 262.30000001192093,
+    "world-end": 392.89999997615814,
+    "havok-start": 394,
+    "havok-runtime-start": 394.89999997615814,
+    "havok-runtime-end": 395,
+    "havok-world-end": 397.30000001192093,
+    "havok-colliders-end": 404.19999998807907,
+    "havok-controller-end": 405.5,
+    "havok-end": 406.5,
+    "prime-world-start": 406.89999997615814,
+    "prime-world-registered": 417.80000001192093,
+    "prime-world-submitted": 422.19999998807907,
+    "prime-world-completed": 479,
+    "body-start": 630.3000000119209,
+    "body-end": 650.3000000119209,
+    "equipment-start": 652.3000000119209,
+    "equipment-end": 668.3000000119209,
+    "register-start": 674.6000000238419,
+    "register-end": 690.8000000119209,
+    "first-render-return": 696.6000000238419,
+    "supported-frame-submitted": 714.6000000238419,
+    "first-gpu-completed": 731.3999999761581,
+    "supported-frame-completed": 734.6000000238419,
+    "playable": 734.8000000119209,
+    "bg-start": 735,
+    "bg-imports-end": 826,
+    "bg-dummy-end": 1504.1000000238419,
+    "bg-enemies-end": 1566.1000000238419,
+    "combat-ready": 1662.5,
+    "late-register-start": 1720.800000011921,
+    "late-register-end": 1722.199999988079,
+    "hostiles-ready": 1767,
+    "bg-foliage-end": 15250,
+    "ready": 16887.899999976158,
+    "region-ready": 16887.899999976158
+  },
+  "streaming": {
+    "blocks": 1035,
+    "worstInstallMs": 3.399999976158142,
+    "backgroundWorstInstallMs": 3.399999976158142,
+    "backgroundSlowest": {
+      "name": "Horizon rock",
+      "triangles": 4096
+    },
+    "totalInstallMs": 806.1999999284744,
+    "allocatedBytes": 210049236,
+    "allocatedRecords": 71,
+    "initialAllocatedBytes": 16259292,
+    "initialAllocatedRecords": 5
+  },
+  "enemies": 7,
+  "foliage": 117242,
+  "audio": {
+    "ready": true,
+    "initializing": false,
+    "state": "running",
+    "played": 1,
+    "lavaPlayed": 0,
+    "error": null,
+    "duration": 1.9623958333333333
+  },
+  "muted": true,
+  "player": {
+    "facing": -3.6107999999999962,
+    "grounded": true,
+    "vy": 0,
+    "support": 2,
+    "speed": 0,
+    "vx": 0,
+    "vz": 0,
+    "castBlend": 0,
+    "jumps": 0,
+    "landings": 1,
+    "recoveries": 0,
+    "jumpInFlight": false,
+    "airTime": 0,
+    "position": {
+      "x": -10.285147500557455,
+      "y": 3.1601288556274363,
+      "z": 70.7189565179607
+    },
+    "usingPhysics": true,
+    "colliders": {
+      "meshCount": 717,
+      "boxCount": 678,
+      "skipped": 0,
+      "animatedCount": 7
+    },
+    "capsuleHeight": 2.0101999999999998,
+    "animated": [
+      {
+        "id": "grave-shade-1",
+        "enabled": true,
+        "radius": 0.4368,
+        "pose": {
+          "x": 3.2291013032694726,
+          "y": 1.3449196276162902,
+          "z": 16.424685330416224
+        }
+      },
+      {
+        "id": "grave-shade-2",
+        "enabled": true,
+        "radius": 0.40319999999999995,
+        "pose": {
+          "x": -4.065349429732733,
+          "y": 1.6795486201350054,
+          "z": 30.44979238761857
+        }
+      },
+      {
+        "id": "grave-shade-3",
+        "enabled": true,
+        "radius": 0.462,
+        "pose": {
+          "x": -8.310456543621399,
+          "y": 2.3391837082923352,
+          "z": 62.177059450851225
+        }
+      },
+      {
+        "id": "grave-shade-4",
+        "enabled": true,
+        "radius": 0.42,
+        "pose": {
+          "x": -9.848720895749976,
+          "y": 2.662044270962487,
+          "z": 68.59184724933067
+        }
+      },
+      {
+        "id": "town-wraith-1",
+        "enabled": true,
+        "radius": 0.4326,
+        "pose": {
+          "x": 1.9606196128156506,
+          "y": 5.273329330985024,
+          "z": 88.44647810382624
+        }
+      },
+      {
+        "id": "town-wraith-2",
+        "enabled": true,
+        "radius": 0.4074,
+        "pose": {
+          "x": -3.039797000653756,
+          "y": 5.81806736694072,
+          "z": 108.30649975526632
+        }
+      },
+      {
+        "id": "town-wraith-3",
+        "enabled": true,
+        "radius": 0.441,
+        "pose": {
+          "x": 0.6272381729335896,
+          "y": 8.460443676636178,
+          "z": 123.40496654252414
+        }
+      }
+    ]
+  },
+  "input": {
+    "forward": 0,
+    "turn": 0,
+    "strafe": 0,
+    "lookX": 0,
+    "lookY": 0,
+    "zoomDelta": 0,
+    "looking": false,
+    "lmb": false,
+    "rmb": false,
+    "lmbDrag": false,
+    "rmbDrag": false,
+    "walk": false,
+    "jump": false,
+    "autorun": false,
+    "pointerLocked": false,
+    "castInstant": false,
+    "castHold": false,
+    "spellPressed": 0,
+    "attackPressed": false,
+    "spellHeld2": false,
+    "tabPressed": false,
+    "tabBack": false,
+    "toggleBag": false,
+    "togglePaper": false,
+    "toggleHint": false,
+    "heightUp": false,
+    "heightDown": false,
+    "cycleSkin": false,
+    "toggleHelm": false,
+    "unequipHelm": false,
+    "escape": false,
+    "clicked": false,
+    "clickX": 0,
+    "clickY": 0,
+    "faceCamera": false,
+    "castSpell": null
+  },
+  "body": {
+    "phase": "loco",
+    "jump": "",
+    "castingShoot": false,
+    "melee": false,
+    "meleeElapsed": 0,
+    "meleeRelease": 0.5,
+    "holdWeapon": false,
+    "castElapsed": 1.4008000000119205,
+    "castReleaseTime": 0.55,
+    "castLegWeight": 1,
+    "channeling": false,
+    "channelPhase": "",
+    "channelBlocked": false,
+    "gaitPhase": 0.9507991967857055,
+    "gaitFrequency": 0,
+    "locoName": "Idle_Loop",
+    "backing": false,
+    "strafing": false
+  },
+  "recording": true,
+  "nativeAudio": {
+    "startedEpochSeconds": 1791419238.5221999,
+    "mimeType": "audio/webm;codecs=opus",
+    "microphone": false,
+    "source": "Lite game master mix",
+    "videoFirstFrameEpochSeconds": 1791419233.674921,
+    "offsetSeconds": 4.847278833389282
+  },
+  "errors": []
+}
