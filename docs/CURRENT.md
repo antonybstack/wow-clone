@@ -1,8 +1,25 @@
 # Ashen Reach — current state
 
-Updated **2026-10-08**. Read this before choosing work. The latest user request
+Updated **2026-10-09**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
+**G02 is complete:** Vaelmark now has paired recessed lancets, projecting portal
+shoulders, warm stone trim and a genuinely pointed entrance crown. Cathedral
+geometry drops to 53,398 render / 13,556 collision triangles; required near bytes
+remain exact. Source **990bb4a** is committed/pushed. All 46 focused CPU checks,
+six local Havok return routes, 649 served checks, 18 public developer destinations
+and the public ordinary bridge/nave/return pass without errors or recoveries.
+Separate M1 Max/uncapped Chromium WebGPU/1280×720/DPR1/seven-enemy measurements,
+three 12-second runs on each of five routes, observe **193.8–232.7 FPS**, p99≤6.4 ms,
+worst≤9.4 ms, zero intervals over 16.67 ms or pacing flags. These are local RAF
+throughput measurements, not a controlled production comparison.
+[Actual results and captures](baselines/g02-approach-2026-10-09/README.md).
+[Sealed desktop preview](https://a14e927b.fardel.pages.dev/?dev&play&at=cathedral-bridge);
+root-reviewed live motion is Telegram **894** and
+[identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/approach.mp4).
+Production remains unchanged under its separate startup hold. **G03 regional
+exploration is next** under the active eight-hour goal.
+
 Developer navigation now has a separate safe-route boundary, independent of
 optional grass/texture/NPC work. The compatibility worker splits geometry from
 grass; prepared exact geometry streams through native HTTP decoding and existing
@@ -27,8 +44,8 @@ motion is Telegram **893** and
 [identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/region-readiness/2026-10-09/navigation.mp4).
 Production 5723a4ab / 7d00c56 is verified unchanged under its independent hold.
 Every root-owned game context, harness/browser, preview/comparison server and
-review tab is closed; unrelated user sessions are preserved. **G02 bridge/portal
-composition resumes next**, under the active eight-hour Gothic goal.
+review tab is closed; unrelated user sessions are preserved. Readiness is complete
+for this declared desktop preview scope; G02 is recorded above.
 The reported castle click-teleport defect is corrected on the new preview: the old terrain
 height march ignored architecture. The replacement uses Lite's native screen
 ray and a self-filtered Havok query against the nearest physical surface.
@@ -77,9 +94,9 @@ runs each, no pacing flags, p99≤6.5 ms. One undercroft interval is **21.3 ms**
 all other worst frames≤13.6 ms. It is retained as a tail follow-up, not hidden.
 Required near packet remains exact; optional skyline grows 89 bytes.
 Production remains unchanged under the separate startup release hold.
-The next focused slice is **G02: bridge/portal composition and masonry hierarchy**
-against the preserved Gothic references. Existing chapels/gallery/towers/parapet
-already exist; the [Gothic plan](plans/gothic-exploration/plan.md) owns this direction.
+G02 bridge/portal composition is complete above. Existing chapels/gallery/towers/
+parapet already exist; the [Gothic plan](plans/gothic-exploration/plan.md) owns
+G03 regional exploration next.
 The [mobile backlog](backlog/mobile-2026-10-08.md) preserves the user's known
 iPhone 14 Pro Max / iOS 26.7.1 / Safari / Low Power Mode off specifications,
 successful startup/walking/rotation/background-resume checks and the newly reported

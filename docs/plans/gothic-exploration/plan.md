@@ -1,7 +1,7 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-**G01 is complete locally and on a sealed preview; G02 is next.**
+**G01 and G02 are complete locally and on sealed previews; G03 is next.**
 [Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).
 Production promotion remains under its separate recorded startup gates.
 Existing chapels, upper gallery,
@@ -44,7 +44,11 @@ changes. Production promotion requires the existing sealed delivery gates.
 
 ## Following slices
 
-**G02 — Approach and silhouette.** Review the bridge-to-portal composition against
+**G02 — Approach and silhouette — complete 2026-10-09.**
+[Actual implementation, native routes, performance and reviewed motion](../../baselines/g02-approach-2026-10-09/README.md).
+Source 990bb4a / preview a14e927b: pointed portal, recessed lancets and warm trim,
+within reduced geometry budgets. The following preserves the acceptance scope.
+Review the bridge-to-portal composition against
 the cliff-cathedral and fortified-entrance references. Improve masonry hierarchy,
 portal depth and distinct roof/stone trim where live views demonstrate the gap.
 Retain bridge clearance, skyline and existing lighting budget.

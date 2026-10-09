@@ -76,8 +76,9 @@ source frames retain capture timestamps, with constant viewport/canvas/source
 dimensions. [Manifest](capture-manifest.json), [motion controls](motion-controls.json).
 VE serves `video/mp4`, exact SHA256 and a correct 206/1,024-byte range response;
 system curl verified TLS normally. [Public media receipt](ve-delivery.json).
-Telegram delivery and sealed-preview gates are pending this checkpoint; actual
-Telegram application fullscreen remains unverified.
+Telegram **894** returns matching 1280×720 dimensions and 37.398-second duration.
+[Sanitized delivery receipt](telegram-delivery.json). Actual Telegram application
+fullscreen remains unverified; returned metadata alone does not establish playback.
 
 [Grok 4.6/high source review](source-review-first-iteration.md) independently
 checks generated arch joints, recesses, outward surfaces and doorway clearance.
@@ -96,13 +97,21 @@ no policy changed, and no ignored personal skill directory is force-added.
 
 ## Release and ownership
 
-The implementation is locally verified. Seal/public preview, Telegram ledger and
-terminal cleanup are the remaining delivery steps. Production stays under its
-independent startup hold. G03 regional exploration is next under the active goal.
+Implementation **990bb4a** is committed/pushed. The [sealed preview](https://a14e927b.fardel.pages.dev/?dev&play&at=cathedral-bridge)
+serves all **649** checked assets correctly, including 323 declared cache-policy
+checks. All 18 public developer destinations and the normal bridge/portal/nave/return
+circuit pass with Havok active, zero recovery teleports and no runtime/GPU errors.
+[Seal](preview-seal.json), [served checks](served-preview.json),
+[destinations](public-destinations.json), [ordinary approach](public-approach.json).
+All six native public surface clicks and elevated Fly-off also pass, with no
+errors or recoveries ([surface receipt](public-surfaces.json)).
+Production **5723a4ab / 7d00c56** remains unchanged under its independent startup
+hold ([native deployment receipt](production-unchanged.json)). G03 regional
+exploration is next under the active goal.
 
-Root owns Chrome50982/CDP10037, Vite50933+50957/5873 and the final compiled server
-26044/7074. All native contexts close in `finally`; earlier compiled server83111
+Root-owned Chrome50982/CDP10037, Vite50933+50957/5873 and final compiled server
+26044/7074 are stopped after the public checks. All native contexts close in `finally`; earlier compiled server83111
 was stopped after rebuilding. Media31201/7077 and owned Edge1147996127 are closed.
 Grok72902 and its MCP children exited. The first preparation74724 and final17458
 completed. User Edge15 tabs, regular Chrome New Tab, Orca and unrelated Vite4000
-10171+10205 remain intact. Final teardown/accounting follows publication.
+10171+10205 remain intact. No owned game renderer remains at G02 closeout.
