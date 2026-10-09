@@ -159,5 +159,6 @@ export function attachDevTools({params, canvas, camera, player, getCombat, setVi
     },
     get navigationReady() { return isAlive() && isNavigationReady(); },
     get regionReady() { return isAlive() && isRegionReady(); },
+    get regionProgress() { return world.streaming?.progress??null; },
     destinationURL: id => devDestinationURL(location.href, id)};
 }

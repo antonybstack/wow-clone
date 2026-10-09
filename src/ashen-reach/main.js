@@ -744,7 +744,11 @@ async function main(){
   const regionP=(async()=>{
    if(world.startRegion){
     for(;;){
-     try{await world.startRegion(player,{onNavigationReady:navigationReady});break;}
+     try{await world.startRegion(player,{onNavigationReady:navigationReady,onProgress:progress=>{
+      if(backgroundDisposed||deviceLost)return;
+      backgroundStatus.progress(progress);
+      if(menu.isOpen)menu.refreshDevTools();
+     }});break;}
      catch(error){if(backgroundDisposed||deviceLost||error.reloadRequired)throw error;ashen.backgroundError=error.message;await backgroundStatus.retry(error);void startSkyline();}
     }
     delete ashen.backgroundError;world.retireProxies();shadows.setWorld(world);delete ashen.skylineError;

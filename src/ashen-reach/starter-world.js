@@ -31,6 +31,7 @@ import { yieldToFrame } from "./frame-budget.js";
 import {withStartupResource} from './startup-fetch.js';
 import {startupMark} from './startup-trace.js';
 import {readRegionBlocks,createBlockCompletion,validateRegionCore} from './region-stream.js';
+import {createRegionProgressReporter} from './region-progress.js';
 
 const ROOT = "/ashen-reach/startup/starter/";
 async function checkedFetch(url, options) {
@@ -474,10 +475,14 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
           return foliage;
         }));
     },
-    startRegion(player, {onNavigationReady=()=>{}}={}) {
+    startRegion(player, {onNavigationReady=()=>{},onProgress=()=>{}}={}) {
       if (disposed)
         return Promise.reject(Error("Scene disposed during region load"));
-      return (regionPromise ??= loadRegion(player, onNavigationReady).catch((error) => {
+      const report=createRegionProgressReporter(progress=>{
+        if(disposed)return;
+        streaming.progress=progress;onProgress(progress);
+      });
+      return (regionPromise ??= loadRegion(player, onNavigationReady,report).catch((error) => {
         regionPromise = null;
         throw error;
       }));
@@ -549,7 +554,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       proxyRequirements.clear();
     },
   };
-  async function loadRegion(player, onNavigationReady) {
+  async function loadRegion(player, onNavigationReady,reportProgress) {
     // A visible temporary railing and Havok boundary prevent walking onto a
     // surface whose collision has not arrived. No coordinate clamps or teleports.
     if (!gates && !navigationComplete) {
@@ -591,7 +596,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       gateMesh = gateBatch.commit(engine, scene, mats[2], m.lights);
       gates = player.installStaticColliders(gateEntries);
     }
-    if(manifest.geometry.region)return loadPreparedRegion(player,onNavigationReady);
+    if(manifest.geometry.region)return loadPreparedRegion(player,onNavigationReady,reportProgress);
     const queue = [];
     let geometryDone = navigationComplete, done = false,
       error = null;
@@ -665,13 +670,17 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       worker = null;
     }
   }
-  async function finishNavigation(player,onNavigationReady){
+  async function finishNavigation(player,onNavigationReady,reportProgress=()=>{}){
     if(navigationComplete)return;
     let boxStart=performance.now();
+    const total=manifest.boxes.filter(entry=>!intersectsStart(entry)).length;
+    const progress=()=>reportProgress({phase:'supports',processed:installedBoxes.size,total});
+    progress();
     for(const [index,entry]of manifest.boxes.entries()){
       if(intersectsStart(entry)||installedBoxes.has(index))continue;
       if(disposed)throw Error('Scene disposed during collision load');
       player.installStaticColliders([entry]);colliders.push(entry);installedBoxes.add(index);
+      progress();
       if(performance.now()-boxStart>=1){await yieldToFrame();boxStart=performance.now();}
     }
     if(disposed)throw Error('Scene disposed during collision load');
@@ -679,7 +688,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
     navigationComplete=true;
     startupMark('region-collision-installed');onNavigationReady();
   }
-  async function loadPreparedRegion(player,onNavigationReady){
+  async function loadPreparedRegion(player,onNavigationReady,reportProgress){
     regionAbort=new AbortController();
     const options={signal:regionAbort.signal,priority:'low'};
     const readPacket=async packet=>{
@@ -696,6 +705,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       // importer, geometry generator or physics path runs in the background.
       // https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#priority
       if(!preparedRegionIndex)startupMark('region-index-request');
+      reportProgress({phase:'index'});
       const index=preparedRegionIndex??JSON.parse(new TextDecoder().decode(await readPacket(manifest.geometry.region)));
       if(index.schema!==1||JSON.stringify(index.meshes)!==JSON.stringify(manifest.meshes))
         throw Object.assign(Error('Prepared region and starting world versions differ; reload after rebuilding starting assets'),{reloadRequired:true});
@@ -704,8 +714,11 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       if(coreLoading){
         try{validateRegionCore(index);}catch(error){throw Object.assign(error,{reloadRequired:true});}
       }
-      const consume=async(packet,{markFirst=false}={})=>{
+      const consume=async(packet,{markFirst=false,phase='surfaces'}={})=>{
         if(packet.compression!=='http-br')throw Error('Unsupported prepared region packet');
+        let processed=0;
+        const progress=()=>reportProgress({phase,processed,total:packet.blocks.length,encodedBytes:packet.encodedBytes});
+        progress();
         const url=ROOT+packet.file,response=await checkedFetch(url,options);
         await withStartupResource(url,'region decoding',async()=>{
           let started=performance.now(),first=true;
@@ -713,6 +726,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
             if(disposed)throw Error('Scene disposed during region load');
             if(first){if(markFirst)startupMark('region-geometry-first-block');first=false;}
             install(block,player);
+            processed++;progress();
             if(performance.now()-started>=1){await yieldToFrame();started=performance.now();}
           }
         });
@@ -726,25 +740,27 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
           throw Error('Prepared region core left an incomplete surface');
         startupMark('region-geometry-arrived');
         startupMark('region-geometry-installed');
-        await finishNavigation(player,onNavigationReady);
+        await finishNavigation(player,onNavigationReady,reportProgress);
       }
       // The developer candidate keeps every physical surface and reduced tree
       // in core; optional full trees never own navigation. A late failure retries
       // only unfinished detail, preserving live collision and completed fallbacks.
       // https://developer.mozilla.org/en-US/docs/Web/API/Response/body
       if(coreLoading&&!regionDetailComplete){
-        await consume(index.experimentalCore.detail);
+        await consume(index.experimentalCore.detail,{phase:'detail'});
         if(disposed)throw Error('Scene disposed during region detail load');
         regionDetailComplete=true;startupMark('region-detail-installed');
       }
       // Grass cannot compete for bandwidth with safe routes. A late failure
       // retries only this packet, keeping collision, open gates and jumps intact.
+      reportProgress({phase:'foliage'});
       await readPacket(index.foliage).then(bytes=>{
         api.preparedFoliage=Object.fromEntries(Object.entries(index.foliage.pools).map(([name,pool])=>[
           name,{count:pool.count,tiles:pool.tiles.map(tile=>({...tile,...readBlock(tile,bytes)}))},
         ]));
         startupMark('region-foliage-arrived');
       });
+      reportProgress({phase:'finishing'});
     }finally{regionAbort?.abort();regionAbort=null;}
   }
   api.upgradeTextures = async () => {

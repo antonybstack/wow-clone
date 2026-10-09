@@ -2,6 +2,7 @@
  * Esc game-menu hub. Hidden until opened. Parent wires createGameMenu from main.js.
  */
 import { setInputEnabled } from "../input.js";
+import { regionProgressLabel } from './region-progress.js';
 
 const UNLOCK_GUARD_MS = 200;
 
@@ -191,11 +192,23 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     const ready = enabled && !!tools?.navigationReady;
     destinationSelect.disabled = !destinations.length || !enabled;
     root.querySelector('[data-action="jump"]').disabled = !ready || !destinationSelect.value;
-    root.querySelector('[data-dev-status]').textContent = ready
+    const devStatus=root.querySelector('[data-dev-status]');
+    let status = ready
       ? tools.regionReady
         ? "Region ready. Jumps return to ordinary walking."
         : "Routes ready. Details are still loading; jumps return to ordinary walking."
       : "Waiting for route geometry and collision before jumping…";
+    const progress=tools?.regionProgress;
+    if(!tools?.regionReady&&progress) {
+      status+=` ${regionProgressLabel(progress)}`;
+    }
+    if(devStatus.dataset.phaseText!==status) {
+      devStatus.dataset.phaseText=status;
+      const count=document.createElement('span');count.setAttribute('aria-hidden','true');count.setAttribute('aria-live','off');
+      devStatus.replaceChildren(document.createTextNode(status),count);
+    }
+    devStatus.lastElementChild.textContent=!tools?.regionReady&&progress?.total>0
+      ? ` ${progress.processed} / ${progress.total} ${progress.phase==='supports'?'supports':'ranges'} processed.`:'';
     destinationLink.value = enabled && destinationSelect.value ? tools.destinationURL(destinationSelect.value) : "";
     root.querySelector('[data-region-loading-mode]').textContent=tools?.regionCoreLoading
       ? 'Region loading: physical surfaces and reduced trees first. Full tree detail loads afterwards.'
