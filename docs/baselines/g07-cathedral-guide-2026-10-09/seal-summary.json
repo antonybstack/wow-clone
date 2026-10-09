@@ -1,0 +1,26 @@
+{
+  "scope": "G07 ordinary cathedral route/floor guide; functional desktop only; isolated FPS acceptance and production hold remain",
+  "createdAt": "2026-10-09T12:47:20.795Z",
+  "source": {
+    "head": "80ce579964c0f49ef6d2bfb305747462d1fa4b00",
+    "productPaths": [
+      "src",
+      "public",
+      "scripts",
+      "ashen-reach.html",
+      "body-preview.html",
+      "character-crowd-probe.html",
+      "character-lab.html",
+      "index.html",
+      "vite.config.js",
+      "package.json",
+      "package-lock.json"
+    ],
+    "productInputsSha256": "7a8fb69db7d4e8b43ae723982cbc117041ad41671274850834e51aa8866d0144",
+    "productInputFiles": 1252,
+    "uncommittedProductInputs": 6
+  },
+  "fileCount": 648,
+  "totalBytes": 399197622,
+  "sealSha256": "884424b9d19c079ed9f7c7dde3c62c8a1b1ea73fa822417799525945f577a0e1"
+}

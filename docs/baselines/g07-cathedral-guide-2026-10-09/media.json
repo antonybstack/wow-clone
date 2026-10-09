@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "devicePixelRatio": 1,
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "cssWidth": 1280,
+    "cssHeight": 720
+  },
+  "elapsedSeconds": 20.55269718170166,
+  "sourceFrame": {
+    "width": 1280,
+    "height": 720
+  },
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 20.552448,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "receivedFrames": 511,
+  "reorderedFrames": 0,
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/cathedral-guide.mp4",
+  "sha256": "b1a66c84a411711371ce1998801a4a142e33483a68788564b7b0590a208dd46a",
+  "bytes": 4687978,
+  "httpStatus": 200,
+  "mime": "video/mp4",
+  "rangeStatus": 206,
+  "rangeBytes": 1024,
+  "telegramAppPlayback": "unverified",
+  "telegram": 900,
+  "directPlayback": "root reviewed local/public playback through end without video error; public fragment6s also played"
+}

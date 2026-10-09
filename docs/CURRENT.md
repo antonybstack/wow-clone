@@ -54,14 +54,19 @@ climb/guards pass locally/publicly. All651 served artifacts pass. Both G06 FPS a
 candidate paired timing/settled performance must qualify before acceptance/adoption.
 [Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
-**G07 Vaelmark exploration guide is implemented; desktop delivery in progress.**
+**G07 Vaelmark exploration guide is pushed as 139c2d5 on a functional desktop preview.**
+[Preview](https://f56f0786.fardel.pages.dev), Telegram **900** /
+[reviewed VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/cathedral-guide.mp4).
 Ordinary Menu → Region map → Vaelmark exploration offers five route/level views,
 matching player position, connection directions and bell ascent diagrams. It uses
 existing metadata/menu/Canvas2D with no new assets or frame hook. Ten CPU checks,
 six physical views, ordinary focus/pause/selection/walking/disposal, retained
-region/minimap guidance and twenty developer landings pass locally.
+region/minimap guidance and twenty developer landings pass locally. Final public
+guide/physical views/map controls pass;651 served checks pass.
 [G07 scope/evidence](baselines/g07-cathedral-guide-2026-10-09/README.md).
 Its isolated FPS acceptance remains pending; source work does not waive the gate.
+Next independent work: [G08 live region-loading progress](plans/gothic-exploration/g08-region-progress-2026-10-09.md),
+answering the opaque collision-wait message with actual processing phases/counts.
 
 ## Completed desktop previews
 
@@ -133,7 +138,9 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03/G04/G05/G06 and region-core candidate owned contexts/harnesses are closed.
+G03/G04/G05/G06/G07 and region-core candidate owned contexts/harnesses are closed.
+G07 Chrome33002/CDP10037, Vite32939+32977/5873, compiled55608/7074 and
+media67439/7077 stopped; review1147996186/6190 tabs closed.
 Candidate Chrome74078/CDP10037, Vite74043+74067/5873, compiled88134/7074 and
 media128/7077 are stopped; review1147996174/6178/6182 tabs closed. Latest G06 Chrome38823 / CDP10037,
 Vite38794+38818 /5873 and compiled68298 /7074 are stopped. All review/media/Grok,
