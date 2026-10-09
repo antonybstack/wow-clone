@@ -3,6 +3,11 @@
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
+The developer navigation wait is now diagnosed: its “region collision” label
+gates on full region completion. Most observed delay comes from runtime worker
+generation and frame-sliced geometry installation, rather than Havok cooking.
+[Measured phase split and staged correction plan](plans/gothic-exploration/region-readiness-2026-10-08.md).
+This investigation changes no runtime behavior; owned diagnostic instances are closed.
 The reported castle click-teleport defect is corrected on the new preview: the old terrain
 height march ignored architecture. The replacement uses Lite's native screen
 ray and a self-filtered Havok query against the nearest physical surface.

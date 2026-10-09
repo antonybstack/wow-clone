@@ -9,6 +9,12 @@ The normal fast-start route presents the selected supported Human silhouette and
 
 Primary code: `src/ashen-reach/main.js`, `starter-world.js`, `startup-assets.js`, `startup-fetch.js`, `startup-appearance.js`, `startup-preload.js`, `startup-trace.js`, and the equipment loader/stream. The main-route packs select actual Human/Orc/Undead manifests. Do not infer active source meshes from old profile labels.
 
+The current developer **“waiting for region collision”** message actually gates
+on complete `regionReady`, including foliage, textures and NPCs. A bounded native
+diagnostic separates worker preparation, frame-sliced geometry installation,
+grass generation and final box collision from synchronous Havok work. See the
+[region-readiness findings and proposed correction sequence](plans/gothic-exploration/region-readiness-2026-10-08.md).
+
 ## Reproducible assets and measurements
 
 `scripts/ashen-reach/prepare-starter-character.mjs` derives compact assets from the current Human equipment body and selected starter clothes. It preserves geometry/bind/animation and prepares smaller initial textures with deferred full texture URLs. `prepare-starter-world.mjs` builds deterministic nearby/region payloads. Existing provenance/hash validation guards stale prepared assets.

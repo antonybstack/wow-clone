@@ -1,0 +1,670 @@
+{
+  "trace": {
+    "phases": {
+      "startNearbyFoliage-start": 18077.899999976158,
+      "startRegion-start": 504.39999997615814,
+      "worker-created": 506.39999997615814,
+      "startNearbyFoliage-end": 18078.19999998808,
+      "worker-header": 4239.800000011921,
+      "worker-first-batch": 4239.899999976158,
+      "worker-last-batch": 17127.5,
+      "worker-last-ack": 17193.30000001192,
+      "worker-foliage": 17981.899999976158,
+      "worker-done": 17982,
+      "startRegion-end": 18076.899999976158,
+      "startFoliage-start": 18077.899999976158,
+      "upgradeTextures-start": 18077.899999976158,
+      "startFoliage-end": 18176.099999964237,
+      "upgradeTextures-end": 18459.399999976158
+    },
+    "worker": {
+      "records": [
+        {
+          "name": "Earth",
+          "world": true,
+          "collision": true,
+          "triangles": 46080
+        },
+        {
+          "name": "Grave stonework",
+          "world": true,
+          "collision": false,
+          "triangles": 17153
+        },
+        {
+          "name": "Rotten fence",
+          "world": true,
+          "collision": false,
+          "triangles": 848
+        },
+        {
+          "name": "Bare woodland",
+          "world": true,
+          "collision": false,
+          "triangles": 49126
+        },
+        {
+          "name": "Bell towers",
+          "world": true,
+          "collision": false,
+          "triangles": 812
+        },
+        {
+          "name": "Lantern glass",
+          "world": true,
+          "collision": false,
+          "triangles": 204
+        },
+        {
+          "name": "Carved epitaphs",
+          "world": true,
+          "collision": false,
+          "triangles": 236
+        },
+        {
+          "name": "Warm lantern",
+          "world": true,
+          "collision": false,
+          "triangles": 1562
+        },
+        {
+          "name": "Shadowed lantern glass",
+          "world": true,
+          "collision": false,
+          "triangles": 240
+        },
+        {
+          "name": "Vaelmark masonry",
+          "world": true,
+          "collision": false,
+          "triangles": 12126
+        },
+        {
+          "name": "Horizon rock",
+          "world": true,
+          "collision": false,
+          "triangles": 4288
+        },
+        {
+          "name": "Region slate roofs",
+          "world": true,
+          "collision": false,
+          "triangles": 468
+        },
+        {
+          "name": "Vaelmark cathedral",
+          "world": true,
+          "collision": false,
+          "triangles": 58288
+        },
+        {
+          "name": "Vaelmark roof",
+          "world": true,
+          "collision": false,
+          "triangles": 578
+        },
+        {
+          "name": "Vaelmark foundation",
+          "world": true,
+          "collision": false,
+          "triangles": 408
+        },
+        {
+          "name": "Woodland -1,-3 full",
+          "world": true,
+          "collision": false,
+          "triangles": 18600
+        },
+        {
+          "name": "Woodland -1,-3 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 5870
+        },
+        {
+          "name": "Woodland 0,-3 full",
+          "world": true,
+          "collision": false,
+          "triangles": 21080
+        },
+        {
+          "name": "Woodland 0,-3 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 6662
+        },
+        {
+          "name": "Woodland -1,-2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 42160
+        },
+        {
+          "name": "Woodland -1,-2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 13376
+        },
+        {
+          "name": "Woodland 1,-3 full",
+          "world": true,
+          "collision": false,
+          "triangles": 1240
+        },
+        {
+          "name": "Woodland 1,-3 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 396
+        },
+        {
+          "name": "Woodland 0,-2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 45880
+        },
+        {
+          "name": "Woodland 0,-2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 14510
+        },
+        {
+          "name": "Woodland -2,-2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 26040
+        },
+        {
+          "name": "Woodland -2,-2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 8258
+        },
+        {
+          "name": "Woodland 1,-2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 39680
+        },
+        {
+          "name": "Woodland 1,-2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 12544
+        },
+        {
+          "name": "Woodland -3,-2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 2480
+        },
+        {
+          "name": "Woodland -3,-2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 784
+        },
+        {
+          "name": "Woodland -3,-1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 12400
+        },
+        {
+          "name": "Woodland -3,-1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 3932
+        },
+        {
+          "name": "Woodland -2,-1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 50840
+        },
+        {
+          "name": "Woodland -2,-1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 16112
+        },
+        {
+          "name": "Woodland 1,-1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 14880
+        },
+        {
+          "name": "Woodland 1,-1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 4704
+        },
+        {
+          "name": "Woodland 2,-1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 17360
+        },
+        {
+          "name": "Woodland 2,-1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 5482
+        },
+        {
+          "name": "Woodland -2,0 full",
+          "world": true,
+          "collision": false,
+          "triangles": 34720
+        },
+        {
+          "name": "Woodland -2,0 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 11002
+        },
+        {
+          "name": "Woodland 1,0 full",
+          "world": true,
+          "collision": false,
+          "triangles": 73160
+        },
+        {
+          "name": "Woodland 1,0 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 23170
+        },
+        {
+          "name": "Woodland 0,0 full",
+          "world": true,
+          "collision": false,
+          "triangles": 3720
+        },
+        {
+          "name": "Woodland 0,0 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 1172
+        },
+        {
+          "name": "Woodland 2,0 full",
+          "world": true,
+          "collision": false,
+          "triangles": 16120
+        },
+        {
+          "name": "Woodland 2,0 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 5110
+        },
+        {
+          "name": "Woodland -3,0 full",
+          "world": true,
+          "collision": false,
+          "triangles": 31000
+        },
+        {
+          "name": "Woodland -3,0 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 9800
+        },
+        {
+          "name": "Woodland 1,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 52080
+        },
+        {
+          "name": "Woodland 1,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 16440
+        },
+        {
+          "name": "Woodland -3,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 17360
+        },
+        {
+          "name": "Woodland -3,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 5496
+        },
+        {
+          "name": "Woodland -2,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 39680
+        },
+        {
+          "name": "Woodland -2,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 12560
+        },
+        {
+          "name": "Woodland 2,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 17360
+        },
+        {
+          "name": "Woodland 2,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 5482
+        },
+        {
+          "name": "Woodland -1,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 27280
+        },
+        {
+          "name": "Woodland -1,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 8628
+        },
+        {
+          "name": "Woodland 0,1 full",
+          "world": true,
+          "collision": false,
+          "triangles": 43400
+        },
+        {
+          "name": "Woodland 0,1 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 13734
+        },
+        {
+          "name": "Woodland -2,2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 23560
+        },
+        {
+          "name": "Woodland -2,2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 7472
+        },
+        {
+          "name": "Woodland -1,2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 13640
+        },
+        {
+          "name": "Woodland -1,2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 4332
+        },
+        {
+          "name": "Woodland 0,2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 24800
+        },
+        {
+          "name": "Woodland 0,2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 7852
+        },
+        {
+          "name": "Woodland 1,2 full",
+          "world": true,
+          "collision": false,
+          "triangles": 32240
+        },
+        {
+          "name": "Woodland 1,2 reduced",
+          "world": true,
+          "collision": false,
+          "triangles": 10216
+        },
+        {
+          "name": "Far earth",
+          "world": true,
+          "collision": true,
+          "triangles": 171316
+        },
+        {
+          "name": "Physical mountain terrain",
+          "world": true,
+          "collision": true,
+          "triangles": 117890
+        },
+        {
+          "name": "Region structure collision",
+          "world": false,
+          "collision": true,
+          "triangles": 7752
+        },
+        {
+          "name": "Region routes and perimeter collision",
+          "world": false,
+          "collision": true,
+          "triangles": 9346
+        },
+        {
+          "name": "Vaelmark collision",
+          "world": false,
+          "collision": true,
+          "triangles": 14600
+        }
+      ],
+      "batches": 1032,
+      "acknowledgements": 1032,
+      "recordsSummary": {
+        "records": 74,
+        "renderTriangles": 1459479,
+        "collisionTriangles": 366984
+      }
+    },
+    "collision": {
+      "calls": 1369,
+      "entries": 1372,
+      "totalMs": 544.8000001907349,
+      "boxes": 653,
+      "meshes": 719
+    }
+  },
+  "startup": {
+    "begin": 217.89999997615814,
+    "havok-runtime-available": 232.39999997615814,
+    "engine-created": 238.89999997615814,
+    "gpu-probe-end": 240.5999999642372,
+    "world-start": 242.80000001192093,
+    "world-end": 273.30000001192093,
+    "havok-start": 274.5999999642372,
+    "havok-runtime-start": 276.0999999642372,
+    "havok-runtime-end": 276.0999999642372,
+    "havok-world-end": 278.39999997615814,
+    "havok-colliders-end": 285.80000001192093,
+    "havok-controller-end": 287.19999998807907,
+    "havok-end": 288.19999998807907,
+    "body-start": 288.30000001192093,
+    "body-end": 317.30000001192093,
+    "equipment-start": 318.5999999642372,
+    "equipment-end": 336.5,
+    "register-start": 341,
+    "register-end": 374.5999999642372,
+    "first-render-return": 382.0999999642372,
+    "supported-frame-submitted": 443.5999999642372,
+    "first-gpu-completed": 493,
+    "supported-frame-completed": 502.89999997615814,
+    "playable": 503.0999999642372,
+    "bg-start": 503.19999998807907,
+    "bg-imports-end": 601,
+    "bg-dummy-end": 632.8000000119209,
+    "bg-enemies-end": 732.0999999642372,
+    "combat-ready": 757.8999999761581,
+    "late-register-start": 784.3000000119209,
+    "late-register-end": 789.3000000119209,
+    "hostiles-ready": 859.5999999642372,
+    "bg-foliage-end": 18176.099999964237,
+    "ready": 18493.099999964237,
+    "region-ready": 18493.19999998808
+  },
+  "playableMs": 285.19999998807907,
+  "regionMs": 18275.400000035763,
+  "streaming": {
+    "blocks": 1040,
+    "worstInstallMs": 3,
+    "backgroundWorstInstallMs": 2.099999964237213,
+    "backgroundSlowest": {
+      "name": "Earth",
+      "triangles": 512
+    },
+    "totalInstallMs": 974.8000009655952,
+    "allocatedBytes": 211151988,
+    "allocatedRecords": 71,
+    "initialAllocatedBytes": 211151988,
+    "initialAllocatedRecords": 71
+  },
+  "gpuErrors": [],
+  "physics": {
+    "facing": 0,
+    "grounded": true,
+    "vy": 0,
+    "support": 2,
+    "speed": 0,
+    "vx": 0,
+    "vz": 0,
+    "castBlend": 0,
+    "jumps": 0,
+    "landings": 1,
+    "recoveries": 0,
+    "jumpInFlight": false,
+    "airTime": 0,
+    "position": {
+      "x": -0.0005119015016888158,
+      "y": 0.8881064473043166,
+      "z": -0.0009033555346127009
+    },
+    "usingPhysics": true,
+    "colliders": {
+      "meshCount": 721,
+      "boxCount": 678,
+      "skipped": 0,
+      "animatedCount": 7
+    },
+    "capsuleHeight": 1.748,
+    "animated": [
+      {
+        "id": "grave-shade-1",
+        "enabled": true,
+        "radius": 0.4368,
+        "pose": {
+          "x": 3.580394906355525,
+          "y": 1.324564865592879,
+          "z": 16
+        }
+      },
+      {
+        "id": "grave-shade-2",
+        "enabled": true,
+        "radius": 0.40319999999999995,
+        "pose": {
+          "x": -3.8894697155169853,
+          "y": 1.6477259811026683,
+          "z": 30
+        }
+      },
+      {
+        "id": "grave-shade-3",
+        "enabled": true,
+        "radius": 0.462,
+        "pose": {
+          "x": 2.928819246428747,
+          "y": 1.5673904652287836,
+          "z": 48
+        }
+      },
+      {
+        "id": "grave-shade-4",
+        "enabled": true,
+        "radius": 0.42,
+        "pose": {
+          "x": -1.652739280759643,
+          "y": 2.513678872972124,
+          "z": 62
+        }
+      },
+      {
+        "id": "town-wraith-1",
+        "enabled": true,
+        "radius": 0.4326,
+        "pose": {
+          "x": 1.7720018013288021,
+          "y": 4.909179606556347,
+          "z": 86
+        }
+      },
+      {
+        "id": "town-wraith-2",
+        "enabled": true,
+        "radius": 0.4074,
+        "pose": {
+          "x": -1.906665666750373,
+          "y": 6.13827632342876,
+          "z": 108
+        }
+      },
+      {
+        "id": "town-wraith-3",
+        "enabled": true,
+        "radius": 0.441,
+        "pose": {
+          "x": 1.0306760737604208,
+          "y": 8.924054821409728,
+          "z": 126
+        }
+      }
+    ]
+  },
+  "menu": "\n        Developer tools\n        Region ready. Jumps return to ordinary walking.\n        \n          Destination\n          Starting meadowVaelmark \u2014 bridge approachVaelmark \u2014 entranceVaelmark \u2014 naveVaelmark \u2014 West chapelVaelmark \u2014 East chapelVaelmark \u2014 upper galleryVaelmark \u2014 exterior parapetVaelmark \u2014 west bell landingVaelmark \u2014 east bell landingVaelmark \u2014 undercroftEastwatchWestwatchSouthwatchAsh TowerMoor TowerBell WatchHollowmere Chapel\n          Jump to destination\n          Spawn link \u2014 select and copy\n          \n          God mode: on\n          Fly mode: off\n          While flying, click a solid surface to teleport (floors, roofs or ground). G / F also toggle God / Fly.\n          Back\n        \n      ",
+  "url": "http://127.0.0.1:5873/ashen-reach.html?dev&play&clean&fastStart&pixelRatio=1",
+  "source": "1d4404c",
+  "errors": [],
+  "conditions": {
+    "viewport": "1280x720",
+    "pixelRatio": 1,
+    "headless": true,
+    "uncapped": false,
+    "httpCache": "fresh context; default enabled; OS/profile/Vite caches warm after harness bootstrap",
+    "network": "local Vite, no throttling",
+    "otherSessions": "User Edge and Chrome preserved; unrelated Vite 4000 retained. No machine-isolated benchmark claim.",
+    "instrumentation": "Native worker messages and existing world methods timed; no source edits, recording, geometry substitutions or altered yielding.",
+    "menu": "Opened Developer tools after playable; simulation paused by existing menu behavior, render loop/background work continue.",
+    "colliderTiming": "Sum of synchronous player.installStaticColliders calls after startRegion begins, including temporary gates and any parallel static installs. Excludes setupPlayer initial collision, initial Havok download, GPU completion and async frame waits.",
+    "phaseInterpretation": "Worker creation to header includes imports, region authoring and partitioning; header to last acknowledgement includes transfers, uploads, cooking and scheduling. No hardware GPU durations or pure worker CPU profile."
+  },
+  "ownership": {
+    "owner": "root",
+    "browserPid": 76169,
+    "gpuHelperPids": [
+      76175
+    ],
+    "cdpPort": 10037,
+    "url": "http://127.0.0.1:5873/ashen-reach.html?dev&play&clean&fastStart&pixelRatio=1",
+    "purpose": "One bounded region-loading phase diagnosis; no FPS or qualified cold-start claim",
+    "renderingClients": 0,
+    "active": false,
+    "browserStopped": true,
+    "vitePid": 76120,
+    "viteListenerPid": 76144,
+    "viteStopped": true
+  }
+}
