@@ -9,3 +9,11 @@ test('destination pads coincide with physical floor datum and remain finite',()=
  for(const l of REGION_LANDMARKS.filter(l=>l.kind==='keep'||l.kind==='tower'))assert(Math.abs(height(l.x,l.z)-(l.floorY-.1))<.0001,l.id);
  assert.equal(height(0,0),legacyHeight(0,0));
 });
+
+test('developer landmark facing points from the entrance into each destination',()=>{
+ for(const site of REGION_LANDMARKS.filter(l=>l.kind!=='cathedral')){
+  const [x,,z]=site.entrance,dx=site.x-x,dz=site.z-z;
+  assert(Math.sin(site.yaw)*dx+Math.cos(site.yaw)*dz>0,`${site.id} inward facing`);
+  assert(Math.abs(Math.sin(site.yaw)*dz-Math.cos(site.yaw)*dx)<1e-7,`${site.id} centred facing`);
+ }
+});

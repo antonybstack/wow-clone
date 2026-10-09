@@ -3,6 +3,21 @@
 Updated **2026-10-09**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
+**G03 is in progress locally:** the three keeps and detached towers have raised
+rear views and distinct wall-side crests/furnishings; Hollowmere has a restrained
+altar and corrected inward developer facing. The staged build and 58 focused
+checks pass; required near packet remains exact. The connected walk found and repaired a real east-fork ledge;
+both affected branches now enter and return with Havok active, no Fly and zero
+recoveries. The analogous west-fork ledge was confirmed and repaired; both west branches
+and Bell Watch pass normal-control returns. Hollowmere passes after ordinary
+combat clears its crowded doorway. Root-reviewed motion and fifteen isolated raw-interval windows pass:
+188.2–227.2 FPS, p99≤6.6 ms/worst13.8 ms, no pacing flags/errors/recoveries.
+Commit/sealed preview, full public circuit and Telegram/VE delivery are pending.
+Root owns Chrome86682/CDP10037, Vite86633+86657/5873 and compiled75390/7074;
+the harness is blank after measurement; public verification will own one context. [G03 scope](plans/gothic-exploration/g03-region-2026-10-09.md).
+[Following map and wall-walk slices](plans/gothic-exploration/next-slices-2026-10-09.md)
+are planned under the active goal and begin after G03 delivery.
+
 **G02 is complete:** Vaelmark now has paired recessed lancets, projecting portal
 shoulders, warm stone trim and a genuinely pointed entrance crown. Cathedral
 geometry drops to 53,398 render / 13,556 collision triangles; required near bytes

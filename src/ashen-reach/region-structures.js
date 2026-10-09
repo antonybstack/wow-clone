@@ -81,16 +81,17 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       const faces=[Array.from({length:sides},(_,i)=>i),...Array.from({length:sides},(_,i)=>[i,(i+1)%sides,sides])];
       solid(roof,vertices,faces,SLATE);solid(collisionBatch,vertices,faces,SLATE);
     };
-    const portal=(d,width,wallWidth,top,depth,spring,tip)=>{
+    const portal=(d,width,wallWidth,top,depth,spring,tip,bottom=0)=>{
       const half=width/2,jamb=(wallWidth-width)/2;
       for(const sign of [-1,1])box(sign*(half+jamb/2),top/2,d,jamb,top,depth);
+      if(bottom>0)box(0,bottom/2,d,width,bottom,depth);
       const inner=archPoints(half,spring,tip),outer=archPoints(half+.36,spring,tip+.36);
       for(let i=0;i<inner.length-1;i++){
         const a=inner[i],b=inner[i+1];
         prism([a,b,[b[0],top],[a[0],top]],depth,0,d);
         prism([a,b,outer[i+1],outer[i]],.42,0,d-depth/2-.15,TRIM);
       }
-      for(const sign of [-1,1])box(sign*(half+.18),spring/2,d-depth/2-.15,.36,spring,.42,TRIM);
+      for(const sign of [-1,1])box(sign*(half+.18),(spring+bottom)/2,d-depth/2-.15,.36,spring-bottom,.42,TRIM);
     };
     const crenels=(u,d,length,alongDepth=false,y=7)=>{
       const count=Math.floor(length/3);
@@ -114,6 +115,29 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
         ...Array.from({length:n},(_,i)=>[i,(i+1)%n,(i+1)%n+n,i+n])];
       solid(rock,vertices,faces,ROCK);solid(collisionBatch,vertices,faces,ROCK);
     };
+    // Pack original landmark reliefs into the existing Lite surface batches;
+    // there is no independent renderer, material, texture or update loop.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/10-mesh-generators.md
+    // Design/clearance: docs/plans/gothic-exploration/g03-region-2026-10-09.md
+    const motif=site.id==='north-tower'?'bell':site.id.startsWith('east')?'sun':site.id.startsWith('west')?'cross':'shield';
+    const crest=(u,y,d,r=1)=>{
+      if(motif==='sun'){
+        const disk=Array.from({length:8},(_,i)=>[Math.cos(i*Math.PI/4)*r*.53,y+Math.sin(i*Math.PI/4)*r*.53]);
+        prism(disk,.12,u,d,TRIM);
+        for(let i=0;i<8;i++){
+          const a=i*Math.PI/4,radial=(radius,offset=0)=>[Math.cos(a+offset)*radius,y+Math.sin(a+offset)*radius];
+          prism([radial(r*.70,-.11),radial(r),radial(r*.70,.11)],.10,u,d,TRIM);
+        }
+      }else if(motif==='cross'){
+        box(u,y,d,.20*r,1.9*r,.14,TRIM);box(u,y+.20*r,d,1.25*r,.20*r,.14,TRIM);
+      }else if(motif==='bell'){
+        prism([[-.48*r,y+.7*r],[.48*r,y+.7*r],[.70*r,y-.45*r],[-.70*r,y-.45*r]],.14,u,d,TRIM);
+        box(u,y-.66*r,d,.18*r,.25*r,.14,TRIM);
+      }else{
+        prism([[-.72*r,y+.85*r],[.72*r,y+.85*r],[.63*r,y-.22*r],[0,y-.95*r],[-.63*r,y-.22*r]],.14,u,d,TRIM);
+        box(u,y+.05*r,d-.10,.14*r,1.35*r,.08,DARK);
+      }
+    };
     if(site.kind==='keep'){
       support(32,40);
       box(0,-.15,0,32,.3,40,TRIM);box(0,-.15,-20,6,.3,4,TRIM);
@@ -134,7 +158,10 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       // Courtyard remains open; the hall has a separate three-metre portal.
       portal(-1.5,3,14,10,1,3.3,5.2);
       for(const sign of [-1,1])box(sign*6.5,5,7,1,10,18);
-      box(0,5,15.5,14,10,1);
+      // The raised lancet is a real view, not a bright pane pasted on a wall.
+      // Its 3.2 m solid sill leaves the ordinary centre lane and return protected.
+      portal(15.5,3,14,10,1,6.2,8.6,3.2);
+      for(const sign of [-1,1])crest(sign*5.9,4.4,-20.12,.85);
       prism([[-7.4,10],[0,15.4],[0,15.1],[-7.4,9.7]],18.8,0,7,SLATE,roof);
       prism([[0,15.4],[7.4,10],[7.4,9.7],[0,15.1]],18.8,0,7,SLATE,roof);
       for(const sign of [-1,1])for(const d of [0,6,12]){
@@ -152,14 +179,32 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       }
       // Restrained furnishings leave the central approach and return unobstructed.
       for(const sign of [-1,1])box(sign*4.5,.4,7,1.1,.8,5,DARK);
+      for(const sign of [-1,1]){
+        const u=sign*3.8;
+        if(motif==='sun'){
+          box(u,1.6,14.7,1.8,3.2,.75,DARK);box(u,3.3,14.65,2.1,.22,.95,TRIM);
+          box(u,4.1,14.65,.7,1.4,.55,[.72,.47,.20,0],glow);
+          for(const side of [-1,1])box(u+side*.48,4.05,14.65,.14,1.5,.70,TRIM);
+          prism([[-.7,4.82],[0,5.5],[.7,4.82]],.85,u,14.65,TRIM);
+        }else if(motif==='cross'){
+          box(sign*4.25,.50,11.7,1.9,1,3.1,DARK);
+          prism([[-1.05,.99],[-.82,1.20],[.82,1.20],[1.05,.99]],3.3,sign*4.25,11.7,TRIM);
+          crest(sign*4.25,2.05,13.6,.62);
+        }else{
+          box(u,2.9,14.85,2.2,3.1,.30,DARK);crest(u,3.0,14.62,1.0);
+          box(u,1.15,14.55,2.35,.25,.90,TRIM);
+        }
+      }
       destinations.push({...site,entrance:map(0,0,-20),courtyard:map(0,0,-10),hall:map(0,0,7),
-        interior:map(0,0,10),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
+        interior:map(0,0,10),motif,rearWindow:{bottom:3.2,spring:6.2,tip:8.6,width:3},footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
     }else{
       support(6,6);box(0,-.15,0,6,.3,6,TRIM);box(0,-.15,-3,4,.3,2,TRIM);
       const top=H*.78;
       portal(-2.6,3,6,top,.8,3,4.7);
       for(const sign of [-1,1])box(sign*2.6,top/2,0,.8,top,6);
-      box(0,top/2,2.6,6,top,.8);
+      portal(2.6,1.8,6,top,.8,4.5,6.6,2.8);
+      // The carved badge is below the rear opening; all sculpture stays on walls.
+      crest(0,1.65,2.10,.55);
       box(0,8.35,0,4.4,.3,4.4,DARK);
       for(const y of [H*.31,H*.57,top]){
         // A ring, not a full slab, preserves the entrance and chamber.
@@ -171,7 +216,7 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       pyramid(0,top,0,H*.45,4.15,6);
       for(const y of [H*.42,H*.60]){box(0,y,-3.025,.8,1.7,.1,DARK,roof);box(0,y,-3.09,.20,1.1,.035,LAMP,glow);}
       destinations.push({...site,entrance:map(0,0,-3),interior:map(0,0,.5),hall:map(0,0,.5),
-        footprint:{width:6,depth:6},gateWidth:3,topY:floorY+H*1.23});
+        motif,rearWindow:{bottom:2.8,spring:4.5,tip:6.6,width:1.8},footprint:{width:6,depth:6},gateWidth:3,topY:floorY+H*1.23});
     }
   }
   return {collisionBatch,destinations,triangles:batches.reduce((sum,b)=>sum+b.idx.length/3,0)-before,

@@ -1,0 +1,46 @@
+{
+  "near": {
+    "compression": "http-br",
+    "file": "near-ccb9dc565ff6.br",
+    "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+    "encodedBytes": 149963,
+    "rawBytes": 641752,
+    "blocks": 6,
+    "proxies": 1
+  },
+  "skyline": {
+    "compression": "http-br",
+    "file": "skyline-0ed9268d6872.br",
+    "sha256": "0ed9268d68724d0df9aaaa85034a7fe29212bdbb6e4a3c958da72603ceb51107",
+    "encodedBytes": 591819,
+    "rawBytes": 2667728,
+    "blocks": 2,
+    "proxies": 44
+  },
+  "regionIndex": {
+    "compression": "http-br",
+    "file": "region-index-33feb774740d.br",
+    "sha256": "33feb774740dd4eea62d68a9ea7c2f71a4554cd86b300e2e049293e3dbb0a4ac",
+    "encodedBytes": 80842,
+    "rawBytes": 1124763,
+    "files": 2
+  },
+  "region": {
+    "compression": "http-br",
+    "file": "region-049e28d264ad.br",
+    "sha256": "049e28d264adaa82f5add8da2f0f98e88c147a59bc0542bfd0f688201dbe883b",
+    "encodedBytes": 22411866,
+    "rawBytes": 157880480,
+    "blocks": 1036
+  },
+  "foliage": {
+    "compression": "http-br",
+    "file": "foliage-28ada63f5a13.br",
+    "sha256": "28ada63f5a130835b4f795a504e6d181f35153301b6de04fecda46b26a682f06",
+    "encodedBytes": 4413215,
+    "rawBytes": 9384880,
+    "pools": 6
+  },
+  "source": "Final G03 interiors and both fork repairs; prepare before staged build",
+  "nearExact": true
+}

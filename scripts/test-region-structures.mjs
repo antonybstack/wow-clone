@@ -98,3 +98,16 @@ test('invalid sites fail before modifying shared batches',()=>{
  const empty=create();assert.throws(()=>buildRegionStructures({...empty,groundHeight:()=>NaN,landmarks}),/finite/);
  assert(Object.values(empty).every(batch=>batch.idx.length===0));
 });
+
+
+test('raised rear lancets are open views with solid lower walls and pointed crowns',()=>{
+ for(const site of landmarks){
+  const keep=site.kind==='keep',d=keep?15.5:2.6;
+  const bottom=keep?3.2:2.8,spring=keep?6.2:4.5,tip=keep?8.6:6.6;
+  const back=(u,h)=>hit(point(site,u,h,d-1),point(site,u,h,d+1));
+  for(const h of [bottom+.15,spring,tip-.25])assert.equal(back(0,h),null,`${site.id} actual view at ${h}`);
+  assert(back(0,bottom-.2),`${site.id} lower masonry remains solid`);
+  assert(back(0,tip+.2),`${site.id} crown masonry remains solid`);
+  assert(back((keep?1.5:.9)+.6,spring-.5),`${site.id} jamb masonry remains solid`);
+ }
+});

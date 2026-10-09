@@ -1,0 +1,18 @@
+{
+  "cpuFiles": [
+    "scripts/test-region-layout.mjs",
+    "scripts/test-region-structures.mjs",
+    "scripts/test-region-world.mjs",
+    "scripts/test-regional-terrain.mjs",
+    "scripts/test-gothic-cathedral.mjs",
+    "scripts/test-startup-assets.mjs",
+    "scripts/test-prepared-region.mjs",
+    "scripts/test-region-stream.mjs",
+    "scripts/test-dev-surface-pick.mjs"
+  ],
+  "cpuChecks": 58,
+  "passed": true,
+  "stagedBuild": "ASHEN_BUILD_ONLY=1 ASHEN_SAVED_BOOTSTRAP=1 ASHEN_PRIME_STARTER_WORLD=1 ASHEN_LAZY_WORLD_BUFFERS=1 ASHEN_DEFER_COVERED_HAIR=1 bash scripts/deploy-pages.sh",
+  "provenance": "prepare before build, then unchanged product during native checks",
+  "scope": "not full production/startup/mobile qualification"
+}

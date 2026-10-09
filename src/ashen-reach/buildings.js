@@ -184,6 +184,16 @@ export function building(ctx,spec){
   collision(-w/2+wallT/2,plinthY+wallH/2,0,wallT,wallH,d);collision(w/2-wallT/2,plinthY+(wallH+2.6)/2,0,wallT,wallH-2.6,2.4);
   putBox(toWorld(0,wallTopY+.08,0),[w,.16,d],sideColor,yaw);collision(0,wallTopY+.08,0,w,.16,d);
   for(const side of [-1,1]){putBox(toWorld(-.6,.52,side*2.35),[2.4,.6,.5],[.35,.33,.31,0],yaw);collision(-.6,.52,side*2.35,2.4,.6,.5);}
+  if(kind==='chapel'){
+   // A wall-side altar leaves the existing west doorway and central return clear.
+   // The same volumes feed Havok; no new lamp or material is needed.
+   // Design: docs/plans/gothic-exploration/g03-region-2026-10-09.md
+   const piece=(lx,ly,lz,size,color)=>{putBox(toWorld(lx,ly,lz),size,color,yaw);collision(lx,ly,lz,...size);};
+   piece(-w/2+.60,.66,0,[.72,.88,1.85],[.52,.50,.44,0]);
+   piece(-w/2+.60,1.13,0,[.90,.18,2.10],[.82,.76,.62,0]);
+   piece(-w/2+.20,2.18,0,[.12,1.15,.13],[.82,.76,.62,0]);
+   piece(-w/2+.20,2.32,0,[.12,.13,.70],[.82,.76,.62,0]);
+  }
  }else colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
  return {gy,front:toWorld(w/2+.5,0,0),steepleTop:typeof steepleTop!=='undefined'?steepleTop:undefined};
 }

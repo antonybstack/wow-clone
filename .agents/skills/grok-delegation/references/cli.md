@@ -33,3 +33,12 @@ The judge may **read** image files and write a verdict markdown under the task-s
 Verify with the tool/subprocess return code. Do not assume fish `$status` / `or` work inside a wrapped shell.
 
 Select checks for the changed behavior from `package.json`. Diagnostic lab checks are not proof of current Ashen gameplay. For live Ashen verification and an owned CDP target, use [the browser guide](../../../../docs/debug-view.md). Leave unrelated user Chrome sessions alone.
+
+## Bounded review reports
+
+Write the task-specific report skeleton in the first pass, with **observed** and
+**not yet checked** sections. Update it with actual evidence before further probes,
+reserving the last turn for the result. Several bounded G03 reviews hit their cap
+without an artifact and required report-only resumes; a larger investigation cap
+is not the default remedy. If a cap is reached, one short same-session report-only
+resume should preserve the findings and honest limits, without restarting probes.

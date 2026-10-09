@@ -6,16 +6,24 @@ export const REGION_LANDMARKS=[
  {id:'east-tower',name:'Ash Tower',kind:'tower',x:132,z:-55,floorY:19.7922460884,yaw:0,height:24,width:6,depth:6,entrance:[132,19.7922460884,-58]},
  {id:'west-tower',name:'Moor Tower',kind:'tower',x:-125,z:-80,floorY:5.3469415243,yaw:0,height:22,width:6,depth:6,entrance:[-125,5.3469415243,-83]},
  {id:'north-tower',name:'Bell Watch',kind:'tower',x:78,z:168,floorY:13.8864060460,yaw:0,height:26,width:6,depth:6,entrance:[78,13.8864060460,165]},
- {id:'hollowmere-chapel',name:'Hollowmere Chapel',kind:'chapel',x:7.4,z:114,floorY:7.328,yaw:Math.PI,entrance:[4.1,7.328,114]},
+ {id:'hollowmere-chapel',name:'Hollowmere Chapel',kind:'chapel',x:7.4,z:114,floorY:7.328,yaw:Math.PI/2,entrance:[4.1,7.328,114]},
  {id:'vaelmark',name:'Vaelmark',kind:'cathedral',x:0,z:330,entrance:[0,44.923,298]},
 ];
 const N=[[0,null,142],[45,null,142],[90,null,142]],W=[[0,null,142],[-45,null,142],[-90,null,142]];
+// A shared level fork prevents independently rounded branches from overlapping
+// at different heights. Both roads stay at 18 m through their intersection.
+// Native failure and top-surface rays: docs/baselines/g03-region-2026-10-09/README.md
+const EAST_FORK=[[110,18,118],[120,18,105]];
+// Carry the common west trunk beyond the protected town edge before splitting.
+// The 10 m plateau keeps the rounded junction coplanar; the original fork
+// blocked Moor Tower's Havok return. Same evidence reference as the east fork.
+const WEST_FORK=[...W,[-100,10,142],[-112,10,142]];
 const authored=[
- ['east-keep',[...N,[120,18,105],[145,29,65],[155,40,10],[156,45.6881101584,-38],[176,45.6881101584,-38]]],
- ['west-keep',[...W,[-126,24,200],[-170,34,200],[-135,44,147],[-146,49.6553258658,112],[-166,49.6553258658,112]]],
+ ['east-keep',[...N,...EAST_FORK,[128,18,92],[145,29,65],[155,40,10],[156,45.6881101584,-38],[176,45.6881101584,-38]]],
+ ['west-keep',[...WEST_FORK,[-125,10,152],[-126,24,200],[-170,34,200],[-135,44,147],[-146,49.6553258658,112],[-166,49.6553258658,112]]],
  ['south-keep',[[0,null,-70],[0,null,-95],[30,3,-110],[105,22,-125],[145,34,-145],[145,46,-185],[105,54.1843600643,-185],[105,54.1843600643,-165],[74,54.1843600643,-165],[74,54.1843600643,-194]]],
- ['east-tower',[...N,[120,18,105],[110,20,40],[112,19.7922460884,-25],[112,19.7922460884,-70],[132,19.7922460884,-70],[132,19.7922460884,-58]]],
- ['west-tower',[...W,[-100,8,50],[-105,6,-30],[-105,5.3469415243,-95],[-125,5.3469415243,-95],[-125,5.3469415243,-83]]],
+ ['east-tower',[...N,...EAST_FORK,[118,18,92],[110,20,40],[112,19.7922460884,-25],[112,19.7922460884,-70],[132,19.7922460884,-70],[132,19.7922460884,-58]]],
+ ['west-tower',[...WEST_FORK,[-112,10,130],[-100,8,50],[-105,6,-30],[-105,5.3469415243,-95],[-125,5.3469415243,-95],[-125,5.3469415243,-83]]],
  ['north-tower',[[0,null,142],[45,null,142],[50,null,145],[60,10,153],[78,13.8864060460,150],[78,13.8864060460,165]]],
  ['hollowmere-chapel',[[0,null,114],[2.3,null,114],[4.1,7.328,114]]],
 ];
