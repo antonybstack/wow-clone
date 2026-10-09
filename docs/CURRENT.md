@@ -8,32 +8,38 @@ there is no pending user review or approval.
 
 ## Current task and next work
 
-**G03 is complete on the sealed desktop preview; product f159ff0 is committed/pushed.**
-Three keeps and detached towers have real raised rear lancets and distinct wall-side
-crests/furnishings; Hollowmere has an altar/cross and corrected inward developer
-facing. Connected walking found and repaired real east/west road ledges while
-preserving protected terrain, landmarks and Havok. All 58 CPU checks, eight public
-landmark entry/return routes, the final bridge return, eighteen developer controls
-and six physical surface/Fly-off checks pass without runtime/GPU errors or recoveries.
-[Actual evidence and limits](baselines/g03-region-2026-10-09/README.md),
-[implementation scope](plans/gothic-exploration/g03-region-2026-10-09.md).
+**G04 region map is complete on a sealed desktop preview; product 9d5d4fe is pushed.**
+Ordinary Esc/Menu → Region map shows all eight destination names, authored roads,
+central street/well detour, north, cathedral bridge and player position. Selection
+highlights the existing route and puts a blue entrance diamond on the minimap,
+independent of the gold watchman marker. Clear/retention/focus/pause/walking and
+scene-disposal checks pass. The inherited reversed arrow heading is corrected.
+The early menu only requests a late provider; no prepared world/character assets
+change and the chart has no frame-loop hook. [Evidence and limits](baselines/g04-map-2026-10-09/README.md).
 
 Fifteen separate M1 Max / uncapped Chromium WebGPU / 1280×720 / DPR1 / seven-enemy
-windows observe **188.2–227.2 FPS**, p99≤6.6 ms, worst 13.8 ms, zero intervals
->16.67 ms, pacing flags, errors or recoveries. All 37,276 raw intervals are retained.
-This is local RAF throughput, not a controlled production comparison.
-[Sealed desktop preview](https://0db543e3.fardel.pages.dev/?dev&play&at=east-keep)
-passes all 649 served checks. Reviewed motion: Telegram **895** and
-[identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region.mp4).
-Telegram API dimensions match; actual application inline/fullscreen is unverified.
+windows observe **189.2–228.0 FPS**, p99≤6.5 ms, worst 10 ms, zero intervals
+>16.67 ms, pacing flags, errors or recoveries. All 37,464 raw intervals are retained;
+map closed/no selection, local RAF throughput, not a production comparison.
+[Preview](https://4f787280.fardel.pages.dev/?play&clean) passes 649 served checks,
+public map UI/disposal and eighteen developer controls. Reviewed motion: Telegram
+**896** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/map.mp4).
+Direct VE playback passes; actual Telegram application inline/fullscreen remains unverified.
 
-Current next slice: **G04 useful region map**, then **G05 Eastwatch guarded
-wall walk**. [Concrete following slices](plans/gothic-exploration/next-slices-2026-10-09.md).
-Use existing registry/menu/minimap and architecture/ramp patterns. Do not pull
-procedural geometry into the early menu or add another region, character set,
-combat rewrite, multiplayer expansion or mobile diagnosis.
+**Next: G05 Eastwatch guarded wall walk.** [Concrete slice](plans/gothic-exploration/next-slices-2026-10-09.md).
+Survey the actual courtyard/reference; reuse visible stairs/smooth Havok ramps,
+masonry batching, registry/menu/spawn links. Preserve the gateway/hall/skyline,
+minimum 1.8 m clear width/headroom 1.9 m and guarded edges. Continue the active goal
+without waiting for user review; mobile and independent production hold remain deferred.
 
 ## Completed desktop previews
+
+- **G03 regional circuit:** f159ff0 / [0db543e3](https://0db543e3.fardel.pages.dev/?dev&play&at=east-keep).
+  Distinct hall/tower lancets, crests/furnishings and Hollowmere altar/inward facing.
+  Real east/west road-fork ledges repaired. 58 CPU checks, all eight public landmark
+  entry/returns and final bridge return, eighteen developer controls, six surface
+  checks and 649 served checks pass. [Results](baselines/g03-region-2026-10-09/README.md), Telegram 895/VE.
+  Separate 188.2–227.2 FPS, p99≤6.6 ms/worst 13.8 ms; no recoveries/errors.
 
 - **Navigation readiness:** 375aaca / [8caba37c](https://8caba37c.fardel.pages.dev/?dev&play&at=cathedral-nave).
   Three native local pairs at 50 Mbit/s: safe routes 5.91–6.07s vs 7.48–7.63s;
@@ -91,9 +97,9 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03 owned contexts, Chrome 86682 / CDP 10037, Vite 86633+86657 / 5873 and
-compiled preview 75390 / 7074 are closed after acceptance. The VE review tab
-1147996138 is also closed. No G03 owned renderer remains.
+G03 and G04 owned game contexts/harnesses are closed. Latest G04 Chrome46174 /
+CDP10037, Vite46145+46169 /5873 and compiled68584 /7074 are stopped; all review/media
+and Grok processes are done. No owned game renderer remains at this boundary.
 User Edge 2931 / fifteen nongame tabs, Chrome 13883 / New Tab, Orca and unrelated Vite 4000
 10171+10205 are preserved. Before every live check/timing window audit pages/PIDs,
 track each owner/port/URL/purpose and close owned contexts/browser/harnesses afterwards.

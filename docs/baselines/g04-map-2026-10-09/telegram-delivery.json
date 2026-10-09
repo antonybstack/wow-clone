@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 896,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 11.320494,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 12
+  },
+  "verified": true,
+  "file": "map.mp4",
+  "sha256": "c0fcf47e4a0c7eff4cf1482c45d1ffa934e1db4c98501f2d085bcd59fcd1df41",
+  "sentAt": "2026-10-09T09:57:21.887534+00:00"
+}

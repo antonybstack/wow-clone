@@ -1,7 +1,7 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-**G01–G03 are complete on sealed desktop previews. G04 region map is next, then G05 wall walk.**
+**G01–G04 are complete on sealed desktop previews. G05 Eastwatch wall walk is next.**
 [Following slices](next-slices-2026-10-09.md).
 [Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).
 Production promotion remains under its separate recorded startup gates.

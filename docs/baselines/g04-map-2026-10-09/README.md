@@ -1,6 +1,6 @@
 # G04 — Region map and useful destination guidance
 
-**Implemented and reviewed locally; isolated performance and sealed public delivery are running.**
+**Complete on the sealed desktop preview. Product 9d5d4fe is committed/pushed.**
 Ordinary **Esc/Menu → Region map** now opens a readable chart with all eight existing
 landmarks, authored roads, central street/well detour, cathedral bridge, north and
 current player position. The adjacent native button list gives every tower its
@@ -86,7 +86,29 @@ review tabs were closed first. [All raw intervals](settled-fps.json).
 
 37,464 raw intervals; zero >16.67 ms, full/rolling pacing flags, errors or recoveries. Local RAF throughput meets the 144 FPS target and >120 FPS floor; it is not a controlled production comparison or a new cold-start qualification. The selected-pin path is separately exercised by native UI, rather than represented as timed here.
 
-Sealed preview/public checks and motion delivery follow.
+[Sealed desktop preview](https://4f787280.fardel.pages.dev/?play&clean), source9d5d4fe,
+passes [649 served checks / 323 declared cache policies](served-preview.json).
+[Seal](preview-seal.json) b9e2e6f4… binds 646 files / 374,140,059 bytes; it was
+created before the product commit and verified against committed inputs for upload.
+[Public ordinary-play map check](public-ui.json) and [eighteen existing developer
+control/destination gates](public-destinations.json) pass without runtime/GPU errors.
+World geometry is unchanged from G03; this slice does not claim another full
+connected-region tour.
+
+Root-reviewed motion is **Telegram896** ([sanitized delivery](telegram-delivery.json));
+API dimensions1280×720 match the original 11.320 s square-pixel/rotation0 clip.
+[Public VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/map.mp4)
+is HTTP200 / `video/mp4` / 2,071,613 bytes / exact SHA-256 c0fcf47e…; range206
+returns the exact first1024 bytes ([receipt](ve-delivery.json)). Root also inspected
+actual advancing direct VE playback at1280×720 with no media error. Telegram
+application inline/fullscreen playback remains unverified.
+
+Root Chrome46174/CDP10037, Vite46145+46169/5873 and compiled68584/7074 are stopped.
+All native contexts close in `finally`; capture, encoder and Grok47535+61895 are
+done. Owned review tabs1147996142/1147996146/1147996150 and media62853+71666/7077
+are closed. User Edge15 existing tabs, Chrome NewTab, Orca and unrelated Vite4000
+remain intact. [Fresh production metadata](production-state.json) confirms the
+canonical production deployment is unchanged.
 
 Production remains on the separately held 5723a4ab / 7d00c56 release. The earlier
 219.9 ms readiness interval is still unexplained; a clean settled benchmark does

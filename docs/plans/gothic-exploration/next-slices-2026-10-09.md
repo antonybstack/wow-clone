@@ -4,7 +4,9 @@ The active eight-hour goal authorizes further Gothic exploration work after the
 original slices. Implement sequentially after G03's completed delivery. These are
 proposed follow-on slices, not completed work or a replacement for current gates.
 
-## G04 — A useful region map
+## G04 — A useful region map — complete 2026-10-09
+
+[Actual implementation, native UI/disposal, performance and public delivery](../../baselines/g04-map-2026-10-09/README.md). Product9d5d4fe / preview4f787280 / Telegram896.
 
 The live map compresses the whole region into 128×148 pixels and labels three
 towers identically with T. Players cannot read destination names or plan a tour.
