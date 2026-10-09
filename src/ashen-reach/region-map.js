@@ -1,12 +1,14 @@
 /** Ordinary-play region chart, loaded with combat rather than the early menu. */
 import {buildingPads, pathX} from './geometry.js';
 import {createMapTransform, paintMapStatic, strokeMapRoute, paintDestinationPin, paintPlayerPin} from './map-drawing.js';
+import {createCathedralGuide} from './cathedral-guide.js';
 
 const WIDTH = 560, HEIGHT = 560;
 const CORE_BOUNDS = {minX:-260, maxX:260, minZ:-250, maxZ:380};
 
 export function createRegionMap({player, world, signal}) {
-  let selectedId = null, content, canvas, ctx, staticLayer, status, clearButton;
+  let selectedId = null, content, canvas, ctx, staticLayer, status, clearButton, guideButton;
+  const guide=createCathedralGuide({world,player,signal,onBack:()=>{content.hidden=false;paint();guideButton.focus();}});
   const transform = createMapTransform(CORE_BOUNDS, WIDTH, HEIGHT, 28);
   const selected = () => world.landmarks.find(site => site.id === selectedId) || null;
 
@@ -49,7 +51,9 @@ export function createRegionMap({player, world, signal}) {
     status = document.createElement('p'); status.setAttribute('role', 'status'); status.className = 'region-map-status';
     const legend = document.createElement('p'); legend.className = 'region-map-legend';
     legend.textContent = 'Cream arrow: you · Blue diamond: destination · Gold chevron on minimap: watchman';
-    aside.append(list, clearButton, status, legend); content.append(canvas, aside); container.replaceChildren(content);
+    guideButton=document.createElement('button');guideButton.type='button';guideButton.textContent='Vaelmark exploration';guideButton.disabled=!guide.available;
+    guideButton.addEventListener('click',()=>{if(guide.open(container))content.hidden=true;},{signal});
+    aside.append(list, clearButton, status, legend,guideButton); content.append(canvas, aside); container.replaceChildren(content);
     // Cache static roads, buildings and labels once, and repaint only on open or
     // selection. The existing menu pauses player simulation, so no extra tick.
     // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
@@ -61,7 +65,7 @@ export function createRegionMap({player, world, signal}) {
 
   signal.addEventListener('abort', () => {content?.remove(); selectedId = null; content = canvas = ctx = staticLayer = status = clearButton = null;}, {once:true});
   return {
-    open(container) {if (signal.aborted) return false; mount(container); paint(); return true;},
+    open(container) {if (signal.aborted) return false; mount(container); if(guide.isOpen)guide.refresh();else paint(); return true;},
     get selected() {return selected();},
   };
 }

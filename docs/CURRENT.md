@@ -54,6 +54,15 @@ climb/guards pass locally/publicly. All651 served artifacts pass. Both G06 FPS a
 candidate paired timing/settled performance must qualify before acceptance/adoption.
 [Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
+**G07 Vaelmark exploration guide is implemented; desktop delivery in progress.**
+Ordinary Menu → Region map → Vaelmark exploration offers five route/level views,
+matching player position, connection directions and bell ascent diagrams. It uses
+existing metadata/menu/Canvas2D with no new assets or frame hook. Ten CPU checks,
+six physical views, ordinary focus/pause/selection/walking/disposal, retained
+region/minimap guidance and twenty developer landings pass locally.
+[G07 scope/evidence](baselines/g07-cathedral-guide-2026-10-09/README.md).
+Its isolated FPS acceptance remains pending; source work does not waive the gate.
+
 ## Completed desktop previews
 
 - **G04 region map:** 9d5d4fe / [4f787280](https://4f787280.fardel.pages.dev/?play&clean).

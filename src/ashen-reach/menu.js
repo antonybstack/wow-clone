@@ -250,7 +250,10 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   const activePane = () => !mapPane.hidden ? mapPane : !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
   // Include the native select and readonly URL in the dialog's focus loop.
   // https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-  const focusable = () => [...activePane().querySelectorAll("button,input,select")].filter(el => !el.disabled && !el.hidden);
+  // A nested chart can hide a whole subtree while its individual buttons keep
+  // hidden=false. Only rendered controls participate in the existing focus trap.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/getClientRects
+  const focusable = () => [...activePane().querySelectorAll("button,input,select")].filter(el => !el.disabled && !el.hidden && el.getClientRects().length);
   function focusFirst() { focusable()[0]?.focus(); }
 
   function open() {
