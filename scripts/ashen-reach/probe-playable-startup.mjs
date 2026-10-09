@@ -382,7 +382,9 @@ for (let run = 1; run <= runs; run++) {
       JSON.stringify({
         run,
         playableMs: row.playableMs,
-        inputMs: row.input.responseUpperBoundMs,
+        inputMotionUpperBoundMs: row.input.motionUpperBoundMs,
+        completionAfterMotionMs: row.input.completionAfterMotionMs,
+        inputTotalUpperBoundMs: row.input.responseUpperBoundMs,
         bytes: row.encodedBytesAtBoundary,
       }),
     );
