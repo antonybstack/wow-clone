@@ -14,7 +14,7 @@ const dir=process.env.ASHEN_CAPTURE_DIR||'.cache/wall-walk',record=process.env.A
 await fs.mkdir(dir+'/frames',{recursive:true});
 const browser=await chromium.connectOverCDP(CDP_URL);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Blank the owned harness first');
-const ownership=await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url:url.href,purpose:'G05 native stair, wall walk, rail contacts and return; no FPS claim',renderingClients:1});
+const ownership=await browserOwnership(browser,{cdpPort:new URL(CDP_URL).port,url:url.href,purpose:'Native Eastwatch stair, wall walk/optional hall balcony, guard contacts and return; no FPS claim',renderingClients:1});
 await fs.writeFile(dir+'/ownership.json',JSON.stringify(ownership,null,2));
 const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
 const errors=[],report={url:url.href,errors,samples:[],contacts:[],initialPlacement:'public developer spawn link only'};
@@ -53,17 +53,25 @@ try{
  await page.keyboard.press('Escape');await page.getByRole('button',{name:'Developer tools',exact:true}).click();const god=page.getByRole('button',{name:'God mode: off',exact:true});if(await god.count())await god.click();await page.keyboard.press('Escape');
  if(record){manifest={version:1,...await captureSurface(page),frames:[]};cdp=await context.newCDPSession(page);cdp.on('Page.screencastFrame',e=>{cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(!manifest||captureError)return;try{const bytes=Buffer.from(e.data,'base64'),name=`frame-${String(manifest.frames.length).padStart(5,'0')}.jpg`;appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes});writes.push(fs.writeFile(dir+'/frames/'+name,bytes).catch(e=>captureError=e));}catch(e){captureError=e;}});await cdp.send('Page.startScreencast',{format:'jpeg',quality:87,maxWidth:1280,maxHeight:720,everyNthFrame:4});await page.waitForTimeout(800);}
  await go(site.courtyard,'courtyard');await page.screenshot({path:dir+'/courtyard.png'});
- for(const [i,point] of site.wallWalk.route.entries()){await go(point,'outbound:'+i);if(i===4)await page.screenshot({path:dir+'/stair-landing.png'});if(i===6){await face(site.wallWalk.windowYaw);await page.waitForTimeout(1200);await page.screenshot({path:dir+'/window-view.png'});}}
+ for(const [i,point] of site.wallWalk.route.entries()){await go(point,'outbound:'+i);if(i===4)await page.screenshot({path:dir+'/stair-landing.png'});if(i===6){await face(site.wallWalk.windowYaw);await page.waitForTimeout(1200);await page.screenshot({path:dir+'/window-view.png'});}if(i===8&&site.wallWalk.hallBalcony){await page.waitForTimeout(1200);await page.screenshot({path:dir+'/hall-balcony.png'});}}
  await page.screenshot({path:dir+'/left-end.png'});
  for(const [i,point] of [...site.wallWalk.route].reverse().entries())await go(point,'return:'+i);
- await go(site.courtyard,'courtyard-return');await go(site.entrance,'gate-return');
+ await go(site.courtyard,'courtyard-return');await go(site.hall,'lower-hall');await go(site.interior,'beneath-balcony');await page.screenshot({path:dir+'/lower-hall.png'});await go(site.hall,'lower-hall-return');await go(site.courtyard,'courtyard-final-return');await go(site.entrance,'gate-return');
  report.returned=await state();await page.screenshot({path:dir+'/gate-return.png'});await page.waitForTimeout(800);await stopCapture();
  // Native collision contacts are separate from the uninterrupted captured tour.
  for(const [i,point] of site.wallWalk.route.slice(0,5).entries())await go(point,'contacts-ascent:'+i);
  await contact('inner-right',world(13.6,5.2,9),site.yaw-Math.PI/2,q=>q.u>=12.75&&q.u<=13.4);
  await contact('outer-right',world(13.6,5.2,9),site.yaw+Math.PI/2,q=>q.u<=14.5&&q.u>=13.9);
  await go(world(13.6,5.2,17.6),'rear-turn');
- await contact('rear-inner',world(0,5.2,17.6),site.yaw+Math.PI,q=>q.d>=16.8&&q.d<=17.3);
+ await contact('rear-inner',world(6,5.2,17.6),site.yaw+Math.PI,q=>q.d>=16.8&&q.d<=17.3);
+ if(site.wallWalk.hallBalcony){
+  await go(world(0,5.2,17.6),'bridge-contacts-turn');
+  await contact('bridge-right',world(0,5.2,15),site.yaw+Math.PI/2,q=>q.u>=.85&&q.u<=1.2);
+  await contact('balcony-front',world(0,5.2,11.4),site.yaw+Math.PI,q=>q.d>=9.45&&q.d<=10);
+  await contact('balcony-right',world(0,5.2,13.5),site.yaw+Math.PI/2,q=>q.u>=1.85&&q.u<=2.2);
+  await go(world(0,5.2,13.5),'balcony-contacts-centre');
+  await go(world(0,5.2,17.6),'balcony-contacts-return');
+ }
  for(const [i,point] of site.wallWalk.route.slice(0,6).reverse().entries())await go(point,'contacts-return:'+i);
  await go(site.entrance,'final-gate');report.end=await state();
  report.gpuErrors=await page.evaluate(()=>ASHEN.gpu.errors);assert.deepEqual(errors,[]);assert.deepEqual(report.gpuErrors,[]);report.passed=true;
@@ -72,4 +80,4 @@ try{
  for(const key of ['w','a','d'])await page.keyboard.up(key).catch(()=>{});await cdp?.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);
  await fs.writeFile(dir+'/report.json',JSON.stringify(report,null,2));await context.close();await browser.close();await fs.writeFile(dir+'/ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0},null,2));
 }
-console.log('PASS native Eastwatch stair, complete guarded wall walk, three guard contacts and gate return; no Fly, recoveries or runtime/GPU errors');
+console.log(`PASS native Eastwatch stair, complete guarded route, ${report.contacts.length} guard contacts and gate return; no Fly, recoveries or runtime/GPU errors`);

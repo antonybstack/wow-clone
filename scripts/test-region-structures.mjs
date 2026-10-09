@@ -104,13 +104,13 @@ test('invalid sites fail before modifying shared batches',()=>{
 test('raised rear lancets are open views with solid lower walls and pointed crowns',()=>{
  for(const site of landmarks){
   const keep=site.kind==='keep',d=keep?15.5:2.6;
-  const bottom=keep?3.2:2.8,spring=keep?6.2:4.5,tip=keep?8.6:6.6;
+  const {bottom,spring,tip,width}=built.destinations.find(s=>s.id===site.id).rearWindow;
   // Stop beyond the actual rear wall, before Eastwatch's new outside guard.
   const back=(u,h)=>hit(point(site,u,h,d-1),point(site,u,h,d+.6));
   for(const h of [bottom+.15,spring,tip-.25])assert.equal(back(0,h),null,`${site.id} actual view at ${h}`);
   assert(back(0,bottom-.2),`${site.id} lower masonry remains solid`);
   assert(back(0,tip+.2),`${site.id} crown masonry remains solid`);
-  assert(back((keep?1.5:.9)+.6,spring-.5),`${site.id} jamb masonry remains solid`);
+  assert(back(width/2+.6,spring-.5),`${site.id} jamb masonry remains solid`);
  }
 });
 
@@ -137,10 +137,36 @@ test('Eastwatch inner/outer guards and rear lancet view are physically real',()=
   assert(hit(point(site,13.6,y+.6,d),point(site,11.8,y+.6,d)),`inner stair/walk guard ${d}`);
   assert(hit(point(site,13.6,y+.6,d),point(site,16,y+.6,d)),`outer masonry ${d}`);
  }
- for(const u of [-10,0,10]){
+ for(const u of [-10,6,10]){
   assert(hit(point(site,u,5.8,17.6),point(site,u,5.8,15.8)),'rear inner parapet');
   assert(hit(point(site,u,5.8,17.6),point(site,u,5.8,20.5)),'rear outer wall');
  }
  assert(hit(point(site,-13.6,5.8,-8.8),point(site,-13.6,5.8,-11)),'left end guard');
  assert.equal(hit(point(site,0,6.9,17.6),point(site,0,6.9,14)),null,'view over the guard through the actual raised opening');
+});
+
+test('Eastwatch balcony joins through a clear raised door while preserving the lower hall lane',()=>{
+ const site=landmarks[0],balcony=built.destinations[0].wallWalk.hallBalcony;
+ assert(balcony.clearWidth>=1.8&&balcony.headroom>=1.9);
+ assert.deepEqual(built.destinations[0].rearWindow,{bottom:3.2,spring:6.4,tip:9,width:3.8});
+ for(let d=9.75;d<=17.6;d+=.25)for(const u of [-.9,0,.9]){
+  const floor=hit(point(site,u,5.45,d),point(site,u,4.95,d));
+  assert(floor&&Math.abs(floor.fraction-.5)<1e-7&&floor.normal[1]>0,`balcony floor ${u},${d}`);
+  assert.equal(hit(point(site,u,5.24,d),point(site,u,7.15,d)),null,`balcony headroom ${u},${d}`);
+ }
+ for(const u of [-1.3,0,1.3])for(const h of [.2,1,1.95])assert.equal(hit(point(site,u,h,8),point(site,u,h,13)),null,'lower hall lane remains open');
+ for(const u of [-1.2,0,1.2])assert.equal(hit(point(site,u,7.15,14),point(site,u,7.15,17.6)),null,'raised door capsule-width offsets');
+ assert.equal(hit(point(site,0,5.8,17.6),point(site,0,5.8,14)),null,'rear guard really opens into bridge');
+ assert(hit(point(site,0,5.8,11),point(site,0,5.8,8)),'balcony front guard');
+ for(const sign of [-1,1]){
+  assert(hit(point(site,0,5.8,13.5),point(site,sign*3,5.8,13.5)),'balcony side guard');
+  assert(hit(point(site,0,5.8,16),point(site,sign*2,5.8,16)),'bridge side guard');
+ }
+});
+
+test('Eastwatch upper view has closed gables beneath the retained roof outline',()=>{
+ const site=landmarks[0];
+ assert(hit(point(site,5.2,11,0),point(site,5.2,11,-4)),'front gable closes above the ground portal');
+ assert(hit(point(site,5.2,11,14),point(site,5.2,11,18)),'rear gable closes outside the upper keep body');
+ assert.equal(hit(point(site,0,7.15,14),point(site,0,7.15,17.6)),null,'raised door stays open below the gable');
 });

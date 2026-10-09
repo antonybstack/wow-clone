@@ -65,6 +65,8 @@ try {
       if (id === 'start') return ASHEN.world.groundHeight(ASHEN.world.spawn.x, ASHEN.world.spawn.z);
       const walk = ASHEN.world.regionStructures?.destinations.find(l => `${l.id}-wall-walk` === id)?.wallWalk;
       if (walk) return walk.floorY;
+      const balcony = ASHEN.world.regionStructures?.destinations.find(l => `${l.id}-hall-balcony` === id)?.wallWalk?.hallBalcony;
+      if (balcony) return balcony.floorY;
       return ASHEN.world.landmarks.find(l => l.id === id).entrance[1];
     }, id);
     assert(Math.abs(row.state.y - row.state.height / 2 - expected) < .3, `Missed floor at ${id}: ${row.state.y}`);

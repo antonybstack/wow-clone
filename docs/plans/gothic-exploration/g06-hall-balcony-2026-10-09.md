@@ -1,7 +1,7 @@
 # G06 — Connect Eastwatch's wall walk to its upper hall
 
-**Proposed follow-on under the active eight-hour Gothic goal. Implementation has
-not started; finish G05's public circuit/delivery/cleanup first.** Use the delivered
+**Implementation active after G05's public circuit/delivery/cleanup.** Baseline
+805fac1 (G05 product c3419d4). Use the delivered
 Eastwatch courtyard, raised-window and hall captures as the baseline, together with
 the retained fortified-entrance reference. Reuse existing masonry batching,
 pointed portals, guards, Havok, exploration metadata and developer destinations.
@@ -25,7 +25,7 @@ before writing them; the pointy opening is at d15.5 and the hall spans u±6.5.
 - Balcony: a .25 m slab, u−2.5..2.5, d9.1..14.5, top y5.2. This stays clear of
   hall wall buttresses (u≈±7.15), existing lower furnishings and upper keep body
   (bottom y10.2). It leaves 4.95 m beneath its slab in the ground centre lane.
-- Bridge: .25 m slab, u±1.5, d14.5..17.6, top y5.2. Its joints meet the balcony and
+- Bridge: .25 m slab, u±1.5, d14.5..16.4, top y5.2. Its joints meet the balcony and
   rear walk directly. Replace the centre u±1.5 section of the d16.4 inner parapet
   with a protected connection. Keep the remaining sections u−12.4..−1.5 and
   u1.5..12.4 and their trim; do not leave overlapping collision across the bridge.
@@ -34,15 +34,22 @@ before writing them; the pointy opening is at d15.5 and the hall spans u±6.5.
   under the roof's y9.7 lower edge and gives >2.6 m width at 1.95 m above the new
   floor. Keep the existing pointed profile, wall thickness, portal batching and
   other keeps' window dimensions. Store actual opening dimensions in metadata.
-- Solid guards: 1.1 m above floor with trim, bridge edges u±1.5, balcony sides
+- Solid guards: 1.1 m above floor with trim, bridge edges u±1.5/d14.5..16.4, balcony sides
   u±2.5, balcony front d9.1. Open only the bridge/back junction. Preserve at least
   1.8 m clear travel and 1.9 m headroom throughout, including the pointed door.
+  Stop bridge guards at d16.4, before the rear walk's d17.6 turn centre; extending
+  them to that centre would block the transverse wall-walk route. The rear slab
+  already supports d16.4..18.8, so a longer bridge would duplicate its top faces.
 - Visible masonry support: paired narrow piers near u±2.5/d9.6 plus restrained
   corbels/beam beneath the balcony. Keep their inner faces outside the existing
   3 m ground hall lane; do not introduce a broad solid foundation underneath.
   Inspect lower-camera clearance as well as player headroom.
 - At most two restrained wall-side stone seats on the balcony; leave the centre
   route clear. No new textures, lights, materials or external assets are needed.
+- Live balcony review exposed the existing hall's open triangular gables above
+  its y10 portal walls. Close Eastwatch's two ends with the existing shared prism
+  path, from u±7/y10 to u0/y15.1, beneath the roof. Preserve the silhouette and
+  raised opening. Check these visible/collision faces with rays at y11/u5.2.
 
 All new solids go through the existing shared visible/collision box/prism paths.
 Keep G05's intentional tread/ramp difference unchanged and the 13,000 render

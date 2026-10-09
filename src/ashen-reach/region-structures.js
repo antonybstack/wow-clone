@@ -140,6 +140,9 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
     };
     if(site.kind==='keep'){
       let wallWalk;
+      const rearWindow=site.id==='east-keep'
+        ? {bottom:3.2,spring:6.4,tip:9,width:3.8}
+        : {bottom:3.2,spring:6.2,tip:8.6,width:3};
       support(32,40);
       box(0,-.15,0,32,.3,40,TRIM);box(0,-.15,-20,6,.3,4,TRIM);
       portal(-19.4,5,32,7.2,1.2,4.5,6.3);
@@ -161,10 +164,16 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       for(const sign of [-1,1])box(sign*6.5,5,7,1,10,18);
       // The raised lancet is a real view, not a bright pane pasted on a wall.
       // Its 3.2 m solid sill leaves the ordinary centre lane and return protected.
-      portal(15.5,3,14,10,1,6.2,8.6,3.2);
+      portal(15.5,rearWindow.width,14,10,1,rearWindow.spring,rearWindow.tip,rearWindow.bottom);
       for(const sign of [-1,1])crest(sign*5.9,4.4,-20.12,.85);
       prism([[-7.4,10],[0,15.4],[0,15.1],[-7.4,9.7]],18.8,0,7,SLATE,roof);
       prism([[0,15.4],[7.4,10],[7.4,9.7],[0,15.1]],18.8,0,7,SLATE,roof);
+      if(site.id==='east-keep'){
+        // The new upper viewpoint exposed the inherited open gable above the
+        // rectangular portal wall. Close both ends beneath the existing roof
+        // underside; this keeps its silhouette and raised doorway unchanged.
+        for(const d of [-1.5,15.5])prism([[-7,10],[0,15.1],[7,10]],1,0,d);
+      }
       for(const sign of [-1,1])for(const d of [0,6,12]){
         box(sign*7.15,3.5,d,1.3,7,1.4,DARK);
         box(sign*7.15,7.1,d,1.6,.4,1.7,TRIM);
@@ -230,24 +239,50 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
           box(u,walkY+.5,d,.22,1,length);
           box(u,walkY+1.06,d,.32,.12,length,TRIM);
         }
-        box(0,walkY+.5,16.4,24.8,1,.22);
-        box(0,walkY+1.06,16.4,24.8,.12,.32,TRIM);
+        for(const sign of [-1,1]){
+          box(sign*6.95,walkY+.5,16.4,10.9,1,.22);
+          box(sign*6.95,walkY+1.06,16.4,10.9,.12,.32,TRIM);
+        }
         box(-side,walkY+.5,-10,width,1,.22);
         box(-side,walkY+1.06,-10,width,.12,.32,TRIM);
         for(const sign of [-1,1])for(const d of sign===1?[8,12,16]:[-8,-2,4,10,16]){
           prism([[sign*12.5,walkY-.25],[sign*14.8,walkY-.25],[sign*14.8,2.7]],.45,0,d,DARK);
         }
         for(const u of [-10,0,10])crossPrism([[16.5,walkY-.25],[18.8,walkY-.25],[18.8,2.7]],.45,u,DARK);
+        // A real raised doorway joins the rear walk to the hall balcony. The
+        // widened pointed profile gives >2.6 m at 1.95 m above the new floor.
+        // Bridge slab/guards stop at the rear walk's inner edge (d16.4), keeping
+        // its transverse turn lane open and avoiding duplicate coplanar floors.
+        // docs/plans/gothic-exploration/g06-hall-balcony-2026-10-09.md
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/10-mesh-generators.md
+        box(0,walkY-.125,11.8,5,.25,5.4,TRIM);
+        box(0,walkY-.125,15.45,3,.25,1.9,TRIM);
+        for(const sign of [-1,1]){
+          box(sign*1.5,walkY+.5,15.45,.22,1,1.9);
+          box(sign*1.5,walkY+1.06,15.45,.32,.12,1.9,TRIM);
+          box(sign*2.5,walkY+.5,11.8,.22,1,5.4);
+          box(sign*2.5,walkY+1.06,11.8,.32,.12,5.4,TRIM);
+          box(sign*2.5,2.475,9.6,.35,4.95,.5,DARK);
+          prism([[sign*2.3,4.2],[sign*2.3,4.95],[sign*1.7,4.95]],.55,0,9.6,TRIM);
+          box(sign*1.95,walkY+.22,11.8,.6,.44,1.6,DARK);
+          box(sign*2.22,walkY+.65,11.8,.14,.5,1.6,TRIM);
+        }
+        box(0,4.81,9.6,5,.28,.55,TRIM);
+        box(0,walkY+.5,9.1,5,1,.22);
+        box(0,walkY+1.06,9.1,5,.12,.32,TRIM);
         const route=[[0,0,-10],[10,0,-11.5],[side,0,-11.5],[side,0,start],[side,walkY,end],
-          [side,walkY,17.6],[0,walkY,17.6],[-side,walkY,17.6],[-side,walkY,-8.8]].map(([u,y,d])=>map(u,y,d));
+          [side,walkY,17.6],[0,walkY,17.6],[0,walkY,14],[0,walkY,10.6],
+          [0,walkY,14],[0,walkY,17.6],[-side,walkY,17.6],[-side,walkY,-8.8]].map(([u,y,d])=>map(u,y,d));
         wallWalk={floorY:floorY+walkY,width,clearWidth:2.06,railHeight:1.1,
           landing:map(side,walkY,8),yaw,route,windowView:map(0,walkY,17.6),windowYaw:yaw+Math.PI,
+          hallBalcony:{floorY:floorY+walkY,landing:map(0,walkY,11.4),yaw:yaw+Math.PI,
+            clearWidth:2.6,headroom:1.95,route:[map(0,walkY,17.6),map(0,walkY,14),map(0,walkY,11.4)]},
           stairs:{start:map(side,0,start),end:map(side,walkY,end),steps,run:end-start,rise:walkY,
             visualTriangles:treadTriangles},
           rampTriangles};
       }
       destinations.push({...site,entrance:map(0,0,-20),courtyard:map(0,0,-10),hall:map(0,0,7),
-        interior:map(0,0,10),motif,rearWindow:{bottom:3.2,spring:6.2,tip:8.6,width:3},...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
+        interior:map(0,0,10),motif,rearWindow,...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
     }else{
       support(6,6);box(0,-.15,0,6,.3,6,TRIM);box(0,-.15,-3,4,.3,2,TRIM);
       const top=H*.78;

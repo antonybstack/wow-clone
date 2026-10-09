@@ -30,8 +30,12 @@ export function devDestinations(world) {
   }
   for (const landmark of world.landmarks || [])
     if (landmark.kind !== 'cathedral') add(landmark.id, landmark.name, landmark.entrance, landmark.yaw || 0);
-  for (const destination of world.regionStructures?.destinations || [])
-    if (destination.wallWalk) add(`${destination.id}-wall-walk`, `${destination.name || 'Eastwatch'} — wall walk`, destination.wallWalk.landing, destination.wallWalk.yaw);
+  for (const destination of world.regionStructures?.destinations || []) {
+    const walk=destination.wallWalk;
+    if (walk) add(`${destination.id}-wall-walk`, `${destination.name || 'Eastwatch'} — wall walk`, walk.landing, walk.yaw);
+    const balcony=walk?.hallBalcony;
+    if (balcony) add(`${destination.id}-hall-balcony`, `${destination.name || 'Eastwatch'} — hall balcony`, balcony.landing, balcony.yaw);
+  }
   return destinations;
 }
 
