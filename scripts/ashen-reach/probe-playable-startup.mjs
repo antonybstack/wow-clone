@@ -148,7 +148,16 @@ for (let run = 1; run <= runs; run++) {
         return device;
       };
       addEventListener("keydown", (e) => {
-        if (e.code === "KeyW") window.__loadKeyAt = performance.now();
+        if (e.code !== "KeyW" || e.repeat) return;
+        window.__loadKeyAt = performance.now();
+        // Snapshot at the actual input event, after the screenshot, so idle
+        // physics drift before the key cannot satisfy the movement assertion.
+        // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
+        const a = globalThis.ASHEN;
+        window.__loadInputStart = a && {
+          position: {x: a.player.body.position.x, z: a.player.body.position.z},
+          frame: a.gpu.frames,
+        };
       });
     });
     page.on("pageerror", (e) => {errors.push(e.message);pageErrors.push({name:e.name,message:e.message,stack:e.stack});});
@@ -283,12 +292,19 @@ for (let run = 1; run <= runs; run++) {
     });
     await page.keyboard.down("KeyW");
     await page.waitForFunction(
-      ({ position, frame }) =>
-        Math.hypot(
-          ASHEN.player.body.position.x - position.x,
-          ASHEN.player.body.position.z - position.z,
-        ) > 0.03 && ASHEN.gpu.frames > frame + 1,
-      row,
+      () => {
+        const start = window.__loadInputStart;
+        if (!start || Math.hypot(
+          ASHEN.player.body.position.x - start.position.x,
+          ASHEN.player.body.position.z - start.position.z,
+        ) <= 0.03 || ASHEN.gpu.frames <= start.frame + 1) return false;
+        // RAF polling gives an observation upper bound, not the exact instant
+        // movement began. Keep it separate from the subsequent GPU fence.
+        // https://playwright.dev/docs/api/class-page#page-wait-for-function
+        window.__loadMotionAt = performance.now();
+        return true;
+      },
+      null,
       { timeout: 2000 },
     );
     // Fence the frame that follows observed displacement, not just submission.
@@ -297,6 +313,8 @@ for (let run = 1; run <= runs; run++) {
     });
     row.input = await page.evaluate(() => ({
       keyAt: window.__loadKeyAt,
+      start: window.__loadInputStart,
+      motionObservedAt: window.__loadMotionAt,
       observedAt: performance.now(),
       position: {
         x: ASHEN.player.body.position.x,
@@ -307,6 +325,8 @@ for (let run = 1; run <= runs; run++) {
     }));
     await page.keyboard.up("KeyW");
     row.input.responseUpperBoundMs = row.input.observedAt - row.input.keyAt;
+    row.input.motionUpperBoundMs = row.input.motionObservedAt - row.input.keyAt;
+    row.input.completionAfterMotionMs = row.input.observedAt - row.input.motionObservedAt;
     if(gpuProbe)row.gpuEvents=await page.evaluate(()=>{globalThis.__stopGpuEventProbe=true;return globalThis.__startupGpuEvents;});
     if(traceGpu) {
       const completed=new Promise(resolve=>cdp.once('Tracing.tracingComplete',resolve));

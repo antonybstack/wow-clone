@@ -154,7 +154,9 @@ export function attachDevTools({params, canvas, camera, player, getCombat, setVi
     get regionCoreLoading(){return !!world.regionCoreLoading;},
     regionLoadingURL:id=>{
       const url=new URL(devDestinationURL(location.href,id));
-      if(world.regionCoreLoading)url.searchParams.delete('regionCore');else url.searchParams.set('regionCore','1');
+      // Explicit opt-out survives reloads and shareable destination links.
+      // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set
+      url.searchParams.set('regionCore',world.regionCoreLoading?'0':'1');
       return url.href;
     },
     get navigationReady() { return isAlive() && isNavigationReady(); },

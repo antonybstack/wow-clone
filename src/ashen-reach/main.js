@@ -195,7 +195,12 @@ async function main(){
  markStartup('world-start');
  // Keep procedural authoring off the prepared starting area's module graph.
  // The worker and diagnostic legacy path still use the same generator.
- const world=fastStart?await createStarterWorld(engine,scene,starterWorldP,{regionCore:params.has('dev')&&params.get('regionCore')==='1'}):await (await import('./scene.js')).buildChurchyard(engine,scene);
+ // Physical surfaces and reduced trees finish before optional full tree detail.
+ // ?dev exposes the whole-packet comparison in Developer tools; packets without
+ // core metadata keep the loader's existing compatibility fallback.
+ // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get
+ const regionCore=!params.has('dev')||params.get('regionCore')!=='0';
+ const world=fastStart?await createStarterWorld(engine,scene,starterWorldP,{regionCore}):await (await import('./scene.js')).buildChurchyard(engine,scene);
  markStartup('world-end');
  initInput(canvas);setInputEnabled(false);installTouchControls();
  setLoadingStage(2,'Calling the wanderer.');

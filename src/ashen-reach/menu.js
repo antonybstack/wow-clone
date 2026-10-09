@@ -75,7 +75,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <button type="button" data-action="fly" aria-pressed="false">Fly mode</button>
           <p>While flying, click a solid surface to teleport (floors, roofs or ground). G / F also toggle God / Fly.</p>
           <p data-region-loading-mode></p>
-          <button type="button" data-action="region-loading" disabled>Reload with physical surfaces first (experimental)</button>
+          <button type="button" data-action="region-loading" disabled>Reload with whole-region loading</button>
           <button type="button" data-action="hub">Back</button>
         </div>
       </div>
@@ -212,10 +212,10 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     destinationLink.value = enabled && destinationSelect.value ? tools.destinationURL(destinationSelect.value) : "";
     root.querySelector('[data-region-loading-mode]').textContent=tools?.regionCoreLoading
       ? 'Region loading: physical surfaces and reduced trees first. Full tree detail loads afterwards.'
-      : 'Region loading: standard whole-region stream.';
+      : 'Region loading: whole-region comparison stream.';
     const loadingButton=root.querySelector('[data-action="region-loading"]');
     loadingButton.disabled=!enabled||!tools?.regionCoreAvailable;
-    loadingButton.textContent=tools?.regionCoreLoading?'Reload with standard region loading':'Reload with physical surfaces first (experimental)';
+    loadingButton.textContent=tools?.regionCoreLoading?'Reload with whole-region loading':'Reload with physical surfaces first';
     for (const [action, state, label] of [["god", "god", "God mode"], ["fly", "flying", "Fly mode"]]) {
       const button = root.querySelector(`[data-action="${action}"]`);
       button.disabled = !enabled;
