@@ -1,0 +1,14 @@
+{
+  "grok.json": {
+    "sessionId": "01a12162-04df-77a3-b224-d530d7e44e90",
+    "stopReason": "cancelled",
+    "num_turns": 6
+  },
+  "grok-final.json": {
+    "sessionId": "01a12162-04df-77a3-b224-d530d7e44e90",
+    "stopReason": "end_turn",
+    "num_turns": 2
+  },
+  "scope": "source-only partial review; no game or production mutation",
+  "parentAdjudication": "No demonstrated historical causal defect. Qualify new materially changed seal without clearing old failed sample; all timing gates pending isolation."
+}

@@ -1,0 +1,62 @@
+{
+  "kind": "gothic-production-qualification-declaration",
+  "source": "0b88344abbbea1411f8b5b6e90e8188954427108",
+  "preview": "https://aafce17b.fardel.pages.dev",
+  "sealSha256": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "cohorts": [
+    {
+      "name": "default",
+      "seed": null
+    },
+    {
+      "name": "maximum-uncovered",
+      "seed": "docs/baselines/gothic-production-2026-10-09/seed-maximum.json",
+      "sha256": "0eab40b8ef6debd3d7026fdab57bc7217e3a0e38eb49aa0b8b6191c9efcb78ff"
+    },
+    {
+      "name": "prior-maximum-covered",
+      "seed": "docs/baselines/gothic-production-2026-10-09/seed-covered.json",
+      "sha256": "2dbc9728bc70b0ef1e74dfc5a4ed817188ec36d96be170f876eacac8dd66c705"
+    },
+    {
+      "name": "historical",
+      "seed": "docs/baselines/gothic-production-2026-10-09/seed-historical.json",
+      "sha256": "2124f1d46af1c468cb6d3a0beceddad6e3d5cab15e92e5ddde2da91bc6d59fb6"
+    }
+  ],
+  "runsEach": 20,
+  "budgetMsInclusive": 1000,
+  "stopAtFirstInvalidOrOverBudget": true,
+  "profile": {
+    "downloadMbps": 50,
+    "uploadMbps": 10,
+    "latencyMs": 40,
+    "httpCacheDisabled": true,
+    "freshChromeProcessPerStart": true,
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "recording": false,
+    "applicationPromiseObservers": false
+  },
+  "performance": {
+    "routes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "runsEach": 3,
+    "secondsEach": 12,
+    "uncappedChromiumWebGPU": true,
+    "enemies": 7,
+    "floorFPS": 120,
+    "targetFPS": 144,
+    "required": "all raw intervals, p95/p99/worst/pacing/runtime/GPU errors/recoveries"
+  },
+  "notYetRun": "Renderer isolation not confirmed; no qualification acceptance",
+  "experimentalCoreAdoption": false
+}

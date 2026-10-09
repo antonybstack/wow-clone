@@ -1,0 +1,23 @@
+{
+  "requested": "Proceed toward production",
+  "source": "0b88344abbbea1411f8b5b6e90e8188954427108",
+  "candidate": "https://aafce17b.fardel.pages.dev",
+  "seal": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "defaultMode": "whole-region",
+  "experiment": "developer-only regionCore=1; default adoption excluded",
+  "rendererIsolation": {
+    "edgeInventory": "16 user tabs including Shadowglass; no owned game renderer",
+    "userReply": "Away from computer; should be closed last time checked",
+    "qualified": false,
+    "limit": "Presence may be suspended; active state unconfirmed. Internal status inspection denied; no alternate bypass."
+  },
+  "productionAtStart": {
+    "source": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "deployment": "5723a4ab-5dfd-4902-959b-7496948ea51f"
+  },
+  "pending": [
+    "isolated15-route-windows",
+    "startup-cause adjudication and new sealed qualification",
+    "production identical-seal upload/served/native checks/rollback on failure"
+  ]
+}

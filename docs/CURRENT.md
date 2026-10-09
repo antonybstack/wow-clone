@@ -10,6 +10,15 @@ external renderer status resolved; candidate adoption and production stay held.
 
 ## Current task and next work
 
+**User requests proceeding toward production.** Exact G08 seal verifies and a fresh
+651-row immutable delivery check passes. A newly declared standard-mode Gothic
+release still needs80 cold starts, native release gates and15 isolated FPS windows.
+Historical514fe898 remains rejected; no claim its texture failure is fixed.
+User is away; Edge still lists Shadowglass, possibly suspended but unconfirmed.
+Specific-tab closure authorization or confirmed suspension is needed for isolation;
+no game measurement or production mutation has run. Experimental core stays optional.
+[Concrete qualification and preflight](baselines/gothic-production-2026-10-09/README.md).
+
 **Candidate woodland motion audit passes eight native cases** on final G08 preview:
 normal Havok trunk contact/escape, menu-paused full arrival and100/140m ordinary/
 shadow visibility. Fifteen focused CPU checks pass. Root-reviewed31.753467s MP4

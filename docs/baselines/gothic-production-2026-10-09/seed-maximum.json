@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "catalogVersion": "appearance-catalog-v9",
+  "race": "human",
+  "fitFamily": "ashen-human",
+  "fit": {
+    "rig": "source-65",
+    "bind": 1,
+    "shape": 1
+  },
+  "shape": {
+    "family": "ashen-human-shape-v1",
+    "height": 1.15,
+    "build": -0.95
+  },
+  "components": {
+    "head": "human-prime-v1",
+    "hair": "human-ponytail01-v1"
+  },
+  "dyes": {
+    "torso": "oxblood",
+    "legs": "indigo"
+  },
+  "equipment": {
+    "helmet": null,
+    "torso": "duskguardCuirass",
+    "legs": "graveweaverSkirt",
+    "boots": "duskguardGreaves",
+    "gloves": "duskguardVambraces",
+    "mainHand": "graveweaverStaff",
+    "offHand": "bastionShield",
+    "shoulders": "bastionShoulders"
+  }
+}
