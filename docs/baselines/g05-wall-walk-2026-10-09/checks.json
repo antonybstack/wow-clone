@@ -2,8 +2,9 @@
   "cpu": {
     "passed": 60,
     "failed": 0,
-    "regionStructures": 14,
-    "receipt": "checks.tap"
+    "regionStructures": 8,
+    "receipt": "checks.tap",
+    "regionSourceGroup": 14
   },
   "build": {
     "passed": true,
