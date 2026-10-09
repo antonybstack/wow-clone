@@ -115,8 +115,3 @@ was stopped after rebuilding. Media31201/7077 and owned Edge1147996127 are close
 Grok72902 and its MCP children exited. The first preparation74724 and final17458
 completed. User Edge15 tabs, regular Chrome New Tab, Orca and unrelated Vite4000
 10171+10205 remain intact. No owned game renderer remains at G02 closeout.
-
-Receipt correction: the first `geometry.json` retained packet descriptors from
-before the final crown rebake. The source seal and served checks already pin the
-final packets correctly. Its descriptors now come from the committed manifest and
-decoded region index; geometry counts and the qualified measurements are unchanged.
