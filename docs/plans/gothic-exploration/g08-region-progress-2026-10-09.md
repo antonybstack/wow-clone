@@ -41,3 +41,10 @@ that its UI follows actual readiness. This is not a load-time optimization claim
 Required near assets/world geometry remain unchanged. Preserve unknown user
 Shadowglass tab and pending isolation clarification; no accepted FPS/load-time
 claim until isolated. Production startup hold/mobile backlog remain separate.
+
+## Actual result, 2026-10-09
+
+Implemented/pushed 62bb96d + 4b6707a, final sealed preview aafce17b, Telegram 901.
+[Concrete implementation, native failure/retry/disposal, reviewed motion and limits](../../baselines/g08-region-progress-2026-10-09/README.md).
+Default packet remains default; the candidate remains experimental. Isolated
+performance qualification is still pending, not waived by functional checks.

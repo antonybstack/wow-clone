@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 901,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 28.004079,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 29
+  },
+  "verified": true,
+  "file": "region-progress-final.mp4",
+  "sha256": "c6bf85441c9de112371841c514a9203effb1949d8bfd8495f77394943800640c",
+  "sentAt": "2026-10-09T13:21:35.727184+00:00"
+}

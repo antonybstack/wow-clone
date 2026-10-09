@@ -65,8 +65,21 @@ region/minimap guidance and twenty developer landings pass locally. Final public
 guide/physical views/map controls pass;651 served checks pass.
 [G07 scope/evidence](baselines/g07-cathedral-guide-2026-10-09/README.md).
 Its isolated FPS acceptance remains pending; source work does not waive the gate.
-Next independent work: [G08 live region-loading progress](plans/gothic-exploration/g08-region-progress-2026-10-09.md),
-answering the opaque collision-wait message with actual processing phases/counts.
+**G08 region-processing progress is pushed as 62bb96d + 4b6707a.**
+[Final desktop preview](https://aafce17b.fardel.pages.dev/?dev&play), Telegram **901** /
+[reviewed direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-progress.mp4).
+Ordinary status and Developer tools show actual index/surface/support/tree/foliage
+phases, current-attempt range counts and static packet size. Two intermediate
+updates/second from the existing async loop; no timer/frame hook or new decoder.
+Default 22.4 MB and experimental 14.4 MB labels are native verified. Navigation/retry/
+disposal remains safe. 43 CPU, four progress cases, five candidate cases, twenty
+landings, six surface picks and 651 served checks pass; final public proof retained.
+[Evidence/review/limits](baselines/g08-region-progress-2026-10-09/README.md).
+No fresh isolated FPS/load gain claim; G06–G08 acceptance and candidate adoption
+still need their timing/performance gates. Next acceptance work: resolve renderer
+isolation, qualify the final default build across representative routes, then
+paired candidate/control timing and settled performance. This is not another
+unchanged production cold-start campaign; that separate hold remains open.
 
 ## Completed desktop previews
 
@@ -138,7 +151,10 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03/G04/G05/G06/G07 and region-core candidate owned contexts/harnesses are closed.
+G03–G08 and region-core candidate owned contexts/harnesses are closed.
+G08 Chrome99825/CDP10037, Vite99776+99820/5873, compiled13042/7074 and
+media10177/7077 stopped; review1147996194/6198/6202/6206 tabs closed.
+All four owned ports are idle; Grok97463/report-only resume ended.
 G07 Chrome33002/CDP10037, Vite32939+32977/5873, compiled55608/7074 and
 media67439/7077 stopped; review1147996186/6190 tabs closed.
 Candidate Chrome74078/CDP10037, Vite74043+74067/5873, compiled88134/7074 and

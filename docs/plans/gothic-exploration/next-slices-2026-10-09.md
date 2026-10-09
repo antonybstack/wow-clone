@@ -80,7 +80,9 @@ region, character assets, multiplayer scale and combat changes remain deferred.
 [Actual implementation and qualification limits](../../baselines/g06-hall-balcony-2026-10-09/README.md).
 Product1b35554 / preview2fd14837 / Telegram898. Ordinary local/public entry/return,
 guards, developer controls, map and served files pass. Fresh renderer isolation
-is unresolved; no new FPS claim. Complete that gate before another visual slice.
+is unresolved; no new FPS claim. The user authorized independent source work
+while operations remain pending. This gate holds acceptance/release, not all
+feature implementation; CURRENT records G07/G08 actual scope and limits.
 
 [Concrete placement and implementation sequence](g06-hall-balcony-2026-10-09.md).
 Reuse the delivered stairs and rear walk; connect its raised pointed opening to a
@@ -88,3 +90,24 @@ supported guarded interior balcony, preserving the ground hall lane. Widen that
 opening for actual doorway clearance, give the landing an existing developer UI
 entry/spawn link, and qualify normal ascent/entry/return, guards and lower passage.
 Continue the active Gothic goal without waiting for user review.
+
+## G07 — Vaelmark exploration guide — functional preview, FPS pending
+
+Product 139c2d5 / preview f56f0786 / Telegram 900. Five ordinary map/level views,
+physical altitude-aware marker, upper/lower route directions and bell ascent
+diagrams reuse existing metadata/Canvas2D/menu lifecycle. No new assets/frame hook.
+[Native/public evidence and limits](../../baselines/g07-cathedral-guide-2026-10-09/README.md).
+
+## G08 — Actual region-processing progress — functional preview, FPS pending
+
+Product 62bb96d + 4b6707a / preview aafce17b / Telegram 901. Actual phases/current-attempt
+range counters, native progress and matching Developer tools status reuse the
+existing yielded stream. No new timer/frame hook, geometry or navigation policy.
+Default 22.4 MB and candidate 14.4 MB sizes are static labels, not byte-download
+percentages. Retry/disposal/jump gates pass; reviewed final live motion clears
+spell controls. [Evidence and limits](../../baselines/g08-region-progress-2026-10-09/README.md).
+
+Pending qualification is consolidated: final default build route FPS for G06–G08,
+then experimental/control paired timing and settled performance once the other
+user renderer is known inactive. Candidate remains opt-in, production/mobile holds
+remain separate. Do not claim the synthetic slow-transport motion is a benchmark.
