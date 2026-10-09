@@ -4,22 +4,24 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 ## Current direction and plans
 
-- **[Gothic exploration: Vaelmark undercroft and following slices](plans/gothic-exploration/plan.md)** — active game development; connected spaces and normal-control traversal.
+- **[Long-term game vision](plans/gothic-exploration/vision.md)** — a purposeful Gothic region, deeper adventure, character production and shared expeditions.
+- **[Next 24 hours: the Bell of Vaelmark](plans/gothic-exploration/next-24-hours-2026-10-09.md)** — planned G09–G18, detailed implementation briefs, bounded startup diagnosis, saved exploration and explicit delivery gates. Execution has not started.
+- **[Completed Gothic foundations and acceptance scope](plans/gothic-exploration/plan.md)** — G01–G08 desktop previews; connected spaces and normal-control traversal already built.
 - **[G01 result: playable undercroft, measurements and sealed preview](plans/gothic-exploration/results/undercroft-2026-10-08.md)** — complete locally/preview; existing lower route.
 - **[G03 regional circuit and fork repairs](baselines/g03-region-2026-10-09/README.md)** — eight connected public destinations, reviewed motion.
-- **[G04 map / G05 wall walk / G06 hall balcony](plans/gothic-exploration/next-slices-2026-10-09.md)** — navigation and wall route delivered; hall balcony functional preview, isolated FPS gate pending.
+- **[G04 map / G05 wall walk / G06 hall balcony](plans/gothic-exploration/next-slices-2026-10-09.md)** — delivered desktop previews; final integrated FPS acceptance is recorded in CURRENT. Production startup remains a separate hold.
 - **[Deferred mobile findings and known iPhone specifications](backlog/mobile-2026-10-08.md)** — backlogged at the user's request.
 - **[Previous release and factory execution plan](plans/character-mmo/next-12-hours-2026-10-05.md)** — retained requirements and evidence; follow CURRENT for the latest focus.
 - **[Workflow review and immediate changes](reviews/workflow-2026-10-05.md)**
 
-- **[Long-term vision: 100 milestones, ten categories](plans/character-mmo/vision-roadmap.md)**
-- **[Next ten milestones](plans/character-mmo/next-ten.md)**
+- **[Character and MMO capability horizon: 100 milestones](plans/character-mmo/vision-roadmap.md)** — retained long-term inventory; CURRENT controls execution order.
+- **[Previous character milestone sequence](plans/character-mmo/next-ten.md)** — implementation history and remaining capabilities, not the active Gothic task queue.
 - **[Current-state review and changed priorities — 2026-09-29](reviews/current-state-priorities-2026-09-29.md)**
 - **Completed proof briefs and reusable tooling:** [M001 — baseline/assets](plans/character-mmo/m001-baseline-and-asset-census.md), [M002 — appearance contract](plans/character-mmo/m002-appearance-contract.md), [M003 — crowd feasibility](plans/character-mmo/m003-crowd-feasibility.md), [M004 — Human template](plans/character-mmo/m004-human-template.md), [M005 — deformation proof](plans/character-mmo/m005-deformation-proof.md)
 - [Execution contract and performance gates](plans/character-mmo/execution-contract.md)
 - [Architecture decisions, capability checks and research](plans/character-mmo/architecture.md)
 
-M001–M005 are completed proof work. The active next-ten sequence has released body customization, crowd/streaming proofs, the bounded saved Human creator and authored equipment colours; multiplayer is verified locally with public hosting parked. The rigid shoulder factory/content proof is also released. Mixed-outfit visual acceptance, the licensed Elf source and physical-device acceptance remain open. CURRENT owns the release and next action; historical IDs are not a second task queue.
+M001–M005 are completed proof work. The previous character sequence released body customization, crowd/streaming proofs, the bounded saved Human creator and authored equipment colours; multiplayer is verified locally with public hosting parked. The rigid shoulder factory/content proof is also released. Mixed-outfit visual acceptance, the licensed Elf source and physical-device acceptance remain open. CURRENT owns the release and next action; historical IDs are not a second task queue.
 
 ## Operating and authoring references
 

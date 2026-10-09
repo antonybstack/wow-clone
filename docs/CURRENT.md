@@ -10,6 +10,17 @@ cold start at 1,140.1 ms; production is unchanged.** No user approval is pending
 
 ## Current task and next work
 
+**Planning request: long-term vision and a 24-hour autonomous implementation window.**
+The [game vision](plans/gothic-exploration/vision.md) prioritizes a purposeful Gothic
+region, followed by deeper adventure, character production and shared expeditions.
+The [next 24 hours](plans/gothic-exploration/next-24-hours-2026-10-09.md) specify
+G09–G18: a two-hour startup investigation limit; a saved inscription → bell →
+reliquary episode; clearer navigation; ordered regional extensions; and six hours
+reserved for integration and delivery. **These milestones are planned, not
+implemented.** The execution clock has not started. Production remains held by
+the independent gates below; an unresolved hold does not prevent preview game
+development. Historical milestone lists are not additional active queues.
+
 **Physical-core default adoption is complete on desktop preview**, product 7673031,
 operator-only helper correction d240f76:
 [ba01c765](https://ba01c765.fardel.pages.dev/?dev&play), Telegram **903** /
