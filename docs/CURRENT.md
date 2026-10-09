@@ -3,7 +3,7 @@
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
-The reported castle click-teleport defect is corrected locally: the old terrain
+The reported castle click-teleport defect is corrected on the new preview: the old terrain
 height march ignored architecture. The replacement uses Lite's native screen
 ray and a self-filtered Havok query against the nearest physical surface.
 The 1 mm query probe is allocated lazily and owned/disposed with player physics;
@@ -13,6 +13,13 @@ gallery, nave, ground, sloped cathedral roof and sky miss, plus elevated Fly-off
 No runtime/GPU errors or recoveries; no new FPS/load claim.
 [Native receipt](baselines/dev-surface-2026-10-08/local-report.json) and
 [reproduction procedure](debug-view.md#reproduce-developer-navigation-from-the-ui).
+Implementation **aa8f92e** is committed/pushed. The
+[corrected preview](https://67e791f7.fardel.pages.dev/?dev&play&at=cathedral-parapet)
+passes the same six native click controls and all 646 served checks. Root-reviewed
+motion is Telegram **892** and
+[identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/dev-surface/2026-10-08/aa8f92e.mp4).
+[Full result and limitations](baselines/dev-surface-2026-10-08/README.md).
+Owned game/test/media instances are closed; production remains unchanged.
 Developer reproduction is now a required part of each new in-game helper:
 provide a named control under **?dev → Esc/Menu → Developer tools**, using the
 same handler as any shareable URL parameter. The new destination selector covers
