@@ -1,0 +1,51 @@
+{
+  "baseline": "805fac1",
+  "nearExact": true,
+  "foliageExact": true,
+  "structures": 11456,
+  "collision": 11072,
+  "regionEncodedDelta": 10867,
+  "regionRawDelta": 102240,
+  "records": [
+    {
+      "name": "near",
+      "file": "near-ccb9dc565ff6.br",
+      "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "encodedBytes": 149963,
+      "rawBytes": 641752,
+      "blocks": 6,
+      "proxies": 1
+    },
+    {
+      "name": "skyline",
+      "file": "skyline-68223c8a0814.br",
+      "sha256": "68223c8a0814de2d0029fb92ca0d7962a6eb4d920555fd48b5edb22f156c02d4",
+      "encodedBytes": 592693,
+      "rawBytes": 2671328,
+      "blocks": 2,
+      "proxies": 44
+    },
+    {
+      "name": "index",
+      "file": "region-index-d1957cb857fc.br",
+      "sha256": "d1957cb857fcfa3695b150f0327935ddfff1c69e27588a799e0a97854475ac18",
+      "encodedBytes": 80795,
+      "rawBytes": 1125117
+    },
+    {
+      "name": "region",
+      "file": "region-c892ee93228d.br",
+      "sha256": "c892ee93228df7fc7880bddf67bbf3da99494019747790ecb75c3ab9d60092ba",
+      "encodedBytes": 22401010,
+      "rawBytes": 158144000,
+      "blocks": 1037
+    },
+    {
+      "name": "foliage",
+      "file": "foliage-28ada63f5a13.br",
+      "sha256": "28ada63f5a130835b4f795a504e6d181f35153301b6de04fecda46b26a682f06",
+      "encodedBytes": 4413215,
+      "rawBytes": 9384880
+    }
+  ]
+}

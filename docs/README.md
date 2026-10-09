@@ -7,7 +7,7 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 - **[Gothic exploration: Vaelmark undercroft and following slices](plans/gothic-exploration/plan.md)** — active game development; connected spaces and normal-control traversal.
 - **[G01 result: playable undercroft, measurements and sealed preview](plans/gothic-exploration/results/undercroft-2026-10-08.md)** — complete locally/preview; existing lower route.
 - **[G03 regional circuit and fork repairs](baselines/g03-region-2026-10-09/README.md)** — eight connected public destinations, reviewed motion.
-- **[G04 map / G05 wall walk / next G06 hall balcony](plans/gothic-exploration/next-slices-2026-10-09.md)** — navigation and guarded vertical route delivered; connected interior exploration follows.
+- **[G04 map / G05 wall walk / G06 hall balcony](plans/gothic-exploration/next-slices-2026-10-09.md)** — navigation and wall route delivered; hall balcony functional preview, isolated FPS gate pending.
 - **[Deferred mobile findings and known iPhone specifications](backlog/mobile-2026-10-08.md)** — backlogged at the user's request.
 - **[Previous release and factory execution plan](plans/character-mmo/next-12-hours-2026-10-05.md)** — retained requirements and evidence; follow CURRENT for the latest focus.
 - **[Workflow review and immediate changes](reviews/workflow-2026-10-05.md)**

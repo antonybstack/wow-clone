@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 898,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 63.055399,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 64
+  },
+  "verified": true,
+  "file": "hall-balcony.mp4",
+  "sha256": "d61b65b532fec8c8dbf7b4f2cf9a3730bc51ebae88c01b33a120b213a7f8a242",
+  "sentAt": "2026-10-09T11:30:07.639856+00:00"
+}

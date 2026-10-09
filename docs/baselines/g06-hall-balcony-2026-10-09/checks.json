@@ -1,0 +1,33 @@
+{
+  "product": "1b35554",
+  "focusedCPU": 48,
+  "regionStructureTests": 10,
+  "stagedBuild": "four startup flags passed2.21s",
+  "local": {
+    "nativeSamples": 55,
+    "guardContacts": 6,
+    "developerDestinations": 20,
+    "map": true,
+    "eastwatchCircuit": true
+  },
+  "public": {
+    "nativeSamples": 55,
+    "guardContacts": 6,
+    "developerDestinations": 20,
+    "map": true,
+    "eastwatchCircuit": true,
+    "eastwatchCircuitSamples": 61,
+    "eastwatchGroundRouteSamples": 54,
+    "connectingLegs": 2
+  },
+  "served": 649,
+  "cachePolicies": 323,
+  "performance": {
+    "status": "deferred",
+    "reason": "unrelated user Shadowglass tab current renderer status unconfirmed; internal browser status page rejected; pending user clarification",
+    "benchmarkRun": false,
+    "newFPSClaim": false
+  },
+  "productionPromoted": false,
+  "telegram": 898
+}

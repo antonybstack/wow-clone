@@ -1,0 +1,169 @@
+{
+  "url": "http://127.0.0.1:7074/?play&clean",
+  "errors": [],
+  "selections": [
+    {
+      "id": "east-keep",
+      "routePoints": 171
+    },
+    {
+      "id": "west-keep",
+      "routePoints": 178
+    },
+    {
+      "id": "south-keep",
+      "routePoints": 184
+    },
+    {
+      "id": "east-tower",
+      "routePoints": 190
+    },
+    {
+      "id": "west-tower",
+      "routePoints": 204
+    },
+    {
+      "id": "north-tower",
+      "routePoints": 55
+    },
+    {
+      "id": "hollowmere-chapel",
+      "routePoints": 4
+    },
+    {
+      "id": "vaelmark",
+      "routePoints": 6
+    }
+  ],
+  "start": {
+    "x": -0.0002544094719702775,
+    "y": 0.8881416604369898,
+    "z": -0.000448957862414145,
+    "facing": 0,
+    "physics": true,
+    "recoveries": 0,
+    "flying": false,
+    "objective": {
+      "phase": "idle",
+      "inside": false,
+      "promptCount": 0,
+      "completeCount": 0,
+      "lastMessage": "",
+      "killed": [],
+      "remaining": [
+        "grave-shade-1",
+        "grave-shade-2",
+        "grave-shade-3",
+        "grave-shade-4"
+      ],
+      "bonusXp": 100,
+      "watchman": {
+        "x": 0.3503803000354113,
+        "z": 77.4
+      },
+      "triggerRadius": 8
+    },
+    "selected": null
+  },
+  "turned": {
+    "x": -0.0002552864991361958,
+    "y": 0.8881548674337457,
+    "z": -0.0004505055572985335,
+    "facing": 1.1620350001215933,
+    "physics": true,
+    "recoveries": 0,
+    "flying": false,
+    "objective": {
+      "phase": "idle",
+      "inside": false,
+      "promptCount": 0,
+      "completeCount": 0,
+      "lastMessage": "",
+      "killed": [],
+      "remaining": [
+        "grave-shade-1",
+        "grave-shade-2",
+        "grave-shade-3",
+        "grave-shade-4"
+      ],
+      "bonusXp": 100,
+      "watchman": {
+        "x": 0.3503803000354113,
+        "z": 77.4
+      },
+      "triggerRadius": 8
+    },
+    "selected": null
+  },
+  "minimapPins": {
+    "blue": 30,
+    "gold": 8
+  },
+  "afterWalk": {
+    "x": 5.057384433888788,
+    "y": 1.3168157942295073,
+    "z": 2.3085993957220827,
+    "facing": 1.1620350001215933,
+    "physics": true,
+    "recoveries": 0,
+    "flying": false,
+    "objective": {
+      "phase": "idle",
+      "inside": false,
+      "promptCount": 0,
+      "completeCount": 0,
+      "lastMessage": "",
+      "killed": [],
+      "remaining": [
+        "grave-shade-1",
+        "grave-shade-2",
+        "grave-shade-3",
+        "grave-shade-4"
+      ],
+      "bonusXp": 100,
+      "watchman": {
+        "x": 0.3503803000354113,
+        "z": 77.4
+      },
+      "triggerRadius": 8
+    },
+    "selected": "vaelmark"
+  },
+  "end": {
+    "x": 5.057384433888788,
+    "y": 1.3168157942295073,
+    "z": 2.3085993957220827,
+    "facing": 1.1620350001215933,
+    "physics": true,
+    "recoveries": 0,
+    "flying": false,
+    "objective": {
+      "phase": "idle",
+      "inside": false,
+      "promptCount": 0,
+      "completeCount": 0,
+      "lastMessage": "",
+      "killed": [],
+      "remaining": [
+        "grave-shade-1",
+        "grave-shade-2",
+        "grave-shade-3",
+        "grave-shade-4"
+      ],
+      "bonusXp": 100,
+      "watchman": {
+        "x": 0.3503803000354113,
+        "z": 77.4
+      },
+      "triggerRadius": 8
+    },
+    "selected": null
+  },
+  "disposal": {
+    "minimapRemoved": true,
+    "chartRemoved": true,
+    "selectionCleared": true
+  },
+  "gpuErrors": [],
+  "passed": true
+}

@@ -1,6 +1,11 @@
 # G06 — Connect Eastwatch's wall walk to its upper hall
 
-**Implementation active after G05's public circuit/delivery/cleanup.** Baseline
+**Product implemented/pushed as 1b35554; functional desktop qualification active.**
+Preview 2fd14837 is for public verification, not production promotion. Isolated
+FPS qualification remains pending: the browser tool rejected the internal status
+page, leaving an unrelated user Shadowglass tab's current rendering state
+unconfirmed. No contaminated benchmark or new >120/144 FPS claim is accepted.
+Baseline
 805fac1 (G05 product c3419d4). Use the delivered
 Eastwatch courtyard, raised-window and hall captures as the baseline, together with
 the retained fortified-entrance reference. Reuse existing masonry batching,

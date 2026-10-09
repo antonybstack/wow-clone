@@ -1,7 +1,9 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-**G01–G04 are complete on sealed desktop previews. G05 Eastwatch wall walk is next.**
+**G01–G05 are complete on sealed desktop previews. G06's hall balcony is
+implemented on a functional preview; isolated FPS qualification remains open.**
+[G06 actual evidence and limits](../../baselines/g06-hall-balcony-2026-10-09/README.md).
 [Following slices](next-slices-2026-10-09.md).
 [Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).
 Production promotion remains under its separate recorded startup gates.

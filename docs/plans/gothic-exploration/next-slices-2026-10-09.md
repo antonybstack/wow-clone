@@ -75,7 +75,12 @@ optional-packet deltas, then the usual isolated performance and delivery gates.
 Production remains held by its separate startup qualification. Mobile, another
 region, character assets, multiplayer scale and combat changes remain deferred.
 
-## G06 — Connected Eastwatch hall balcony — next
+## G06 — Connected Eastwatch hall balcony — functional preview, FPS pending
+
+[Actual implementation and qualification limits](../../baselines/g06-hall-balcony-2026-10-09/README.md).
+Product1b35554 / preview2fd14837 / Telegram898. Ordinary local/public entry/return,
+guards, developer controls, map and served files pass. Fresh renderer isolation
+is unresolved; no new FPS claim. Complete that gate before another visual slice.
 
 [Concrete placement and implementation sequence](g06-hall-balcony-2026-10-09.md).
 Reuse the delivered stairs and rear walk; connect its raised pointed opening to a

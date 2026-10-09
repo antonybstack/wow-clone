@@ -1,0 +1,11 @@
+{
+  "model": "grok-4.6",
+  "effort": "high",
+  "session": "01a12052-8166-7900-a886-eeeff8917bb3",
+  "stopReason": "end_turn",
+  "turns": 8,
+  "checkpoint": "observed findings written after first batched read; completed within eight-turn cap, no report-only resume",
+  "scope": "three risks: bridge/guard joins, raised door and ground lane, native checker; source and one CPU occupancy probe only",
+  "rootAdjudication": "no consequential finding; rear deck typo16.4..19.6 should be16.4..18.8; limiting width includes trim, native six guard contacts pass",
+  "limits": "predates final gable correction; root ten structure tests and final local/public native tour cover that change; no FPS or visual acceptance by reviewer"
+}

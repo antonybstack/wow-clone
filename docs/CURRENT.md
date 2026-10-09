@@ -25,11 +25,20 @@ wall-walk/capture result. [Preview](https://ae9f12cc.fardel.pages.dev/?dev&play&
 Reviewed motion: Telegram **897** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/wall-walk.mp4).
 Actual direct VE playback passes; Telegram application inline/fullscreen remains unverified.
 
-**Next: G06 connected Eastwatch hall balcony.** [Concrete slice](plans/gothic-exploration/g06-hall-balcony-2026-10-09.md).
-Reuse the existing stair/rear walk, connect its pointed opening to a supported
-interior balcony, preserve the lower hall route and qualify ordinary entry/return.
-Continue the active goal without waiting for user review; mobile and independent
-production hold remain deferred. [Following slices](plans/gothic-exploration/next-slices-2026-10-09.md).
+**G06 hall balcony is implemented/pushed as 1b35554; its isolated FPS gate remains open.**
+[Functional preview](https://2fd14837.fardel.pages.dev/?dev&play&at=east-keep-hall-balcony),
+[actual checks/limits](baselines/g06-hall-balcony-2026-10-09/README.md),
+[concrete slice](plans/gothic-exploration/g06-hall-balcony-2026-10-09.md).
+Supported interior balcony, guarded bridge, widened pointed doorway and closed
+gables preserve the lower hall lane. Final local/public ordinary ascent/entry/
+return and six guard contacts pass; 48 CPU, twenty developer landings, ordinary
+map/disposal and 649 served checks pass. Telegram898/reviewed direct VE motion.
+Fresh isolation is unresolved because the browser tool rejected its internal
+status page; an unrelated user Shadowglass tab's current rendering state remains
+unconfirmed. User clarification is pending; no G06 FPS claim or production
+promotion. Finish that gate before another visual implementation. Continue
+independent planning/analysis under the active goal, preserving the user tabs,
+mobile backlog and separate production hold.
 
 ## Completed desktop previews
 
@@ -101,8 +110,8 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03/G04/G05 owned contexts/harnesses are closed. Latest G05 Chrome2789 / CDP10037,
-Vite2740+2784 /5873 and compiled35177 /7074 are stopped. All review/media/Grok,
+G03/G04/G05/G06 owned contexts/harnesses are closed. Latest G06 Chrome38823 / CDP10037,
+Vite38794+38818 /5873 and compiled68298 /7074 are stopped. All review/media/Grok,
 capture/encoding/delivery processes are done. No owned game renderer remains.
 User Edge2931 / fifteen existing tabs, Chrome13883 / New Tab, Orca and unrelated
 Vite4000 10171+10205 are preserved. Before every live check/timing window audit
