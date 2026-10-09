@@ -14,6 +14,13 @@ All 18 native floor/placement checks, walking/input/focus, spawn-link dev gating
 and elevated-floor Fly-off pass with no runtime/GPU errors.
 [Local receipt](baselines/dev-destinations-2026-10-08/local-report.json).
 This is a reproduction/UI check, not a new performance measurement.
+The [new sealed preview](https://375faa2a.fardel.pages.dev/?dev&play&at=cathedral-nave)
+includes this menu and direct nave spawn; all 18 public-preview placement/control
+checks and 646 served checks pass. Reviewed live demo: Telegram **891** and
+[identical VE](https://ve.sparkify.dev/wow-clone/ashen-reach/dev-destinations/2026-10-08/menu.mp4).
+[Release/ownership receipt](baselines/dev-destinations-2026-10-08/README.md).
+Owned test browsers, servers and media tab are closed; the user's Edge preview
+is preserved. Production remains unchanged under its existing hold.
 [G01: Vaelmark undercroft](plans/gothic-exploration/results/undercroft-2026-10-08.md)
 is complete locally and on the [sealed desktop preview](https://f51c7bcb.fardel.pages.dev/?play&clean):
 guarded west-chapel descent, pointed vault, memorial circuit and ordinary-control
