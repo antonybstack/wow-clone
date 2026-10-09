@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 897,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 45.322298,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 46
+  },
+  "verified": true,
+  "file": "wall-walk.mp4",
+  "sha256": "c7a7eef952e5ad73a8c357e4cc9739c55b2d160cff84c5b7dfbf47688129b404",
+  "sentAt": "2026-10-09T10:37:41.919956+00:00"
+}

@@ -42,3 +42,10 @@ reserving the last turn for the result. Several bounded G03 reviews hit their ca
 without an artifact and required report-only resumes; a larger investigation cap
 is not the default remedy. If a cap is reached, one short same-session report-only
 resume should preserve the findings and honest limits, without restarting probes.
+
+Keep a bounded source review to at most three consequential questions. After its
+first batched source read, require a report update with actual observations before
+any additional probe. A large table of pending checks encouraged repeated G04/G05
+passes to postpone findings until the cap; the skeleton alone is not a checkpoint.
+Use CLI `stopReason`/`num_turns` to adjudicate budget claims in the report. Permit
+one report-only resume, then preserve unchecked areas and stop the review.

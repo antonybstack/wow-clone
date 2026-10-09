@@ -1,0 +1,370 @@
+TAP version 13
+# Subtest: native Havok ray stops on the elevated deck before terrain, with CSS-sized picking
+ok 1 - native Havok ray stops on the elevated deck before terrain, with CSS-sized picking
+  ---
+  duration_ms: 57.188917
+  type: 'test'
+  ...
+# Subtest: upright capsule clearance remains outside walls, undersides and sloped roofs
+ok 2 - upright capsule clearance remains outside walls, undersides and sloped roofs
+  ---
+  duration_ms: 0.196166
+  type: 'test'
+  ...
+# Subtest: metadata matches the authored site and all material work stays within budget
+ok 3 - metadata matches the authored site and all material work stays within budget
+  ---
+  duration_ms: 1.029042
+  type: 'test'
+  ...
+# Subtest: appending geometry preserves existing batches and leaves registration to parent
+ok 4 - appending geometry preserves existing batches and leaves registration to parent
+  ---
+  duration_ms: 0.145041
+  type: 'test'
+  ...
+# Subtest: all triangles have finite attributes, valid indices and matching winding/normals
+ok 5 - all triangles have finite attributes, valid indices and matching winding/normals
+  ---
+  duration_ms: 71.0445
+  type: 'test'
+  ...
+# Subtest: 600 route samples have upward floor support and a clear human-height walk line
+ok 6 - 600 route samples have upward floor support and a clear human-height walk line
+  ---
+  duration_ms: 2960.085958
+  type: 'test'
+  ...
+# Subtest: front portals are open, altar approach is clear, walls and roofs are solid
+ok 7 - front portals are open, altar approach is clear, walls and roofs are solid
+  ---
+  duration_ms: 19.557916
+  type: 'test'
+  ...
+# Subtest: blind facade lancets have real recess depth and retain a solid interior wall
+ok 8 - blind facade lancets have real recess depth and retain a solid interior wall
+  ---
+  duration_ms: 15.607333
+  type: 'test'
+  ...
+# Subtest: nonfinite primary terrain heights fail before geometry is appended
+ok 9 - nonfinite primary terrain heights fail before geometry is appended
+  ---
+  duration_ms: 0.331791
+  type: 'test'
+  ...
+# Subtest: altar window is genuinely open with solid sill, pointed head and recessed tracery
+ok 10 - altar window is genuinely open with solid sill, pointed head and recessed tracery
+  ---
+  duration_ms: 14.844167
+  type: 'test'
+  ...
+# Subtest: chapels, gallery and tower stairs have floor support and 1.9 m headroom
+ok 11 - chapels, gallery and tower stairs have floor support and 1.9 m headroom
+  ---
+  duration_ms: 2588.11225
+  type: 'test'
+  ...
+# Subtest: both chapel doors and upper gallery exits have capsule-width clearance
+ok 12 - both chapel doors and upper gallery exits have capsule-width clearance
+  ---
+  duration_ms: 36.098375
+  type: 'test'
+  ...
+# Subtest: gallery and parapet rails leave their turning junctions open
+ok 13 - gallery and parapet rails leave their turning junctions open
+  ---
+  duration_ms: 26.837666
+  type: 'test'
+  ...
+# Subtest: undercroft circuit has continuous support, body clearance and terrain separation
+ok 14 - undercroft circuit has continuous support, body clearance and terrain separation
+  ---
+  duration_ms: 1600.188958
+  type: 'test'
+  ...
+# Subtest: stair opening is real in collision and the upper slab still supports both sides
+ok 15 - stair opening is real in collision and the upper slab still supports both sides
+  ---
+  duration_ms: 20.048667
+  type: 'test'
+  ...
+# Subtest: authoring rejects terrain beneath the lower connector outside the chamber
+ok 16 - authoring rejects terrain beneath the lower connector outside the chamber
+  ---
+  duration_ms: 108.581458
+  type: 'test'
+  ...
+# Subtest: native Brotli region/index/foliage preserve complete storage coverage
+ok 17 - native Brotli region/index/foliage preserve complete storage coverage
+  ---
+  duration_ms: 4.79575
+  type: 'test'
+  ...
+# Subtest: prepared region refuses mismatched header
+ok 18 - prepared region refuses mismatched header
+  ---
+  duration_ms: 4.686667
+  type: 'test'
+  ...
+# Subtest: prepared region refuses unsupported schema
+ok 19 - prepared region refuses unsupported schema
+  ---
+  duration_ms: 2.449667
+  type: 'test'
+  ...
+# Subtest: prepared region refuses wrong dependency list
+ok 20 - prepared region refuses wrong dependency list
+  ---
+  duration_ms: 2.374375
+  type: 'test'
+  ...
+# Subtest: prepared region refuses missing range
+ok 21 - prepared region refuses missing range
+  ---
+  duration_ms: 2.294167
+  type: 'test'
+  ...
+# Subtest: prepared region refuses storage gap
+ok 22 - prepared region refuses storage gap
+  ---
+  duration_ms: 2.479291
+  type: 'test'
+  ...
+# Subtest: prepared region refuses duplicate storage range
+ok 23 - prepared region refuses duplicate storage range
+  ---
+  duration_ms: 5.210833
+  type: 'test'
+  ...
+# Subtest: prepared region refuses attribute shape
+ok 24 - prepared region refuses attribute shape
+  ---
+  duration_ms: 2.319583
+  type: 'test'
+  ...
+# Subtest: prepared region refuses index beyond local vertices
+ok 25 - prepared region refuses index beyond local vertices
+  ---
+  duration_ms: 2.672208
+  type: 'test'
+  ...
+# Subtest: prepared region refuses nonfinite geometry
+ok 26 - prepared region refuses nonfinite geometry
+  ---
+  duration_ms: 7.880709
+  type: 'test'
+  ...
+# Subtest: prepared region refuses foliage total mismatch
+ok 27 - prepared region refuses foliage total mismatch
+  ---
+  duration_ms: 2.680625
+  type: 'test'
+  ...
+# Subtest: prepared region refuses foliage matrix shape
+ok 28 - prepared region refuses foliage matrix shape
+  ---
+  duration_ms: 5.062917
+  type: 'test'
+  ...
+# Subtest: prepared region refuses corrupt immutable packet bytes
+ok 29 - prepared region refuses corrupt immutable packet bytes
+  ---
+  duration_ms: 2.955834
+  type: 'test'
+  ...
+# Subtest: every destination has a continuous route with four metre clearance and walkable grade
+ok 30 - every destination has a continuous route with four metre clearance and walkable grade
+  ---
+  duration_ms: 0.879583
+  type: 'test'
+  ...
+# Subtest: destination pads coincide with physical floor datum and remain finite
+ok 31 - destination pads coincide with physical floor datum and remain finite
+  ---
+  duration_ms: 0.736709
+  type: 'test'
+  ...
+# Subtest: developer landmark facing points from the entrance into each destination
+ok 32 - developer landmark facing points from the entrance into each destination
+  ---
+  duration_ms: 0.094125
+  type: 'test'
+  ...
+# Subtest: native stream yields first exact block before the remainder arrives
+ok 33 - native stream yields first exact block before the remainder arrives
+  ---
+  duration_ms: 23.134583
+  type: 'test'
+  ...
+# Subtest: arbitrary native chunk boundaries keep identical typed arrays
+ok 34 - arbitrary native chunk boundaries keep identical typed arrays
+  ---
+  duration_ms: 0.962708
+  type: 'test'
+  ...
+# Subtest: truncated body cannot complete geometry
+ok 35 - truncated body cannot complete geometry
+  ---
+  duration_ms: 0.79325
+  type: 'test'
+  ...
+# Subtest: trailing bytes cannot complete geometry
+ok 36 - trailing bytes cannot complete geometry
+  ---
+  duration_ms: 0.246041
+  type: 'test'
+  ...
+# Subtest: invalid metadata is refused before reading the body
+ok 37 - invalid metadata is refused before reading the body
+  ---
+  duration_ms: 0.717958
+  type: 'test'
+  ...
+# Subtest: leaving installation cancels and unlocks the native reader
+ok 38 - leaving installation cancels and unlocks the native reader
+  ---
+  duration_ms: 0.183833
+  type: 'test'
+  ...
+# Subtest: native network errors propagate
+ok 39 - native network errors propagate
+  ---
+  duration_ms: 0.291334
+  type: 'test'
+  ...
+# Subtest: all six landmarks retain position, orientation and skyline with bounded geometry
+ok 40 - all six landmarks retain position, orientation and skyline with bounded geometry
+  ---
+  duration_ms: 1.003834
+  type: 'test'
+  ...
+# Subtest: all material and collision triangles are finite, nondegenerate and coherently wound
+ok 41 - all material and collision triangles are finite, nondegenerate and coherently wound
+  ---
+  duration_ms: 27.777791
+  type: 'test'
+  ...
+# Subtest: threshold, courtyard, hall and return have continuous flush floors and capsule clearance
+ok 42 - threshold, courtyard, hall and return have continuous flush floors and capsule clearance
+  ---
+  duration_ms: 2889.140417
+  type: 'test'
+  ...
+# Subtest: gate and hall widths are genuinely open, with solid jambs, walls and ceilings
+ok 43 - gate and hall widths are genuinely open, with solid jambs, walls and ceilings
+  ---
+  duration_ms: 51.310166
+  type: 'test'
+  ...
+# Subtest: invalid sites fail before modifying shared batches
+ok 44 - invalid sites fail before modifying shared batches
+  ---
+  duration_ms: 0.482292
+  type: 'test'
+  ...
+# Subtest: raised rear lancets are open views with solid lower walls and pointed crowns
+ok 45 - raised rear lancets are open views with solid lower walls and pointed crowns
+  ---
+  duration_ms: 35.671584
+  type: 'test'
+  ...
+# Subtest: Eastwatch stairs and all high turns are continuously supported with capsule headroom
+ok 46 - Eastwatch stairs and all high turns are continuously supported with capsule headroom
+  ---
+  duration_ms: 1326.672208
+  type: 'test'
+  ...
+# Subtest: Eastwatch inner/outer guards and rear lancet view are physically real
+ok 47 - Eastwatch inner/outer guards and rear lancet view are physically real
+  ---
+  duration_ms: 17.998916
+  type: 'test'
+  ...
+# Subtest: road miters face upward individually and every visible surface has matching collision
+ok 48 - road miters face upward individually and every visible surface has matching collision
+  ---
+  duration_ms: 73.293583
+  type: 'test'
+  ...
+# Subtest: the shared east fork has one physical road height across overlapping branches
+ok 49 - the shared east fork has one physical road height across overlapping branches
+  ---
+  duration_ms: 1580.193125
+  type: 'test'
+  ...
+# Subtest: the shared west fork has one physical road height across overlapping branches
+ok 50 - the shared west fork has one physical road height across overlapping branches
+  ---
+  duration_ms: 2990.932916
+  type: 'test'
+  ...
+# Subtest: town, churchyard, pads and cathedral approach keep their exact pre-region elevations
+ok 51 - town, churchyard, pads and cathedral approach keep their exact pre-region elevations
+  ---
+  duration_ms: 10.022042
+  type: 'test'
+  ...
+# Subtest: three seeded crests retain the horizon radii and elevations as physical terrain
+ok 52 - three seeded crests retain the horizon radii and elevations as physical terrain
+  ---
+  duration_ms: 0.775625
+  type: 'test'
+  ...
+# Subtest: mountain surface stays finite and continuous across profile and protection seams
+ok 53 - mountain surface stays finite and continuous across profile and protection seams
+  ---
+  duration_ms: 132.775583
+  type: 'test'
+  ...
+# Subtest: finite footprint stays explicit and terrain sampling introduces no coordinate clamp
+ok 54 - finite footprint stays explicit and terrain sampling introduces no coordinate clamp
+  ---
+  duration_ms: 0.437791
+  type: 'test'
+  ...
+# Subtest: prepared files match authoring inputs and content hashes
+ok 55 - prepared files match authoring inputs and content hashes
+  ---
+  duration_ms: 69.318792
+  type: 'test'
+  ...
+# Subtest: starter terrain is actual Brotli data with matching HTTP metadata
+ok 56 - starter terrain is actual Brotli data with matching HTTP metadata
+  ---
+  duration_ms: 787.379167
+  type: 'test'
+  ...
+# Subtest: starter body preserves every source vertex, joint and weight, and exactly the playable animation samples
+ok 57 - starter body preserves every source vertex, joint and weight, and exactly the playable animation samples
+  ---
+  duration_ms: 240.344166
+  type: 'test'
+  ...
+# Subtest: partition preserves triangle attributes across the playable frontier
+ok 58 - partition preserves triangle attributes across the playable frontier
+  ---
+  duration_ms: 0.572167
+  type: 'test'
+  ...
+# Subtest: split starter packets verify; corrupt hash, size, length, layout or placement is refused
+ok 59 - split starter packets verify; corrupt hash, size, length, layout or placement is refused
+  ---
+  duration_ms: 2.745958
+  type: 'test'
+  ...
+# Subtest: background render blocks may not duplicate required blocks or install collision
+ok 60 - background render blocks may not duplicate required blocks or install collision
+  ---
+  duration_ms: 0.480458
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7950.278458

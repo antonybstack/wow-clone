@@ -46,7 +46,11 @@ ordinary walking clip. Measure separately under the same five-route 15-window
 conditions. Complete commit/push, sealed preview/public native checks, served
 assets, reviewed VE/Telegram motion and ownership cleanup before G05.
 
-## G05 — Eastwatch wall walk
+## G05 — Eastwatch wall walk — complete 2026-10-09
+
+[Actual construction, native/public climb and eight-destination circuit, performance
+and delivery](../../baselines/g05-wall-walk-2026-10-09/README.md).
+Product c3419d4 / preview ae9f12cc / Telegram 897.
 
 Survey the actual Eastwatch courtyard and retained fortified-entrance reference
 before geometry changes. Add one guarded, visibly stair-accessible high route
@@ -65,8 +69,17 @@ Add the landing to built exploration metadata and **?dev → Developer tools**
 using the same destination handler, plus a shareable spawn link. Test normal
 courtyard ascent/wall traverse/return, outer/inner rails, doorway clearance and
 raised-window interaction with Havok active, no Fly/recovery teleports. Preserve
-all seven G03 routes. Prepare/build sequentially, verify exact near bytes and
+all eight G03 routes. Prepare/build sequentially, verify exact near bytes and
 optional-packet deltas, then the usual isolated performance and delivery gates.
 
 Production remains held by its separate startup qualification. Mobile, another
 region, character assets, multiplayer scale and combat changes remain deferred.
+
+## G06 — Connected Eastwatch hall balcony — next
+
+[Concrete placement and implementation sequence](g06-hall-balcony-2026-10-09.md).
+Reuse the delivered stairs and rear walk; connect its raised pointed opening to a
+supported guarded interior balcony, preserving the ground hall lane. Widen that
+opening for actual doorway clearance, give the landing an existing developer UI
+entry/spawn link, and qualify normal ascent/entry/return, guards and lower passage.
+Continue the active Gothic goal without waiting for user review.

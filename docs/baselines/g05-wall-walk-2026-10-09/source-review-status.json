@@ -1,0 +1,14 @@
+{
+  "sessionId": "01a12025-35d6-7692-80e6-22281911b304",
+  "model": "Grok 4.6",
+  "effort": "high",
+  "first": {
+    "stopReason": "cancelled",
+    "num_turns": 8
+  },
+  "reportOnlyFinish": {
+    "stopReason": "end_turn",
+    "num_turns": 3
+  },
+  "rootAdjudication": "Original pass capped; report prose claiming unused turns is inaccurate. One report-only resume completed. No independent end-to-end acceptance claimed."
+}

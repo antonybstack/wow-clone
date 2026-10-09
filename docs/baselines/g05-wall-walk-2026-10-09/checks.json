@@ -1,0 +1,49 @@
+{
+  "cpu": {
+    "passed": 60,
+    "failed": 0,
+    "regionStructures": 14,
+    "receipt": "checks.tap"
+  },
+  "build": {
+    "passed": true,
+    "profile": {
+      "ASHEN_BUILD_ONLY": 1,
+      "ASHEN_SAVED_BOOTSTRAP": 1,
+      "ASHEN_PRIME_STARTER_WORLD": 1,
+      "ASHEN_LAZY_WORLD_BUFFERS": 1,
+      "ASHEN_DEFER_COVERED_HAIR": 1
+    },
+    "earlyBoot": {
+      "kB": 276.67,
+      "gzipkB": 101.88
+    },
+    "lateCombat": {
+      "kB": 53.04,
+      "gzipkB": 19.88
+    }
+  },
+  "ownedCleanup": {
+    "browserPid": 2789,
+    "cdpPort": 10037,
+    "vitePids": [
+      2740,
+      2784
+    ],
+    "vitePort": 5873,
+    "compiledPid": 35177,
+    "compiledPort": 7074,
+    "mediaPid": 42091,
+    "mediaPort": 7077,
+    "grokPids": [
+      18482,
+      44458
+    ],
+    "reviewTabs": [
+      1147996154,
+      1147996158
+    ],
+    "allClosed": true,
+    "userSessionsPreserved": true
+  }
+}

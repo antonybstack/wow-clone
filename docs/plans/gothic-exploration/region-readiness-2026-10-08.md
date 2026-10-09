@@ -10,7 +10,30 @@ path. The initial buffered prototype regressed and was rejected. Final native
 stream navigation is 20.3–22.5% faster in three declared 50 Mbit/s local pairs.
 The sealed desktop preview and delivery gates are complete for the declared desktop scope; production has not been promoted.
 
-## Findings
+## Current explanation — 2026-10-09
+
+The developer gate waits for **the whole region's visible structures and physical
+surfaces**, rather than only the selected destination. It prevents a jump onto a
+roof, road or floor whose Havok collision is not installed yet. Ordinary starting
+area play is available while the wider region loads. Installation yields between
+bounded batches to preserve input/rendering responsiveness, increasing elapsed
+time even when the actual collider calls are short.
+
+The latest prepared wider-region geometry is about **22.4 MB HTTP-Brotli encoded /
+158 MB decoded**, in over 1,000 blocks. At decimal 50 Mbit/s, transferring 22.4 MB
+alone has a roughly **3.6-second ideal lower bound**, excluding latency, contention,
+decoding and installation. This is arithmetic, not a measured CDN prediction.
+The implemented native stream observed 5.91–6.07 seconds to safe navigation in
+the declared local pairs. Production remains on the independently held older
+release; those local timings do not describe the user's current production wait.
+
+Further substantial reduction would require prioritizing and qualifying collision
+around a chosen destination before the entire region finishes. That is a follow-up
+architecture change, not an implemented feature or permission to enable unsafe
+jumps. The old 18.3-second observation below and its 0.55 seconds of synchronous
+collider calls are overlapping wall-clock/CPU measurements, not additive phases.
+
+## Original findings — 2026-10-08
 
 1. **The label covers more than collision.** `dev-tools.js` and `menu.js`
    gate jumping/click teleport on `ASHEN.regionReady`. In `main.js`, that flag

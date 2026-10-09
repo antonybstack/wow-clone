@@ -8,32 +8,36 @@ there is no pending user review or approval.
 
 ## Current task and next work
 
-**G04 region map is complete on a sealed desktop preview; product 9d5d4fe is pushed.**
-Ordinary Esc/Menu → Region map shows all eight destination names, authored roads,
-central street/well detour, north, cathedral bridge and player position. Selection
-highlights the existing route and puts a blue entrance diamond on the minimap,
-independent of the gold watchman marker. Clear/retention/focus/pause/walking and
-scene-disposal checks pass. The inherited reversed arrow heading is corrected.
-The early menu only requests a late provider; no prepared world/character assets
-change and the chart has no frame-loop hook. [Evidence and limits](baselines/g04-map-2026-10-09/README.md).
+**G05 Eastwatch wall walk is complete on a sealed desktop preview; product c3419d4 is pushed.**
+A visible 33-tread courtyard stair/smooth Havok ramp reaches a guarded U-shaped
+route and the raised hall window. Ordinary climb, all turns, three guard contacts
+and gate return pass locally/publicly. Nineteen developer destinations, six
+surface checks, ordinary map/disposal and 649 served checks pass. A connected
+public tour enters/returns all eight destinations and returns to the initial
+bridge, with nine connecting legs, Havok active, Fly off and zero recoveries/errors.
+[Evidence and limits](baselines/g05-wall-walk-2026-10-09/README.md).
 
 Fifteen separate M1 Max / uncapped Chromium WebGPU / 1280×720 / DPR1 / seven-enemy
-windows observe **189.2–228.0 FPS**, p99≤6.5 ms, worst 10 ms, zero intervals
->16.67 ms, pacing flags, errors or recoveries. All 37,464 raw intervals are retained;
-map closed/no selection, local RAF throughput, not a production comparison.
-[Preview](https://4f787280.fardel.pages.dev/?play&clean) passes 649 served checks,
-public map UI/disposal and eighteen developer controls. Reviewed motion: Telegram
-**896** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/map.mp4).
-Direct VE playback passes; actual Telegram application inline/fullscreen remains unverified.
+windows observe **189.9–229.0 FPS**, p99≤6.5 ms, worst 9.9 ms, zero intervals
+>16.67 ms, pacing flags, errors or recoveries. All 37,619 raw intervals are retained;
+map closed/no selection, local RAF throughput, not a production comparison or timed
+wall-walk/capture result. [Preview](https://ae9f12cc.fardel.pages.dev/?dev&play&at=east-keep-wall-walk).
+Reviewed motion: Telegram **897** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/wall-walk.mp4).
+Actual direct VE playback passes; Telegram application inline/fullscreen remains unverified.
 
-**Next: G05 Eastwatch guarded wall walk.** [Concrete slice](plans/gothic-exploration/next-slices-2026-10-09.md).
-Survey the actual courtyard/reference; reuse visible stairs/smooth Havok ramps,
-masonry batching, registry/menu/spawn links. Preserve the gateway/hall/skyline,
-minimum 1.8 m clear width/headroom 1.9 m and guarded edges. Continue the active goal
-without waiting for user review; mobile and independent production hold remain deferred.
+**Next: G06 connected Eastwatch hall balcony.** [Concrete slice](plans/gothic-exploration/g06-hall-balcony-2026-10-09.md).
+Reuse the existing stair/rear walk, connect its pointed opening to a supported
+interior balcony, preserve the lower hall route and qualify ordinary entry/return.
+Continue the active goal without waiting for user review; mobile and independent
+production hold remain deferred. [Following slices](plans/gothic-exploration/next-slices-2026-10-09.md).
 
 ## Completed desktop previews
 
+- **G04 region map:** 9d5d4fe / [4f787280](https://4f787280.fardel.pages.dev/?play&clean).
+  All eight names/routes, well detour, player heading and independent destination
+  minimap guidance; ordinary selection/pause/focus/disposal pass. No frame-loop
+  hook or changed world assets. [Results](baselines/g04-map-2026-10-09/README.md), Telegram 896/VE.
+  Separate 189.2–228.0 FPS, p99≤6.5 ms/worst 10 ms; no recoveries/errors.
 - **G03 regional circuit:** f159ff0 / [0db543e3](https://0db543e3.fardel.pages.dev/?dev&play&at=east-keep).
   Distinct hall/tower lancets, crests/furnishings and Hollowmere altar/inward facing.
   Real east/west road-fork ledges repaired. 58 CPU checks, all eight public landmark
@@ -53,8 +57,8 @@ without waiting for user review; mobile and independent production hold remain d
   Guarded west-chapel descent, pointed vault/memorial circuit and ordinary return.
   [Result](plans/gothic-exploration/results/undercroft-2026-10-08.md), Telegram 890/VE.
   Existing chapels/gallery/bell stairs/parapet already exist; do not rebuild them.
-- **Developer reproduction and physical surface picking:** eighteen named UI
-  destinations plus God/Fly/link controls; click teleport uses native Lite screen
+- **Developer reproduction and physical surface picking:** nineteen named UI
+  destinations (including Eastwatch wall walk) plus God/Fly/link controls; click teleport uses native Lite screen
   rays and a self-filtered Havok query, including roofs and elevated floors.
   [UI procedure](debug-view.md#reproduce-developer-navigation-from-the-ui),
   [destination result](baselines/dev-destinations-2026-10-08/README.md),
@@ -97,13 +101,13 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03 and G04 owned game contexts/harnesses are closed. Latest G04 Chrome46174 /
-CDP10037, Vite46145+46169 /5873 and compiled68584 /7074 are stopped; all review/media
-and Grok processes are done. No owned game renderer remains at this boundary.
-User Edge 2931 / fifteen nongame tabs, Chrome 13883 / New Tab, Orca and unrelated Vite 4000
-10171+10205 are preserved. Before every live check/timing window audit pages/PIDs,
-track each owner/port/URL/purpose and close owned contexts/browser/harnesses afterwards.
-[Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation).
+G03/G04/G05 owned contexts/harnesses are closed. Latest G05 Chrome2789 / CDP10037,
+Vite2740+2784 /5873 and compiled35177 /7074 are stopped. All review/media/Grok,
+capture/encoding/delivery processes are done. No owned game renderer remains.
+User Edge2931 / fifteen existing tabs, Chrome13883 / New Tab, Orca and unrelated
+Vite4000 10171+10205 are preserved. Before every live check/timing window audit
+pages/PIDs, track owner/port/URL/purpose and close owned contexts/browser/harnesses
+with each completed milestone. [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation).
 
 Active root index.html/ashen-reach.html; Vite 5173; src/ashen-reach/main.js exposes
 ASHEN. **Babylon Lite 1.31.1 / WebGPU, Havok 1.3.14**, compatible source motion.
