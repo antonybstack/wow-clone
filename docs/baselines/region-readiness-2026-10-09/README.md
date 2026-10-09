@@ -106,7 +106,7 @@ timestamp queries. They are not a controlled old/new settled-FPS pair.
 **One first-meadow interval is 219.9 ms**; the other fourteen windows have worst
 frames≤9.8 ms. This remains a serious unexplained tail and is not filtered away.
 [All settled windows](settled-fps.json). Two bounded CPU/GC diagnostic visits
-(prepared and worker) then fail to reproduce it: worst gameplay frames8.9/9.4 ms,
+(prepared and worker) then fail to reproduce it: worst gameplay frames 8.9/9.4 ms,
 no observed native long tasks. No cause is established, and profiling visits do not
 replace unprofiled acceptance. [Diagnostic receipt](spike-trace-report.json).
 No repeated unchanged diagnostic campaign or speculative scheduler change follows.
@@ -115,17 +115,60 @@ The reported FPS/control evidence predates only the final loading-status copy
 correction and native stream error-attribution wrapper. Geometry/install budgets,
 world/shadow/character/render paths and prepared assets are unchanged. Final built
 native controls and reviewed motion are being recorded before sealing.
-The final built app passes all18 actual developer destination placements/controls,
+The final built app passes all 18 actual developer destination placements/controls,
 spawn links, input/focus and elevated Fly-off ([receipt](built-destinations.json)).
 A separate compiled native visit deliberately withholds grass/texture details:
 Jump remains disabled before navigation, then enables, reaches the nave, walks and
 clicks its physical floor while full readiness remains false. The final banner
 reads “Adding region details…” ([receipt](built-held-details.json)). These are
 native controls, not a new FPS measurement. The held-detail motion recording is
-1280×720, square pixels,7.878705 seconds,H.264,rotation0. Capture source dimensions
+1280×720, square pixels, 7.878705 seconds, H.264, rotation 0. Capture source dimensions
 and timestamps match the encoded file ([manifest](capture-manifest.json)). Root
 reviewed sampled source frames and replayed the actual MP4 in the owned Edge tab
 1147996123; it is closed. Actual Telegram application fullscreen is unverified.
-Sealed preview, VE and Telegram delivery/public checks are being recorded next.
+Implementation **375aaca** is committed/pushed. The sealed desktop preview is
+[8caba37c](https://8caba37c.fardel.pages.dev/?dev&play&at=cathedral-nave),
+seal `e71c0776938e3e19c2a9e3125c7afb56fdafc2a1bd579b3762116f06b2f83a6d`,
+646 files/374,114,446 bytes/zero uncommitted product inputs
+([sealed inventory](preview-seal.json)). All 649 served checks pass, including the
+new native-Brotli geometry/index/foliage bytes and declared cache families
+([receipt](served-preview.json)) ; 326 other cache policies remain unclassified,
+as explicitly reported by the existing delivery gate. All 18 public-native destination,
+input/focus/spawn checks pass ([receipt](public-destinations.json)). Six final built
+surface clicks/Fly-off pass ([receipt](built-surfaces.json)); all six public surface checks pass ([receipt](public-surfaces.json)). No startup qualification or production promotion is implied.
+
+Reviewed live MP4 is Telegram **893**, which returned matching 1280×720 dimensions
+and 7.879s duration, and [identical VE video](https://ve.sparkify.dev/wow-clone/ashen-reach/region-readiness/2026-10-09/navigation.mp4).
+Public MIME is`video/mp4`, full GET matches local SHA256
+`f1e32aa64146d8375f8ac462263cd5c3d2f800d0f20687ecbe227e81bf81acdf`, and native
+range seeking returns 206/exact bytes ([media receipt](ve-delivery.json)). Python
+urllib's local certificate-store check failed; system curl verified TLS normally.
+No certificate verification was disabled. The actual MP4 player retains correct
+source dimensions; Telegram desktop-app inline/fullscreen playback remains unverified.
+Native Pages project inventory confirms production 5723a4ab/source 7d00c56 unchanged
+([sanitized receipt](production-unchanged.json)).
 Production remains under the existing independent startup hold; no production
 promotion or new physical iPhone acceptance is claimed.
+
+## Ownership and closeout
+
+Root owns all live acceptance; Grok 4.6/high read source only. Each native test and
+comparison creates one fresh context and closes it in`finally`; recording, encoding
+and uploads run outside FPS windows. User Edge has 15 unrelated tabs, no active
+Ashen/Halo page, and its YouTube reference remains paused at 8:02. Discarded
+Shadowglass was not activated. User Chrome/Orca and unrelated Vite 4000 are preserved.
+
+Root Chrome 62299/GPU 62327/CDP10037 and Vite 62256+62294/5873 are stopped by the
+owned slot 7 teardown. Earlier root Chrome 6628/Vite 6559+6583 and
+Chrome 47503/Vite 47401+47430 had already stopped after their controls. Built preview
+servers 58744→84746→11880/7074 were restarted after their respective builds and are
+all stopped; comparison proxy 68610/7075+7076 is stopped. Root Edge review
+tab 1147996123 is closed; existing Edge 2931 is preserved. Final process audit finds
+none of the owned browser/server/reviewer PIDs alive. The final CDP inventory
+contained only`about:blank` before teardown. No game instance is retained.
+
+The source is committed/pushed as 375aaca and the final sealed preview/media gates
+are complete for the declared desktop scope. G02 approach/silhouette is next.
+Production's independent startup hold, the unexplained 219.9 ms outlier and the
+slow-link/cache tradeoff remain recorded. This does not close the broader
+eight-hour Gothic exploration goal.

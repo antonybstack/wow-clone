@@ -1,0 +1,18 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/region-readiness/2026-10-09/navigation.mp4",
+  "sha256": "f1e32aa64146d8375f8ac462263cd5c3d2f800d0f20687ecbe227e81bf81acdf",
+  "bytes": 2653902,
+  "contentType": "video/mp4",
+  "status": 200,
+  "rangeStatus": 206,
+  "rangeBytes": 1024,
+  "dimensions": [
+    1280,
+    720
+  ],
+  "sampleAspectRatio": "1:1",
+  "rotation": 0,
+  "duration": 7.878705,
+  "localMatchesPublic": true,
+  "transport": "system curl with native TLS verification; Python urllib failed local certificate-store validation and was not used"
+}
