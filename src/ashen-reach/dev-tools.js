@@ -131,7 +131,7 @@ export function attachDevTools({params, canvas, camera, player, getCombat, setVi
       }
       const position = teleportSurfacePosition(hit, player.capsuleHeight, player.capsuleRadius);
       if (!position) {
-        combat.hud?.message?.('Unable to place the player at this surface');
+        message('Unable to place the player at this surface');
         return;
       }
       player.setWorldPos(position.x, position.y, position.z);

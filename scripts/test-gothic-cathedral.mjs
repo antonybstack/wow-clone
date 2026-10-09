@@ -87,12 +87,32 @@ test('600 route samples have upward floor support and a clear human-height walk 
 test('front portals are open, altar approach is clear, walls and roofs are solid',()=>{
   const y=cathedral.floorY;
   for(const x of [-3,0,3])assert.equal(hit([x,y+1,299],[x,y+1,308]),null,'main portal');
+  assert.equal(hit([0,y+9,303],[0,y+9,305]),null,'pointed portal crown opens above old circular head');
+  assert(hit([0,y+10.5,303],[0,y+10.5,305]),'solid wall above pointed crown');
   for(const x of [-17,17])assert.equal(hit([x,y+1,297],[x,y+1,309]),null,'tower portal');
   assert.equal(hit([0,y+1,340],[0,y+1,345.5]),null,'z344/345 altar approach');
   assert(hit([0,y+1,345],[0,y+1,354]),'altar/back wall');
   assert(hit([0,y+5,320],[15,y+5,320]),'nave side wall');
   assert(hit([6,y+1,299],[6,y+1,308]),'portal jamb');
   const roof=hit([6,y+40,330],[6,y+25,330]);assert(roof&&roof.normal[1]>0,'walkable roof shell');
+});
+
+test('blind facade lancets have real recess depth and retain a solid interior wall',()=>{
+  const y=cathedral.floorY;
+  const frontAt=(x,h)=>{
+    const from=[x,y+h,301],to=[x,y+h,305],surface=hit(from,to);
+    assert(surface,`solid facade ${x},${h}`);
+    return from[2]+(to[2]-from[2])*surface.fraction;
+  };
+  for(const side of [-1,1]){
+    assert(Math.abs(frontAt(side*8.5,11)-303.9)<1e-6,'blind panel recessed back');
+    assert(Math.abs(frontAt(side*11.1,11)-303.1)<1e-6,'outer wall at original front plane');
+    assert(Math.abs(frontAt(side*4.9,11)-302.3)<1e-6,'projecting portal shoulder');
+    assert(Math.abs(frontAt(side*8.5,5)-303.1)<1e-6,'closed lower plinth');
+    assert(Math.abs(frontAt(side*8.5,23)-303.1)<1e-6,'closed pointed head');
+    const rear=hit([side*8.5,y+11,306],[side*8.5,y+11,303]);
+    assert(rear&&Math.abs(306-3*rear.fraction-304.9)<1e-6,'nave-facing wall plane retained');
+  }
 });
 
 test('nonfinite primary terrain heights fail before geometry is appended',()=>{

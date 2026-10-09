@@ -3,6 +3,7 @@ import {Batch} from './geometry.js';
 import {masonryBox} from './buildings.js';
 
 const STONE=[.67,.71,.76,0], TRIM=[.79,.81,.83,0], SHADE=[.44,.49,.55,0];
+const PORTAL_TRIM=[.94,.88,.76,0];
 const SLATE=[.29,.34,.42,0], ROCK=[.42,.46,.51,0], AMBER=[.24,.14,.055,0];
 // Match buildings.js masonry texel density, including the material's .20 UV scale.
 const UV_PER_M=(1/8/.45)/.20;
@@ -22,7 +23,7 @@ function box(batch,center,size,color=STONE,yaw=0){
   }
 }
 
-/** Closed convex polyhedron, outward winding AND normals; no double-sided shortcut. */
+/** Outward faces of a convex segment; adjacent segments may omit hidden joint caps. */
 function solid(batch,vertices,faces,color){
   const center=mean(vertices);
   for(const face of faces){
@@ -40,10 +41,13 @@ function solid(batch,vertices,faces,color){
 }
 
 // A convex polygon in local (u,y), extruded along local depth through a world mapping.
-function prism(batch,polygon,depth,map,color=STONE){
+function prism(batch,polygon,depth,map,color=STONE,omitEdges=[]){
   const n=polygon.length,vertices=[-depth/2,depth/2].flatMap(d=>polygon.map(([u,y])=>map(u,y,d)));
   const faces=[Array.from({length:n},(_,i)=>i),Array.from({length:n},(_,i)=>i+n)];
-  for(let i=0;i<n;i++){const j=(i+1)%n;faces.push([i,j,j+n,i+n]);}
+  for(let i=0;i<n;i++){
+    if(omitEdges.includes(i))continue;
+    const j=(i+1)%n;faces.push([i,j,j+n,i+n]);
+  }
   solid(batch,vertices,faces,color);
 }
 
@@ -69,7 +73,17 @@ function pointed(halfWidth,spring,tip,steps=10){
 
 function arch(batch,halfWidth,spring,tip,thickness,depth,map,color=TRIM){
   const inner=pointed(halfWidth,spring,tip),outer=pointed(halfWidth+thickness,spring,tip+thickness);
-  for(let i=0;i<inner.length-1;i++)prism(batch,[inner[i],inner[i+1],outer[i+1],outer[i]],depth,map,color);
+  // Adjacent voussoirs share exact endpoints. Their internal joint caps are
+  // hidden in both the render and Havok mesh; retain only the two exposed ends.
+  // Keep convex per-segment winding: the complete curved arch is not convex.
+  // Batch/mesh ownership: https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/10-mesh-generators.md
+  // Local collision/render contract: docs/plans/gothic-exploration/plan.md#following-slices
+  for(let i=0;i<inner.length-1;i++){
+    const omit=[];
+    if(i<inner.length-2)omit.push(1);
+    if(i>0)omit.push(3);
+    prism(batch,[inner[i],inner[i+1],outer[i+1],outer[i]],depth,map,color,omit);
+  }
 }
 
 /** Fill above an arch up to a level wall top, leaving the opening genuinely empty. */
@@ -198,21 +212,42 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
     }
   }
 
-  // Deep pointed western portal (south-facing): eight metres clear at its spring.
-  for(const side of [-1,1])wall([side*8,floorY+12,304],[8,24,1.8]);
-  spandrel(stone,4,4,8,24,1.8,faceMap(0,304));
-  spandrel(collisionBatch,4,4,8,24,1.8,faceMap(0,304));
+  // Fortified-entrance reference: paired blind lancets and projecting portal
+  // shoulders replace the flat wall. These are real 0.8 m recesses with the
+  // same visible/collision shell, not decals or new lights/materials.
+  // Reference and acceptance: docs/plans/gothic-exploration/plan.md#following-slices
+  // Preserved source image: ve-capture/ashen-reach/gothic-world/references/03-fortified-entrance.png
+  // The back plane stays at z=304.9; the nave and eight-metre opening are unchanged.
+  for(const side of [-1,1]){
+    wall([side*8,floorY+12,304.4],[8,24,1],SHADE);
+    wall([side*4.95,floorY+12,303.6],[1.9,24,2.6]);
+    wall([side*11.05,floorY+12,303.5],[1.9,24,.8]);
+    wall([side*8,floorY+3.4,303.5],[4.2,6.8,.8]);
+    const panelMap=faceMap(side*8,303.5);
+    for(const batch of [stone,collisionBatch])spandrel(batch,2.1,16.5,22,24,.8,panelMap,STONE);
+    arch(stone,2.1,16.5,22,.25,.3,faceMap(side*8,302.94),PORTAL_TRIM);
+    for(const x of [-2.23,2.23])box(stone,[side*8+x,floorY+11.65,302.94],[.26,9.7,.3],PORTAL_TRIM);
+    box(stone,[side*8,floorY+6.7,302.94],[4.7,.3,.45],PORTAL_TRIM);
+    // Tracery is recessed behind the front face and above walking height.
+    beam(stone,[side*8,floorY+6.8,303.55],[side*8,floorY+16.5,303.55],.19,TRIM);
+    for(const x of [-1.05,1.05])arch(stone,.97,15.3,18.2,.13,.22,faceMap(side*8+x,303.55),TRIM);
+    for(const h of [2.3,6.3,23.7])box(stone,[side*8,floorY+h,302.96],[8,.3,.3],TRIM);
+  }
+  // Rise exceeds half-width: equal values produce a semicircle, not a pointed head.
+  spandrel(stone,4,4,10,24,1.8,faceMap(0,304));
+  spandrel(collisionBatch,4,4,10,24,1.8,faceMap(0,304));
   for(let ring=0;ring<5;ring++){
     const w=4+ring*.45,z=302.8-ring*.36;
-    arch(stone,w,4,8+ring*.45,.32,.5,faceMap(0,z),ring===1?SHADE:TRIM);
-    for(const side of [-1,1])box(stone,[side*(w+.16),floorY+2,z],[.32,4,.5],TRIM);
+    const color=ring===1?SHADE:ring%2?TRIM:PORTAL_TRIM;
+    arch(stone,w,4,10+ring*.45,.32,.5,faceMap(0,z),color);
+    for(const side of [-1,1])box(stone,[side*(w+.16),floorY+2,z],[.32,4,.5],color);
   }
   // Rose tracery recessed behind a projecting ring: deep cool stone, restrained amber.
   const rose=[0,floorY+16.4,302.95],radius=3.15;
   for(let i=0;i<16;i++){
     const a=i*Math.PI/8,b=(i+1)*Math.PI/8;
     const p=t=>[rose[0]+Math.cos(t)*radius,rose[1]+Math.sin(t)*radius,rose[2]];
-    beam(stone,p(a),p(b),.36);
+    beam(stone,p(a),p(b),.36,PORTAL_TRIM);
     beam(stone,rose,p(a),.12,SHADE);
     beam(glow,[Math.cos(a)*1.2,rose[1]+Math.sin(a)*1.2,303.02],p(a),.075,AMBER);
   }
@@ -245,15 +280,15 @@ export function buildGothicCathedral({stone,roof,glow,rock,groundHeight,collider
   windowBeam([0,20.65,0],[0,22,0]);
   // Narrow facade shafts interrupt the plain gable without changing its footprint.
   for(const side of [-1,1]){
-    wall([side*8.8,floorY+13.2,302.6],[.65,26.4,.65],TRIM);
-    box(stone,[side*8.8,floorY+26.45,302.6],[1,.35,1],TRIM);
-    pinnacle(roof,side*8.8,floorY+26.65,302.6,2.2,.55);
+    wall([side*10.45,floorY+13.2,302.6],[.65,26.4,.65],TRIM);
+    box(stone,[side*10.45,floorY+26.45,302.6],[1,.35,1],PORTAL_TRIM);
+    pinnacle(roof,side*10.45,floorY+26.65,302.6,2.2,.55);
   }
   for(const z of [304,354]){
     const map=faceMap(0,z);
     prism(stone,[[-12,24],[12,24],[0,36]],1.35,map);
     prism(collisionBatch,[[-12,24],[12,24],[0,36]],1.35,map);
-    for(const side of [-1,1])beam(stone,[side*12.2,floorY+24,z],[0,floorY+36.3,z],.45);
+    for(const side of [-1,1])beam(stone,[side*12.2,floorY+24,z],[0,floorY+36.3,z],.45,z===304?PORTAL_TRIM:TRIM);
   }
   for(const side of [-1,1]){
     const p=[[0,36],[side*13.1,23.8],[side*13.1,23.25],[0,35.45]];

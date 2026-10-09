@@ -1,0 +1,56 @@
+{
+  "renderTriangles": 53398,
+  "collisionTriangles": 13556,
+  "previous": {
+    "renderTriangles": 59826,
+    "collisionTriangles": 14600
+  },
+  "required": {
+    "file": "near-ccb9dc565ff6.br",
+    "encodedBytes": 149963,
+    "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+    "exact": true
+  },
+  "regionIndex": {
+    "compression": "http-br",
+    "file": "region-index-7932bf154460.br",
+    "sha256": "7932bf154460a5d3c3a42a1ead6a1bab557ed9a22d3e23b3bc4decf3358e9eeb",
+    "encodedBytes": 80357,
+    "rawBytes": 1123269,
+    "files": [
+      "region-3cc4ae49d823.br",
+      "foliage-215ed1aeeb91.br"
+    ]
+  },
+  "region": {
+    "compression": "http-br",
+    "file": "region-3cc4ae49d823.br",
+    "sha256": "3cc4ae49d823a7bb1b399fadb775bee4f8265544723b34ed34d922c1536a0f97",
+    "encodedBytes": 22364249,
+    "rawBytes": 157009896,
+    "blocks": 1030
+  },
+  "foliage": {
+    "compression": "http-br",
+    "file": "foliage-215ed1aeeb91.br",
+    "sha256": "215ed1aeeb91ab24bae16747b475f720cf5c8c2d6a29e21abce435cec7ec048c",
+    "encodedBytes": 4410809,
+    "rawBytes": 9379360,
+    "pools": 6
+  },
+  "skyline": {
+    "compression": "http-br",
+    "file": "skyline-e8d193f938db.br",
+    "sha256": "e8d193f938db8b4d8b4edb6eba1ba02b15354b490f5d5e28532382955a028112",
+    "encodedBytes": 593398,
+    "rawBytes": 2660824,
+    "blocks": 2,
+    "proxies": 44
+  },
+  "portal": {
+    "halfWidth": 4,
+    "springHeight": 4,
+    "tipHeight": 10,
+    "previousTipHeight": 8
+  }
+}

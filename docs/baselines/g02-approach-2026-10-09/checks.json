@@ -1,0 +1,35 @@
+{
+  "final": {
+    "tests": 46,
+    "pass": 46,
+    "fail": 0,
+    "log": ".cache/g02-approach-2026-10-09/final-tests.log",
+    "files": [
+      "scripts/test-gothic-cathedral.mjs",
+      "scripts/test-startup-assets.mjs",
+      "scripts/test-prepared-region.mjs",
+      "scripts/test-region-stream.mjs",
+      "scripts/test-dev-surface-pick.mjs",
+      "scripts/test-regional-terrain.mjs"
+    ]
+  },
+  "cathedralSubset": {
+    "tests": 14,
+    "pass": 14,
+    "includes": "Pointed portal crown opening at h9 / solid wall above h10.5, real blind panel/rear-wall depth, all prior floor/headroom/rail/normals guards"
+  },
+  "build": {
+    "profile": [
+      "ASHEN_SAVED_BOOTSTRAP=1",
+      "ASHEN_PRIME_STARTER_WORLD=1",
+      "ASHEN_LAZY_WORLD_BUFFERS=1",
+      "ASHEN_DEFER_COVERED_HAIR=1"
+    ],
+    "passed": true,
+    "log": ".cache/g02-approach-2026-10-09/final-build.log"
+  },
+  "limits": [
+    "First iteration passed native routes/FPS but retained a circular portal crown; motion review triggered correction before delivery. Final qualified receipts replace that iteration.",
+    "Independent Grok4.6/high review report covers arch joint omission/recessed facade before tip10 correction; process reached12-turn cap (exit1) after writing complete artifact. No independent native/FPS claim."
+  ]
+}

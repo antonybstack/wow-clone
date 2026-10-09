@@ -8,7 +8,7 @@ Navigation is separate from optional details; the compatibility worker splits
 geometry/grass, and prepared exact geometry streams through the existing install
 path. The initial buffered prototype regressed and was rejected. Final native
 stream navigation is 20.3–22.5% faster in three declared 50 Mbit/s local pairs.
-Delivery gates are in progress; production has not been promoted.
+The sealed desktop preview and delivery gates are complete for the declared desktop scope; production has not been promoted.
 
 ## Findings
 

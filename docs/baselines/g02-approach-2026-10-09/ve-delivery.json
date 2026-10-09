@@ -1,0 +1,16 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/approach.mp4",
+  "mime": "video/mp4",
+  "bytes": 25348246,
+  "sha256": "420d8461182087196dc4cfd8536ef8afff92252176c2af6a0798f64152c20f60",
+  "fullGet": {
+    "status": 200,
+    "exact": true
+  },
+  "range": {
+    "status": 206,
+    "bytes": 1024,
+    "exact": true
+  },
+  "tls": "System curl certificate verification enabled"
+}
