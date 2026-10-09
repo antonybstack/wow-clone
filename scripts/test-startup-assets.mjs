@@ -191,7 +191,7 @@ function syntheticStarter() {
 }
 test('split starter packets verify; corrupt hash, size, length, layout or placement is refused',async()=>{
   const ok=syntheticStarter();
-  assert.deepEqual(await verifyStarterGeometry(ok.manifest,ok.read),{near:ok.manifest.geometry.rawBytes,skyline:ok.manifest.geometry.skyline.rawBytes,proxies:1});
+  assert.deepEqual(await verifyStarterGeometry(ok.manifest,ok.read),{near:ok.manifest.geometry.rawBytes,skyline:ok.manifest.geometry.skyline.rawBytes,proxies:1,region:0,regionFoliage:0});
   const cases={
     'near sha':m=>{m.geometry.sha256='0'.repeat(64);},
     'skyline size':m=>{m.geometry.skyline.encodedBytes++;},

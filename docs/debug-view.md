@@ -106,6 +106,12 @@ Repeated live checks should use a fresh owned Playwright `browser.newContext()` 
 
 For repeated browser launches in one task, append each start and close record to an ownership history with its actual parent/helper PIDs and ports. A mutable slot snapshot is useful for the currently live instance; it must not erase the earlier instances' cleanup records.
 
+Use `up.mjs --slot N --headless --uncapped --idle` when the test opens its own
+fresh context or targets a built/public preview. `--idle` starts at `about:blank`
+and skips the bootstrap game visit; it avoids an extra renderer and unintended
+asset warming. The test still owns and closes its context, and `down.mjs` still
+owns browser/server cleanup. Omit `--idle` for interactive harness play.
+
 Cold-start and FPS isolation also require an audit of known video playback. Closing
 Telegram's viewer can restart inline autoplay after an immediate pause check. Record
 the initial playback state, finish motion review before measurements, and check for
@@ -412,3 +418,22 @@ inspection plus real walk/jump/cast/attack controls. Encode its timestamped fram
 with `scripts/encode-capture.py`; record performance separately. Freeze runtime
 and asset changes while recording: a Vite development reload invalidates the film.
 Close contexts, pause video players and tear down the owned harness afterwards.
+
+### Navigation readiness and optional details
+
+Developer Jump, Fly click-teleport and `?dev&at=…` wait for
+`ASHEN.navigationReady` / `whenNavigation`: matching visible route geometry,
+all mesh/box collision, removed starting fence and updated shadow registration.
+`regionReady` / `whenRegion` / `ready` still mean the whole region including
+foliage, texture enhancements and scene actors. A routes-ready status enables
+normal grounded jumps while details load. Late grass retries preserve open routes.
+Use the existing Menu → Developer tools UI to reproduce either phase; no private
+placement helper is required.
+
+`startup.timings()` includes index/first-block/geometry-install/collision/navigation
+marks (or worker header/transfer marks), allowing the wall-clock wait to be split
+without equating it with synchronous Havok cooking. Frame-sliced install elapsed
+time includes RAF scheduling and uploads. Native prepared streaming uses the
+browser's response reader, with truncation, trailing-data and cancellation guards:
+[MDN stream consumption](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams).
+[Measured contract, rejected prototype and limitations](baselines/region-readiness-2026-10-09/README.md).

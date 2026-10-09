@@ -117,7 +117,7 @@ function humanIdentityReviewAsset(req,res,next) {
 }
 
 function starterBrotliHeaders(req,res,next) {
-  if (/^\/ashen-reach\/startup\/starter\/(?:near|skyline)-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
+  if (/^\/ashen-reach\/startup\/starter\/(?:near|skyline|region|region-index|foliage)-[a-f0-9]{12}\.br(?:\?|$)/.test(req.url||'')) {
     res.setHeader('Content-Encoding','br');res.setHeader('Content-Type','application/octet-stream');
   }
   next();

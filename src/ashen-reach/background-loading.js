@@ -7,15 +7,21 @@ export function showBackgroundLoading() {
     "position:fixed;left:50%;bottom:24px;transform:translateX(-50%);padding:9px 14px;background:#181811dc;color:#ddd2a2;font:13px Georgia,serif;border:1px solid #766c4a;z-index:12;text-align:center;max-width:80vw;pointer-events:none";
   root.textContent = "Opening the paths beyond the churchyard…";
   document.body.append(root);
-  let retryReject = null;
+  let retryReject = null, routesReady = false;
+  const loadingText=()=>routesReady ? 'Adding region details…' : 'Opening the paths beyond the churchyard…';
   return {
+    navigationReady() {
+      routesReady=true;
+      root.textContent=loadingText();
+    },
     done() {
       root.remove();
     },
     retry(error) {
       root.replaceChildren(
         document.createTextNode(
-          "The paths could not open. You can keep exploring here. ",
+          routesReady ? "Some region details could not load. The routes remain open. "
+            : "The paths could not open. You can keep exploring here. ",
         ),
       );
       const button = document.createElement("button");
@@ -26,7 +32,7 @@ export function showBackgroundLoading() {
         retryReject = reject;
         button.onclick = () => {
           retryReject = null;
-          root.textContent = "Opening the paths beyond the churchyard…";
+          root.textContent = loadingText();
           resolve();
         };
       });

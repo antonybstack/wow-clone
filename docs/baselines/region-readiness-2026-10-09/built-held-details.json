@@ -1,0 +1,1096 @@
+{
+  "url": "http://127.0.0.1:7074/?dev&play&clean&pixelRatio=1",
+  "checks": [
+    {
+      "name": "Prepared packet: compiled native menu; guarded Jump; navigation before held foliage; actual jump/walk/surface click; held enhancement remains optional; full readiness after release",
+      "early": {
+        "navigationReady": true,
+        "regionReady": false,
+        "combatReady": true,
+        "ready": false,
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0.000003958401228210124,
+          "vx": -0.0000019515416596432935,
+          "vz": -0.000003443896838491553,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 1,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.0002570416365173208,
+            "y": 0.8881478171615101,
+            "z": -0.0004536028580969623
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 721,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.324564865592879,
+                "z": 16
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -3.8894697155169853,
+                "y": 1.6477259811026683,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5673904652287836,
+                "z": 48
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.652739280759643,
+                "y": 2.513678872972124,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 4.909179606556347,
+                "z": 86
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.906665666750373,
+                "y": 6.13827632342876,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.924054821409728,
+                "z": 126
+              }
+            }
+          ]
+        },
+        "marks": {
+          "begin": 80.60000002384186,
+          "havok-runtime-available": 95.89999997615814,
+          "engine-created": 102.89999997615814,
+          "gpu-probe-end": 107.10000002384186,
+          "world-start": 109.19999998807907,
+          "world-end": 136,
+          "havok-start": 137.19999998807907,
+          "havok-runtime-start": 137.89999997615814,
+          "havok-runtime-end": 137.89999997615814,
+          "havok-world-end": 139.69999998807907,
+          "havok-colliders-end": 146.60000002384186,
+          "havok-controller-end": 147.80000001192093,
+          "havok-end": 148.89999997615814,
+          "prime-world-skipped": 149,
+          "body-start": 149,
+          "body-end": 165,
+          "equipment-start": 166.10000002384186,
+          "equipment-end": 178.19999998807907,
+          "register-start": 183.19999998807907,
+          "register-end": 199.80000001192093,
+          "first-render-return": 205,
+          "supported-frame-submitted": 223.10000002384186,
+          "first-gpu-completed": 294.5,
+          "supported-frame-completed": 305.60000002384186,
+          "playable": 305.89999997615814,
+          "bg-start": 306.60000002384186,
+          "region-index-request": 309.69999998807907,
+          "region-index-ready": 337.5,
+          "bg-imports-end": 353.5,
+          "region-geometry-first-block": 377.5,
+          "bg-dummy-end": 427.89999997615814,
+          "bg-enemies-end": 492.69999998807907,
+          "combat-ready": 589.5,
+          "late-register-start": 663.6999999880791,
+          "late-register-end": 665.3999999761581,
+          "hostiles-ready": 705.5,
+          "region-geometry-arrived": 4852.5,
+          "region-geometry-installed": 4852.600000023842,
+          "region-collision-installed": 4883.399999976158,
+          "navigation-ready": 4884.600000023842
+        },
+        "position": [
+          -0.0002570416365173208,
+          0.8881478171615101,
+          -0.0004536028580969623
+        ],
+        "height": 1.748
+      },
+      "grounded": {
+        "navigationReady": true,
+        "regionReady": false,
+        "combatReady": true,
+        "ready": false,
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 2,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.803875000000005,
+            "z": 310
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 721,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.324564865592879,
+                "z": 16
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -3.8894697155169853,
+                "y": 1.6477259811026683,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5673904652287836,
+                "z": 48
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.652739280759643,
+                "y": 2.513678872972124,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 4.909179606556347,
+                "z": 86
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.906665666750373,
+                "y": 6.13827632342876,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.924054821409728,
+                "z": 126
+              }
+            }
+          ]
+        },
+        "marks": {
+          "begin": 80.60000002384186,
+          "havok-runtime-available": 95.89999997615814,
+          "engine-created": 102.89999997615814,
+          "gpu-probe-end": 107.10000002384186,
+          "world-start": 109.19999998807907,
+          "world-end": 136,
+          "havok-start": 137.19999998807907,
+          "havok-runtime-start": 137.89999997615814,
+          "havok-runtime-end": 137.89999997615814,
+          "havok-world-end": 139.69999998807907,
+          "havok-colliders-end": 146.60000002384186,
+          "havok-controller-end": 147.80000001192093,
+          "havok-end": 148.89999997615814,
+          "prime-world-skipped": 149,
+          "body-start": 149,
+          "body-end": 165,
+          "equipment-start": 166.10000002384186,
+          "equipment-end": 178.19999998807907,
+          "register-start": 183.19999998807907,
+          "register-end": 199.80000001192093,
+          "first-render-return": 205,
+          "supported-frame-submitted": 223.10000002384186,
+          "first-gpu-completed": 294.5,
+          "supported-frame-completed": 305.60000002384186,
+          "playable": 305.89999997615814,
+          "bg-start": 306.60000002384186,
+          "region-index-request": 309.69999998807907,
+          "region-index-ready": 337.5,
+          "bg-imports-end": 353.5,
+          "region-geometry-first-block": 377.5,
+          "bg-dummy-end": 427.89999997615814,
+          "bg-enemies-end": 492.69999998807907,
+          "combat-ready": 589.5,
+          "late-register-start": 663.6999999880791,
+          "late-register-end": 665.3999999761581,
+          "hostiles-ready": 705.5,
+          "region-geometry-arrived": 4852.5,
+          "region-geometry-installed": 4852.600000023842,
+          "region-collision-installed": 4883.399999976158,
+          "navigation-ready": 4884.600000023842
+        },
+        "position": [
+          0,
+          45.803875000000005,
+          310
+        ],
+        "height": 1.748
+      },
+      "walked": {
+        "navigationReady": true,
+        "regionReady": false,
+        "combatReady": true,
+        "ready": false,
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 2,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0,
+            "y": 45.803875000000005,
+            "z": 313.50139999991615
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 721,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.3223457880529776,
+                "z": 16.30739499998391
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -3.8894697155169853,
+                "y": 1.6477259811026683,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5673904652287836,
+                "z": 48
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.652739280759643,
+                "y": 2.513678872972124,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 4.949134587983049,
+                "z": 86.30739499998388
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -1.906665666750373,
+                "y": 6.13827632342876,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.924054821409728,
+                "z": 126
+              }
+            }
+          ]
+        },
+        "marks": {
+          "begin": 80.60000002384186,
+          "havok-runtime-available": 95.89999997615814,
+          "engine-created": 102.89999997615814,
+          "gpu-probe-end": 107.10000002384186,
+          "world-start": 109.19999998807907,
+          "world-end": 136,
+          "havok-start": 137.19999998807907,
+          "havok-runtime-start": 137.89999997615814,
+          "havok-runtime-end": 137.89999997615814,
+          "havok-world-end": 139.69999998807907,
+          "havok-colliders-end": 146.60000002384186,
+          "havok-controller-end": 147.80000001192093,
+          "havok-end": 148.89999997615814,
+          "prime-world-skipped": 149,
+          "body-start": 149,
+          "body-end": 165,
+          "equipment-start": 166.10000002384186,
+          "equipment-end": 178.19999998807907,
+          "register-start": 183.19999998807907,
+          "register-end": 199.80000001192093,
+          "first-render-return": 205,
+          "supported-frame-submitted": 223.10000002384186,
+          "first-gpu-completed": 294.5,
+          "supported-frame-completed": 305.60000002384186,
+          "playable": 305.89999997615814,
+          "bg-start": 306.60000002384186,
+          "region-index-request": 309.69999998807907,
+          "region-index-ready": 337.5,
+          "bg-imports-end": 353.5,
+          "region-geometry-first-block": 377.5,
+          "bg-dummy-end": 427.89999997615814,
+          "bg-enemies-end": 492.69999998807907,
+          "combat-ready": 589.5,
+          "late-register-start": 663.6999999880791,
+          "late-register-end": 665.3999999761581,
+          "hostiles-ready": 705.5,
+          "region-geometry-arrived": 4852.5,
+          "region-geometry-installed": 4852.600000023842,
+          "region-collision-installed": 4883.399999976158,
+          "navigation-ready": 4884.600000023842
+        },
+        "position": [
+          0,
+          45.803875000000005,
+          313.50139999991615
+        ],
+        "height": 1.748
+      },
+      "click": {
+        "before": {
+          "navigationReady": true,
+          "regionReady": false,
+          "combatReady": true,
+          "ready": false,
+          "physics": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 3,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": 0,
+              "y": 45.803875000000005,
+              "z": 310
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 3.580394906355525,
+                  "y": 1.2910514678214375,
+                  "z": 17.35580500009656
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -4.703519715597458,
+                  "y": 1.7421027401538556,
+                  "z": 30
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 2.928819246428747,
+                  "y": 1.569579043116923,
+                  "z": 47.72824499998391
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -1.652739280759643,
+                  "y": 2.513678872972124,
+                  "z": 62
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.7720018013288021,
+                  "y": 5.0959740246125484,
+                  "z": 87.35580500009648
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.7207156668308388,
+                  "y": 5.890612544474889,
+                  "z": 108
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 1.0306760737604208,
+                  "y": 8.880183481820731,
+                  "z": 125.72824499998391
+                }
+              }
+            ]
+          },
+          "marks": {
+            "begin": 80.60000002384186,
+            "havok-runtime-available": 95.89999997615814,
+            "engine-created": 102.89999997615814,
+            "gpu-probe-end": 107.10000002384186,
+            "world-start": 109.19999998807907,
+            "world-end": 136,
+            "havok-start": 137.19999998807907,
+            "havok-runtime-start": 137.89999997615814,
+            "havok-runtime-end": 137.89999997615814,
+            "havok-world-end": 139.69999998807907,
+            "havok-colliders-end": 146.60000002384186,
+            "havok-controller-end": 147.80000001192093,
+            "havok-end": 148.89999997615814,
+            "prime-world-skipped": 149,
+            "body-start": 149,
+            "body-end": 165,
+            "equipment-start": 166.10000002384186,
+            "equipment-end": 178.19999998807907,
+            "register-start": 183.19999998807907,
+            "register-end": 199.80000001192093,
+            "first-render-return": 205,
+            "supported-frame-submitted": 223.10000002384186,
+            "first-gpu-completed": 294.5,
+            "supported-frame-completed": 305.60000002384186,
+            "playable": 305.89999997615814,
+            "bg-start": 306.60000002384186,
+            "region-index-request": 309.69999998807907,
+            "region-index-ready": 337.5,
+            "bg-imports-end": 353.5,
+            "region-geometry-first-block": 377.5,
+            "bg-dummy-end": 427.89999997615814,
+            "bg-enemies-end": 492.69999998807907,
+            "combat-ready": 589.5,
+            "late-register-start": 663.6999999880791,
+            "late-register-end": 665.3999999761581,
+            "hostiles-ready": 705.5,
+            "region-geometry-arrived": 4852.5,
+            "region-geometry-installed": 4852.600000023842,
+            "region-collision-installed": 4883.399999976158,
+            "navigation-ready": 4884.600000023842
+          },
+          "position": [
+            0,
+            45.803875000000005,
+            310
+          ],
+          "height": 1.748
+        },
+        "after": {
+          "navigationReady": true,
+          "regionReady": false,
+          "combatReady": true,
+          "ready": false,
+          "physics": {
+            "facing": 0,
+            "grounded": true,
+            "vy": 0,
+            "support": 2,
+            "speed": 0,
+            "vx": 0,
+            "vz": 0,
+            "castBlend": 0,
+            "jumps": 0,
+            "landings": 4,
+            "recoveries": 0,
+            "jumpInFlight": false,
+            "airTime": 0,
+            "position": {
+              "x": 0.7999036908149719,
+              "y": 47.115875,
+              "z": 313.4991455078125
+            },
+            "usingPhysics": true,
+            "colliders": {
+              "meshCount": 721,
+              "boxCount": 678,
+              "skipped": 0,
+              "animatedCount": 7
+            },
+            "capsuleHeight": 1.748,
+            "animated": [
+              {
+                "id": "grave-shade-1",
+                "enabled": true,
+                "radius": 0.4368,
+                "pose": {
+                  "x": 3.580394906355525,
+                  "y": 1.2672163896732958,
+                  "z": 17.79968500003219
+                }
+              },
+              {
+                "id": "grave-shade-2",
+                "enabled": true,
+                "radius": 0.40319999999999995,
+                "pose": {
+                  "x": -5.069774715533085,
+                  "y": 1.7850259619985156,
+                  "z": 30
+                }
+              },
+              {
+                "id": "grave-shade-3",
+                "enabled": true,
+                "radius": 0.462,
+                "pose": {
+                  "x": 2.928819246428747,
+                  "y": 1.5723448516823826,
+                  "z": 47.28436500004828
+                }
+              },
+              {
+                "id": "grave-shade-4",
+                "enabled": true,
+                "radius": 0.42,
+                "pose": {
+                  "x": -1.472379280807923,
+                  "y": 2.5147472794449857,
+                  "z": 62
+                }
+              },
+              {
+                "id": "town-wraith-1",
+                "enabled": true,
+                "radius": 0.4326,
+                "pose": {
+                  "x": 1.7720018013288021,
+                  "y": 5.165880096553712,
+                  "z": 87.79968500003208
+                }
+              },
+              {
+                "id": "town-wraith-2",
+                "enabled": true,
+                "radius": 0.4074,
+                "pose": {
+                  "x": -2.8508556667986515,
+                  "y": 5.8473932682619845,
+                  "z": 108
+                }
+              },
+              {
+                "id": "town-wraith-3",
+                "enabled": true,
+                "radius": 0.441,
+                "pose": {
+                  "x": 1.0306760737604208,
+                  "y": 8.80645878790509,
+                  "z": 125.28436500004831
+                }
+              }
+            ]
+          },
+          "marks": {
+            "begin": 80.60000002384186,
+            "havok-runtime-available": 95.89999997615814,
+            "engine-created": 102.89999997615814,
+            "gpu-probe-end": 107.10000002384186,
+            "world-start": 109.19999998807907,
+            "world-end": 136,
+            "havok-start": 137.19999998807907,
+            "havok-runtime-start": 137.89999997615814,
+            "havok-runtime-end": 137.89999997615814,
+            "havok-world-end": 139.69999998807907,
+            "havok-colliders-end": 146.60000002384186,
+            "havok-controller-end": 147.80000001192093,
+            "havok-end": 148.89999997615814,
+            "prime-world-skipped": 149,
+            "body-start": 149,
+            "body-end": 165,
+            "equipment-start": 166.10000002384186,
+            "equipment-end": 178.19999998807907,
+            "register-start": 183.19999998807907,
+            "register-end": 199.80000001192093,
+            "first-render-return": 205,
+            "supported-frame-submitted": 223.10000002384186,
+            "first-gpu-completed": 294.5,
+            "supported-frame-completed": 305.60000002384186,
+            "playable": 305.89999997615814,
+            "bg-start": 306.60000002384186,
+            "region-index-request": 309.69999998807907,
+            "region-index-ready": 337.5,
+            "bg-imports-end": 353.5,
+            "region-geometry-first-block": 377.5,
+            "bg-dummy-end": 427.89999997615814,
+            "bg-enemies-end": 492.69999998807907,
+            "combat-ready": 589.5,
+            "late-register-start": 663.6999999880791,
+            "late-register-end": 665.3999999761581,
+            "hostiles-ready": 705.5,
+            "region-geometry-arrived": 4852.5,
+            "region-geometry-installed": 4852.600000023842,
+            "region-collision-installed": 4883.399999976158,
+            "navigation-ready": 4884.600000023842
+          },
+          "position": [
+            0.7999036908149719,
+            47.115875,
+            313.4991455078125
+          ],
+          "height": 1.748
+        }
+      },
+      "texturePending": {
+        "navigationReady": true,
+        "regionReady": false,
+        "combatReady": true,
+        "ready": false,
+        "physics": {
+          "facing": 0,
+          "grounded": false,
+          "vy": -5.472480000495912,
+          "support": 0,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 5,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0.2631000000238419,
+          "position": {
+            "x": 0.7999036908149719,
+            "y": 46.36390258389913,
+            "z": 313.4991455078125
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 721,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.2268891289538777,
+                "z": 18.39220000008046
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.069774715533085,
+                "y": 1.7850259619985156,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5720237708856861,
+                "z": 46.556039999967766
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -0.744054280727457,
+                "y": 2.515028059027163,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 5.234795045777096,
+                "z": 88.39220000008032
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.8508556667986515,
+                "y": 5.8473932682619845,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.683115280413293,
+                "z": 124.55603999996787
+              }
+            }
+          ]
+        },
+        "marks": {
+          "begin": 80.60000002384186,
+          "havok-runtime-available": 95.89999997615814,
+          "engine-created": 102.89999997615814,
+          "gpu-probe-end": 107.10000002384186,
+          "world-start": 109.19999998807907,
+          "world-end": 136,
+          "havok-start": 137.19999998807907,
+          "havok-runtime-start": 137.89999997615814,
+          "havok-runtime-end": 137.89999997615814,
+          "havok-world-end": 139.69999998807907,
+          "havok-colliders-end": 146.60000002384186,
+          "havok-controller-end": 147.80000001192093,
+          "havok-end": 148.89999997615814,
+          "prime-world-skipped": 149,
+          "body-start": 149,
+          "body-end": 165,
+          "equipment-start": 166.10000002384186,
+          "equipment-end": 178.19999998807907,
+          "register-start": 183.19999998807907,
+          "register-end": 199.80000001192093,
+          "first-render-return": 205,
+          "supported-frame-submitted": 223.10000002384186,
+          "first-gpu-completed": 294.5,
+          "supported-frame-completed": 305.60000002384186,
+          "playable": 305.89999997615814,
+          "bg-start": 306.60000002384186,
+          "region-index-request": 309.69999998807907,
+          "region-index-ready": 337.5,
+          "bg-imports-end": 353.5,
+          "region-geometry-first-block": 377.5,
+          "bg-dummy-end": 427.89999997615814,
+          "bg-enemies-end": 492.69999998807907,
+          "combat-ready": 589.5,
+          "late-register-start": 663.6999999880791,
+          "late-register-end": 665.3999999761581,
+          "hostiles-ready": 705.5,
+          "region-geometry-arrived": 4852.5,
+          "region-geometry-installed": 4852.600000023842,
+          "region-collision-installed": 4883.399999976158,
+          "navigation-ready": 4884.600000023842,
+          "region-foliage-arrived": 7895.300000011921,
+          "bg-foliage-end": 7920.199999988079
+        },
+        "position": [
+          0.7999036908149719,
+          46.36390258389913,
+          313.4991455078125
+        ],
+        "height": 1.748
+      },
+      "complete": {
+        "navigationReady": true,
+        "regionReady": true,
+        "combatReady": true,
+        "ready": true,
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 6,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 0.7999036908149719,
+            "y": 45.86404050414322,
+            "z": 313.4991455078125
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 721,
+            "boxCount": 678,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.2268891289538777,
+                "z": 18.39220000008046
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -5.069774715533085,
+                "y": 1.7850259619985156,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5704602821636007,
+                "z": 46.36461000003212
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -0.55262428079183,
+                "y": 2.514029070020009,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 5.234795045777096,
+                "z": 88.39220000008032
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.8508556667986515,
+                "y": 5.8473932682619845,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.650815708554155,
+                "z": 124.36461000003226
+              }
+            }
+          ]
+        },
+        "marks": {
+          "begin": 80.60000002384186,
+          "havok-runtime-available": 95.89999997615814,
+          "engine-created": 102.89999997615814,
+          "gpu-probe-end": 107.10000002384186,
+          "world-start": 109.19999998807907,
+          "world-end": 136,
+          "havok-start": 137.19999998807907,
+          "havok-runtime-start": 137.89999997615814,
+          "havok-runtime-end": 137.89999997615814,
+          "havok-world-end": 139.69999998807907,
+          "havok-colliders-end": 146.60000002384186,
+          "havok-controller-end": 147.80000001192093,
+          "havok-end": 148.89999997615814,
+          "prime-world-skipped": 149,
+          "body-start": 149,
+          "body-end": 165,
+          "equipment-start": 166.10000002384186,
+          "equipment-end": 178.19999998807907,
+          "register-start": 183.19999998807907,
+          "register-end": 199.80000001192093,
+          "first-render-return": 205,
+          "supported-frame-submitted": 223.10000002384186,
+          "first-gpu-completed": 294.5,
+          "supported-frame-completed": 305.60000002384186,
+          "playable": 305.89999997615814,
+          "bg-start": 306.60000002384186,
+          "region-index-request": 309.69999998807907,
+          "region-index-ready": 337.5,
+          "bg-imports-end": 353.5,
+          "region-geometry-first-block": 377.5,
+          "bg-dummy-end": 427.89999997615814,
+          "bg-enemies-end": 492.69999998807907,
+          "combat-ready": 589.5,
+          "late-register-start": 663.6999999880791,
+          "late-register-end": 665.3999999761581,
+          "hostiles-ready": 705.5,
+          "region-geometry-arrived": 4852.5,
+          "region-geometry-installed": 4852.600000023842,
+          "region-collision-installed": 4883.399999976158,
+          "navigation-ready": 4884.600000023842,
+          "region-foliage-arrived": 7895.300000011921,
+          "bg-foliage-end": 7920.199999988079,
+          "ready": 8213.300000011921,
+          "region-ready": 8213.300000011921
+        },
+        "position": [
+          0.7999036908149719,
+          45.86404050414322,
+          313.4991455078125
+        ],
+        "height": 1.748
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

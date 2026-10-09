@@ -3,11 +3,28 @@
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
-The developer navigation wait is now diagnosed: its “region collision” label
-gates on full region completion. Most observed delay comes from runtime worker
-generation and frame-sliced geometry installation, rather than Havok cooking.
-[Measured phase split and staged correction plan](plans/gothic-exploration/region-readiness-2026-10-08.md).
-This investigation changes no runtime behavior; owned diagnostic instances are closed.
+Developer navigation now has a separate safe-route boundary, independent of
+optional grass/texture/NPC work. The compatibility worker splits geometry from
+grass; prepared exact geometry streams through native HTTP decoding and existing
+Lite/Havok installation, with bounded work and grass-only late retries.
+Three bounded native 50 Mbit/s pairs observe navigation **5.91–6.07 s** versus
+compatible worker **7.48–7.63 s**, a20.3–22.5% paired improvement. First play is
+340–344 ms locally; no new full release/cold-process qualification is claimed.
+Required near and optional skyline bytes are exact. All9 readiness/failure/retry
+controls,29 CPU checks and18 final-built UI destinations pass.
+Fifteen separate M1 Max/uncapped Chromium/1280×720/DPR1/seven-enemy windows observe
+194.1–232.1 FPS,p99≤6.4 ms,no pacing flags/errors/recoveries. One first-meadow
+**219.9 ms** interval remains unexplained; fourteen other windows have worst≤9.8 ms.
+Two bounded diagnostic visits do not reproduce it; do not call it fixed.
+The optional22.4 MB geometry response was re-fetched on seeded-cache visits,
+and slower-link tradeoffs remain. The initial buffered prototype regressed and
+was rejected. [Actual samples, controls, review and limits](baselines/region-readiness-2026-10-09/README.md).
+Final compiled held-details motion is reviewed; sealed preview/public/media
+gates are in progress. Production remains on its independent startup hold.
+Root owns Chrome62299/CDP10037,Vite62256+62294/5873,built preview11880/7074,
+comparison proxy68610/7075+7076; each test owns one context and closes it. Edge
+media review tab1147996123 is closed. These instances are retained only for the
+current release gates and will be closed before moving into a fresh G02 cycle.
 The reported castle click-teleport defect is corrected on the new preview: the old terrain
 height march ignored architecture. The replacement uses Lite's native screen
 ray and a self-filtered Havok query against the nearest physical surface.

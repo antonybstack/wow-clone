@@ -18,12 +18,17 @@ self.onmessage = ({ data }) => {
   }
   if (data.start && !started) {
     started = true;
-    void generate();
+    void generate(data);
   }
 };
-async function generate() {
+async function generate({foliageOnly=false,metadata}={}) {
   try {
-    const data = partitionWorld(
+    let data;
+    if(foliageOnly){
+      // Optional grass retry must not rebuild geometry or re-close safe routes.
+      data={metadata,batches:[]};
+    }else{
+    data = partitionWorld(
       await buildChurchyard(null, null, { dataOnly: true }),
     );
     const { batches, ...header } = data;
@@ -39,6 +44,12 @@ async function generate() {
         { batch },
         Object.values(batch.buffers).map((a) => a.buffer),
       );
+    }
+    // Messages from this worker retain order. Geometry readiness can therefore
+    // drain every previously transferred chunk before opening physical routes,
+    // while the worker continues its independent grass-placement job.
+    // https://html.spec.whatwg.org/multipage/web-messaging.html#message-ports
+    self.postMessage({ geometryDone: true });
     }
     const placements = await generateFoliagePlacements({
       lights: data.metadata.lights,

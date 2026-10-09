@@ -170,12 +170,14 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       destinationSource = destinations;
     }
     const enabled = devQueryOn() && !!tools?.dev?.enabled;
-    const ready = enabled && !!tools?.regionReady;
+    const ready = enabled && !!tools?.navigationReady;
     destinationSelect.disabled = !destinations.length || !enabled;
     root.querySelector('[data-action="jump"]').disabled = !ready || !destinationSelect.value;
     root.querySelector('[data-dev-status]').textContent = ready
-      ? "Region ready. Jumps return to ordinary walking."
-      : "Waiting for region collision before jumping…";
+      ? tools.regionReady
+        ? "Region ready. Jumps return to ordinary walking."
+        : "Routes ready. Details are still loading; jumps return to ordinary walking."
+      : "Waiting for route geometry and collision before jumping…";
     destinationLink.value = enabled && destinationSelect.value ? tools.destinationURL(destinationSelect.value) : "";
     for (const [action, state, label] of [["god", "god", "God mode"], ["fly", "flying", "Fly mode"]]) {
       const button = root.querySelector(`[data-action="${action}"]`);

@@ -28,7 +28,7 @@ async function verifyPacket(label, prefix, packet, descriptors, read) {
     throw Error(`Corrupt prepared ${label} packet ${packet.file}`);
   const raw = brotliDecompressSync(bytes);
   if (raw.length !== packet.rawBytes) throw Error(`Corrupt ${label} packet: ${raw.length} decoded bytes, expected ${packet.rawBytes}`);
-  assertTiled(label, descriptors, packet.rawBytes);
+  if(descriptors)assertTiled(label, descriptors, packet.rawBytes);
   return raw;
 }
 /** Required near packet (terrain/landmarks, near foliage and starting previews),
@@ -52,5 +52,54 @@ export async function verifyStarterGeometry(manifest, read) {
       throw Error('Corrupt starting preview dependencies');
   }
   const skyline = g.skyline ? await verifyPacket("skyline", "skyline", g.skyline, [...backgroundBlocks, ...g.skyline.proxies], read) : null;
-  return { near: near.length, skyline: skyline?.length ?? 0, proxies: proxyNames.length };
+  let region=null,regionFoliage=null;
+  if(g.region){
+    const indexBytes=await verifyPacket('region index','region-index',g.region,null,read);
+    const index=JSON.parse(indexBytes.toString('utf8'));
+    if(index.schema!==1||JSON.stringify(index.meshes)!==JSON.stringify(manifest.meshes))throw Error('Prepared region header differs from starting world');
+    if(JSON.stringify(g.region.files)!==JSON.stringify([index.geometry.file,index.foliage.file]))throw Error('Prepared region dependency list differs from its index');
+    region=await verifyPacket('region','region',index.geometry,index.geometry.blocks,read);
+    const blocks=new Map(),records=new Map();
+    for(const b of [...g.blocks,...index.geometry.blocks]){
+      const mesh=manifest.meshes[b.meshId],key=`${b.meshId}:${b.indexOffset}`,a=b.attributes;
+      if(!mesh||blocks.has(key)||!Number.isSafeInteger(b.indexOffset)||b.indexOffset<0||b.indexOffset%3||!Number.isSafeInteger(b.vertexOffset)||b.vertexOffset<0)
+        throw Error('Invalid prepared region geometry block');
+      const vertices=a.positions?.length/3,indices=a.indices?.length;
+      if(!Number.isSafeInteger(vertices)||vertices<=0||!Number.isSafeInteger(indices)||indices<=0||indices%3||a.normals?.length!==vertices*3||a.uvs?.length!==vertices*2||a.uv2?.length!==vertices*2||a.colors?.length!==vertices*4)
+        throw Error('Invalid prepared region attribute lengths');
+      blocks.set(key,b);
+      const list=records.get(b.meshId)??[];list.push(b);records.set(b.meshId,list);
+    }
+    // Prove every final storage range is covered once. This includes initial tree
+    // ranges duplicated only in the independent optional skyline packet.
+    for(const [id,mesh]of manifest.meshes.entries()){
+      let indices=0,vertices=0;
+      for(const b of (records.get(id)??[]).sort((a,b)=>a.indexOffset-b.indexOffset)){
+        if(b.indexOffset!==indices||b.vertexOffset!==vertices)throw Error('Prepared region has a geometry gap or overlap');
+        indices+=b.attributes.indices.length;vertices+=b.attributes.positions.length/3;
+      }
+      if(indices!==mesh.indices||vertices!==mesh.vertices)throw Error('Prepared region does not cover the complete world');
+    }
+    for(const b of index.geometry.blocks){
+      const a=b.attributes,values=new Uint32Array(region.buffer,region.byteOffset+a.indices.offset,a.indices.length);
+      if(values.some(i=>i>=a.positions.length/3))throw Error('Prepared region indices exceed local vertex range');
+      for(const [name,v]of Object.entries(a))if(name!=='indices'&&new Float32Array(region.buffer,region.byteOffset+v.offset,v.length).some(n=>!Number.isFinite(n)))throw Error('Prepared region contains nonfinite attributes');
+    }
+    for(const b of backgroundBlocks){
+      const same=blocks.get(`${b.meshId}:${b.indexOffset}`);
+      if(!same)throw Error('Prepared region omits an optional near-tree range');
+      for(const [name,a]of Object.entries(b.attributes)){
+        const other=same.attributes[name];
+        if(a.length!==other?.length||!skyline.subarray(a.offset,a.offset+a.length*4).equals(region.subarray(other.offset,other.offset+other.length*4)))throw Error('Prepared region and skyline duplicate range differs');
+      }
+    }
+    if(JSON.stringify(Object.keys(index.foliage.pools).sort())!==JSON.stringify(Object.keys(manifest.foliage).sort()))throw Error('Prepared region foliage species differ');
+    const tiles=Object.values(index.foliage.pools).flatMap(pool=>pool.tiles);
+    regionFoliage=await verifyPacket('region foliage','foliage',index.foliage,tiles,read);
+    for(const pool of Object.values(index.foliage.pools)){
+      if(!Number.isSafeInteger(pool.count)||pool.count<0||pool.tiles.reduce((n,t)=>n+t.count,0)!==pool.count)throw Error('Invalid prepared region foliage count');
+      for(const tile of pool.tiles)if(!Number.isSafeInteger(tile.count)||tile.count<0||!Number.isFinite(tile.cx)||!Number.isFinite(tile.cz)||tile.attributes.matrices?.length!==tile.count*16||tile.attributes.colors?.length!==tile.count*4)throw Error('Invalid prepared region foliage tile');
+    }
+  }
+  return { near: near.length, skyline: skyline?.length ?? 0, proxies: proxyNames.length,region:region?.length??0,regionFoliage:regionFoliage?.length??0 };
 }

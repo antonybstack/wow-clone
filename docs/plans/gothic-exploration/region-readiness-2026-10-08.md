@@ -2,8 +2,13 @@
 
 Diagnosis on **2026-10-08**, source **1d4404c**. The user asks why the
 Developer tools screen waits so long before allowing cathedral jumps.
-This is an investigation and proposed correction sequence; runtime behavior
-has not changed and production has not been deployed.
+The diagnosis below is preserved. Implementation and bounded local comparisons
+now exist in the [region readiness result](../../baselines/region-readiness-2026-10-09/README.md).
+Navigation is separate from optional details; the compatibility worker splits
+geometry/grass, and prepared exact geometry streams through the existing install
+path. The initial buffered prototype regressed and was rejected. Final native
+stream navigation is 20.3–22.5% faster in three declared 50 Mbit/s local pairs.
+Delivery gates are in progress; production has not been promoted.
 
 ## Findings
 

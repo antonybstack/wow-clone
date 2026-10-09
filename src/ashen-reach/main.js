@@ -213,9 +213,9 @@ async function main(){
  let dressed=false;
  let readyForPlay=false;
  let deviceLost=false;
- const playableBoundary=boundary(),combatBoundary=boundary(),regionBoundary=boundary(),hostilesBoundary=boundary(),firstGpuCompleted=boundary(),supportedGpuCompleted=boundary();
+ const playableBoundary=boundary(),combatBoundary=boundary(),navigationBoundary=boundary(),regionBoundary=boundary(),hostilesBoundary=boundary(),firstGpuCompleted=boundary(),supportedGpuCompleted=boundary();
  let supportedFramePending=false;
- failStartup=error=>{for(const b of [playableBoundary,combatBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted,supportedGpuCompleted])b.fail(error);};
+ failStartup=error=>{for(const b of [playableBoundary,combatBoundary,navigationBoundary,regionBoundary,hostilesBoundary,firstGpuCompleted,supportedGpuCompleted])b.fail(error);};
  let view='reference',elapsed=0;const samples=[];
  let actorVisible=false,visibilityRoot=null,visibilityEquipment=null;
  // Reuse the body's native visibility and equipment coverage owners. Only
@@ -326,9 +326,11 @@ async function main(){
  onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,
   // ready/hostilesReady keep their existing "all of it" meaning for the suites
-  // that already assert on them. The three below are the new, narrower claims.
-  playableReady:false,combatReady:false,regionReady:false,
+  // that already assert on them. Navigation needs visible routes and their solid
+  // collision; it does not need full foliage, NPCs or enhanced textures.
+  playableReady:false,combatReady:false,navigationReady:false,regionReady:false,
   whenPlayable:playableBoundary.promise,whenCombat:combatBoundary.promise,whenRegion:regionBoundary.promise,
+  whenNavigation:navigationBoundary.promise,
   whenHostiles:hostilesBoundary.promise,
   whenFirstGpuFrame:firstGpuCompleted.promise,dispose:()=>disposeScene(scene),
   async whenNextGpuFrame(){const frame=ashen.gpu.frames;while(ashen.gpu.frames<=frame)await new Promise(requestAnimationFrame);await waitForGpuIdle(engine);},
@@ -699,6 +701,25 @@ async function main(){
  ashen.playableReady=true;
  playableBoundary.reach(ashen.playableMs);
 
+ // Bind existing controls once first play is safe. Optional combat/HUD imports
+ // must not keep developer navigation disabled after routes are solid.
+ tools=attachDevTools({params,canvas,camera,player,getCombat:()=>combat,setView,world,rig,
+  whenNavigation:ashen.whenNavigation,isNavigationReady:()=>ashen.navigationReady,
+  whenRegion:ashen.whenRegion,isRegionReady:()=>ashen.regionReady,
+  isAlive:()=>!lifetime.aborted&&!deviceLost,onChange:()=>menu.refreshDevTools()});
+ menu.refreshDevTools();
+ const navigationReady=()=>{
+  lifetime.throwIfAborted();
+  if(deviceLost)throw Error('Device lost during region navigation setup');
+  // All route render blocks and mesh/box collision are installed before this
+  // callback. Native shadow registration and proxy retirement remain shared.
+  world.retireProxies?.();shadows.setWorld(world);
+  if(ashen.navigationReady)return;
+  backgroundStatus.navigationReady();
+  markStartup('navigation-ready');ashen.navigationMs=performance.now()-boot;
+  ashen.navigationReady=true;navigationBoundary.reach(ashen.navigationMs);
+ };
+
  // --- Background. The player is walking while all of this lands. Anything here that
  // fails leaves the safe area usable and reports retry or reload explicitly.
  const backgroundStatus=showBackgroundLoading();
@@ -721,11 +742,11 @@ async function main(){
   const regionP=(async()=>{
    if(world.startRegion){
     for(;;){
-     try{await world.startRegion(player);break;}
+     try{await world.startRegion(player,{onNavigationReady:navigationReady});break;}
      catch(error){if(backgroundDisposed||deviceLost||error.reloadRequired)throw error;ashen.backgroundError=error.message;await backgroundStatus.retry(error);void startSkyline();}
     }
     delete ashen.backgroundError;world.retireProxies();shadows.setWorld(world);delete ashen.skylineError;
-   }
+   }else navigationReady(); // The full-world diagnostic route already installed collision.
    if(world.startNearbyFoliage){
     for(;;){
      try{await world.startNearbyFoliage();delete ashen.nearbyError;break;}
@@ -897,8 +918,6 @@ async function main(){
    ashen.creator=creator;
   };
   rebuildCreator();
-  tools=attachDevTools({params,canvas,camera,player,combat,setView,world,rig,whenRegion:ashen.whenRegion,isRegionReady:()=>ashen.regionReady,isAlive:()=>!lifetime.aborted&&!deviceLost,onChange:()=>menu.refreshDevTools()});
-  menu.refreshDevTools();
   // Spell billboard systems arrive after the first visible scene registration. This
   // re-registers the scene while the player is moving; it measured 2-9 ms.
   markStartup('late-register-start');
@@ -931,6 +950,6 @@ async function main(){
    if(!backgroundDisposed&&!deviceLost)ashen.presenceEntry=createPresenceEntry(ashen);
   }).catch(error=>{ashen.presenceEntryError=error.message;console.warn('Shared-region controls unavailable',error);});
  })();
- ashen.whenRest.catch(error=>{combatBoundary.fail(error);hostilesBoundary.fail(error);regionBoundary.fail(error);if(backgroundDisposed||deviceLost)return;ashen.backgroundError=error.message;backgroundStatus.fail();console.error('Background startup failed',error);});
+ ashen.whenRest.catch(error=>{combatBoundary.fail(error);hostilesBoundary.fail(error);navigationBoundary.fail(error);regionBoundary.fail(error);if(backgroundDisposed||deviceLost)return;ashen.backgroundError=error.message;backgroundStatus.fail();console.error('Background startup failed',error);});
 }
 main().catch(async e=>{failStartup?.(e);console.error(e);const message=await formatGameError(e).catch(()=>e?.stack||String(e));if(failLoading(e,message))return;const el=document.getElementById('error');el.style.display='block';el.textContent=message;});

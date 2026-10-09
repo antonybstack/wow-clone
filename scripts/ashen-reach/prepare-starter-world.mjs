@@ -1,4 +1,4 @@
-/** Bake only the nearby scene. The full region uses the same generator in a worker. */
+/** Bake the nearby scene and optional exact region packets from the same authoring pass. */
 import {
   startupProvenance,
   pruneStartupAssets,
@@ -11,7 +11,7 @@ import { createHash } from "node:crypto";
 import sharp from "sharp";
 import { MeshoptSimplifier } from "meshoptimizer";
 import { buildChurchyard } from "../../src/ashen-reach/scene.js";
-import { generateFoliagePlacements } from "../../src/ashen-reach/foliage.js";
+import { generateFoliagePlacements, bucketFoliagePlacements } from "../../src/ashen-reach/foliage.js";
 import { createFoliageDensity } from "../../src/ashen-reach/foliage-density.js";
 import {
   partitionWorld,
@@ -51,7 +51,7 @@ const packet = () => {
     },
   };
 };
-const near = packet(), skyline = packet();
+const near = packet(), skyline = packet(), region = packet(), fullFoliage = packet();
 // Keep starting terrain/collision and landmarks required. The churchyard tree
 // render stream has no collision; its trunk colliders already live in boxes.
 // Transfer those exact blocks after play, sharing the optional skyline packet.
@@ -60,6 +60,15 @@ const deferredTree = b => data.meshes[b.meshId].name === 'Bare woodland'
   && data.meshes[b.meshId].world && !data.meshes[b.meshId].collision;
 const blocks = initial.filter(b => !deferredTree(b)).map(near.describe);
 const backgroundBlocks = initial.filter(deferredTree).map(skyline.describe);
+// Preserve every storage offset and triangle. Cathedral render/collision arrives
+// first; navigation still waits for ALL visible routes and collision. Include the
+// two exact near-tree blocks so optional skyline failure cannot leave their holes.
+const regionBlocks = [
+  ...initial.filter(deferredTree),
+  ...data.batches.filter(b=>!b.initial).sort((a,b)=>
+    Number(!data.meshes[a.meshId].name.startsWith('Vaelmark'))-
+    Number(!data.meshes[b.meshId].name.startsWith('Vaelmark'))),
+].map(region.describe);
 // A temporary, non-colliding skyline made from the existing geometry. Welding
 // only affects these distant proxies; final meshes retain every source byte.
 // https://github.com/zeux/meshoptimizer/blob/v0.22/js/README.md#simplification
@@ -150,6 +159,11 @@ const placements = await generateFoliagePlacements({
   ].map(([x, z, scale]) => ({ x, z, scale })),
 });
 const foliage = {};
+const regionFoliage = Object.fromEntries(Object.entries(bucketFoliagePlacements(placements)).map(([name,pool])=>[
+  name,{count:pool.count,tiles:pool.tiles.map(({matrices,colors,...tile})=>fullFoliage.describe({
+    ...tile,buffers:{matrices,colors},
+  }))},
+]));
 for (const [name, pool] of Object.entries(placements)) {
   const matrices = [],
     colors = [];
@@ -184,6 +198,14 @@ async function writePacket(prefix, { buffers, rawBytes }) {
 }
 const nearPacket = await writePacket("near", near),
   skylinePacket = await writePacket("skyline", skyline);
+const regionPacket=await writePacket('region',region),
+  foliagePacket=await writePacket('foliage',fullFoliage);
+// Keep thousands of optional block/tile descriptors out of the required manifest.
+// The background index uses the same native HTTP Brotli delivery/cache family.
+// https://developers.cloudflare.com/pages/configuration/headers/
+const indexBytes=Buffer.from(JSON.stringify({schema:1,meshes:data.meshes,
+  geometry:{...regionPacket,blocks:regionBlocks},foliage:{...foliagePacket,pools:regionFoliage}}));
+const regionIndex=await writePacket('region-index',{buffers:[indexBytes],rawBytes:indexBytes.length});
 const textureURLs = {};
 for (const url of new Set([
   ...data.surfaces.map((s) => s.url),
@@ -227,6 +249,9 @@ const preparedManifest={
       blocks,
       proxies: startingProxies,
       skyline: { ...skylinePacket, blocks: backgroundBlocks, proxies },
+      // Keep the indirect immutable dependencies visible to the existing pruner.
+      // Block/tile descriptors remain exclusively in the optional index.
+      region: {...regionIndex,files:[regionPacket.file,foliagePacket.file]},
     },
   };
 // Validate both immutable packets before publishing their shared mutable index.
@@ -239,6 +264,7 @@ console.log(
     encodedBytes: nearPacket.encodedBytes,
     rawBytes: nearPacket.rawBytes,
     skyline: { proxies: proxies.length, encodedBytes: skylinePacket.encodedBytes, rawBytes: skylinePacket.rawBytes },
+    region: {blocks:regionBlocks.length,encodedBytes:regionPacket.encodedBytes,rawBytes:regionPacket.rawBytes,index:regionIndex.encodedBytes,foliage:foliagePacket.encodedBytes},
   }),
 );
 

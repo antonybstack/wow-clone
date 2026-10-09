@@ -2,7 +2,7 @@
 // Bring up one parallel-worktree harness slot: its own Vite dev server, its own Chrome
 // profile and CDP port, pointed at each other, waited on until ASHEN.ready is true.
 //
-// Usage: node scripts/harness/up.mjs --slot 1 [--headless] [--uncapped] [--route ashen-reach.html?play&clean]
+// Usage: node scripts/harness/up.mjs --slot 1 [--headless] [--uncapped] [--idle] [--route ashen-reach.html?play&clean]
 //
 // Prints the environment variables to export so scripts/lib/cdp.mjs and the ASHEN_URL
 // convention already used by scripts/ashen-reach/* target this slot instead of the shared
@@ -24,13 +24,16 @@ function arg(name, fallback) {
 
 const slotArg = arg('slot');
 if (!slotArg) {
-  console.error('Usage: node scripts/harness/up.mjs --slot <N> [--headless] [--uncapped] [--route <path>]');
+  console.error('Usage: node scripts/harness/up.mjs --slot <N> [--headless] [--uncapped] [--idle] [--route <path>]');
   process.exit(1);
 }
 
 const { slot, vitePort, cdpPort, userDataDir, stateFile, viteLog } = resolveSlot(slotArg);
 const headless = process.argv.includes('--headless');
 const uncapped = process.argv.includes('--uncapped');
+// Built-preview/fault probes create their own fresh context. An idle harness
+// avoids booting a second game and warming assets before the intended visit.
+const idle = process.argv.includes('--idle');
 const route = arg('route', 'ashen-reach.html?play&clean');
 
 function isAlive(pid) {
@@ -159,7 +162,7 @@ const SYSTEM_CHROME_CANDIDATES = [
   '/Applications/Chromium.app/Contents/MacOS/Chromium',
 ];
 const chromePath = SYSTEM_CHROME_CANDIDATES.find((p) => fs.existsSync(p)) ?? chromium.executablePath();
-const targetUrl = `http://127.0.0.1:${vitePort}/${route}`;
+const targetUrl = idle ? 'about:blank' : `http://127.0.0.1:${vitePort}/${route}`;
 const chrome = spawn(chromePath, [
   `--remote-debugging-port=${cdpPort}`,
   `--user-data-dir=${userDataDir}`,
@@ -182,7 +185,7 @@ console.log(`Chrome up on CDP ${cdpPort} (pid ${chrome.pid})`);
 // Persist state now so `down.mjs` can clean up even if the readiness wait below fails.
 fs.writeFileSync(stateFile, JSON.stringify({
   slot, vitePort, cdpPort, userDataDir, vitePid: vite.pid, chromePid: chrome.pid,
-  headless, uncapped,
+  headless, uncapped, idle,
   startedAt: new Date().toISOString(),
 }, null, 2));
 
@@ -193,12 +196,14 @@ const context = browser.contexts()[0];
 // an ashen-reach.html page pointed at a different slot, and accepting it would hand back a
 // browser that looks correct and renders the wrong tree.
 const ours = (p) => p.url().includes(`127.0.0.1:${vitePort}/ashen-reach.html`);
+if(!idle){
 await waitFor(async () => context.pages().some(ours),
   { what: `ashen-reach.html page on ${vitePort}`, timeoutMs: 15000 });
 const page = context.pages().find(ours);
 await page.setViewportSize({ width: 1280, height: 720 }).catch(() => {}); // real window; sticks for later connections
 await page.waitForFunction(() => window.ASHEN?.ready, null, { timeout: 60000 });
 console.log('ASHEN.ready is true.');
+}else console.log('Idle harness: about:blank, no game renderer or bootstrap visit.');
 // Disconnect without closing: Chrome was spawned above as its own detached process and
 // keeps running after this CDP connection (and this node process) goes away.
 browser.close().catch(() => {});

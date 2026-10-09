@@ -21,7 +21,10 @@ function paintBadge(el) {
     `DEV  ${dev.god ? 'GOD' : 'mortal'}  ${dev.flying ? 'FLY' : 'walk'}  ·  G god  ·  F fly  ·  click teleport`;
 }
 
-export function attachDevTools({params, canvas, camera, player, combat, setView, world, rig, whenRegion, isRegionReady, isAlive = () => true, onChange}) {
+export function attachDevTools({params, canvas, camera, player, getCombat, setView, world, rig, whenNavigation, isNavigationReady, whenRegion, isRegionReady, isAlive = () => true, onChange}) {
+  // Tools bind to the existing player after first play, before the optional combat
+  // imports. Read the current HUD when available rather than capturing a null one.
+  const message = text => getCombat()?.hud?.message?.(text);
   const enabled = new URLSearchParams(location.search).has('dev');
   dev.enabled = enabled;
   dev.god = enabled;
@@ -55,7 +58,7 @@ export function attachDevTools({params, canvas, camera, player, combat, setView,
     if (!dev.enabled || !isAlive()) return false;
     dev.god = !!on;
     paint();
-    combat.hud?.message?.(dev.god ? 'God mode on' : 'God mode off');
+    message(dev.god ? 'God mode on' : 'God mode off');
     return true;
   };
   const setFlying = (on) => {
@@ -71,12 +74,12 @@ export function attachDevTools({params, canvas, camera, player, combat, setView,
     }
     dev.flying = !!player.isFlying?.();
     paint();
-    combat.hud?.message?.(dev.flying ? 'Fly on — click a solid surface to teleport' : 'Fly off');
+    message(dev.flying ? 'Fly on — click a solid surface to teleport' : 'Fly off');
     return true;
   };
   const destinations = devDestinations(world);
   const jumpTo = (id) => {
-    if (!dev.enabled || !isAlive() || !isRegionReady()) return false;
+    if (!dev.enabled || !isAlive() || !isNavigationReady()) return false;
     const destination = destinations.find(d => d.id === id);
     if (!destination) return false;
     if (dev.flying) setFlying(false);
@@ -89,7 +92,7 @@ export function attachDevTools({params, canvas, camera, player, combat, setView,
     rig.pitch = .04;
     rig.distance = rig.distanceTarget = 3.5;
     setView?.('play');
-    combat.hud?.message?.(`Destination: ${destination.name}`);
+    message(`Destination: ${destination.name}`);
     return true;
   };
   const setEnabled = (on) => {
@@ -116,14 +119,14 @@ export function attachDevTools({params, canvas, camera, player, combat, setView,
       const x = input.clickX;
       const y = input.clickY;
       input.clicked = false;
-      if (!isRegionReady()) {
-        combat.hud?.message?.('Waiting for region collision before teleporting');
+      if (!isNavigationReady()) {
+        message('Waiting for route geometry and collision before teleporting');
         return;
       }
       setView?.('play');
       const hit = pickTeleportSurface(camera, canvas, player, x, y);
       if (!hit) {
-        combat.hud?.message?.('No solid surface under the cursor');
+        message('No solid surface under the cursor');
         return;
       }
       const position = teleportSurfacePosition(hit, player.capsuleHeight, player.capsuleRadius);
@@ -132,18 +135,22 @@ export function attachDevTools({params, canvas, camera, player, combat, setView,
         return;
       }
       player.setWorldPos(position.x, position.y, position.z);
-      combat.hud?.message?.(`Teleported onto solid surface  ${hit.hitPoint.x.toFixed(1)}, ${hit.hitPoint.y.toFixed(1)}, ${hit.hitPoint.z.toFixed(1)}`);
+      message(`Teleported onto solid surface  ${hit.hitPoint.x.toFixed(1)}, ${hit.hitPoint.y.toFixed(1)}, ${hit.hitPoint.z.toFixed(1)}`);
     }
   };
   // Await collision readiness without extending the first-play fence. An at=
   // link is inert without ?dev, and disabling dev while loading cancels the jump.
-  void whenRegion.then(() => {
+  void whenNavigation.then(() => {
     if (!isAlive()) return;
     onChange?.();
     if (params.has('dev') && params.has('at') && dev.enabled && !jumpTo(params.get('at')))
-      combat.hud?.message?.('Unknown developer destination');
-  });
+      message('Unknown developer destination');
+  }, () => { onChange?.(); });
+  // Full-region readiness still owns optional foliage, texture and NPC completion.
+  // Its UI refresh must not delay navigation or leak an unhandled rejection.
+  void whenRegion.then(() => { onChange?.(); }, () => { onChange?.(); });
   return {dev, tick, setEnabled, setGod, setFlying, jumpTo, destinations,
+    get navigationReady() { return isAlive() && isNavigationReady(); },
     get regionReady() { return isAlive() && isRegionReady(); },
     destinationURL: id => devDestinationURL(location.href, id)};
 }
