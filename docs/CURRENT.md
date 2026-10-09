@@ -42,12 +42,15 @@ Continue isolated candidate development under the active goal, preserving the us
 mobile backlog and separate production hold.
 
 [Region-wait follow-on plan](plans/gothic-exploration/region-navigation-core-2026-10-09.md)
-now has a functionally checked experimental implementation: all physical surfaces plus reduced trees first,
+now has a pushed experimental implementation, product **6ea3c6a**:
+[Desktop preview](https://fc70ac46.fardel.pages.dev/?dev&play&regionCore=1), Telegram **899** /
+[reviewed VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-core.mp4). all physical surfaces plus reduced trees first,
 full woodland detail later. Candidate first payload14.4 MB versus22.4 MB, but
 combined transfer rises11.7%. No runtime speedup claim; the existing whole-region
 stream remains default. Candidate mode is exposed through ?dev → Developer tools
 with a reload toggle and shareable spawn link. Seventy CPU checks, five native failure/default/retry/disposal cases, twenty landings,
-six surface checks and ordinary Eastwatch climb/guards pass locally. Both G06 FPS and
+six surface checks pass locally; five-case fault/retry checks and ordinary Eastwatch
+climb/guards pass locally/publicly. All651 served artifacts pass. Both G06 FPS and
 candidate paired timing/settled performance must qualify before acceptance/adoption.
 [Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
@@ -77,8 +80,8 @@ candidate paired timing/settled performance must qualify before acceptance/adopt
   Guarded west-chapel descent, pointed vault/memorial circuit and ordinary return.
   [Result](plans/gothic-exploration/results/undercroft-2026-10-08.md), Telegram 890/VE.
   Existing chapels/gallery/bell stairs/parapet already exist; do not rebuild them.
-- **Developer reproduction and physical surface picking:** nineteen named UI
-  destinations (including Eastwatch wall walk) plus God/Fly/link controls; click teleport uses native Lite screen
+- **Developer reproduction and physical surface picking:** twenty named UI
+  destinations (including Eastwatch wall walk/hall balcony) plus God/Fly/link controls; click teleport uses native Lite screen
   rays and a self-filtered Havok query, including roofs and elevated floors.
   [UI procedure](debug-view.md#reproduce-developer-navigation-from-the-ui),
   [destination result](baselines/dev-destinations-2026-10-08/README.md),
@@ -121,7 +124,9 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03/G04/G05/G06 owned contexts/harnesses are closed. Latest G06 Chrome38823 / CDP10037,
+G03/G04/G05/G06 and region-core candidate owned contexts/harnesses are closed.
+Candidate Chrome74078/CDP10037, Vite74043+74067/5873, compiled88134/7074 and
+media128/7077 are stopped; review1147996174/6178/6182 tabs closed. Latest G06 Chrome38823 / CDP10037,
 Vite38794+38818 /5873 and compiled68298 /7074 are stopped. All review/media/Grok,
 capture/encoding/delivery processes are done. No owned game renderer remains.
 User Edge2931 / fifteen existing tabs, Chrome13883 / New Tab, Orca and unrelated

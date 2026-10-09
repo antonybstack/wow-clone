@@ -76,9 +76,28 @@ No promotion of the experimental mode to default follows from these green tests.
 
 ## Delivery and ownership
 
-Sealed desktop preview, served artifact counts, public native checks and root-reviewed
-VE/Telegram motion are recorded below after delivery. Root owns Chrome74078/CDP10037,
+Product **6ea3c6a** is pushed. [Sealed desktop preview](https://fc70ac46.fardel.pages.dev/?dev&play&regionCore=1).
+Seal034837b48920cd1fcf5122a200e87137320cbd0c25adbe590b298a3322727434:
+648 files/399,188,280 bytes. **651 served checks**,325 cache policies/eight region
+policies pass. Public five-case native fault/default/retry/disposal checks and
+ordinary55-sample/six-guard Eastwatch tour pass. The first public helper attempt
+incorrectly retained its base URL candidate flag for its default assertion; it
+failed before the other cases. Root corrected that test setup, preserved the
+failed helper evidence locally, and reran successfully. No product fix was hidden
+by that rerun. Ordinary map/pause/disposal is also checked publicly.
+
+Root reviewed actual local and direct public **20.697403s/1280×720** MP4 playback
+through the end; the first diagnostic capture ended against a wall and was
+replaced by a clear bridge return. **Telegram899** returned matching dimensions;
+application inline/fullscreen playback remains unverified. [Verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-core.mp4):
+6,282,098 bytes/SHA36587983fafeed2a31ddafec3a591666139ef26a0e8bf6a2df6788abef646051,
+HTTP200/video/mp4/exact bytes,1024-byte range206 and direct playback pass.
+Production metadata independently remains5723a4ab/source7d00c56 at2026-10-09T12:25:36Z. Root owns Chrome74078/CDP10037,
 Vite74043+74067/5873 and compiled88134/7074 during checks; one game context at a time.
 User Edge2931/fifteen tabs, Chrome13883/New Tab, Orca and unrelated Vite4000 are preserved.
-Final ownership teardown is recorded before handoff. MP4/capture frames are local
+Final audit: owned game contexts closed; Chrome74078/CDP10037 and Vite74043+74067/5873
+stopped with harness teardown, compiled88134/7074 and media128/7077 stopped. Local
+review1147996174/6178 and VE1147996182 tabs closed. Edge returns to the preserved
+fifteen user tabs. Grok/build/encode/deploy/delivery processes finished; no owned
+renderer remains. MP4/capture frames are local
 `.cache/region-core-candidate-2026-10-09`, public MP4 is durable after upload.
