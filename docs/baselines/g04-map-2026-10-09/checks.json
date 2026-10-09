@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "cpuFiles": [
+    "scripts/test-startup-assets.mjs",
+    "scripts/test-prepared-region.mjs"
+  ],
+  "cpuChecks": 19,
+  "additionalExecutedProbes": [
+    "independent transform isolation and equal X/Z scale/north direction",
+    "actual well west-detour turn anchors",
+    "distant northern destination diamond remains inside minimap",
+    "four compass arrow headings match world-forward movement projected onto map"
+  ],
+  "stagedBuild": "ASHEN_BUILD_ONLY=1 ASHEN_SAVED_BOOTSTRAP=1 ASHEN_PRIME_STARTER_WORLD=1 ASHEN_LAZY_WORLD_BUFFERS=1 ASHEN_DEFER_COVERED_HAIR=1 bash scripts/deploy-pages.sh",
+  "previousBootBytesRounded": 275680,
+  "bootGzipKbRounded": 101.82,
+  "previousBootGzipKbRounded": 101.62,
+  "chartPainterAndFactoryInBoot": false,
+  "preparedWorldChanges": false,
+  "qualification": "bounded desktop preview; not production cold-start/mobile acceptance",
+  "bootBytes": 276514
+}

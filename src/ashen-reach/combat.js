@@ -15,6 +15,7 @@ import { height, pathX } from "./geometry.js";
 import { createLavaBallVfx } from "./lava-ball-vfx.js";
 import { createGravePulseVfx } from "./grave-pulse-vfx.js";
 import { createMinimap } from "./minimap.js";
+import {createRegionMap} from './region-map.js';
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
 import {
@@ -152,9 +153,13 @@ export async function createCombat(
   const targetHpEl = lifeHud.querySelector(".target-plate small");
   const deathVeil = lifeHud.querySelector(".death-veil");
   const progression = createProgression();
+  const regionMap = createRegionMap({player, world, signal:lifetime});
   const minimap = createMinimap({
     player,
     enemies,
+    world,
+    signal:lifetime,
+    destination: () => regionMap.selected,
     marker() {
       const snap = objective?.snapshot();
       if (!snap || snap.phase === "done") return null;
@@ -521,6 +526,7 @@ export async function createCombat(
   };
   return {
     targeting,
+    regionMap,
     spell,
     lava,
     pulse,

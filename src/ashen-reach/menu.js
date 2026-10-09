@@ -32,7 +32,7 @@ function devQueryOn() {
   return new URLSearchParams(location.search).has("dev") || document.body.classList.contains("dev-mode");
 }
 
-export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools } = {}) {
+export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools, getRegionMap } = {}) {
   const root = document.createElement("div");
   root.id = "game-menu";
   root.hidden = true;
@@ -47,12 +47,19 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
         <div class="game-menu-buttons">
           <button type="button" data-action="resume">Resume <kbd>Esc</kbd></button>
           <button type="button" data-action="armory">Armory <kbd>C</kbd></button>
+          <button type="button" data-action="region-map">Region map</button>
           <button type="button" data-action="sound">Sound</button>
           <button type="button" data-action="keys">Keybindings</button>
           <button type="button" data-action="dev" aria-pressed="false">Developer mode</button>
           <button type="button" data-action="developer-tools" data-dev-only hidden>Developer tools</button>
           <button type="button" data-action="metrics" aria-pressed="false">Show performance</button>
         </div>
+      </div>
+      <div class="game-menu-map" hidden>
+        <h1 id="region-map-title">Region map</h1>
+        <p>Explore Ashen Reach · North is up</p>
+        <div data-region-map><p role="status">Preparing the region map…</p></div>
+        <button type="button" data-action="hub">Back</button>
       </div>
       <div class="game-menu-dev" hidden>
         <h1>Developer tools</h1>
@@ -98,6 +105,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   document.body.append(root);
 
   const hub = root.querySelector(".game-menu-hub");
+  const mapPane = root.querySelector('.game-menu-map');
+  const panel = root.querySelector('.game-menu-panel');
   const keysPane = root.querySelector(".game-menu-keys");
   const devPane = root.querySelector(".game-menu-dev");
   const destinationSelect = root.querySelector("#dev-destination");
@@ -127,9 +136,16 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   }
 
   function showHub() {
+    mapPane.hidden = true;
+    panel.classList.remove('region-map-open');
+    root.setAttribute('aria-labelledby', 'game-menu-title');
     keysPane.hidden = true;
     devPane.hidden = true;
     hub.hidden = false;
+  }
+
+  function refreshRegionMap() {
+    if (!mapPane.hidden) getRegionMap?.()?.open(mapPane.querySelector('[data-region-map]'));
   }
 
   function paintSound() {
@@ -223,7 +239,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     paintMetricsButton();
   }
 
-  const activePane = () => !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
+  const activePane = () => !mapPane.hidden ? mapPane : !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
   // Include the native select and readonly URL in the dialog's focus loop.
   // https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
   const focusable = () => [...activePane().querySelectorAll("button,input,select")].filter(el => !el.disabled && !el.hidden);
@@ -287,6 +303,14 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     const action = button.dataset.action;
     if (action === "resume") close();
     else if (action === "armory") chooseArmory();
+    else if (action === 'region-map') {
+      hub.hidden = keysPane.hidden = devPane.hidden = true;
+      mapPane.hidden = false;
+      panel.classList.add('region-map-open');
+      root.setAttribute('aria-labelledby', 'region-map-title');
+      refreshRegionMap();
+      focusFirst();
+    }
     else if (action === "sound") toggleSound();
     else if (action === "keys") {
       const touch = document.body.classList.contains("touch-play");
@@ -365,5 +389,6 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     element: root,
     refreshSound: paintSound,
     refreshDevTools,
+    refreshRegionMap,
   };
 }
