@@ -183,7 +183,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     const tools = getDevTools?.();
     const destinations = tools?.destinations || [];
     if (destinationSource !== destinations && destinations.length) {
-      const selected = destinationSelect.value || "cathedral-nave";
+      // Reload comparisons keep the same destination shown in the spawn link.
+      // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get
+      const selected = destinationSelect.value || new URLSearchParams(location.search).get('at') || "cathedral-nave";
       destinationSelect.replaceChildren(...destinations.map(d => new Option(d.name, d.id)));
       destinationSelect.value = destinations.some(d => d.id === selected) ? selected : destinations[0].id;
       destinationSource = destinations;
