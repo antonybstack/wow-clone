@@ -34,7 +34,9 @@ export function showBackgroundLoading() {
     },
     navigationReady() {
       routesReady=true;
-      root.textContent=loadingText();
+      // The prepared loader publishes the next phase itself; preserve its native
+      // progress node and avoid another live announcement in the same turn.
+      if(mode==='loading'&&!bar)root.textContent=loadingText();
     },
     done() {
       mode='done';

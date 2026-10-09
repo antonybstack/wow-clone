@@ -705,7 +705,7 @@ export async function createStarterWorld(engine, scene, prepared, {regionCore=fa
       // importer, geometry generator or physics path runs in the background.
       // https://developer.mozilla.org/en-US/docs/Web/API/RequestInit#priority
       if(!preparedRegionIndex)startupMark('region-index-request');
-      reportProgress({phase:'index'});
+      if(!preparedRegionIndex)reportProgress({phase:'index'});
       const index=preparedRegionIndex??JSON.parse(new TextDecoder().decode(await readPacket(manifest.geometry.region)));
       if(index.schema!==1||JSON.stringify(index.meshes)!==JSON.stringify(manifest.meshes))
         throw Object.assign(Error('Prepared region and starting world versions differ; reload after rebuilding starting assets'),{reloadRequired:true});
