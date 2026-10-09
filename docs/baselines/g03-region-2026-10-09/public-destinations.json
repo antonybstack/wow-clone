@@ -1,0 +1,280 @@
+{
+  "url": "https://0db543e3.fardel.pages.dev/?dev&play&clean",
+  "errors": [],
+  "destinations": [
+    {
+      "id": "start",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=start",
+      "state": {
+        "x": 0,
+        "y": 0.8938985390290618,
+        "z": 0,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-bridge",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-bridge",
+      "state": {
+        "x": 0,
+        "y": 8.613317043304443,
+        "z": 144.99999620989192,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-entrance",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-entrance",
+      "state": {
+        "x": 0,
+        "y": 45.803875000000005,
+        "z": 304,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-nave",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-nave",
+      "state": {
+        "x": 0,
+        "y": 45.803875000000005,
+        "z": 310,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-west-chapel",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-west-chapel",
+      "state": {
+        "x": -15.5,
+        "y": 45.803875000000005,
+        "z": 328,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-east-chapel",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-east-chapel",
+      "state": {
+        "x": 15.5,
+        "y": 45.803875000000005,
+        "z": 328,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-gallery",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-gallery",
+      "state": {
+        "x": -7,
+        "y": 54.303875000000005,
+        "z": 347,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-parapet",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-parapet",
+      "state": {
+        "x": -27,
+        "y": 54.303875000000005,
+        "z": 347,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-west-bell",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-west-bell",
+      "state": {
+        "x": -19.2,
+        "y": 70.80387499999999,
+        "z": 306,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-east-bell",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-east-bell",
+      "state": {
+        "x": 14.8,
+        "y": 80.80387499999999,
+        "z": 306,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "cathedral-undercroft",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=cathedral-undercroft",
+      "state": {
+        "x": -7,
+        "y": 40.204265625000005,
+        "z": 337,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "east-keep",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=east-keep",
+      "state": {
+        "x": 176,
+        "y": 46.569500000000005,
+        "z": -38,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "west-keep",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=west-keep",
+      "state": {
+        "x": -166,
+        "y": 50.538250000000005,
+        "z": 112,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "south-keep",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=south-keep",
+      "state": {
+        "x": 74,
+        "y": 55.065593750000005,
+        "z": -194,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "east-tower",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=east-tower",
+      "state": {
+        "x": 132,
+        "y": 20.674968749999998,
+        "z": -58,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "west-tower",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=west-tower",
+      "state": {
+        "x": -125,
+        "y": 6.22965625,
+        "z": -83,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "north-tower",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=north-tower",
+      "state": {
+        "x": 78,
+        "y": 14.76871875,
+        "z": 165,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "id": "hollowmere-chapel",
+      "link": "https://0db543e3.fardel.pages.dev/?dev=&play=&clean=&at=hollowmere-chapel",
+      "state": {
+        "x": 4.1,
+        "y": 8.210124523162841,
+        "z": 114,
+        "height": 1.748,
+        "god": true,
+        "flying": false,
+        "usingPhysics": true,
+        "recoveries": 0
+      }
+    }
+  ],
+  "naveWalking": {
+    "x": 0,
+    "y": 45.803875000000005,
+    "z": 313.53780000024955,
+    "height": 1.748,
+    "god": true,
+    "flying": false,
+    "usingPhysics": true,
+    "recoveries": 0
+  },
+  "spawnLink": {
+    "x": -7,
+    "y": 40.204265625000005,
+    "z": 337,
+    "height": 1.748,
+    "god": true,
+    "flying": false,
+    "usingPhysics": true,
+    "recoveries": 0
+  },
+  "gpuErrors": [],
+  "passed": true
+}

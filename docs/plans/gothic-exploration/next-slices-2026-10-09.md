@@ -29,6 +29,15 @@ and only change DOM text when the displayed value changes. No textures, meshes,
 scene lights, asset rebake, intervals, new rendering engine or input shortcuts are
 necessary for this slice. Do not add persistent achievements or quest changes.
 
+Keep map drawing and geometry imports on the existing late combat/minimap path;
+the early menu only requests its already-ready provider. Importing the full
+procedural geometry module into the early menu would undermine startup work.
+Reuse the minimap's offscreen static canvas pattern and native 2D canvas APIs.
+Use per-instance bounds/transform so the large chart cannot change minimap
+coordinates. A selected distant pin should remain visible at the minimap edge,
+without overwriting the watchman objective. Label all eight registry names on
+the chart/list, differentiating the three towers.
+
 Verify real menu open/select/clear/back/Esc, input restoration, objective-marker
 coexistence and retained destinations. Root reviews a live map-selection and
 ordinary walking clip. Measure separately under the same five-route 15-window

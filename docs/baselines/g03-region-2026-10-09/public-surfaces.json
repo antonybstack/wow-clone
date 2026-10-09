@@ -1,0 +1,256 @@
+{
+  "url": "https://0db543e3.fardel.pages.dev/?dev&play&clean",
+  "errors": [],
+  "checks": [
+    {
+      "name": "Exterior parapet — above terrain",
+      "point": [
+        -27.5,
+        53.42268781190694,
+        350.5
+      ],
+      "pixel": {
+        "x": 595.9478837838539,
+        "y": 473.66157742350487,
+        "hit": {
+          "hitPoint": {
+            "x": -27.499937057495117,
+            "y": 53.421875,
+            "z": 350.4991455078125
+          },
+          "hitNormal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "fraction": 0.007873404771089554
+        }
+      },
+      "before": {
+        "x": -27,
+        "y": 54.303875000000005,
+        "z": 347,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": -27.499937057495117,
+        "y": 55.615875,
+        "z": 350.4991455078125,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "Upper gallery — above nave",
+      "point": [
+        -7.5,
+        53.42268781190694,
+        343.5
+      ],
+      "pixel": {
+        "x": 684.0522323451444,
+        "y": 473.66226715803293,
+        "hit": {
+          "hitPoint": {
+            "x": -7.499939918518066,
+            "y": 53.421875,
+            "z": 343.5008239746094
+          },
+          "hitNormal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "fraction": 0.007873387075960636
+        }
+      },
+      "before": {
+        "x": -7,
+        "y": 54.303875000000005,
+        "z": 347,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": -7.499939918518066,
+        "y": 55.615875,
+        "z": 343.5008239746094,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "Nave — above underlying terrain",
+      "point": [
+        0.8,
+        44.92268781190694,
+        313.5
+      ],
+      "pixel": {
+        "x": 710.4834346420232,
+        "y": 473.6620833968974,
+        "hit": {
+          "hitPoint": {
+            "x": 0.7999034523963928,
+            "y": 44.921875,
+            "z": 313.4991455078125
+          },
+          "hitNormal": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "fraction": 0.007903049699962139
+        }
+      },
+      "before": {
+        "x": 0,
+        "y": 45.803875000000005,
+        "z": 310,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": 0.7999036908149719,
+        "y": 47.115875,
+        "z": 313.4991455078125,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "Ordinary ground",
+      "point": [
+        0.8,
+        0.3479807567687929,
+        3.5
+      ],
+      "pixel": {
+        "x": 710.6176016715608,
+        "y": 444.30668911199854,
+        "hit": {
+          "hitPoint": {
+            "x": 0.7993905544281006,
+            "y": 0.3479958474636078,
+            "z": 3.4942636489868164
+          },
+          "hitNormal": {
+            "x": -0.046823229640722275,
+            "y": 0.998895525932312,
+            "z": -0.003901935648173094
+          },
+          "fraction": 0.007825533859431744
+        }
+      },
+      "before": {
+        "x": 0,
+        "y": 0.8938985390290618,
+        "z": 0,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": 0.7528790392239181,
+        "y": 2.540242737246646,
+        "z": 3.490386730899285,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "Sloped cathedral roof",
+      "point": [
+        -9,
+        72.54100842259396,
+        345
+      ],
+      "pixel": {
+        "x": 709.2422555780549,
+        "y": 361.5736855817599,
+        "hit": {
+          "hitPoint": {
+            "x": -8.99971866607666,
+            "y": 72.54074096679688,
+            "z": 345.00006103515625
+          },
+          "hitNormal": {
+            "x": -0.681509256362915,
+            "y": 0.7318095564842224,
+            "z": 0
+          },
+          "fraction": 0.03439965471625328
+        }
+      },
+      "before": {
+        "x": -27,
+        "y": 92.79827499961831,
+        "z": 347,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": -9.568570910254824,
+        "y": 74.35157861079125,
+        "z": 345.00006103515625,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "name": "Sky miss remains in place",
+      "before": {
+        "x": -9.568570910254824,
+        "y": 74.35157861079125,
+        "z": 345.00006103515625,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      },
+      "after": {
+        "x": -9.568570910254824,
+        "y": 74.35157861079125,
+        "z": 345.00006103515625,
+        "height": 1.748,
+        "radius": 0.28,
+        "flying": true,
+        "physics": true,
+        "recoveries": 0
+      }
+    }
+  ],
+  "gpuErrors": [],
+  "passed": true
+}

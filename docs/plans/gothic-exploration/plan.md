@@ -1,7 +1,8 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-**G01 and G02 are complete locally and on sealed previews; G03 is next.**
+**G01–G03 are complete on sealed desktop previews. G04 region map is next, then G05 wall walk.**
+[Following slices](next-slices-2026-10-09.md).
 [Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).
 Production promotion remains under its separate recorded startup gates.
 Existing chapels, upper gallery,
@@ -63,7 +64,8 @@ Freeze/regenerate prepared inputs, play the approach and interior, review live
 motion and run the same separate unprofiled performance gate. No new textures or
 lighting system unless a demonstrated visual gap warrants their load cost.
 
-**G03 — Regional exploration circuit.** Review the side keeps, detached towers and
+**G03 — Regional exploration circuit — complete 2026-10-09.**
+[Actual routes, fork repairs, performance and delivery](../../baselines/g03-region-2026-10-09/README.md). Review the side keeps, detached towers and
 Hollowmere chapel as distinct destinations. Strengthen readable entrances and
 views, then verify a continuous normal-control circuit using the existing route
 registry. Do not add another region or repeat completed route construction.

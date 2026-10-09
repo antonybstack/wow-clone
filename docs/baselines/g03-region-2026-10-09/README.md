@@ -1,6 +1,6 @@
 # G03 — Regional destination identity and connected exploration
 
-**Local implementation and visual review; acceptance/delivery in progress.**
+**Complete on the sealed desktop preview. Product f159ff0; production remains held separately.**
 The ordinary seven-site developer-menu survey showed identical bare keep halls,
 blank tower rooms and Hollowmere facing south at a west-facing entrance.
 [Implementation/acceptance scope](../../plans/gothic-exploration/g03-region-2026-10-09.md).
@@ -47,7 +47,7 @@ system is added to manufacture a brighter scene.
 [Southwatch before](south-keep-before.png) / [after](south-keep-after.png),
 [Hollowmere before](hollowmere-chapel-before.png) / [after](hollowmere-chapel-after.png).
 The chapel before frame faces out because of its recorded heading defect.
-Motion, isolated FPS, sealed public checks and Telegram/VE are pending.
+Reviewed motion, isolated FPS, served assets and public native checks pass; detailed evidence follows.
 
 ## Native circuit and ownership
 
@@ -58,13 +58,13 @@ Its first attempt enters/returns Eastwatch and Westwatch, then fails against the
 existing Hollowmere well at x≈0,z≈137.2. The connector had incorrectly followed
 its centreline. [Retained first failure](first-circuit-failure.json). The corrected
 connector walks the west side of the existing paved square using explicit turn
-anchors; no terrain/obstacle removal or recovery teleport. Final results pending.
+anchors; no terrain/obstacle removal or recovery teleport. The final public circuit passes; its receipt follows.
 
 Root: Chrome86682/CDP10037, Vite86633+86657/5873. Compiled20971/7074 and
 its replacement84681/7074 are stopped before the west-fork rebake. Native
 contexts close in `finally`; one renderer runs at a time. Grok6799 and resumed
 31370 are done. User Edge2931/fifteen nongame tabs, regular Chrome13883/New Tab,
-Orca and unrelated Vite4000 (10171+10205) are preserved. Final cleanup pending.
+Orca and unrelated Vite4000 (10171+10205) are preserved. Final acceptance cleanup is complete; the ownership closure is recorded below.
 Production remains unchanged under its independent startup qualification hold.
 
 ### Real east-fork defect found by the connected walk
@@ -78,7 +78,7 @@ plateau through the fork reduces the same region to <3e−14 m over 226 samples;
 a wider regression scan also covers adjoining bends. No player step/physics policy
 change. All route grades remain ≤20°. [Both affected east branches](local-east-final.json) pass the final focused native walk and initial-bridge
 return with Havok active, no Fly, no errors or recoveries. This used the post-east
-build, before the subsequent west repair. Final public acceptance remains pending.
+build, before the subsequent west repair. The final public circuit passes both repaired forks.
 
 
 ### Analogous west-fork defect
@@ -90,9 +90,8 @@ overlap near the old fork. The shared straight trunk now extends outside the
 protected town before a common 10 m plateau splits toward the two west landmarks.
 CPU rays cover the protected edge and new fork (<4.3e−14 m spread), while protected
 terrain heights, all landmark datums and ≤20° route grades pass. The source result
-does not establish native acceptance; both west branches are being rebuilt for
-focused retesting. North fork's 0.156 m sampled overlap is unchanged and not an
-established blocker; its full circuit traversal remains required.
+does not establish native acceptance; both west branches pass the final public circuit. North fork's 0.156 m sampled overlap is unchanged and not an
+established blocker; its final public traversal passes.
 
 
 [Separate independent fork review](fork-review.md) finds the repairs consistent
@@ -118,9 +117,7 @@ poor target selection; it is retained locally and does not qualify a route.
 returns to the initial bridge. It selects visible blocking hostiles through
 ordinary Tab controls and kills them with Fire Blast before walking out; all
 recorded input actions and native states remain in the receipt. No HP mutation,
-hidden enemy removal, collision disable or recovery teleport. The final public
-seven-site connected circuit remains required; these split local checks are not
-represented as one completed local circuit.
+hidden enemy removal, collision disable or recovery teleport. The separate final public circuit passes all eight registry destinations; these split local checks are not represented as one completed local circuit.
 
 
 ### Recorded motion review
@@ -166,3 +163,22 @@ p99≤6.6 ms/worst9.4 ms, but the helper's default discards raw intervals. A sin
 repeat with **ASHEN_FPS_RAW=1** closes that output gap and is the table above; the
 first result is retained separately rather than merged. Use that existing flag
 whenever retaining a benchmark as acceptance evidence.
+
+
+## Completed preview and delivery
+
+Source **f159ff0** is committed/pushed. [Sealed desktop preview](https://0db543e3.fardel.pages.dev/?dev&play&at=east-keep)
+passes all **649 served checks**, including 323 declared cache-policy checks.
+[Seal](preview-seal.json) / [served bytes and policies](served-preview.json).
+[The public connected circuit](public-circuit.json) enters and returns from all eight registry destinations (three keeps, three towers, Hollowmere and Vaelmark), then walks back to the initial bridge. Nine connecting legs, Havok active, no Fly/recovery teleports and zero runtime/GPU errors. One normal-control Fire Blast clearance removes blocking chapel enemies; raw actions/states are retained. [All eighteen developer destinations and spawn/control gates](public-destinations.json) and [six physical surface/Fly-off checks](public-surfaces.json) pass.
+Production remains 5723a4ab / 7d00c56 under the independent startup hold.
+
+Root-reviewed motion is **Telegram 895** ([sanitized API receipt](telegram-delivery.json)), API dimensions 1280×720 and verified
+95.552 s source duration. The caption explicitly distinguishes seven developer-menu
+chapters from connected traversal and recording overhead from separate timing.
+[Verified identical VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region.mp4),
+36,109,349 bytes, `video/mp4`, HTTP200, exact SHA-256 cd523f9a…, range206/exact
+first1024 bytes ([delivery receipt](ve-delivery.json)). Actual Telegram application
+inline/fullscreen playback is unverified; returned dimensions are not that proof.
+
+Root also opened the public VE URL in Edge and inspected actual advancing playback at 1280×720 / 95.552 s, with correct proportions and no media error. Its owned tab 1147996138 is closed. [A fresh production receipt](production-state.json) confirms the canonical deployment is unchanged. All G03 owned game contexts, Chrome/Vite slot 7 and compiled preview are closed after acceptance; unrelated user sessions remain intact.
