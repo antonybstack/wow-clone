@@ -4,6 +4,7 @@
 import {getViewProjectionMatrix, invertMat4} from '@babylonjs/lite';
 import {input} from '../input.js';
 import {height} from './geometry.js';
+import {devDestinations, devDestinationURL} from './dev-destinations.js';
 
 export const dev = {
   enabled: false,
@@ -86,8 +87,8 @@ function paintBadge(el) {
     `DEV  ${dev.god ? 'GOD' : 'mortal'}  ${dev.flying ? 'FLY' : 'walk'}  ·  G god  ·  F fly  ·  click teleport`;
 }
 
-export function attachDevTools({params, canvas, camera, player, combat, setView}) {
-  const enabled = params.has('dev');
+export function attachDevTools({params, canvas, camera, player, combat, setView, world, rig, whenRegion, isRegionReady, isAlive = () => true, onChange}) {
+  const enabled = new URLSearchParams(location.search).has('dev');
   dev.enabled = enabled;
   dev.god = enabled;
   dev.flying = false;
@@ -115,29 +116,65 @@ export function attachDevTools({params, canvas, camera, player, combat, setView}
   devHelp.className = 'help-dev';
   devHelp.textContent = 'DEV MODE · G god · F fly · click teleport while flying';
   help?.append(devHelp);
+  const paint = () => { paintBadge(badge); onChange?.(); };
+  const setGod = (on) => {
+    if (!dev.enabled || !isAlive()) return false;
+    dev.god = !!on;
+    paint();
+    combat.hud?.message?.(dev.god ? 'God mode on' : 'God mode off');
+    return true;
+  };
+  const setFlying = (on) => {
+    if (!dev.enabled || !isAlive()) return false;
+    setView?.('play');
+    if (!!player.isFlying?.() !== !!on) {
+      const p = player.body.position;
+      const position = [p.x, p.y, p.z];
+      player.setFlying?.(on);
+      // Native fly-off grounds at terrain height. Preserve elevated floors and
+      // let the existing Havok controller settle against their actual collision.
+      if (!on) player.setWorldPos(...position);
+    }
+    dev.flying = !!player.isFlying?.();
+    paint();
+    combat.hud?.message?.(dev.flying ? 'Fly on — click to teleport' : 'Fly off');
+    return true;
+  };
+  const destinations = devDestinations(world);
+  const jumpTo = (id) => {
+    if (!dev.enabled || !isAlive() || !isRegionReady()) return false;
+    const destination = destinations.find(d => d.id === id);
+    if (!destination) return false;
+    if (dev.flying) setFlying(false);
+    const [x, floorY, z] = destination.floor;
+    // setWorldPos resets the existing controller/velocity; no second movement
+    // or camera implementation is introduced for developer navigation.
+    player.setWorldPos(x, floorY + player.capsuleHeight * .5 + .12, z);
+    player.setFacing(destination.yaw);
+    rig.yaw = destination.yaw;
+    rig.pitch = .04;
+    rig.distance = rig.distanceTarget = 3.5;
+    setView?.('play');
+    combat.hud?.message?.(`Destination: ${destination.name}`);
+    return true;
+  };
   const setEnabled = (on) => {
-    if (!on && dev.flying) player.setFlying?.(false);
+    if (!on && dev.flying) setFlying(false);
     dev.enabled = !!on;
     dev.god = !!on;
     dev.flying = false;
     devHelp.hidden = !on;
     document.body.classList.toggle('dev-mode', !!on);
-    paintBadge(badge);
+    paint();
   };
   setEnabled(enabled);
   document.addEventListener('keydown', (event) => {
-    if (!dev.enabled || event.repeat || document.body.classList.contains('armory-open')) return;
+    if (!dev.enabled || event.repeat || document.body.classList.contains('armory-open') || document.body.classList.contains('game-menu-open') || event.target?.closest?.('input,select,textarea,[contenteditable]')) return;
     if (event.code === 'KeyG') {
-      dev.god = !dev.god;
-      paintBadge(badge);
-      combat.hud?.message?.(dev.god ? 'God mode on' : 'God mode off');
+      setGod(!dev.god);
     }
     if (event.code === 'KeyF') {
-      setView?.('play');
-      player.setFlying?.(!player.isFlying?.());
-      dev.flying = !!player.isFlying?.();
-      paintBadge(badge);
-      combat.hud?.message?.(dev.flying ? 'Fly on — click to teleport' : 'Fly off');
+      setFlying(!dev.flying);
     }
   });
   const tick = () => {
@@ -156,5 +193,15 @@ export function attachDevTools({params, canvas, camera, player, combat, setView}
       combat.hud?.message?.(`Teleported  ${hit.x.toFixed(1)}, ${hit.z.toFixed(1)}`);
     }
   };
-  return {dev, tick, setEnabled};
+  // Await collision readiness without extending the first-play fence. An at=
+  // link is inert without ?dev, and disabling dev while loading cancels the jump.
+  void whenRegion.then(() => {
+    if (!isAlive()) return;
+    onChange?.();
+    if (params.has('dev') && params.has('at') && dev.enabled && !jumpTo(params.get('at')))
+      combat.hud?.message?.('Unknown developer destination');
+  });
+  return {dev, tick, setEnabled, setGod, setFlying, jumpTo, destinations,
+    get regionReady() { return isAlive() && isRegionReady(); },
+    destinationURL: id => devDestinationURL(location.href, id)};
 }

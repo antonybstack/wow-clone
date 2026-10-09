@@ -314,7 +314,7 @@ async function main(){
   ashen.humanShape={weights,heightScale,applied:true,live:true};
  };
 
- const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on)});
+ const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on),getDevTools:()=>tools});
  // Reuse scene cancellation to remove the DOM handler before disposed body
  // meshes can be reached by later movement/view keys.
  // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#signal
@@ -897,7 +897,8 @@ async function main(){
    ashen.creator=creator;
   };
   rebuildCreator();
-  tools=attachDevTools({params,canvas,camera,player,combat,setView});
+  tools=attachDevTools({params,canvas,camera,player,combat,setView,world,rig,whenRegion:ashen.whenRegion,isRegionReady:()=>ashen.regionReady,isAlive:()=>!lifetime.aborted&&!deviceLost,onChange:()=>menu.refreshDevTools()});
+  menu.refreshDevTools();
   // Spell billboard systems arrive after the first visible scene registration. This
   // re-registers the scene while the player is moving; it measured 2-9 ms.
   markStartup('late-register-start');

@@ -22,6 +22,39 @@ Wait for Vite reloads to settle before navigating/capturing; simultaneous reload
 
 ## Inspect deliberately
 
+### Reproduce developer navigation from the UI
+
+Open the game with **`?dev`**, press **Esc** (or the touch **Menu** button),
+then choose **Developer tools → Destination → Jump to destination**.
+**Vaelmark — nave** starts inside the cathedral; **Vaelmark — undercroft**
+starts at the lower chamber threshold. The same menu lists the bridge, entrance,
+chapels, gallery, bell landings, parapet and existing region landmarks.
+God mode and Fly mode have visible toggles; while flying, click ground to teleport.
+Jumping switches back to ordinary Havok walking. Fly-off preserves the current
+position so an elevated floor can catch the character rather than resetting to terrain.
+
+Each selection exposes a readonly **Spawn link**: select it and copy it.
+For example, **`?dev&play&at=cathedral-nave`** or
+**`?dev&play&at=cathedral-undercroft`**. Other URL options survive.
+`at=` is ignored without `dev`; unknown destinations cannot move the player.
+Both the menu jump and a spawn link wait for the complete region/collision boundary;
+they do not weaken the progressive first-play fence. Spawn links still load the
+starting area before placing the character at their destination.
+
+**Developer accessibility rule:** every new in-game helper used by an agent for
+placement, camera, state or feature reproduction must have a named control in the
+`?dev` UI. Shareable parameters use the same handler/metadata as those controls.
+A console-only helper or undocumented URL switch is insufficient delivery.
+Existing diagnostic automation remains available; this is a requirement on new
+helpers and changes to them, not an instruction to rewrite every historical probe.
+Use the native controls in live reproduction checks, not private console placement.
+
+`scripts/ashen-reach/check-dev-destinations.mjs` exercises the actual menu and
+spawn links in an owned harness, optionally capturing motion with `ASHEN_RECORD=1`.
+It records browser ownership and closes its own context. Blank the harness's
+initial game page before running it, then stop the owned harness afterwards.
+Recording is not a performance measurement.
+
 `ASHEN` exposes `engine`, `scene`, `rig`, `player`, `body`, `world`, `combat`, `armory`, `input`, `setView`, `reset`, and `metrics.summary()`.
 
 **C / Armory** opens inspection on the actual actor; Escape restores the prior view. `armory.getState()` reports diagnostic playback. Use [CURRENT](CURRENT.md) for availability and current scope; the [historical armory plan](archive/plans/armory-and-equipment-plan.md) retains earlier implementation evidence. Close the armory before gameplay tests; its modal input suspension is intentional.

@@ -32,7 +32,7 @@ function devQueryOn() {
   return new URLSearchParams(location.search).has("dev") || document.body.classList.contains("dev-mode");
 }
 
-export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
+export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools } = {}) {
   const root = document.createElement("div");
   root.id = "game-menu";
   root.hidden = true;
@@ -50,7 +50,23 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
           <button type="button" data-action="sound">Sound</button>
           <button type="button" data-action="keys">Keybindings</button>
           <button type="button" data-action="dev" aria-pressed="false">Developer mode</button>
+          <button type="button" data-action="developer-tools" data-dev-only hidden>Developer tools</button>
           <button type="button" data-action="metrics" aria-pressed="false">Show performance</button>
+        </div>
+      </div>
+      <div class="game-menu-dev" hidden>
+        <h1>Developer tools</h1>
+        <p data-dev-status role="status">Loading developer tools…</p>
+        <div class="game-menu-buttons">
+          <label for="dev-destination">Destination</label>
+          <select id="dev-destination" aria-label="Destination"></select>
+          <button type="button" data-action="jump" disabled>Jump to destination</button>
+          <label for="dev-destination-link">Spawn link — select and copy</label>
+          <input id="dev-destination-link" type="url" readonly aria-label="Spawn link">
+          <button type="button" data-action="god" aria-pressed="false">God mode</button>
+          <button type="button" data-action="fly" aria-pressed="false">Fly mode</button>
+          <p>While flying, click the ground to teleport. G / F also toggle God / Fly.</p>
+          <button type="button" data-action="hub">Back</button>
         </div>
       </div>
       <div class="game-menu-keys" hidden>
@@ -83,6 +99,10 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
 
   const hub = root.querySelector(".game-menu-hub");
   const keysPane = root.querySelector(".game-menu-keys");
+  const devPane = root.querySelector(".game-menu-dev");
+  const destinationSelect = root.querySelector("#dev-destination");
+  const destinationLink = root.querySelector("#dev-destination-link");
+  let destinationSource;
   const soundBtn = root.querySelector('[data-action="sound"]');
   const devBtn = root.querySelector('[data-action="dev"]');
   const metricsBtn = root.querySelector('[data-action="metrics"]');
@@ -108,6 +128,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
 
   function showHub() {
     keysPane.hidden = true;
+    devPane.hidden = true;
     hub.hidden = false;
   }
 
@@ -134,8 +155,37 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     const on = devQueryOn();
     devBtn.setAttribute("aria-pressed", String(on));
     devBtn.textContent = on ? "Developer mode: on" : "Developer mode";
-    root.querySelector("[data-dev-only]").hidden = !on;
+    for (const element of root.querySelectorAll("[data-dev-only]")) element.hidden = !on;
+    if (!on && !devPane.hidden) showHub();
+    refreshDevTools();
   }
+
+  function refreshDevTools() {
+    const tools = getDevTools?.();
+    const destinations = tools?.destinations || [];
+    if (destinationSource !== destinations && destinations.length) {
+      const selected = destinationSelect.value || "cathedral-nave";
+      destinationSelect.replaceChildren(...destinations.map(d => new Option(d.name, d.id)));
+      destinationSelect.value = destinations.some(d => d.id === selected) ? selected : destinations[0].id;
+      destinationSource = destinations;
+    }
+    const enabled = devQueryOn() && !!tools?.dev?.enabled;
+    const ready = enabled && !!tools?.regionReady;
+    destinationSelect.disabled = !destinations.length || !enabled;
+    root.querySelector('[data-action="jump"]').disabled = !ready || !destinationSelect.value;
+    root.querySelector('[data-dev-status]').textContent = ready
+      ? "Region ready. Jumps return to ordinary walking."
+      : "Waiting for region collision before jumping…";
+    destinationLink.value = enabled && destinationSelect.value ? tools.destinationURL(destinationSelect.value) : "";
+    for (const [action, state, label] of [["god", "god", "God mode"], ["fly", "flying", "Fly mode"]]) {
+      const button = root.querySelector(`[data-action="${action}"]`);
+      button.disabled = !enabled;
+      button.setAttribute("aria-pressed", String(enabled && !!tools.dev[state]));
+      button.textContent = `${label}: ${enabled && tools.dev[state] ? "on" : "off"}`;
+    }
+  }
+  destinationSelect.addEventListener("change", refreshDevTools);
+  destinationLink.addEventListener("focus", () => destinationLink.select());
 
   function paintMetricsButton() {
     const on = !overlay.hidden;
@@ -171,10 +221,11 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     paintMetricsButton();
   }
 
-  function focusFirst() {
-    const pane = keysPane.hidden ? hub : keysPane;
-    pane.querySelector("button")?.focus();
-  }
+  const activePane = () => !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
+  // Include the native select and readonly URL in the dialog's focus loop.
+  // https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+  const focusable = () => [...activePane().querySelectorAll("button,input,select")].filter(el => !el.disabled && !el.hidden);
+  function focusFirst() { focusable()[0]?.focus(); }
 
   function open() {
     if (visible || isArmoryOpen()) return;
@@ -242,6 +293,19 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
       hub.hidden = true;
       keysPane.hidden = false;
       keysPane.querySelector("button")?.focus();
+    } else if (action === "developer-tools" && devQueryOn()) {
+      hub.hidden = keysPane.hidden = true;
+      devPane.hidden = false;
+      refreshDevTools();
+      focusFirst();
+    } else if (action === "jump") {
+      if (getDevTools?.()?.jumpTo?.(destinationSelect.value)) close();
+      else refreshDevTools();
+    } else if (action === "god" || action === "fly") {
+      const tools = getDevTools?.();
+      if (action === "god") tools?.setGod?.(!tools.dev.god);
+      else tools?.setFlying?.(!tools.dev.flying);
+      refreshDevTools();
     } else if (action === "hub") {
       showHub();
       focusFirst();
@@ -257,7 +321,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
         close();
         return;
       }
-      if (visible && event.code === "KeyC" && !event.repeat && !event.metaKey && !event.ctrlKey && !event.altKey) {
+      if (visible && !event.target?.closest?.('input,select,textarea') && event.code === "KeyC" && !event.repeat && !event.metaKey && !event.ctrlKey && !event.altKey) {
         chooseArmory();
         return;
       }
@@ -274,8 +338,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
       }
       if (!visible) return;
       if (event.code === "Tab") {
-        const pane = keysPane.hidden ? hub : keysPane;
-        const controls = [...pane.querySelectorAll("button")];
+        const controls = focusable();
         if (!controls.length) return;
         const i = controls.indexOf(document.activeElement);
         event.preventDefault();
@@ -299,5 +362,6 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics } = {}) {
     },
     element: root,
     refreshSound: paintSound,
+    refreshDevTools,
   };
 }

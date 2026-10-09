@@ -3,6 +3,17 @@
 Updated **2026-10-08**. Read this before choosing work. The latest user request
 controls scope; historical milestones are evidence, not an active task queue.
 **Latest user direction: Gothic region and cathedral exploration; mobile is backlogged.**
+Developer reproduction is now a required part of each new in-game helper:
+provide a named control under **?dev → Esc/Menu → Developer tools**, using the
+same handler as any shareable URL parameter. The new destination selector covers
+18 locations, including **Vaelmark — nave** and **Vaelmark — undercroft**, and
+exposes God/Fly toggles and copyable **?dev&play&at=…** spawn links. Jumps wait for
+complete region collision and use the existing Havok player controller.
+[UI procedure and ongoing rule](debug-view.md#reproduce-developer-navigation-from-the-ui).
+All 18 native floor/placement checks, walking/input/focus, spawn-link dev gating
+and elevated-floor Fly-off pass with no runtime/GPU errors.
+[Local receipt](baselines/dev-destinations-2026-10-08/local-report.json).
+This is a reproduction/UI check, not a new performance measurement.
 [G01: Vaelmark undercroft](plans/gothic-exploration/results/undercroft-2026-10-08.md)
 is complete locally and on the [sealed desktop preview](https://f51c7bcb.fardel.pages.dev/?play&clean):
 guarded west-chapel descent, pointed vault, memorial circuit and ordinary-control
