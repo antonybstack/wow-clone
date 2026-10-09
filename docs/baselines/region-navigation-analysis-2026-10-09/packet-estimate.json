@@ -1,0 +1,28 @@
+{
+  "source": "9237092",
+  "method": "unchanged region block arrays separated only by full woodland mesh names; offline Brotli quality11 matching existing bake; estimates are not runtime/navigation qualification",
+  "currentEncodedBytes": 22401010,
+  "currentRawBytes": 158144000,
+  "results": [
+    {
+      "name": "navigation-core-candidate",
+      "blocks": 842,
+      "rawBytes": 107836840,
+      "encodedBytes": 14389733,
+      "compressionMs": 91471.343083,
+      "sha256": "6c0c4de3ebced4509e513ab3609eabfca533fbdcb9eab1e9d84d24da50176aa0"
+    },
+    {
+      "name": "woodland-full-detail",
+      "blocks": 195,
+      "rawBytes": 50307160,
+      "encodedBytes": 10640787,
+      "compressionMs": 35219.864875,
+      "sha256": "ece7a869e72beb058b56165812c59569ba7ae13eb906e077bb94b8cbc8d0f3dc"
+    }
+  ],
+  "splitEncodedBytes": 25030520,
+  "splitEncodedDelta": 2629510,
+  "ideal50MbpsCoreTransferMs": 2302.35728,
+  "unverified": "independent validation, LOD fallback/completion, proxies, whole physical core coverage and live timing; core name is a candidate, not proven sufficient"
+}

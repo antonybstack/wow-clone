@@ -40,6 +40,12 @@ promotion. Finish that gate before another visual implementation. Continue
 independent planning/analysis under the active goal, preserving the user tabs,
 mobile backlog and separate production hold.
 
+[Region-wait follow-on plan](plans/gothic-exploration/region-navigation-core-2026-10-09.md)
+is planning/offline analysis only: all physical surfaces plus reduced trees first,
+full woodland detail later. Candidate first payload14.4 MB versus22.4 MB, but
+combined transfer rises11.7%. No runtime speedup claim or product change; qualify
+G06 FPS first, then require safety and paired measured improvement before adoption.
+
 ## Completed desktop previews
 
 - **G04 region map:** 9d5d4fe / [4f787280](https://4f787280.fardel.pages.dev/?play&clean).

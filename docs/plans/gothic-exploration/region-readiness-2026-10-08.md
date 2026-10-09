@@ -27,10 +27,15 @@ The implemented native stream observed 5.91–6.07 seconds to safe navigation in
 the declared local pairs. Production remains on the independently held older
 release; those local timings do not describe the user's current production wait.
 
-Further substantial reduction would require prioritizing and qualifying collision
-around a chosen destination before the entire region finishes. That is a follow-up
-architecture change, not an implemented feature or permission to enable unsafe
-jumps. The old 18.3-second observation below and its 0.55 seconds of synchronous
+An offline follow-on audit found a candidate before destination-specific streaming:
+load all physical/visible surfaces and reduced trees before full woodland detail.
+It reduces the first candidate packet to 14.4 MB, but increases total transfer
+11.7%; no runtime speedup or safety qualification is established.
+[Concrete experiment and acceptance gates](region-navigation-core-2026-10-09.md).
+Earlier destination-only jumps additionally require qualifying local collision,
+terrain and safe exits; the starting-area fence does not protect a remote player.
+Neither proposal is implemented or permits unsafe jumps.
+The old 18.3-second observation below and its 0.55 seconds of synchronous
 collider calls are overlapping wall-clock/CPU measurements, not additive phases.
 
 ## Original findings — 2026-10-08
