@@ -139,6 +139,7 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       }
     };
     if(site.kind==='keep'){
+      let wallWalk;
       support(32,40);
       box(0,-.15,0,32,.3,40,TRIM);box(0,-.15,-20,6,.3,4,TRIM);
       portal(-19.4,5,32,7.2,1.2,4.5,6.3);
@@ -195,8 +196,58 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
           box(u,1.15,14.55,2.35,.25,.90,TRIM);
         }
       }
+      if(site.id==='east-keep'){
+        // Reuse cathedral exploration's visible <=16 cm treads and smooth
+        // collision-ramp pattern. All other solids share visible/physical volume.
+        // docs/plans/gothic-exploration/g05-wall-walk-2026-10-09.md
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/10-mesh-generators.md
+        const walkY=5.2,width=2.4,side=13.6,inner=12.4,start=-10,end=6,steps=Math.ceil(walkY/.16);
+        const flightMap=(d,y,u)=>map(side+u,y,start+d);
+        const ramp=[[0,-.25],[end-start,walkY-.25],[end-start,walkY],[0,0]];
+        const rampBefore=collisionBatch.idx.length;
+        polygonPrism(collisionBatch,ramp,width,flightMap,STONE);
+        const rampTriangles=(collisionBatch.idx.length-rampBefore)/3;
+        const treadsBefore=stone.idx.length;
+        for(let i=0;i<steps;i++){
+          const d0=(end-start)*i/steps,d1=(end-start)*(i+1)/steps,y0=walkY*i/steps,y1=walkY*(i+1)/steps;
+          polygonPrism(stone,[[d0,y0-.25],[d1,y0-.25],[d1,y1],[d0,y1]],width,flightMap,i%4===0?TRIM:STONE);
+        }
+        const treadTriangles=(stone.idx.length-treadsBefore)/3;
+        const crossPrism=(polygon,thickness,u,color=STONE)=>{
+          const frame=(d,y,offset)=>map(u+offset,y,d);
+          polygonPrism(stone,polygon,thickness,frame,color);polygonPrism(collisionBatch,polygon,thickness,frame,color);
+        };
+        crossPrism([[start,0],[end,walkY],[end,walkY+1.1],[start,1.1]],.22,inner);
+        crossPrism([[start,1.02],[end,walkY+1.02],[end,walkY+1.12],[start,1.12]],.32,inner,TRIM);
+        // Start the landing at the ramp END: an overlapping slab would create
+        // a low overhang/ledge on the last metres of the flight.
+        box(side,walkY-.125,12.4,width,.25,12.8,TRIM);
+        box(0,walkY-.125,17.6,29.6,.25,width,TRIM);
+        box(-side,walkY-.125,4.4,width,.25,28.8,TRIM);
+        // Inner parapets meet at the courtyard corners, leaving both high
+        // turn squares open. Existing outer walls/caps guard the outside.
+        for(const [u,d,length] of [[inner,11.2,10.4],[-inner,3.2,26.4]]){
+          box(u,walkY+.5,d,.22,1,length);
+          box(u,walkY+1.06,d,.32,.12,length,TRIM);
+        }
+        box(0,walkY+.5,16.4,24.8,1,.22);
+        box(0,walkY+1.06,16.4,24.8,.12,.32,TRIM);
+        box(-side,walkY+.5,-10,width,1,.22);
+        box(-side,walkY+1.06,-10,width,.12,.32,TRIM);
+        for(const sign of [-1,1])for(const d of sign===1?[8,12,16]:[-8,-2,4,10,16]){
+          prism([[sign*12.5,walkY-.25],[sign*14.8,walkY-.25],[sign*14.8,2.7]],.45,0,d,DARK);
+        }
+        for(const u of [-10,0,10])crossPrism([[16.5,walkY-.25],[18.8,walkY-.25],[18.8,2.7]],.45,u,DARK);
+        const route=[[0,0,-10],[10,0,-11.5],[side,0,-11.5],[side,0,start],[side,walkY,end],
+          [side,walkY,17.6],[0,walkY,17.6],[-side,walkY,17.6],[-side,walkY,-8.8]].map(([u,y,d])=>map(u,y,d));
+        wallWalk={floorY:floorY+walkY,width,clearWidth:2.06,railHeight:1.1,
+          landing:map(side,walkY,8),yaw,route,windowView:map(0,walkY,17.6),windowYaw:yaw+Math.PI,
+          stairs:{start:map(side,0,start),end:map(side,walkY,end),steps,run:end-start,rise:walkY,
+            visualTriangles:treadTriangles},
+          rampTriangles};
+      }
       destinations.push({...site,entrance:map(0,0,-20),courtyard:map(0,0,-10),hall:map(0,0,7),
-        interior:map(0,0,10),motif,rearWindow:{bottom:3.2,spring:6.2,tip:8.6,width:3},footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
+        interior:map(0,0,10),motif,rearWindow:{bottom:3.2,spring:6.2,tip:8.6,width:3},...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
     }else{
       support(6,6);box(0,-.15,0,6,.3,6,TRIM);box(0,-.15,-3,4,.3,2,TRIM);
       const top=H*.78;

@@ -63,6 +63,8 @@ try {
       if (id === 'cathedral-bridge') return k.route.waypoints[0][1];
       if (id.startsWith('cathedral-')) return k.floorY;
       if (id === 'start') return ASHEN.world.groundHeight(ASHEN.world.spawn.x, ASHEN.world.spawn.z);
+      const walk = ASHEN.world.regionStructures?.destinations.find(l => `${l.id}-wall-walk` === id)?.wallWalk;
+      if (walk) return walk.floorY;
       return ASHEN.world.landmarks.find(l => l.id === id).entrance[1];
     }, id);
     assert(Math.abs(row.state.y - row.state.height / 2 - expected) < .3, `Missed floor at ${id}: ${row.state.y}`);

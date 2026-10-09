@@ -4,7 +4,7 @@ import {Batch} from '../src/ashen-reach/geometry.js';
 import {buildRegionStructures} from '../src/ashen-reach/region-structures.js';
 
 const landmarks=[
- {id:'east',kind:'keep',x:196,z:-38,floorY:45.688,yaw:Math.PI/2,height:39,width:32},
+ {id:'east-keep',name:'Eastwatch',kind:'keep',x:196,z:-38,floorY:45.688,yaw:Math.PI/2,height:39,width:32},
  {id:'west',kind:'keep',x:-186,z:112,floorY:49.655,yaw:-Math.PI/2,height:35,width:32},
  {id:'south',kind:'keep',x:74,z:-214,floorY:54.184,yaw:Math.PI,height:43,width:32},
  {id:'east-tower',kind:'tower',x:132,z:-55,floorY:19.792,yaw:0,height:24,width:6},
@@ -39,7 +39,8 @@ function hit(from,to){
 
 test('all six landmarks retain position, orientation and skyline with bounded geometry',()=>{
  assert.equal(built.destinations.length,6);assert(built.triangles>3000&&built.triangles<13000);
- assert.equal(built.triangles,built.collisionTriangles,'every visible shape has matching collision');
+ const walk=built.destinations.find(s=>s.id==='east-keep').wallWalk;
+ assert.equal(built.triangles-built.collisionTriangles,walk.stairs.visualTriangles-walk.rampTriangles,'only visible stair treads differ from their smooth collision ramp');
  for(let i=0;i<landmarks.length;i++){
   const a=landmarks[i],b=built.destinations[i];assert.equal(b.id,a.id);assert.equal(b.floorY,a.floorY);
   assert.deepEqual(b.entrance,point(a,0,0,a.kind==='keep'?-20:-3));
@@ -104,10 +105,42 @@ test('raised rear lancets are open views with solid lower walls and pointed crow
  for(const site of landmarks){
   const keep=site.kind==='keep',d=keep?15.5:2.6;
   const bottom=keep?3.2:2.8,spring=keep?6.2:4.5,tip=keep?8.6:6.6;
-  const back=(u,h)=>hit(point(site,u,h,d-1),point(site,u,h,d+1));
+  // Stop beyond the actual rear wall, before Eastwatch's new outside guard.
+  const back=(u,h)=>hit(point(site,u,h,d-1),point(site,u,h,d+.6));
   for(const h of [bottom+.15,spring,tip-.25])assert.equal(back(0,h),null,`${site.id} actual view at ${h}`);
   assert(back(0,bottom-.2),`${site.id} lower masonry remains solid`);
   assert(back(0,tip+.2),`${site.id} crown masonry remains solid`);
   assert(back((keep?1.5:.9)+.6,spring-.5),`${site.id} jamb masonry remains solid`);
  }
+});
+
+test('Eastwatch stairs and all high turns are continuously supported with capsule headroom',()=>{
+ const site=landmarks[0],walk=built.destinations[0].wallWalk;
+ assert(walk&&walk.clearWidth>=1.8&&walk.railHeight>=1.1);
+ assert.equal(walk.stairs.run,16);assert(walk.stairs.rise/walk.stairs.run<Math.tan(20*Math.PI/180));
+ const samples=[];
+ for(let d=-10;d<=6;d+=.25)samples.push([13.6,5.2*(d+10)/16,d]);
+ for(let d=6;d<=17.6;d+=.25)samples.push([13.6,5.2,d]);
+ for(let u=-13.6;u<=13.6;u+=.25)samples.push([u,5.2,17.6]);
+ for(let d=-8.8;d<=17.6;d+=.25)samples.push([-13.6,5.2,d]);
+ for(const [u,y,d] of samples){
+  const floor=hit(point(site,u,y+.25,d),point(site,u,y-.25,d));
+  assert(floor&&Math.abs(floor.fraction-.5)<1e-7&&floor.normal[1]>0,`high floor ${u},${d}`);
+  for(const du of [-.32,0,.32])assert.equal(hit(point(site,u+du,y+.04,d),point(site,u+du,y+1.95,d)),null,`headroom ${u+du},${d}`);
+ }
+});
+
+test('Eastwatch inner/outer guards and rear lancet view are physically real',()=>{
+ const site=landmarks[0];
+ for(const d of [-8,-2,4,9,14]){
+  const y=d<6?5.2*(d+10)/16:5.2;
+  assert(hit(point(site,13.6,y+.6,d),point(site,11.8,y+.6,d)),`inner stair/walk guard ${d}`);
+  assert(hit(point(site,13.6,y+.6,d),point(site,16,y+.6,d)),`outer masonry ${d}`);
+ }
+ for(const u of [-10,0,10]){
+  assert(hit(point(site,u,5.8,17.6),point(site,u,5.8,15.8)),'rear inner parapet');
+  assert(hit(point(site,u,5.8,17.6),point(site,u,5.8,20.5)),'rear outer wall');
+ }
+ assert(hit(point(site,-13.6,5.8,-8.8),point(site,-13.6,5.8,-11)),'left end guard');
+ assert.equal(hit(point(site,0,6.9,17.6),point(site,0,6.9,14)),null,'view over the guard through the actual raised opening');
 });
