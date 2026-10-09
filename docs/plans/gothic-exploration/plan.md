@@ -1,9 +1,14 @@
 # Gothic region and cathedral exploration
 
 The user selected this direction on **2026-10-08** and deferred mobile diagnosis.
-**G01–G05 are complete on sealed desktop previews. G06's hall balcony is
-implemented on a functional preview; G07 guide and G08 actual loading progress
-are also delivered on functional previews. Their isolated FPS qualification remains open.**
+**G01–G08 are complete on sealed desktop previews.** Final integrated
+performance acceptance is 176.4–211.9 FPS, maximum p99 6.9 ms/worst 13.9 ms,
+zero runtime/GPU errors or recoveries under the declared M1 Max/1280×720/
+uncapped Chromium/seven-enemy conditions.
+[Final FPS evidence](../../baselines/gothic-production-2026-10-09/performance-gpu-receipt.json).
+Production qualification independently failed first play at 1,140.1 ms; no
+promotion occurred. Experimental core remains optional pending paired timing
+and settled acceptance. These results do not clear the physical-iPhone backlog.
 [G06 actual evidence and limits](../../baselines/g06-hall-balcony-2026-10-09/README.md).
 [Following slices](next-slices-2026-10-09.md).
 [Actual result, reviewed motion and every frame interval](results/undercroft-2026-10-08.md).

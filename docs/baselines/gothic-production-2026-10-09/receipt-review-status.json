@@ -1,0 +1,16 @@
+{
+  "model": "grok-4.6",
+  "effort": "high",
+  "initial": {
+    "stopReason": "cancelled",
+    "sessionId": "01a121a2-be08-7bc2-97ea-88732d70e993",
+    "num_turns": 5
+  },
+  "reportOnlyCompletion": {
+    "stopReason": "end_turn",
+    "sessionId": "01a121a2-be08-7bc2-97ea-88732d70e993",
+    "num_turns": 3
+  },
+  "scope": "Q1startup evidence confirmed;Q3playable/background source boundaries confirmed;Q2receipt/script/exits checked but raw frame values not independently recomputed. Async module unreviewed. Root independently recomputed raw FPS statistics. Does not cover subsequent explicit GPU-ledger helper correction or its new15windows.",
+  "productionApproval": false
+}

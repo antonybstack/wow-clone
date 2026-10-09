@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "source": "7b9f5675a6bf50ed7c63aaf3277ab37835122e8f",
+  "sealSha256": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "https://aafce17b.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "gpuTimestampQueries": false,
+    "race": "human",
+    "outfit": null,
+    "orcAssetsOverride": null,
+    "routes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "recordCapped": false,
+    "savedAppearance": null
+  },
+  "windowCount": 15,
+  "rawIntervalCount": 35133,
+  "rawSha256": "300224a23c16fde9de47e0364132f66bec29acf9b04691a80809de1f77086939",
+  "minFPS": 175.195981238422,
+  "maxFPS": 211.5978973504482,
+  "maximumP95Ms": 6.699999988079071,
+  "maximumP99Ms": 6.900000035762787,
+  "worstMs": 10.199999988079071,
+  "above16_667": 0,
+  "errors": [],
+  "interpretation": "Independent settled default-mode region FPS acceptance for final G06-G08 integration. Diagnostic placements and God on; Havok active, Fly off. This is RAF throughput, not display refresh, timed successful landmark traversal, cold streaming tail acceptance or production comparison. Failed startup gate remains failed.",
+  "nativeExits": {
+    "up": {
+      "pid": 91322,
+      "code": 0,
+      "signal": null
+    },
+    "fps": {
+      "pid": 91441,
+      "code": 0,
+      "signal": null
+    },
+    "down": {
+      "pid": 99306,
+      "code": 0,
+      "signal": null
+    }
+  },
+  "ownership": {
+    "owner": "root",
+    "browserPid": 91407,
+    "gpuHelperPids": [
+      91413
+    ],
+    "cdpPort": 10037,
+    "url": "https://aafce17b.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+    "purpose": "Isolated actual-region FPS measurement without recording",
+    "renderingClients": 0,
+    "active": false
+  },
+  "cleanupLog": "Slot 7 Chrome stopped.\nSlot 7 Vite stopped.\nSlot 7 is down.\n",
+  "routes": [
+    {
+      "name": "meadow",
+      "fps": [
+        187.09,
+        187.1,
+        187.18
+      ],
+      "maxP99Ms": 6.699999988079071,
+      "worstMs": 8.400000035762787
+    },
+    {
+      "name": "town",
+      "fps": [
+        175.2,
+        180.71,
+        180.47
+      ],
+      "maxP99Ms": 6.900000035762787,
+      "worstMs": 10.199999988079071
+    },
+    {
+      "name": "bridge",
+      "fps": [
+        211.18,
+        211.13,
+        211.6
+      ],
+      "maxP99Ms": 6.200000047683716,
+      "worstMs": 8.200000047683716
+    },
+    {
+      "name": "cathedral",
+      "fps": [
+        204.92,
+        205.04,
+        205.01
+      ],
+      "maxP99Ms": 6.399999976158142,
+      "worstMs": 8.699999988079071
+    },
+    {
+      "name": "forest",
+      "fps": [
+        189.51,
+        194.54,
+        196.19
+      ],
+      "maxP99Ms": 6.599999964237213,
+      "worstMs": 8.799999952316284
+    }
+  ],
+  "acceptanceLimit": "Throughput and console-error evidence only;GPU-error ledger was not collected. Superseded for full performance acceptance by performance-gpu-receipt.json. Original native rows unchanged."
+}

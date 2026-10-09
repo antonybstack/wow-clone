@@ -1,0 +1,133 @@
+{
+  "result": "FAILED; production unchanged",
+  "kind": "first-valid-default-start",
+  "source": "7b9f5675a6bf50ed7c63aaf3277ab37835122e8f",
+  "productSource": "4b6707a",
+  "preview": "https://aafce17b.fardel.pages.dev",
+  "sealSha256": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "nativeExit": {
+    "pid": 75163,
+    "code": 1,
+    "signal": null
+  },
+  "playableMs": 1140.1000000238419,
+  "budgetMsInclusive": 1000,
+  "firstQueueCallbackWindowMs": 523.3000000119209,
+  "supportedQueueCallbackWindowMs": 505.89999997615814,
+  "inputUpperBoundMs": 4284.200000047684,
+  "inputLimit": "Includes harness observation and GPU fence after observed displacement; not isolated key-to-motion latency",
+  "errors": [],
+  "gpuErrors": [],
+  "networkDiagnostics": {
+    "transportFailures": [],
+    "browserLog": [],
+    "browserIssues": [],
+    "netLogPath": null,
+    "diagnosticOnly": false
+  },
+  "requestsAtBoundary": 29,
+  "encodedBytesAtBoundary": 2193984,
+  "completedGates": [
+    "exact seal",
+    "three entry aliases"
+  ],
+  "stoppedGates": [
+    "remaining79 cold starts",
+    "post-startup native release suite",
+    "release FPS phase",
+    "production promotion"
+  ],
+  "screenshotReviewedByRoot": true,
+  "diagnostics": [
+    {
+      "name": "candidate",
+      "url": "https://aafce17b.fardel.pages.dev",
+      "playableMs": 739.5,
+      "firstQueueCallbackWindowMs": 80.0,
+      "inputUpperBoundMs": 32.19999998807907,
+      "pipelineCallsBeforePlay": 53,
+      "pipelineMethods": [
+        "createRenderPipeline"
+      ],
+      "labels": [
+        "Ash motes-pipeline",
+        "Ashen cloud ceiling-pipeline",
+        "Ashen final display transform-bgra8unorm|-||1",
+        "Bounded contact composition-rgba16float|-||1",
+        "Candlelight-pipeline",
+        "Dead bark-pipeline",
+        "Depth-aware fog composite-rgba16float|-||1",
+        "Local ambient occlusion-rg16float|-||1",
+        "Moss and burial earth-pipeline",
+        "Rotten oak-pipeline",
+        "Shadowed volume integration-rgba16float|-||1",
+        "Sun opaque world caster-pipeline",
+        "Timeworn limestone-pipeline",
+        "Weathered memorial face-pipeline",
+        "ashen-contact-shadows-history-copy-rg16float|-||1-0",
+        "ashen-contact-shadows-producer-pipeline",
+        "ashen-contact-shadows-resolve-pipeline",
+        "ashen-depth-bundle-probe",
+        "ashen-hdr-bloom-blur-x-rgba16float|-||1-0",
+        "ashen-hdr-bloom-blur-y-rgba16float|-||1-0",
+        "ashen-hdr-bloom-extract-highlights-rgba16float|-||1-0",
+        "ashen-hdr-bloom-merge-rgba16float|-||1-0"
+      ],
+      "browserPid": 88327,
+      "errors": [],
+      "gpuErrors": [],
+      "reportPath": ".cache/gothic-production-2026-10-09/diagnostics/candidate.json",
+      "reportSha256": "bd00de65186a23223fb9bcce6c7cfe818267776062c4455c47fa8785ced5c38a",
+      "tracePath": ".cache/gothic-production-2026-10-09/diagnostics/candidate-1.trace.json",
+      "diagnosticOnly": true,
+      "durableReport": "diagnostic-candidate.json.gz",
+      "traceSha256": "61dd5dc0af3f8ab39c0434a8e2f084a4b7cbc9b4c9692d316e5acd9eb17a37bf"
+    },
+    {
+      "name": "control",
+      "url": "https://5723a4ab.fardel.pages.dev",
+      "playableMs": 912.8000000119209,
+      "firstQueueCallbackWindowMs": 81.5,
+      "inputUpperBoundMs": 31.5,
+      "pipelineCallsBeforePlay": 53,
+      "pipelineMethods": [
+        "createRenderPipeline"
+      ],
+      "labels": [
+        "Ash motes-pipeline",
+        "Ashen cloud ceiling-pipeline",
+        "Ashen final display transform-bgra8unorm|-||1",
+        "Bounded contact composition-rgba16float|-||1",
+        "Candlelight-pipeline",
+        "Dead bark-pipeline",
+        "Depth-aware fog composite-rgba16float|-||1",
+        "Local ambient occlusion-rg16float|-||1",
+        "Moss and burial earth-pipeline",
+        "Rotten oak-pipeline",
+        "Shadowed volume integration-rgba16float|-||1",
+        "Sun opaque world caster-pipeline",
+        "Timeworn limestone-pipeline",
+        "Weathered memorial face-pipeline",
+        "ashen-contact-shadows-history-copy-rg16float|-||1-0",
+        "ashen-contact-shadows-producer-pipeline",
+        "ashen-contact-shadows-resolve-pipeline",
+        "ashen-depth-bundle-probe",
+        "ashen-hdr-bloom-blur-x-rgba16float|-||1-0",
+        "ashen-hdr-bloom-blur-y-rgba16float|-||1-0",
+        "ashen-hdr-bloom-extract-highlights-rgba16float|-||1-0",
+        "ashen-hdr-bloom-merge-rgba16float|-||1-0"
+      ],
+      "browserPid": 89178,
+      "errors": [],
+      "gpuErrors": [],
+      "reportPath": ".cache/gothic-production-2026-10-09/diagnostics/control.json",
+      "reportSha256": "11b4b07f60855abe812f7293ab51da33e121d0af5a5befaf14bb27afb769bcdc",
+      "tracePath": ".cache/gothic-production-2026-10-09/diagnostics/control-1.trace.json",
+      "diagnosticOnly": true,
+      "durableReport": "diagnostic-control.json.gz",
+      "traceSha256": "344ef1948733dd9a914e37af22d06c9d128fa93deaf9f0d323e4623d4ea1a3fd"
+    }
+  ],
+  "ownershipAuthorization": "User yes authorized only Shadowglass tab closure;15other Edge tabs and userChrome/Orca preserved",
+  "cleanup": "All owned cold and diagnostic Chrome processes closed. Both independent FPS harnesses stopped:originalChrome91407/GPU91413,Vite91343+91368;correctedChrome16888/GPU16916,Vite16833+16859. Final ports10037/5873 idle;15other userEdge tabs,userChromeNewTab and unrelatedVite4000 preserved."
+}

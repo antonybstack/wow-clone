@@ -1,0 +1,13 @@
+{
+  "kind": "independent-final-performance-with-explicit-GPU-ledger",
+  "url": "https://aafce17b.fardel.pages.dev/?play&clean",
+  "sealSha256": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "conditions": "M1 Max; Chromium WebGPU; uncapped;1280x720,DPR1;seven enemies;3x12 seconds per meadow/town/bridge/cathedral/forest;full raw intervals;no recording/profiling/build concurrently",
+  "floorFPSExclusive": 120,
+  "targetFPS": 144,
+  "startupQualification": "Failed separately at1140.1ms;this independent FPS result cannot authorize promotion or replace a startup sample",
+  "ownership": "root;harness slot7/CDP10037/Vite5873;no other owned renderer;Shadowglassclosed by explicituserauthorization;preserve other15Edge tabs,ChromeNewTab,Orca,Vite4000",
+  "reason": "Prior15windows retained as throughput proof but did not serialize ASHEN.gpu.errors;repeat15with post-window ledger read/assert, no promise observer, same immutable game bundle.",
+  "helperSha256": "1f9f6416bc8a93a230b6d1647694bdbd370e93cb111a27d427fe9de7fd7c8dcd",
+  "sourceLimit": "Helper-only edit; existing seal still identifies unchanged immutable preview bytes. Source-input seal verification now refuses dirty helper and will not authorize upload. No product rebuild or new source equivalence claim."
+}

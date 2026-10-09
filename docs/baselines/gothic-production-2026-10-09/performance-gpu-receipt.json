@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "source": "7b9f5675a6bf50ed7c63aaf3277ab37835122e8f",
+  "sealSha256": "900b033a6da737a987207105e9b6bf1d2ccd47e48bb9948297c11f9b6f103278",
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "https://aafce17b.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+    "viewport": [
+      1280,
+      720
+    ],
+    "seconds": 12,
+    "runs": 3,
+    "uncappedRequired": true,
+    "recording": false,
+    "gpuTimestampQueries": false,
+    "race": "human",
+    "outfit": null,
+    "orcAssetsOverride": null,
+    "routes": [
+      "meadow",
+      "town",
+      "bridge",
+      "cathedral",
+      "forest"
+    ],
+    "recordCapped": false,
+    "savedAppearance": null
+  },
+  "windowCount": 15,
+  "rawIntervalCount": 35229,
+  "rawSha256": "96efd4c5a4479bbe5dc6f6923f9ff071b6da98f5b8d4c573fb0b5068792d011f",
+  "minFPS": 176.3960871226433,
+  "maxFPS": 211.91170345689298,
+  "maximumP95Ms": 6.600000023841858,
+  "maximumP99Ms": 6.899999976158142,
+  "worstMs": 13.900000035762787,
+  "above16_667": 0,
+  "errors": [],
+  "interpretation": "Final G06-G08 performance acceptance on existing immutable game bundle. Helper-only correction captures existing GPU-error ledger after each window, no frame hook or profiling. Diagnostic placements/God on;Havok active/Fly off. Settled RAF throughput,not display refresh,cold streaming tails,landmark traversal time or production comparison. Failed startup qualification stays failed.",
+  "nativeExits": {
+    "up": {
+      "pid": 16812,
+      "code": 0,
+      "signal": null
+    },
+    "fps": {
+      "pid": 16959,
+      "code": 0,
+      "signal": null
+    },
+    "down": {
+      "pid": 24863,
+      "code": 0,
+      "signal": null
+    }
+  },
+  "ownership": {
+    "owner": "root",
+    "browserPid": 16888,
+    "gpuHelperPids": [
+      16916
+    ],
+    "cdpPort": 10037,
+    "url": "https://aafce17b.fardel.pages.dev/?play=&clean=&pixelRatio=1",
+    "purpose": "Isolated actual-region FPS measurement without recording",
+    "renderingClients": 0,
+    "active": false
+  },
+  "cleanupLog": "Slot 7 Chrome stopped.\nSlot 7 Vite stopped.\nSlot 7 is down.\n",
+  "routes": [
+    {
+      "name": "meadow",
+      "fps": [
+        187.54,
+        188.35,
+        188.0
+      ],
+      "maxP99Ms": 6.699999988079071,
+      "worstMs": 13.900000035762787
+    },
+    {
+      "name": "town",
+      "fps": [
+        176.4,
+        181.41,
+        181.35
+      ],
+      "maxP99Ms": 6.899999976158142,
+      "worstMs": 9.600000023841858
+    },
+    {
+      "name": "bridge",
+      "fps": [
+        211.64,
+        211.45,
+        211.91
+      ],
+      "maxP99Ms": 6.299999952316284,
+      "worstMs": 8.100000023841858
+    },
+    {
+      "name": "cathedral",
+      "fps": [
+        204.93,
+        205.17,
+        205.31
+      ],
+      "maxP99Ms": 6.399999976158142,
+      "worstMs": 8.600000023841858
+    },
+    {
+      "name": "forest",
+      "fps": [
+        189.82,
+        194.84,
+        196.74
+      ],
+      "maxP99Ms": 6.5,
+      "worstMs": 8.300000011920929
+    }
+  ],
+  "kind": "final-integrated-region-performance-with-GPU-ledger",
+  "gpuErrors": [],
+  "helperSha256": "1f9f6416bc8a93a230b6d1647694bdbd370e93cb111a27d427fe9de7fd7c8dcd",
+  "artifactSource": "4b6707a",
+  "artifactLimit": "Existing seal validated before helper edit;source-input verification now refuses the changed helper. No reseal or upload performed. Immutable preview game files unchanged.",
+  "rootValidation": "All15rawmeans/FPS,p95,p99,worst,countshashes,explicitGPUledgers,Havok,enemies,displacements,pacing,zerorecoveries andnativeexits checked."
+}

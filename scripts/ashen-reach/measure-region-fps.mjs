@@ -171,6 +171,10 @@ try {
         recoveries: ASHEN.player.getDebugState().recoveries,
         enemies: ASHEN.combat.enemies.length,
         physics: ASHEN.player.getDebugState().usingPhysics,
+        // Read the existing device-error ledger after sampling; console events
+        // alone do not prove an absence of WebGPU uncaptured validation errors.
+        // https://developer.mozilla.org/en-US/docs/Web/API/GPUDevice/uncapturederror_event
+        gpuErrors: [...ASHEN.gpu.errors],
       }));
       await page.keyboard.up("KeyW");
       Object.assign(row, {
@@ -192,6 +196,7 @@ try {
       assert.equal(row.enemies, 7);
       assert.equal(row.recoveries, before.recoveries);
       assert.deepEqual(row.summary.resolution, [1280, 720]);
+      assert.deepEqual(row.gpuErrors, [], 'GPU errors during region benchmark');
       // A possible compositor ceiling is retained as invalid throughput evidence
       // when explicitly requested, so a suspect route cannot hide later routes.
       if (!recordCapped) assert(!row.fullWindowCap.vsyncCapped);

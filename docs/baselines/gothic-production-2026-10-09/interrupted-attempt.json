@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-09T16:55:16.353381+00:00",
+  "reason": "Root cancelled Grok64133 after no visible boot; operator had concurrently started its first cold child. Grok cancellation closed childChrome71663; child records Target page/context/browser closed. Native three-entry prerequisite passed; no timing sample accepted.",
+  "child": "preview/cold-default-01.json",
+  "result": "invalid harness-staging attempt retained, not a product fetch failure; no production mutation",
+  "correction": "Root runs exact operator directly, separate preview-root2 directory, no delegated termination race. New attempt80samples predeclared before firstvisit; same frozen bytes/profile/fixtures. Stop actual failure/miss; retain every sample.",
+  "ownership": "Grok/operator/Chrome71663/Vite priorentry stopped; ports idle"
+}

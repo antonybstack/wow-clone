@@ -1,8 +1,11 @@
 # Following G03 — make the region easier to explore, then add a new high route
 
-The active eight-hour goal authorizes further Gothic exploration work after the
-original slices. Implement sequentially after G03's completed delivery. These are
-proposed follow-on slices, not completed work or a replacement for current gates.
+The eight-hour implementation window has elapsed. G04–G08 are complete on
+desktop previews, including final integrated performance acceptance.
+[Final native FPS receipt](../../baselines/gothic-production-2026-10-09/performance-gpu-receipt.json).
+The implementation/acceptance descriptions below preserve the original scope;
+they are not a new task queue. Production remains independently held by the
+failed one-second startup gate; experimental core adoption is still pending.
 
 ## G04 — A useful region map — complete 2026-10-09
 
@@ -75,14 +78,13 @@ optional-packet deltas, then the usual isolated performance and delivery gates.
 Production remains held by its separate startup qualification. Mobile, another
 region, character assets, multiplayer scale and combat changes remain deferred.
 
-## G06 — Connected Eastwatch hall balcony — functional preview, FPS pending
+## G06 — Connected Eastwatch hall balcony — complete on desktop preview
 
 [Actual implementation and qualification limits](../../baselines/g06-hall-balcony-2026-10-09/README.md).
 Product1b35554 / preview2fd14837 / Telegram898. Ordinary local/public entry/return,
-guards, developer controls, map and served files pass. Fresh renderer isolation
-is unresolved; no new FPS claim. The user authorized independent source work
-while operations remain pending. This gate holds acceptance/release, not all
-feature implementation; CURRENT records G07/G08 actual scope and limits.
+guards, developer controls, map and served files pass. Renderer isolation is
+resolved through authorized Shadowglass closure. Final integrated FPS acceptance
+passes as linked above; production retains its separate failed startup gate.
 
 [Concrete placement and implementation sequence](g06-hall-balcony-2026-10-09.md).
 Reuse the delivered stairs and rear walk; connect its raised pointed opening to a
@@ -91,14 +93,14 @@ opening for actual doorway clearance, give the landing an existing developer UI
 entry/spawn link, and qualify normal ascent/entry/return, guards and lower passage.
 Continue the active Gothic goal without waiting for user review.
 
-## G07 — Vaelmark exploration guide — functional preview, FPS pending
+## G07 — Vaelmark exploration guide — complete on desktop preview
 
 Product 139c2d5 / preview f56f0786 / Telegram 900. Five ordinary map/level views,
 physical altitude-aware marker, upper/lower route directions and bell ascent
 diagrams reuse existing metadata/Canvas2D/menu lifecycle. No new assets/frame hook.
 [Native/public evidence and limits](../../baselines/g07-cathedral-guide-2026-10-09/README.md).
 
-## G08 — Actual region-processing progress — functional preview, FPS pending
+## G08 — Actual region-processing progress — complete on desktop preview
 
 Product 62bb96d + 4b6707a / preview aafce17b / Telegram 901. Actual phases/current-attempt
 range counters, native progress and matching Developer tools status reuse the
@@ -107,7 +109,7 @@ Default 22.4 MB and candidate 14.4 MB sizes are static labels, not byte-download
 percentages. Retry/disposal/jump gates pass; reviewed final live motion clears
 spell controls. [Evidence and limits](../../baselines/g08-region-progress-2026-10-09/README.md).
 
-Pending qualification is consolidated: final default build route FPS for G06–G08,
-then experimental/control paired timing and settled performance once the other
-user renderer is known inactive. Candidate remains opt-in, production/mobile holds
-remain separate. Do not claim the synthetic slow-transport motion is a benchmark.
+Final default-mode FPS qualification for G06–G08 passes. Experimental/control
+paired timing and settled performance remain pending before core adoption.
+Candidate stays opt-in; production startup and physical-mobile holds remain
+separate. Synthetic slow-transport motion is not a benchmark.

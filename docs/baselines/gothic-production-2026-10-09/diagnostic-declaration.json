@@ -1,0 +1,6 @@
+{
+  "method": "One default start each on immutable candidate and existing production, sequential fresh Chrome; 50/10 Mbps 40ms, HTTP cache disabled, 1280x720 DPR1; optional GPU API events and Chrome trace; no startup acceptance budget, no recording/FPS. CPU API duration and queue callback wall time are not hardware GPU timing. Stop after these two visits; no unchanged qualifying retry.",
+  "candidate": "https://aafce17b.fardel.pages.dev",
+  "control": "https://5723a4ab.fardel.pages.dev",
+  "browserOwner": "root through probe-playable-startup; each probe records actual Chrome PID, closes browser finally; no existing owned renderers at declaration."
+}

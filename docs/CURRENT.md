@@ -3,21 +3,37 @@
 Updated **2026-10-09**. Read this before choosing work. The latest user request
 controls scope; historical plans/results are evidence, not an active task queue.
 **Active direction: Gothic region and cathedral exploration. Mobile is backlogged.**
-The eight-hour implementation window has elapsed. G01–G05 are complete; G06–G08
-are implemented and delivered, with isolated performance acceptance pending.
-No user review or approval is requested. Remaining measurement gates need the
-external renderer status resolved; candidate adoption and production stay held.
+The eight-hour implementation window has elapsed. G01–G08 are complete on desktop
+previews, including final isolated G06–G08 performance acceptance. Experimental
+region core remains optional. **Production qualification failed its first valid
+cold start at 1,140.1 ms; production is unchanged.** No user approval is pending.
 
 ## Current task and next work
 
-**User requests proceeding toward production.** Exact G08 seal verifies and a fresh
-651-row immutable delivery check passes. A newly declared standard-mode Gothic
-release still needs80 cold starts, native release gates and15 isolated FPS windows.
-Historical514fe898 remains rejected; no claim its texture failure is fixed.
-User is away; Edge still lists Shadowglass, possibly suspended but unconfirmed.
-Specific-tab closure authorization or confirmed suspension is needed for isolation;
-no game measurement or production mutation has run. Experimental core stays optional.
-[Concrete qualification and preflight](baselines/gothic-production-2026-10-09/README.md).
+**Production remains 5723a4ab / source 7d00c56.** User authorized closing only
+Shadowglass; root closed it and preserved the other fifteen Edge tabs. Isolation
+is resolved. Exact G08 seal and fresh 651-row delivery check pass; three native
+entry aliases pass. The first valid default cold start fails the inclusive
+one-second target at **1,140.1 ms**, with no recorded runtime/GPU/transport errors.
+Remaining cold starts and promotion stopped. The earlier operator cancellation
+produced an invalid sample, retained separately. Two declared instrumented starts
+(candidate 739.5 ms, production 912.8 ms) do not reproduce or explain the miss;
+no source correction or historical texture-failure fix is claimed.
+[Failed sample, diagnosis, bounded next work](baselines/gothic-production-2026-10-09/README.md).
+
+**Final G06–G08 performance acceptance passes separately:** fifteen windows at
+**176.4–211.9 FPS**, maximum p99 **6.9 ms**, worst **13.9 ms**, zero recorded runtime/GPU errors,
+pacing failures, intervals >16.67 ms or recovery-count changes. M1 Max, uncapped
+Chromium WebGPU, 1280×720/DPR1, seven enemies, three 12-second windows per meadow/
+town/bridge/cathedral/forest; all 35,229 raw intervals retained. Diagnostic route
+placements/God mode with Havok active/Fly off; settled RAF throughput, no cold
+streaming-tail or production-comparison claim.
+[Performance receipt](baselines/gothic-production-2026-10-09/performance-gpu-receipt.json).
+The FPS helper now captures/asserts the existing GPU-error ledger after each
+window; the original throughput-only run is retained separately. This completes
+desktop milestone performance; it cannot replace failed startup qualification. Next release work needs an attributed first-completion correction
+before a changed build/seal and fresh release gates. Experimental core adoption
+and physical iPhone acceptance remain separate.
 
 **Candidate woodland motion audit passes eight native cases** on final G08 preview:
 normal Havok trunk contact/escape, menu-paused full arrival and100/140m ordinary/
@@ -36,14 +52,13 @@ Default 22.4 MB and experimental 14.4 MB labels are native verified. Navigation/
 disposal remains safe. 43 CPU, four progress cases, five candidate cases, twenty
 landings, six surface picks and 651 served checks pass; final public proof retained.
 [Evidence/review/limits](baselines/g08-region-progress-2026-10-09/README.md).
-No fresh isolated FPS/load gain claim; G06–G08 acceptance and candidate adoption
-still need their timing/performance gates. Next acceptance work: resolve renderer
-isolation, qualify the final default build across representative routes, then
-paired candidate/control timing and settled performance. This is not another
-unchanged production cold-start campaign; that separate hold remains open.
+Final integrated standard-mode FPS now passes as recorded above. No core load
+gain is claimed; candidate adoption still needs paired timing and settled
+performance. The newly declared production qualification failed startup and
+remains held independently of these accepted desktop previews.
 
 
-**G06 hall balcony is implemented/pushed as 1b35554; its isolated FPS gate remains open.**
+**G06 hall balcony is complete on desktop preview, product 1b35554; final integrated FPS passes above.**
 [Functional preview](https://2fd14837.fardel.pages.dev/?dev&play&at=east-keep-hall-balcony),
 [actual checks/limits](baselines/g06-hall-balcony-2026-10-09/README.md),
 [concrete slice](plans/gothic-exploration/g06-hall-balcony-2026-10-09.md).
@@ -51,13 +66,9 @@ Supported interior balcony, guarded bridge, widened pointed doorway and closed
 gables preserve the lower hall lane. Final local/public ordinary ascent/entry/
 return and six guard contacts pass; 48 CPU, twenty developer landings, ordinary
 map/disposal and 649 served checks pass. Telegram898/reviewed direct VE motion.
-Fresh isolation is unresolved because the browser tool rejected its internal
-status page; an unrelated user Shadowglass tab's current rendering state remains
-unconfirmed. User clarification is pending; no G06 FPS claim or production
-promotion. The user authorized independent feature development while operations
-are pending; this performance gate holds acceptance/release, not all source work.
-Continue isolated candidate development under the active goal, preserving the user tabs,
-mobile backlog and separate production hold.
+The earlier renderer-isolation blocker is resolved through authorized Shadowglass
+closure. The final integrated FPS check completes G06 performance acceptance.
+Production remains held by the separate failed one-second startup gate.
 
 [Region-wait follow-on plan](plans/gothic-exploration/region-navigation-core-2026-10-09.md)
 now has a pushed experimental implementation, product **6ea3c6a**:
@@ -68,8 +79,8 @@ combined transfer rises11.7%. No runtime speedup claim; the existing whole-regio
 stream remains default. Candidate mode is exposed through ?dev → Developer tools
 with a reload toggle and shareable spawn link. Seventy CPU checks, five native failure/default/retry/disposal cases, twenty landings,
 six surface checks pass locally; five-case fault/retry checks and ordinary Eastwatch
-climb/guards pass locally/publicly. All651 served artifacts pass. Both G06 FPS and
-candidate paired timing/settled performance must qualify before acceptance/adoption.
+climb/guards pass locally/publicly. All651 served artifacts pass. G06 performance is now accepted on the standard integration; candidate paired
+timing/settled performance must still qualify before core adoption.
 [Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
 **G07 Vaelmark exploration guide is pushed as 139c2d5 on a functional desktop preview.**
@@ -82,7 +93,8 @@ six physical views, ordinary focus/pause/selection/walking/disposal, retained
 region/minimap guidance and twenty developer landings pass locally. Final public
 guide/physical views/map controls pass;651 served checks pass.
 [G07 scope/evidence](baselines/g07-cathedral-guide-2026-10-09/README.md).
-Its isolated FPS acceptance remains pending; source work does not waive the gate.
+Final integrated standard-mode FPS acceptance now passes as recorded above;
+its desktop preview is complete. Production startup remains a separate gate.
 
 ## Completed desktop previews
 
@@ -171,6 +183,11 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
+All Gothic qualification contexts/harnesses are closed. Latest GPU-ledger FPS Chrome16888/GPU16916, Vite16833+16859/5873 and
+CDP10037 stopped; original FPS Chrome91407/GPU91413 and Vite91343+91368 stopped. Valid cold Chrome75164, both
+diagnostic browsers and interrupted Chrome71663 stopped. Final inventory: fifteen
+preserved user Edge tabs, user Chrome New Tab, no game tab. Grok receipt reviewer ended with a report; raw-frame verification remained
+unchecked by that partial independent review and was recomputed by root.
 G03–G08, region-core candidate and final woodland motion contexts/harnesses are closed.
 Woodland Chrome89526/CDP10037, Vite89483+89521/5873 and media79423/7077
 stopped; review1147996210/6213 closed. Fifteen user Edge tabs remain intact.
