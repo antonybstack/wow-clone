@@ -8,22 +8,22 @@ there is no pending user review or approval.
 
 ## Current task and next work
 
-**G05 Eastwatch wall walk is complete on a sealed desktop preview; product c3419d4 is pushed.**
-A visible 33-tread courtyard stair/smooth Havok ramp reaches a guarded U-shaped
-route and the raised hall window. Ordinary climb, all turns, three guard contacts
-and gate return pass locally/publicly. Nineteen developer destinations, six
-surface checks, ordinary map/disposal and 649 served checks pass. A connected
-public tour enters/returns all eight destinations and returns to the initial
-bridge, with nine connecting legs, Havok active, Fly off and zero recoveries/errors.
-[Evidence and limits](baselines/g05-wall-walk-2026-10-09/README.md).
+**G08 region-processing progress is pushed as 62bb96d + 4b6707a.**
+[Final desktop preview](https://aafce17b.fardel.pages.dev/?dev&play), Telegram **901** /
+[reviewed direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-progress.mp4).
+Ordinary status and Developer tools show actual index/surface/support/tree/foliage
+phases, current-attempt range counts and static packet size. Two intermediate
+updates/second from the existing async loop; no timer/frame hook or new decoder.
+Default 22.4 MB and experimental 14.4 MB labels are native verified. Navigation/retry/
+disposal remains safe. 43 CPU, four progress cases, five candidate cases, twenty
+landings, six surface picks and 651 served checks pass; final public proof retained.
+[Evidence/review/limits](baselines/g08-region-progress-2026-10-09/README.md).
+No fresh isolated FPS/load gain claim; G06–G08 acceptance and candidate adoption
+still need their timing/performance gates. Next acceptance work: resolve renderer
+isolation, qualify the final default build across representative routes, then
+paired candidate/control timing and settled performance. This is not another
+unchanged production cold-start campaign; that separate hold remains open.
 
-Fifteen separate M1 Max / uncapped Chromium WebGPU / 1280×720 / DPR1 / seven-enemy
-windows observe **189.9–229.0 FPS**, p99≤6.5 ms, worst 9.9 ms, zero intervals
->16.67 ms, pacing flags, errors or recoveries. All 37,619 raw intervals are retained;
-map closed/no selection, local RAF throughput, not a production comparison or timed
-wall-walk/capture result. [Preview](https://ae9f12cc.fardel.pages.dev/?dev&play&at=east-keep-wall-walk).
-Reviewed motion: Telegram **897** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/wall-walk.mp4).
-Actual direct VE playback passes; Telegram application inline/fullscreen remains unverified.
 
 **G06 hall balcony is implemented/pushed as 1b35554; its isolated FPS gate remains open.**
 [Functional preview](https://2fd14837.fardel.pages.dev/?dev&play&at=east-keep-hall-balcony),
@@ -65,23 +65,25 @@ region/minimap guidance and twenty developer landings pass locally. Final public
 guide/physical views/map controls pass;651 served checks pass.
 [G07 scope/evidence](baselines/g07-cathedral-guide-2026-10-09/README.md).
 Its isolated FPS acceptance remains pending; source work does not waive the gate.
-**G08 region-processing progress is pushed as 62bb96d + 4b6707a.**
-[Final desktop preview](https://aafce17b.fardel.pages.dev/?dev&play), Telegram **901** /
-[reviewed direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-progress.mp4).
-Ordinary status and Developer tools show actual index/surface/support/tree/foliage
-phases, current-attempt range counts and static packet size. Two intermediate
-updates/second from the existing async loop; no timer/frame hook or new decoder.
-Default 22.4 MB and experimental 14.4 MB labels are native verified. Navigation/retry/
-disposal remains safe. 43 CPU, four progress cases, five candidate cases, twenty
-landings, six surface picks and 651 served checks pass; final public proof retained.
-[Evidence/review/limits](baselines/g08-region-progress-2026-10-09/README.md).
-No fresh isolated FPS/load gain claim; G06–G08 acceptance and candidate adoption
-still need their timing/performance gates. Next acceptance work: resolve renderer
-isolation, qualify the final default build across representative routes, then
-paired candidate/control timing and settled performance. This is not another
-unchanged production cold-start campaign; that separate hold remains open.
 
 ## Completed desktop previews
+
+**G05 Eastwatch wall walk is complete on a sealed desktop preview; product c3419d4 is pushed.**
+A visible 33-tread courtyard stair/smooth Havok ramp reaches a guarded U-shaped
+route and the raised hall window. Ordinary climb, all turns, three guard contacts
+and gate return pass locally/publicly. Nineteen developer destinations, six
+surface checks, ordinary map/disposal and 649 served checks pass. A connected
+public tour enters/returns all eight destinations and returns to the initial
+bridge, with nine connecting legs, Havok active, Fly off and zero recoveries/errors.
+[Evidence and limits](baselines/g05-wall-walk-2026-10-09/README.md).
+
+Fifteen separate M1 Max / uncapped Chromium WebGPU / 1280×720 / DPR1 / seven-enemy
+windows observe **189.9–229.0 FPS**, p99≤6.5 ms, worst 9.9 ms, zero intervals
+>16.67 ms, pacing flags, errors or recoveries. All 37,619 raw intervals are retained;
+map closed/no selection, local RAF throughput, not a production comparison or timed
+wall-walk/capture result. [Preview](https://ae9f12cc.fardel.pages.dev/?dev&play&at=east-keep-wall-walk).
+Reviewed motion: Telegram **897** / [verified VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/wall-walk.mp4).
+Actual direct VE playback passes; Telegram application inline/fullscreen remains unverified.
 
 - **G04 region map:** 9d5d4fe / [4f787280](https://4f787280.fardel.pages.dev/?play&clean).
   All eight names/routes, well detour, player heading and independent destination
