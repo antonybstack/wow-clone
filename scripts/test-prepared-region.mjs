@@ -27,12 +27,19 @@ function fixture(change=()=>{}){
  const manifest={meshes:[{name:'Earth',world:true,collision:true,material:0,vertices:6,indices:6}],foliage:{grass:{count:0,attributes:{matrices:{offset:near.rawBytes,length:0},colors:{offset:near.rawBytes,length:0}}}},geometry:near};
  const tile={cx:4,cz:4,count:1,buffers:{matrices:new Float32Array(16),colors:new Float32Array(4)}};
  const edits={far,tile,mesh:manifest.meshes[0]};change(edits);
- const geometry=pack('region',[far]),foliageRaw=pack('foliage',[tile]);
+ const full={meshId:1,vertexOffset:0,indexOffset:0,buffers:triangle(10)};
+ if(edits.experimental)manifest.meshes.push({name:'Woodland 0,0 full',world:true,collision:false,material:0,vertices:3,indices:3});
+ const geometry=pack('region',edits.experimental?[far,full]:[far]),foliageRaw=pack('foliage',[tile]);
  const foliage={...foliageRaw,pools:{grass:{count:edits.poolCount??1,tiles:foliageRaw.blocks}}};delete foliage.blocks;
  const index={schema:1,meshes:edits.indexMeshes??manifest.meshes,geometry,foliage};
+ if(edits.experimental){
+  const detail=structuredClone(full);edits.changeDetail?.(detail);
+  index.experimentalCore={schema:1,core:pack('region-core',[far]),detail:pack('region-detail',[detail])};
+ }
  if(edits.changeIndex)edits.changeIndex(index);
  manifest.geometry.region=encode('region-index',Buffer.from(JSON.stringify(index)));
- manifest.geometry.region.files=[geometry.file,foliage.file];
+ manifest.geometry.region.files=[geometry.file,foliage.file,...(index.experimentalCore?[index.experimentalCore.core.file,index.experimentalCore.detail.file]:[])];
+ if(edits.experimental)manifest.geometry.region.experimentalCore=true;
  if(edits.changeManifest)edits.changeManifest(manifest);
  return {manifest,files,read:async file=>files.get(file)};
 }
@@ -59,4 +66,19 @@ for(const [name,change,message]of [
 test('prepared region refuses corrupt immutable packet bytes',async()=>{
  const f=fixture(),name=f.manifest.geometry.region.file,bytes=Buffer.from(f.files.get(name));bytes[bytes.length-1]^=1;f.files.set(name,bytes);
  await assert.rejects(verifyStarterGeometry(f.manifest,f.read),/Corrupt prepared region index/);
+});
+
+test('experimental core/detail reproduce every existing block byte with exact aggregate coverage',async()=>{
+ const f=fixture(e=>{e.experimental=true;});await verifyStarterGeometry(f.manifest,f.read);
+});
+for(const [name,change,message]of [
+ ['missing core range',e=>{e.changeIndex=i=>{i.experimentalCore.core.blocks=[];};},/omits/],
+ ['duplicate range',e=>{e.changeIndex=i=>{i.experimentalCore.detail.blocks.push(i.experimentalCore.detail.blocks[0]);};},/changes or misclassifies/],
+ ['collision in detail',e=>{e.changeIndex=i=>{i.experimentalCore.detail.blocks.push(i.experimentalCore.core.blocks.pop());};},/misclassifies/],
+ ['full trees in core',e=>{e.changeIndex=i=>{i.experimentalCore.core.blocks.push(i.experimentalCore.detail.blocks.pop());};},/misclassifies/],
+ ['changed detail bytes',e=>{e.changeDetail=b=>{b.buffers.positions[0]+=1;};},/bytes differ/],
+ ['unsupported package schema',e=>{e.changeIndex=i=>{i.experimentalCore.schema=2;};},/Unsupported/],
+ ['missing candidate declaration',e=>{e.changeManifest=m=>{delete m.geometry.region.experimentalCore;};},/declaration differs/],
+])test(`experimental region refuses ${name}`,async()=>{
+ const f=fixture(e=>{e.experimental=true;change(e);});await assert.rejects(verifyStarterGeometry(f.manifest,f.read),message);
 });

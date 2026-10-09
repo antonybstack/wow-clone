@@ -36,15 +36,20 @@ map/disposal and 649 served checks pass. Telegram898/reviewed direct VE motion.
 Fresh isolation is unresolved because the browser tool rejected its internal
 status page; an unrelated user Shadowglass tab's current rendering state remains
 unconfirmed. User clarification is pending; no G06 FPS claim or production
-promotion. Finish that gate before another visual implementation. Continue
-independent planning/analysis under the active goal, preserving the user tabs,
+promotion. The user authorized independent feature development while operations
+are pending; this performance gate holds acceptance/release, not all source work.
+Continue isolated candidate development under the active goal, preserving the user tabs,
 mobile backlog and separate production hold.
 
 [Region-wait follow-on plan](plans/gothic-exploration/region-navigation-core-2026-10-09.md)
-is planning/offline analysis only: all physical surfaces plus reduced trees first,
+now has a functionally checked experimental implementation: all physical surfaces plus reduced trees first,
 full woodland detail later. Candidate first payload14.4 MB versus22.4 MB, but
-combined transfer rises11.7%. No runtime speedup claim or product change; qualify
-G06 FPS first, then require safety and paired measured improvement before adoption.
+combined transfer rises11.7%. No runtime speedup claim; the existing whole-region
+stream remains default. Candidate mode is exposed through ?dev → Developer tools
+with a reload toggle and shareable spawn link. Seventy CPU checks, five native failure/default/retry/disposal cases, twenty landings,
+six surface checks and ordinary Eastwatch climb/guards pass locally. Both G06 FPS and
+candidate paired timing/settled performance must qualify before acceptance/adoption.
+[Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
 ## Completed desktop previews
 

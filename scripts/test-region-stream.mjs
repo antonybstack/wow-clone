@@ -49,3 +49,18 @@ test('native network errors propagate',async()=>{
   const stream=new ReadableStream({start(c){c.error(Error('transport failure'));}});
   await assert.rejects(collect(new Response(stream)),/transport failure/);
 });
+
+test('storage completion requires all successful disjoint ranges, regardless of arrival order',async()=>{
+ const {createBlockCompletion}=await import('../src/ashen-reach/region-stream.js');
+ const c=createBlockCompletion([{indices:12,vertices:12}]);
+ const b=(indexOffset,vertexOffset=indexOffset,count=3)=>({meshId:0,indexOffset,vertexOffset,buffers:{indices:new Uint32Array(count),positions:new Float32Array(count*3)}});
+ assert(c.check(b(9)));assert(!c.complete(0),'checking a failed upload cannot commit it');
+ assert.equal(c.mark(b(9)),false);assert(!c.complete(0),'last range alone cannot retire fallback');
+ c.mark(b(0));c.mark(b(3));assert(!c.complete(0));
+ assert.equal(c.mark(b(6)),true);assert(c.complete(0));assert.equal(c.mark(b(6)),false,'retry is idempotent');
+ assert.throws(()=>c.check(b(3,3,6)),/Conflicting/);
+ const overlap=createBlockCompletion([{indices:12,vertices:12}]);overlap.mark(b(0,0,6));
+ assert.throws(()=>overlap.check(b(3,6,3)),/Overlapping/);
+ assert.throws(()=>overlap.check(b(6,3,3)),/Overlapping/);
+ assert.throws(()=>overlap.check(b(12)),/Invalid/);
+});

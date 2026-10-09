@@ -51,7 +51,7 @@ const packet = () => {
     },
   };
 };
-const near = packet(), skyline = packet(), region = packet(), fullFoliage = packet();
+const near = packet(), skyline = packet(), region = packet(), core=packet(),detail=packet(), fullFoliage = packet();
 // Keep starting terrain/collision and landmarks required. The churchyard tree
 // render stream has no collision; its trunk colliders already live in boxes.
 // Transfer those exact blocks after play, sharing the optional skyline packet.
@@ -63,12 +63,20 @@ const backgroundBlocks = initial.filter(deferredTree).map(skyline.describe);
 // Preserve every storage offset and triangle. Cathedral render/collision arrives
 // first; navigation still waits for ALL visible routes and collision. Include the
 // two exact near-tree blocks so optional skyline failure cannot leave their holes.
-const regionBlocks = [
+const optionalBlocks = [
   ...initial.filter(deferredTree),
   ...data.batches.filter(b=>!b.initial).sort((a,b)=>
     Number(!data.meshes[a.meshId].name.startsWith('Vaelmark'))-
     Number(!data.meshes[b.meshId].name.startsWith('Vaelmark'))),
-].map(region.describe);
+];
+const regionBlocks=optionalBlocks.map(region.describe);
+// Keep the current stream as the default. The developer candidate consumes all
+// physical/visible surfaces and reduced woodland before optional full trees.
+// Exact typed arrays/storage offsets are shared; only packet byte offsets differ.
+// docs/plans/gothic-exploration/region-navigation-core-2026-10-09.md
+const fullWoodland=b=>data.meshes[b.meshId].name.startsWith('Woodland ')&&data.meshes[b.meshId].name.endsWith(' full');
+const coreBlocks=optionalBlocks.filter(b=>!fullWoodland(b)).map(core.describe);
+const detailBlocks=optionalBlocks.filter(fullWoodland).map(detail.describe);
 // A temporary, non-colliding skyline made from the existing geometry. Welding
 // only affects these distant proxies; final meshes retain every source byte.
 // https://github.com/zeux/meshoptimizer/blob/v0.22/js/README.md#simplification
@@ -199,12 +207,14 @@ async function writePacket(prefix, { buffers, rawBytes }) {
 const nearPacket = await writePacket("near", near),
   skylinePacket = await writePacket("skyline", skyline);
 const regionPacket=await writePacket('region',region),
-  foliagePacket=await writePacket('foliage',fullFoliage);
+  foliagePacket=await writePacket('foliage',fullFoliage),
+  corePacket=await writePacket('region-core',core),detailPacket=await writePacket('region-detail',detail);
 // Keep thousands of optional block/tile descriptors out of the required manifest.
 // The background index uses the same native HTTP Brotli delivery/cache family.
 // https://developers.cloudflare.com/pages/configuration/headers/
 const indexBytes=Buffer.from(JSON.stringify({schema:1,meshes:data.meshes,
-  geometry:{...regionPacket,blocks:regionBlocks},foliage:{...foliagePacket,pools:regionFoliage}}));
+  geometry:{...regionPacket,blocks:regionBlocks},foliage:{...foliagePacket,pools:regionFoliage},
+  experimentalCore:{schema:1,core:{...corePacket,blocks:coreBlocks},detail:{...detailPacket,blocks:detailBlocks}}}));
 const regionIndex=await writePacket('region-index',{buffers:[indexBytes],rawBytes:indexBytes.length});
 const textureURLs = {};
 for (const url of new Set([
@@ -251,7 +261,7 @@ const preparedManifest={
       skyline: { ...skylinePacket, blocks: backgroundBlocks, proxies },
       // Keep the indirect immutable dependencies visible to the existing pruner.
       // Block/tile descriptors remain exclusively in the optional index.
-      region: {...regionIndex,files:[regionPacket.file,foliagePacket.file]},
+      region: {...regionIndex,experimentalCore:true,files:[regionPacket.file,foliagePacket.file,corePacket.file,detailPacket.file]},
     },
   };
 // Validate both immutable packets before publishing their shared mutable index.

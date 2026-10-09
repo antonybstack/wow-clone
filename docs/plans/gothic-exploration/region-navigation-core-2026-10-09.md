@@ -1,8 +1,10 @@
 # Reduce the region wait without opening unsafe surfaces
 
-**Planning and offline byte analysis only, source9237092. No product changes or
-new load-time/FPS qualification.** Finish G06's outstanding isolated FPS gate
-before another visual implementation. The latest user asks why region collision
+**Experimental implementation complete locally after offline analysis at source9237092.
+No new load-time/FPS qualification.** The existing whole-region stream remains
+default; ?dev → Developer tools exposes the candidate reload toggle. Independent
+source work may continue under the user's parallel-work authorization; G06's
+outstanding isolated FPS gate still holds acceptance/release. The latest user asks why region collision
 waits; the active Gothic direction and one-second playable-start contract remain.
 
 ## Findings and decision
@@ -53,8 +55,8 @@ packages remain a separate, more complex follow-on if needed.
    near arrays unchanged. Rebase only each member's attribute byte offsets.
    Required near packet and foliage must remain byte-for-byte exact. Include the
    two exact deferred near-tree blocks in core, preserving the skyline race.
-2. **Index/version/verifier:** introduce an explicit index version for the
-   package list. Continue reading the existing version1 single packet. Preserve
+2. **Index/version/verifier:** introduce an explicit schema1 experimental package list within the
+   existing schema1 index. Continue reading the existing version1 single packet. Preserve
    the required manifest's small optional index descriptor; do not copy thousands
    of block descriptors into it. `verify-starter-geometry.mjs` checks every file,
    compression descriptor, hash, decoded ranges and aggregate GPU index/vertex
@@ -68,10 +70,10 @@ packages remain a separate, more complex follow-on if needed.
    navigation be announced. Consume detail next, then existing foliage. All
    asynchronous mutations still belong to this scene/loader; no second controller.
 4. **Completion accounting:** currently `install` treats arrival of the last
-   index range as record completion. Make completion depend on every expected
-   unique range, including initial ranges and skyline/region near-tree races.
+   index range as record completion. For the candidate, make completion depend on exact unique index/vertex coverage,
+   including initial ranges and skyline/region near-tree races.
    A last block arriving first must not retire a proxy or mark a mesh complete.
-   Validate the expected range union once, keep duplicate-key idempotence, and
+   Validate the partition once and prove its aggregate coverage at bake time, keep duplicate-key idempotence, and
    expose a cheap per-record completion query to existing woodland selection.
    Do not introduce per-frame geometry rebuilding or scans of all block arrays.
 5. **`baked-woodland.js`:** retain requested detail at100m/140m with the current
@@ -92,7 +94,9 @@ packages remain a separate, more complex follow-on if needed.
 7. **Public APIs/UI:** reuse the existing `navigationReady`/`whenNavigation` and
    `regionReady` states. This candidate still opens the whole region at once.
    Existing ?dev destination jumps, shareable links and surface click picking
-   remain the reproducible controls; accurately distinguish safe routes from
+   remain the reproducible controls; expose the experimental mode through a
+   Developer tools reload toggle and preserve `regionCore=1` in spawn links.
+   Ignore that mode without ?dev. Accurately distinguish safe routes from
    optional detail loading. No hidden shortcut, auto-travel or coordinate clamp.
 
 ## Why the simpler cathedral-prefix proposal is insufficient
@@ -161,3 +165,5 @@ or hashing dependency is proposed:
   Grok4.6/high reached its ten-turn cap with an actionable source-only artifact;
   its reserved metadata probe was unfinished. Root accepted source dependencies
   and rejected unsafe early-exit assumptions. No source review is live acceptance.
+
+[Experimental implementation and actual functional evidence](../../baselines/region-core-candidate-2026-10-09/README.md).

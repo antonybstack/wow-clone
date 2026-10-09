@@ -2,6 +2,7 @@
  * compiler-provenance helper so world verifier changes do not invalidate character assets. */
 import {createHash} from "node:crypto";
 import {brotliDecompressSync} from "node:zlib";
+import {validateRegionCore} from '../../src/ashen-reach/region-stream.js';
 const digest=bytes=>createHash("sha256").update(bytes).digest("hex");
 /** Each packet's attribute ranges must tile its decoded bytes exactly: 4-byte aligned, no
  * gap, no overlap, nothing outside. That proves the required near packet carries only its
@@ -57,8 +58,23 @@ export async function verifyStarterGeometry(manifest, read) {
     const indexBytes=await verifyPacket('region index','region-index',g.region,null,read);
     const index=JSON.parse(indexBytes.toString('utf8'));
     if(index.schema!==1||JSON.stringify(index.meshes)!==JSON.stringify(manifest.meshes))throw Error('Prepared region header differs from starting world');
-    if(JSON.stringify(g.region.files)!==JSON.stringify([index.geometry.file,index.foliage.file]))throw Error('Prepared region dependency list differs from its index');
+    const experimental=index.experimentalCore;
+    if(!!g.region.experimentalCore!==!!experimental)throw Error('Experimental region declaration differs from its index');
+    if(experimental)validateRegionCore(index);
+    const dependencies=[index.geometry.file,index.foliage.file,...(experimental?[experimental.core.file,experimental.detail.file]:[])];
+    if(JSON.stringify(g.region.files)!==JSON.stringify(dependencies))throw Error('Prepared region dependency list differs from its index');
     region=await verifyPacket('region','region',index.geometry,index.geometry.blocks,read);
+    if(experimental){
+      const original=new Map(index.geometry.blocks.map(b=>[`${b.meshId}:${b.indexOffset}`,b]));
+      for(const [kind,packet]of [['core',experimental.core],['detail',experimental.detail]]){
+        const raw=await verifyPacket('region '+kind,'region-'+kind,packet,packet.blocks,read);
+        for(const b of packet.blocks)for(const [name,a]of Object.entries(b.attributes)){
+          const expected=original.get(`${b.meshId}:${b.indexOffset}`).attributes[name];
+          if(!raw.subarray(a.offset,a.offset+a.length*4).equals(region.subarray(expected.offset,expected.offset+expected.length*4)))
+            throw Error('Experimental region bytes differ from the existing stream');
+        }
+      }
+    }
     const blocks=new Map(),records=new Map();
     for(const b of [...g.blocks,...index.geometry.blocks]){
       const mesh=manifest.meshes[b.meshId],key=`${b.meshId}:${b.indexOffset}`,a=b.attributes;

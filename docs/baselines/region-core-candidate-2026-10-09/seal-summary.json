@@ -1,0 +1,27 @@
+{
+  "scope": "Optional developer-only physical core candidate; functional gates; load-time and FPS acceptance pending",
+  "createdAt": "2026-10-09T12:19:35.931Z",
+  "source": {
+    "head": "bdd3f4b94804fb168fb6b01100c579d0b7cc0b7b",
+    "productPaths": [
+      "src",
+      "public",
+      "scripts",
+      "ashen-reach.html",
+      "body-preview.html",
+      "character-crowd-probe.html",
+      "character-lab.html",
+      "index.html",
+      "vite.config.js",
+      "package.json",
+      "package-lock.json"
+    ],
+    "productInputsSha256": "c06f0ce7b20640e80a8c23f74b19c850755e5bb8c7f2ab3de227ad397bf28ba9",
+    "productInputFiles": 1249,
+    "uncommittedProductInputs": 16
+  },
+  "fileCount": 648,
+  "totalBytes": 399188280,
+  "sealSha256": "034837b48920cd1fcf5122a200e87137320cbd0c25adbe590b298a3322727434",
+  "note": "Sealed before product commit; product fingerprint must match committed input verification on upload."
+}

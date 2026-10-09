@@ -73,6 +73,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <button type="button" data-action="god" aria-pressed="false">God mode</button>
           <button type="button" data-action="fly" aria-pressed="false">Fly mode</button>
           <p>While flying, click a solid surface to teleport (floors, roofs or ground). G / F also toggle God / Fly.</p>
+          <p data-region-loading-mode></p>
+          <button type="button" data-action="region-loading" disabled>Reload with physical surfaces first (experimental)</button>
           <button type="button" data-action="hub">Back</button>
         </div>
       </div>
@@ -195,6 +197,12 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
         : "Routes ready. Details are still loading; jumps return to ordinary walking."
       : "Waiting for route geometry and collision before jumping…";
     destinationLink.value = enabled && destinationSelect.value ? tools.destinationURL(destinationSelect.value) : "";
+    root.querySelector('[data-region-loading-mode]').textContent=tools?.regionCoreLoading
+      ? 'Region loading: physical surfaces and reduced trees first. Full tree detail loads afterwards.'
+      : 'Region loading: standard whole-region stream.';
+    const loadingButton=root.querySelector('[data-action="region-loading"]');
+    loadingButton.disabled=!enabled||!tools?.regionCoreAvailable;
+    loadingButton.textContent=tools?.regionCoreLoading?'Reload with standard region loading':'Reload with physical surfaces first (experimental)';
     for (const [action, state, label] of [["god", "god", "God mode"], ["fly", "flying", "Fly mode"]]) {
       const button = root.querySelector(`[data-action="${action}"]`);
       button.disabled = !enabled;
@@ -327,6 +335,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     } else if (action === "jump") {
       if (getDevTools?.()?.jumpTo?.(destinationSelect.value)) close();
       else refreshDevTools();
+    } else if (action === 'region-loading'&&devQueryOn()) {
+      const tools=getDevTools?.();
+      if(tools?.regionCoreAvailable)location.assign(tools.regionLoadingURL(destinationSelect.value));
     } else if (action === "god" || action === "fly") {
       const tools = getDevTools?.();
       if (action === "god") tools?.setGod?.(!tools.dev.god);

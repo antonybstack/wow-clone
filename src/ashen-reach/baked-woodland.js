@@ -11,6 +11,7 @@ export function createBakedWoodland(
   records,
   byName,
   shadowByName = new Map(),
+  isComplete = null,
 ) {
   const visible = (mesh, value) => {
     if (!mesh) return; // Streamed records can arrive after first play.
@@ -38,8 +39,14 @@ export function createBakedWoodland(
   const resolveMeshes = (tile) => {
     tile.full = byName.get(tile.fullName);
     tile.reduced = byName.get(tile.reducedName);
-    visible(tile.full, tile.detail === "full");
-    visible(tile.reduced, tile.detail === "reduced");
+    // Desired hysteresis remains unchanged. During optional detail transfer,
+    // use a completed representation instead of drawing a partial tree or
+    // hiding a live trunk collider. Scene/shadow visibility share the same choice.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/01-scene.md
+    const available=detail=>!!tile[detail]&&(!isComplete||isComplete(tile[detail+'Name']));
+    tile.renderedDetail=available(tile.detail)?tile.detail:isComplete?(available('reduced')?'reduced':available('full')?'full':null):null;
+    visible(tile.full, tile.renderedDetail === "full");
+    visible(tile.reduced, tile.renderedDetail === "reduced");
   };
   const camera = getCameraPosition(scene.camera);
   for (const t of tiles.values()) {
@@ -49,8 +56,7 @@ export function createBakedWoodland(
       distanceToWoodlandBounds(camera, t.bounds),
       "full",
     );
-    visible(t.full, t.detail === "full");
-    visible(t.reduced, t.detail === "reduced");
+    resolveMeshes(t);
   }
   const api = {
     tiles,
@@ -61,7 +67,14 @@ export function createBakedWoodland(
       // Arrival inherits the current selection without spending another tile
       // transition. This also applies while a menu pauses world.update().
       // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/01-scene.md
-      if (tile) resolveMeshes(tile);
+      if (tile) {
+        const before=tile.renderedDetail??null;
+        resolveMeshes(tile);
+        if(isComplete&&before!==tile.renderedDetail){
+          const p=tile[tile.renderedDetail]?.position;
+          p?.set(p.x,p.y,p.z);revision++;
+        }
+      }
     },
     update() {
       if (disposed) return;
@@ -86,8 +99,7 @@ export function createBakedWoodland(
       if (candidate) {
         const { tile, next } = candidate;
         tile.detail = next;
-        visible(tile.full, next === "full");
-        visible(tile.reduced, next === "reduced");
+        resolveMeshes(tile);
         const p = (tile.full ?? tile.reduced)?.position;
         p?.set(p.x, p.y, p.z);
         revision++;
@@ -101,8 +113,9 @@ export function createBakedWoodland(
         transitions,
         tiles: tiles.size,
         full: [...tiles.values()].filter((t) => t.detail === "full").length,
+        renderedFull: [...tiles.values()].filter((t) => t.renderedDetail === "full").length,
         triangles: [...tiles.values()].reduce(
-          (n, t) => n + (t[t.detail]?._gpu?.indexCount ?? 0) / 3,
+          (n, t) => n + (t[t.renderedDetail]?._gpu?.indexCount ?? 0) / 3,
           0,
         ),
       };

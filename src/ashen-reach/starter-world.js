@@ -30,7 +30,7 @@ import { createAshMotes } from "./ash-motes.js";
 import { yieldToFrame } from "./frame-budget.js";
 import {withStartupResource} from './startup-fetch.js';
 import {startupMark} from './startup-trace.js';
-import {readRegionBlocks} from './region-stream.js';
+import {readRegionBlocks,createBlockCompletion,validateRegionCore} from './region-stream.js';
 
 const ROOT = "/ashen-reach/startup/starter/";
 async function checkedFetch(url, options) {
@@ -71,8 +71,9 @@ export function preloadStarterWorld() {
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/mesh/mesh-from-storage.ts
  * https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/resource/storage-buffer.ts
  */
-export async function createStarterWorld(engine, scene, prepared) {
+export async function createStarterWorld(engine, scene, prepared, {regionCore=false}={}) {
   const { manifest, bytesReady } = await prepared;
+  const coreLoading=regionCore&&manifest.geometry.region?.experimentalCore===true;
   engine.ashenTextureURLs = manifest.textureURLs;
   engine.ashenTextureUpgrades = [];
   // sky() consumes this exact URL/options later. Lite caches its promise per device,
@@ -113,6 +114,7 @@ export async function createStarterWorld(engine, scene, prepared) {
     gates = null;
   let skylinePromise=null, skylineAbort=null, regionAbort=null, proxiesRetired=false;
   let navigationComplete=false, preparedRegionIndex=null;
+  let regionDetailComplete=false;
   const completeRecords=new Set();
   const proxies = new Map(), proxyTargets = new Map(), proxyRequirements = new Map(),
     installedBlocks = new Set(),
@@ -129,6 +131,8 @@ export async function createStarterWorld(engine, scene, prepared) {
     allocatedRecords: 0,
   };
   const records = manifest.meshes.map((record) => ({...record}));
+  const completion=coreLoading?createBlockCompletion(records):null;
+  const recordIds=new Map(records.map((r,id)=>[r.name,id]));
   const lazyAllocations = import.meta.env?.VITE_LAZY_WORLD_BUFFERS === '1';
   // Keep final storage identities/counts, but allocate an untouched record only
   // when its first real block arrives. The required packet fills five world
@@ -203,6 +207,7 @@ export async function createStarterWorld(engine, scene, prepared) {
   function install(block, player) {
     const started = performance.now(),
       key = `${block.meshId}:${block.indexOffset}`;
+    if(completion)completion.check(block);
     if (installedBlocks.has(key)) return;
     const record = records[block.meshId],
       b = block.buffers;
@@ -286,13 +291,18 @@ export async function createStarterWorld(engine, scene, prepared) {
       // dirtiness invalidates any shadow cache just as woodland detail changes do.
       const p = record.mesh.position;
       p.set(p.x, p.y, p.z);
-      if (block.indexOffset + b.indices.length === record.indices) {
+      if (!completion&&block.indexOffset + b.indices.length === record.indices) {
         completeRecords.add(record.name);
         for(const [name,proxy] of proxies)
           if(proxyTargets.get(name)===record.name)setMeshVisible(proxy,false);
       }
     }
     installedBlocks.add(key);
+    if(completion?.mark(block)){
+      completeRecords.add(record.name);
+      for(const [name,proxy]of proxies)if(proxyTargets.get(name)===record.name)setMeshVisible(proxy,false);
+      woodland?.meshArrived(record.name);
+    }
     // Retire a starting preview as soon as its exact near ranges are present,
     // rather than overlapping it until the whole world record finishes.
     for(const [name,keys] of proxyRequirements) {
@@ -381,6 +391,7 @@ export async function createStarterWorld(engine, scene, prepared) {
       manifest.woodland,
       byName,
       shadowByName,
+      coreLoading?name=>completion.complete(recordIds.get(name)):undefined,
     );
   const shafts = await createLightShafts(engine, scene, m.shafts ?? []);
   if (shafts?.mesh) meshes.push(shafts.mesh);
@@ -416,6 +427,8 @@ export async function createStarterWorld(engine, scene, prepared) {
   });
   const api = {
     ...m,
+    regionCoreAvailable:manifest.geometry.region?.experimentalCore===true,
+    regionCoreLoading:coreLoading,
     streaming,
     woodland,
     meshes,
@@ -688,21 +701,41 @@ export async function createStarterWorld(engine, scene, prepared) {
         throw Object.assign(Error('Prepared region and starting world versions differ; reload after rebuilding starting assets'),{reloadRequired:true});
       if(!preparedRegionIndex)startupMark('region-index-ready');
       preparedRegionIndex=index;
-      if(!navigationComplete){
-        if(index.geometry.compression!=='http-br')throw Error('Unsupported prepared region packet');
-        const url=ROOT+index.geometry.file,response=await checkedFetch(url,options);
+      if(coreLoading){
+        try{validateRegionCore(index);}catch(error){throw Object.assign(error,{reloadRequired:true});}
+      }
+      const consume=async(packet,{markFirst=false}={})=>{
+        if(packet.compression!=='http-br')throw Error('Unsupported prepared region packet');
+        const url=ROOT+packet.file,response=await checkedFetch(url,options);
         await withStartupResource(url,'region decoding',async()=>{
-        let started=performance.now(),first=true;
-        for await(const block of readRegionBlocks(response,index.geometry)){
-          if(disposed)throw Error('Scene disposed during region load');
-          if(first){startupMark('region-geometry-first-block');first=false;}
-          install(block,player);
-          if(performance.now()-started>=1){await yieldToFrame();started=performance.now();}
-        }
+          let started=performance.now(),first=true;
+          for await(const block of readRegionBlocks(response,packet)){
+            if(disposed)throw Error('Scene disposed during region load');
+            if(first){if(markFirst)startupMark('region-geometry-first-block');first=false;}
+            install(block,player);
+            if(performance.now()-started>=1){await yieldToFrame();started=performance.now();}
+          }
         });
+      };
+      if(!navigationComplete){
+        await consume(coreLoading?index.experimentalCore.core:index.geometry,{markFirst:true});
+        // Packet EOF alone cannot prove a complete physical mesh. Keep gates
+        // closed if the union of required and streamed ranges leaves any hole.
+        if(coreLoading&&records.some((record,id)=>
+          !(record.name.startsWith('Woodland ')&&record.name.endsWith(' full'))&&!completion.complete(id)))
+          throw Error('Prepared region core left an incomplete surface');
         startupMark('region-geometry-arrived');
         startupMark('region-geometry-installed');
         await finishNavigation(player,onNavigationReady);
+      }
+      // The developer candidate keeps every physical surface and reduced tree
+      // in core; optional full trees never own navigation. A late failure retries
+      // only unfinished detail, preserving live collision and completed fallbacks.
+      // https://developer.mozilla.org/en-US/docs/Web/API/Response/body
+      if(coreLoading&&!regionDetailComplete){
+        await consume(index.experimentalCore.detail);
+        if(disposed)throw Error('Scene disposed during region detail load');
+        regionDetailComplete=true;startupMark('region-detail-installed');
       }
       // Grass cannot compete for bandwidth with safe routes. A late failure
       // retries only this packet, keeping collision, open gates and jumps intact.

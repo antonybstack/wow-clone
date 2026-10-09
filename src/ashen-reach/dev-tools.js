@@ -150,6 +150,13 @@ export function attachDevTools({params, canvas, camera, player, getCombat, setVi
   // Its UI refresh must not delay navigation or leak an unhandled rejection.
   void whenRegion.then(() => { onChange?.(); }, () => { onChange?.(); });
   return {dev, tick, setEnabled, setGod, setFlying, jumpTo, destinations,
+    get regionCoreAvailable(){return !!world.regionCoreAvailable;},
+    get regionCoreLoading(){return !!world.regionCoreLoading;},
+    regionLoadingURL:id=>{
+      const url=new URL(devDestinationURL(location.href,id));
+      if(world.regionCoreLoading)url.searchParams.delete('regionCore');else url.searchParams.set('regionCore','1');
+      return url.href;
+    },
     get navigationReady() { return isAlive() && isNavigationReady(); },
     get regionReady() { return isAlive() && isRegionReady(); },
     destinationURL: id => devDestinationURL(location.href, id)};

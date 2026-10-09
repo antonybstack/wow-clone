@@ -1,0 +1,1268 @@
+{
+  "url": "http://127.0.0.1:7074/?dev&play&clean&pixelRatio=1",
+  "checks": [
+    {
+      "name": "Native movement and public UI overlooks before/after held full-tree delivery",
+      "reduced": {
+        "mode": true,
+        "navigation": true,
+        "region": false,
+        "ready": false,
+        "position": [
+          -0.00023578000848867704,
+          0.8880783547469568,
+          -0.00041608234044025185
+        ],
+        "height": 1.748,
+        "physics": {
+          "facing": 0,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0.000013868328323150764,
+          "vx": -0.000006837260528158132,
+          "vz": -0.000012065753144698281,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 1,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -0.00023578000848867704,
+            "y": 0.8880783547469568,
+            "z": -0.00041608234044025185
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 725,
+            "boxCount": 681,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.580394906355525,
+                "y": 1.2269298101628527,
+                "z": 18.391660000032296
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -6.1277697155169735,
+                "y": 1.909180724332216,
+                "z": 30
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 2.928819246428747,
+                "y": 1.5697223378683884,
+                "z": 46.29630000000022
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -0.49079428069526904,
+                "y": 2.513611323196927,
+                "z": 62
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.7720018013288021,
+                "y": 5.235198268007045,
+                "z": 88.39800500001625
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -2.8530156667503737,
+                "y": 5.846678748568097,
+                "z": 108
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.0306760737604208,
+                "y": 8.660474957099689,
+                "z": 124.42198499995163
+              }
+            }
+          ]
+        },
+        "flying": false,
+        "stream": {
+          "blocks": 848,
+          "worstInstallMs": 4.800000011920929,
+          "backgroundWorstInstallMs": 4.800000011920929,
+          "backgroundSlowest": {
+            "name": "Vaelmark masonry",
+            "triangles": 4096
+          },
+          "totalInstallMs": 757.799999833107,
+          "allocatedBytes": 142254292,
+          "allocatedRecords": 44,
+          "initialAllocatedBytes": 16271388,
+          "initialAllocatedRecords": 5
+        },
+        "woodland": {
+          "disposed": false,
+          "revision": 27,
+          "transitions": 0,
+          "tiles": 27,
+          "full": 9,
+          "renderedFull": 0,
+          "triangles": 234702
+        },
+        "tiles": [
+          {
+            "key": "-1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,-2",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,-2",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,-1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,0",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,0",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,0",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          }
+        ],
+        "gpu": []
+      },
+      "overlook": {
+        "mode": true,
+        "navigation": true,
+        "region": false,
+        "ready": false,
+        "position": [
+          -27,
+          54.303875000000005,
+          347
+        ],
+        "height": 1.748,
+        "physics": {
+          "facing": -1.9288199999392035,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 2,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -27,
+            "y": 54.303875000000005,
+            "z": 347
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 725,
+            "boxCount": 681,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.285578315700461,
+                "y": 1.311237687458029,
+                "z": 14.58632721175862
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -4.923030741766461,
+                "y": 1.6764233540805011,
+                "z": 27.898585274973268
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 4.97133995342927,
+                "y": 1.591769738260751,
+                "z": 49.17782826353758
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -1.2258916084040616,
+                "y": 2.581148076559472,
+                "z": 64.5969691223514
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": -1.0862916046829934,
+                "y": 4.68198593546442,
+                "z": 85.52098984639358
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": 1.8196073002917221,
+                "y": 6.564133415803958,
+                "z": 107.73722013754974
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": 1.3117935954760196,
+                "y": 9.198071859580383,
+                "z": 128.4679800068275
+              }
+            }
+          ]
+        },
+        "flying": false,
+        "stream": {
+          "blocks": 848,
+          "worstInstallMs": 4.800000011920929,
+          "backgroundWorstInstallMs": 4.800000011920929,
+          "backgroundSlowest": {
+            "name": "Vaelmark masonry",
+            "triangles": 4096
+          },
+          "totalInstallMs": 757.799999833107,
+          "allocatedBytes": 142254292,
+          "allocatedRecords": 44,
+          "initialAllocatedBytes": 16271388,
+          "initialAllocatedRecords": 5
+        },
+        "woodland": {
+          "disposed": false,
+          "revision": 36,
+          "transitions": 9,
+          "tiles": 27,
+          "full": 4,
+          "renderedFull": 0,
+          "triangles": 234702
+        },
+        "tiles": [
+          {
+            "key": "-1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-3,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,1",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-2,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "-1,2",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "0,2",
+            "wanted": "full",
+            "drawn": "reduced",
+            "reduced": true
+          },
+          {
+            "key": "1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "reduced": true
+          }
+        ],
+        "gpu": []
+      },
+      "complete": {
+        "mode": true,
+        "navigation": true,
+        "region": true,
+        "ready": true,
+        "position": [
+          -27,
+          54.303875000000005,
+          347
+        ],
+        "height": 1.748,
+        "physics": {
+          "facing": -1.9288199999392035,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 2,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": -27,
+            "y": 54.303875000000005,
+            "z": 347
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 725,
+            "boxCount": 681,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.3925286476605074,
+                "y": 1.2815721309763157,
+                "z": 14.046183895872506
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -4.923030741766461,
+                "y": 1.6764233540805011,
+                "z": 27.898585274973268
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": 3.3429331538374787,
+                "y": 1.5919223606485668,
+                "z": 50.58272586279753
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -5.1325587701226265,
+                "y": 2.4451372735581702,
+                "z": 62.40422479430613
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.3614440073399725,
+                "y": 4.582808274037025,
+                "z": 83.41349014913554
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -0.23699508265763072,
+                "y": 6.559388640388807,
+                "z": 109.50489651430367
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.6534302001161569,
+                "y": 8.97791305097462,
+                "z": 127.38563101397878
+              }
+            }
+          ]
+        },
+        "flying": false,
+        "stream": {
+          "blocks": 1043,
+          "worstInstallMs": 4.800000011920929,
+          "backgroundWorstInstallMs": 4.800000011920929,
+          "backgroundSlowest": {
+            "name": "Vaelmark masonry",
+            "triangles": 4096
+          },
+          "totalInstallMs": 896.7999996542931,
+          "allocatedBytes": 210308132,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16271388,
+          "initialAllocatedRecords": 5
+        },
+        "woodland": {
+          "disposed": false,
+          "revision": 40,
+          "transitions": 9,
+          "tiles": 27,
+          "full": 4,
+          "renderedFull": 4,
+          "triangles": 308430
+        },
+        "tiles": [
+          {
+            "key": "-1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,1",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "0,1",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "-2,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,2",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "0,2",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          }
+        ],
+        "gpu": []
+      },
+      "end": {
+        "mode": true,
+        "navigation": true,
+        "region": true,
+        "ready": true,
+        "position": [
+          204,
+          51.770671875000005,
+          -51.6
+        ],
+        "height": 1.748,
+        "physics": {
+          "facing": -0.196863673174705,
+          "grounded": true,
+          "vy": 0,
+          "support": 2,
+          "speed": 0,
+          "vx": 0,
+          "vz": 0,
+          "castBlend": 0,
+          "jumps": 0,
+          "landings": 3,
+          "recoveries": 0,
+          "jumpInFlight": false,
+          "airTime": 0,
+          "position": {
+            "x": 204,
+            "y": 51.770671875000005,
+            "z": -51.6
+          },
+          "usingPhysics": true,
+          "colliders": {
+            "meshCount": 725,
+            "boxCount": 681,
+            "skipped": 0,
+            "animatedCount": 7
+          },
+          "capsuleHeight": 1.748,
+          "animated": [
+            {
+              "id": "grave-shade-1",
+              "enabled": true,
+              "radius": 0.4368,
+              "pose": {
+                "x": 3.3925286476605074,
+                "y": 1.2815721309763157,
+                "z": 14.046183895872506
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "enabled": true,
+              "radius": 0.40319999999999995,
+              "pose": {
+                "x": -4.923030741766461,
+                "y": 1.6764233540805011,
+                "z": 27.898585274973268
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "enabled": true,
+              "radius": 0.462,
+              "pose": {
+                "x": -0.33580027177377025,
+                "y": 1.483864126143963,
+                "z": 47.87486233272521
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "enabled": true,
+              "radius": 0.42,
+              "pose": {
+                "x": -2.0648909863740483,
+                "y": 2.3283885275986034,
+                "z": 59.41512206621977
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "enabled": true,
+              "radius": 0.4326,
+              "pose": {
+                "x": 1.9679382209050376,
+                "y": 5.273174084865978,
+                "z": 88.42707585773732
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "enabled": true,
+              "radius": 0.4074,
+              "pose": {
+                "x": -3.074192097254758,
+                "y": 5.81936623611387,
+                "z": 108.44100273888542
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "enabled": true,
+              "radius": 0.441,
+              "pose": {
+                "x": -0.31344116831527846,
+                "y": 8.513093537343222,
+                "z": 124.21621528688338
+              }
+            }
+          ]
+        },
+        "flying": false,
+        "stream": {
+          "blocks": 1043,
+          "worstInstallMs": 4.800000011920929,
+          "backgroundWorstInstallMs": 4.800000011920929,
+          "backgroundSlowest": {
+            "name": "Vaelmark masonry",
+            "triangles": 4096
+          },
+          "totalInstallMs": 896.7999996542931,
+          "allocatedBytes": 210308132,
+          "allocatedRecords": 71,
+          "initialAllocatedBytes": 16271388,
+          "initialAllocatedRecords": 5
+        },
+        "woodland": {
+          "disposed": false,
+          "revision": 50,
+          "transitions": 19,
+          "tiles": 27,
+          "full": 6,
+          "renderedFull": 6,
+          "triangles": 347440
+        },
+        "tiles": [
+          {
+            "key": "-1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-3",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-2",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "-3,-2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,-1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,-1",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "2,-1",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "-2,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,0",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "0,0",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "2,0",
+            "wanted": "full",
+            "drawn": "full",
+            "full": true,
+            "reduced": false
+          },
+          {
+            "key": "-3,0",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-3,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "2,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,1",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-2,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "-1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "0,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          },
+          {
+            "key": "1,2",
+            "wanted": "reduced",
+            "drawn": "reduced",
+            "full": false,
+            "reduced": true
+          }
+        ],
+        "gpu": []
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}
