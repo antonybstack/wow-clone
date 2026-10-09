@@ -3,10 +3,19 @@
 Updated **2026-10-09**. Read this before choosing work. The latest user request
 controls scope; historical plans/results are evidence, not an active task queue.
 **Active direction: Gothic region and cathedral exploration. Mobile is backlogged.**
-The active eight-hour goal continues through the focused following slices;
-there is no pending user review or approval.
+The eight-hour implementation window has elapsed. G01–G05 are complete; G06–G08
+are implemented and delivered, with isolated performance acceptance pending.
+No user review or approval is requested. Remaining measurement gates need the
+external renderer status resolved; candidate adoption and production stay held.
 
 ## Current task and next work
+
+**Candidate woodland motion audit passes eight native cases** on final G08 preview:
+normal Havok trunk contact/escape, menu-paused full arrival and100/140m ordinary/
+shadow visibility. Fifteen focused CPU checks pass. Root-reviewed31.753467s MP4
+is delivered as Telegram902/verified VE. Diagnostic Fly setup/distance sweep is
+explicitly separate from normal contact; no timing/FPS claim or product changes.
+[Evidence and limits](baselines/region-core-motion-2026-10-09/README.md).
 
 **G08 region-processing progress is pushed as 62bb96d + 4b6707a.**
 [Final desktop preview](https://aafce17b.fardel.pages.dev/?dev&play), Telegram **901** /
@@ -153,7 +162,9 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-G03–G08 and region-core candidate owned contexts/harnesses are closed.
+G03–G08, region-core candidate and final woodland motion contexts/harnesses are closed.
+Woodland Chrome89526/CDP10037, Vite89483+89521/5873 and media79423/7077
+stopped; review1147996210/6213 closed. Fifteen user Edge tabs remain intact.
 G08 Chrome99825/CDP10037, Vite99776+99820/5873, compiled13042/7074 and
 media10177/7077 stopped; review1147996194/6198/6202/6206 tabs closed.
 All four owned ports are idle; Grok97463/report-only resume ended.

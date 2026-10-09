@@ -167,3 +167,7 @@ or hashing dependency is proposed:
   and rejected unsafe early-exit assumptions. No source review is live acceptance.
 
 [Experimental implementation and actual functional evidence](../../baselines/region-core-candidate-2026-10-09/README.md).
+
+[Additional eight-case public woodland motion proof](../../baselines/region-core-motion-2026-10-09/README.md)
+closes selected-trunk contact, paused arrival and100/140m visibility checks.
+Paired timing and settled performance remain required before default adoption.

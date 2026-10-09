@@ -1,0 +1,30 @@
+{
+  "owner": "root",
+  "browserPid": 89526,
+  "gpuHelperPids": [
+    89532
+  ],
+  "cdpPort": 10037,
+  "url": "https://aafce17b.fardel.pages.dev/?dev&play&clean&pixelRatio=1&regionCore=1&at=west-keep",
+  "purpose": "Core candidate tree contact, paused arrival,100/140m hysteresis and shadow visibility; diagnostic Fly setup/sweep; no benchmark",
+  "renderingClients": 0,
+  "active": false,
+  "cleanup": {
+    "gameContextsClosed": true,
+    "harnessesStopped": [
+      64512,
+      64469,
+      64507,
+      89526,
+      89483,
+      89521
+    ],
+    "reviewTabsClosed": [
+      "1147996210",
+      "1147996213"
+    ],
+    "mediaServerStopped": 79423,
+    "preservedUserEdgeTabs": 15,
+    "unresolvedExternalRenderer": "User Shadowglass tab current rendering status unknown; no timing/FPS qualification"
+  }
+}

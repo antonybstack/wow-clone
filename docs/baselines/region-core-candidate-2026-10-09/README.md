@@ -65,6 +65,14 @@ completion remains unchanged; out-of-order completion tracking applies to candid
 The report's claim that generated packets are stale describes its earlier read,
 not the subsequent completed preparation/build. No report-only probe was repeated.
 
+## Additional live woodland proof
+
+[Eight-case public contact/paused-arrival/hysteresis check](../region-core-motion-2026-10-09/README.md)
+passes on final G08 preview aafce17b. Normal Havok trunk contact/escape and diagnostic
+Fly distance sweep are explicitly distinguished. Fifteen focused CPU checks pass;
+root-reviewed31.753467s live MP4 is delivered as Telegram902/verified VE. This fills
+the combined motion gap without claiming timing, FPS or product changes.
+
 ## Qualification still required
 
 Three isolated cold local50Mbit/s pairs, ≥20% median safe-navigation improvement,

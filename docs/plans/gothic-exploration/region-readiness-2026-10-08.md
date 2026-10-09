@@ -30,11 +30,17 @@ release; those local timings do not describe the user's current production wait.
 An offline follow-on audit found a candidate before destination-specific streaming:
 load all physical/visible surfaces and reduced trees before full woodland detail.
 It reduces the first candidate packet to 14.4 MB, but increases total transfer
-11.7%; no runtime speedup or safety qualification is established.
+11.7%. The experiment is implemented behind the Developer tools toggle; bounded
+native collision, fallback, failure, retry and disposal checks pass. Isolated
+timing/settled performance remain pending; selected-tile live contact, paused
+arrival and100/140m transitions also pass;
+no measured runtime speedup or default adoption is established.
 [Concrete experiment and acceptance gates](region-navigation-core-2026-10-09.md).
 Earlier destination-only jumps additionally require qualifying local collision,
 terrain and safe exits; the starting-area fence does not protect a remote player.
-Neither proposal is implemented or permits unsafe jumps.
+Destination-only readiness is not implemented. The experimental physical-first
+packet still completes every physical surface and final support before allowing
+global jumps. [Actual candidate evidence](../../baselines/region-core-candidate-2026-10-09/README.md).
 The old 18.3-second observation below and its 0.55 seconds of synchronous
 collider calls are overlapping wall-clock/CPU measurements, not additive phases.
 
