@@ -4,11 +4,33 @@ Updated **2026-10-09**. Read this before choosing work. The latest user request
 controls scope; historical plans/results are evidence, not an active task queue.
 **Active direction: Gothic region and cathedral exploration. Mobile is backlogged.**
 The eight-hour implementation window has elapsed. G01–G08 are complete on desktop
-previews, including final isolated G06–G08 performance acceptance. Experimental
-region core remains optional. **Production qualification failed its first valid
+previews, including final isolated G06–G08 performance acceptance. Physical-core loading is now the default on a qualified desktop
+preview; the whole-packet comparison is available through Developer tools. **Production qualification failed its first valid
 cold start at 1,140.1 ms; production is unchanged.** No user approval is pending.
 
 ## Current task and next work
+
+**Physical-core default adoption is complete on desktop preview**, product 7673031,
+operator-only helper correction d240f76:
+[ba01c765](https://ba01c765.fardel.pages.dev/?dev&play), Telegram **903** /
+[reviewed direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/core-default.mp4).
+Three valid 50 Mbps local pairs improve median safe navigation **6.07→4.77 s (21.48%)**;
+full detail is 0.43 s later and combined region transfer 11.7% larger. Separate fifteen
+M1 Max/uncapped Chromium WebGPU/1280×720/DPR1/seven-enemy windows pass
+**188.5–240.3 FPS**, p99≤6.5 ms / worst 13.6 ms, 38,631 raw intervals, no recorded errors,
+GPU errors, recoveries or intervals >16.67 ms. No paired FPS improvement claim.
+29 focused CPU checks, 5 local / 5 public default/UI/fault/retry/disposal cases,
+20 public landings, 6 surface checks, 3 entries and 651 artifact rows pass.
+Both Developer tools reload directions keep the URL destination; a real selector
+reset was found, fixed and rechecked. [Evidence, costs and limits](baselines/region-core-adoption-2026-10-09/README.md).
+
+**Startup diagnosis remains open.** Two declared shader-disk-cache-off diagnostic
+visits did not reproduce the public 1140.1 ms miss. Input probe now separates
+keydown→RAF-observed motion from the later GPU fence, with explicit console labels.
+The invalid God-mode comparison fixture also records 4725.9 ms first play; it is
+retained as a startup concern, not cleared by the fixture correction. Core loading
+starts after first play and cannot fix either miss. No unchanged acceptance retry
+or production promotion was run. [Bounded diagnosis and next work](baselines/startup-completion-2026-10-09/README.md).
 
 **Production remains 5723a4ab / source 7d00c56.** User authorized closing only
 Shadowglass; root closed it and preserved the other fifteen Edge tabs. Isolation
@@ -32,8 +54,8 @@ streaming-tail or production-comparison claim.
 The FPS helper now captures/asserts the existing GPU-error ledger after each
 window; the original throughput-only run is retained separately. This completes
 desktop milestone performance; it cannot replace failed startup qualification. Next release work needs an attributed first-completion correction
-before a changed build/seal and fresh release gates. Experimental core adoption
-and physical iPhone acceptance remain separate.
+before a changed build/seal and fresh release gates. Physical-core desktop adoption now passes as recorded above;
+physical iPhone acceptance remains deferred.
 
 **Candidate woodland motion audit passes eight native cases** on final G08 preview:
 normal Havok trunk contact/escape, menu-paused full arrival and100/140m ordinary/
@@ -52,9 +74,8 @@ Default 22.4 MB and experimental 14.4 MB labels are native verified. Navigation/
 disposal remains safe. 43 CPU, four progress cases, five candidate cases, twenty
 landings, six surface picks and 651 served checks pass; final public proof retained.
 [Evidence/review/limits](baselines/g08-region-progress-2026-10-09/README.md).
-Final integrated standard-mode FPS now passes as recorded above. No core load
-gain is claimed; candidate adoption still needs paired timing and settled
-performance. The newly declared production qualification failed startup and
+Final integrated standard-mode FPS now passes as recorded above. Its original acceptance claimed no core speedup. The later paired timing
+and separate core performance now pass above. The newly declared production qualification failed startup and
 remains held independently of these accepted desktop previews.
 
 
@@ -75,12 +96,11 @@ now has a pushed experimental implementation, product **6ea3c6a**:
 [Desktop preview](https://fc70ac46.fardel.pages.dev/?dev&play&regionCore=1), Telegram **899** /
 [reviewed VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/region-core.mp4). all physical surfaces plus reduced trees first,
 full woodland detail later. Candidate first payload14.4 MB versus22.4 MB, but
-combined transfer rises11.7%. No runtime speedup claim; the existing whole-region
-stream remains default. Candidate mode is exposed through ?dev → Developer tools
-with a reload toggle and shareable spawn link. Seventy CPU checks, five native failure/default/retry/disposal cases, twenty landings,
+combined transfer rises11.7%. This original candidate made no runtime speedup claim. The later qualified
+adoption above makes physical-core loading default, with the whole-packet
+comparison exposed through ?dev → Developer tools and shareable spawn links. Seventy CPU checks, five native failure/default/retry/disposal cases, twenty landings,
 six surface checks pass locally; five-case fault/retry checks and ordinary Eastwatch
-climb/guards pass locally/publicly. All651 served artifacts pass. G06 performance is now accepted on the standard integration; candidate paired
-timing/settled performance must still qualify before core adoption.
+climb/guards pass locally/publicly. All651 served artifacts pass. G06 performance is now accepted on the standard integration; candidate timing/settled acceptance subsequently passed above.
 [Candidate evidence and limits](baselines/region-core-candidate-2026-10-09/README.md).
 
 **G07 Vaelmark exploration guide is pushed as 139c2d5 on a functional desktop preview.**
@@ -183,7 +203,15 @@ Commit/push completed owned work; every visual cycle needs root-reviewed motion
 on Telegram via `tg file` plus verified VE. Do not equate API dimensions, tests or
 an offline render with actual playback/visual acceptance.
 
-All Gothic qualification contexts/harnesses are closed. Latest GPU-ledger FPS Chrome16888/GPU16916, Vite16833+16859/5873 and
+All current core-adoption contexts/harnesses are closed. Settled Chrome50968 /
+Vite50905+50929, native Chrome73894/Vite73807+73833, corrected native Chrome79125 /
+Vite79064+79108 and public Chrome94843/Vite94792+94816 are stopped (CDP10037,
+Vite5873). Timing server39964, native servers74369/80023 (7074), motion media88343
+(7077), review tabs1147996224/6228 and both bounded Grok sessions are closed.
+All nine fresh diagnostic/comparison browsers (including the invalid God-mode fixture) closed finally and recorded their
+actual PIDs in retained evidence. No owned renderer remains.
+
+All prior Gothic qualification contexts/harnesses are closed. Latest GPU-ledger FPS Chrome16888/GPU16916, Vite16833+16859/5873 and
 CDP10037 stopped; original FPS Chrome91407/GPU91413 and Vite91343+91368 stopped. Valid cold Chrome75164, both
 diagnostic browsers and interrupted Chrome71663 stopped. Final inventory: fifteen
 preserved user Edge tabs, user Chrome New Tab, no game tab. Grok receipt reviewer ended with a report; raw-frame verification remained

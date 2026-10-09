@@ -1,0 +1,203 @@
+{
+  "owner": "root",
+  "freshBrowsers": [
+    {
+      "kind": "invalid comparison",
+      "pid": 43575,
+      "active": false
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 1,
+      "mode": "whole",
+      "owner": "root",
+      "browserPid": 46204,
+      "gpuHelperPids": [
+        46230
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+      "purpose": "Region timing pair1 whole",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 1,
+      "mode": "core",
+      "owner": "root",
+      "browserPid": 46607,
+      "gpuHelperPids": [
+        46611
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+      "purpose": "Region timing pair1 core",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 2,
+      "mode": "core",
+      "owner": "root",
+      "browserPid": 46954,
+      "gpuHelperPids": [
+        46958
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+      "purpose": "Region timing pair2 core",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 2,
+      "mode": "whole",
+      "owner": "root",
+      "browserPid": 47269,
+      "gpuHelperPids": [
+        47293
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+      "purpose": "Region timing pair2 whole",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 3,
+      "mode": "whole",
+      "owner": "root",
+      "browserPid": 47573,
+      "gpuHelperPids": [
+        47577
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+      "purpose": "Region timing pair3 whole",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "valid comparison",
+      "pair": 3,
+      "mode": "core",
+      "owner": "root",
+      "browserPid": 47911,
+      "gpuHelperPids": [
+        47937
+      ],
+      "cdpPort": null,
+      "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+      "purpose": "Region timing pair3 core",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 46201
+    },
+    {
+      "kind": "startup diagnostic",
+      "label": "candidate",
+      "owner": "probe-playable-startup",
+      "browserPid": 34257,
+      "gpuHelperPids": [
+        34263
+      ],
+      "cdpPort": null,
+      "url": "https://aafce17b.fardel.pages.dev/?play=&pixelRatio=1",
+      "purpose": "50mbps cold run 1",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 34255
+    },
+    {
+      "kind": "startup diagnostic",
+      "label": "production",
+      "owner": "probe-playable-startup",
+      "browserPid": 34719,
+      "gpuHelperPids": [
+        34723
+      ],
+      "cdpPort": null,
+      "url": "https://5723a4ab.fardel.pages.dev/?play=&pixelRatio=1",
+      "purpose": "50mbps cold run 1",
+      "renderingClients": 0,
+      "active": false,
+      "controllerPid": 34718
+    }
+  ],
+  "harnessesClosed": [
+    {
+      "purpose": "settled FPS",
+      "chrome": 50968,
+      "vite": [
+        50905,
+        50929
+      ]
+    },
+    {
+      "purpose": "native selector failure",
+      "chrome": 73894,
+      "vite": [
+        73807,
+        73833
+      ]
+    },
+    {
+      "purpose": "corrected native",
+      "chrome": 79125,
+      "vite": [
+        79064,
+        79108
+      ]
+    },
+    {
+      "purpose": "public acceptance",
+      "chrome": 94843,
+      "vite": [
+        94792,
+        94816
+      ]
+    }
+  ],
+  "cdpPort": 10037,
+  "vitePort": 5873,
+  "serversStopped": [
+    {
+      "pid": 39964,
+      "port": 7074
+    },
+    {
+      "pid": 74369,
+      "port": 7074
+    },
+    {
+      "pid": 80023,
+      "port": 7074
+    },
+    {
+      "pid": 88343,
+      "port": 7077
+    }
+  ],
+  "ownedEdgeTabsClosed": [
+    1147996224,
+    1147996228
+  ],
+  "finalInventory": {
+    "userChromeTabs": 1,
+    "userEdgeTabs": 15,
+    "gameTabs": 0,
+    "ownedRenderers": 0
+  },
+  "preserved": "User Edge 2931, Chrome 13883, Orca and unrelated Vite 4000/10171+10205.",
+  "review": "Grok source-only session 01a12274-8181-7231-9de7-9965524b76fe ended; no renderer owned.",
+  "cleanupInspection": "A late CDP read found port already closed after public harness down; no browser created by that inspection."
+}

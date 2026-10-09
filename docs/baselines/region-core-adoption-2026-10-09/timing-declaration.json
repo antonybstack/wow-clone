@@ -1,0 +1,25 @@
+{
+  "method": "Three local constrained-network independent cold pairs;fresh Chrome process/profile per visit;alternating whole/core,core/whole,whole/core. Same frozen built dist for both modes.",
+  "helper": "scripts/ashen-reach/probe-region-core-timing.mjs",
+  "helperSha256": "2528395417645056839b070b9aa808e54aec687c133e024bb71c446cd3ae7f70",
+  "acceptance": {
+    "medianNavigationGainMinimum": 0.2,
+    "localFirstPlayMaxMs": 1000,
+    "errorsAndRecoveries": 0,
+    "nativeHavok": true,
+    "GodAndFly": false,
+    "enemiesAtComplete": 7,
+    "separateSettledPerformanceRequired": true
+  },
+  "conditions": "M1Max;1280x720/DPR1;uncapped Chromium WebGPU;50Mbps down/10up/40ms;HTTP cache disabled;no screenshot/recording/profiler/build/compression/review concurrently. Existing Lite render-loop interval capture only;native CDP encoded bytes at boundaries. OS/driver caches uncontrolled. Native W movement in starting meadow until region ready.",
+  "limits": "Local comparison only,does not clear rejected public startup or qualify production. Record core+detail readiness,encoded transfer and all loading tails;no default change unless gain/safety and settled gates pass.",
+  "ownership": {
+    "rootServerPid": 39964,
+    "serverPort": 7074,
+    "chrome": "One fresh process per visit,actualPIDs inreport,closed finally",
+    "otherBrowsers": "15preserved userEdge tabs andChromeNewTab,none game",
+    "unrelated": "Vite4000 preserved"
+  },
+  "attempt": "corrected-mortal",
+  "methodCorrection": "Original first whole visit retained as invalid for declared God=false conditions;?dev starts God=true. Helper now explicitly sets exposed God state false and records it before native W measurement. Not a product failure or accepted timing pair."
+}

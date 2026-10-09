@@ -1,0 +1,6 @@
+{
+  "url": "http://127.0.0.1:7074/?dev&play&clean&pixelRatio=1",
+  "checks": [],
+  "errors": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'cathedral-nave'\n- 'east-keep-hall-balcony'\n\n    at file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-region-core.mjs:35:1146"
+}

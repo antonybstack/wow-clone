@@ -1,0 +1,329 @@
+{
+  "comparison": {
+    "wholeMedianNavigationMs": 6069.300000011921,
+    "coreMedianNavigationMs": 4765.599999964237,
+    "gainFraction": 0.21480236601339908,
+    "meets20Percent": true
+  },
+  "conditions": {
+    "cpu": "Apple M1 Max",
+    "url": "http://127.0.0.1:7074/",
+    "pairs": 3,
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "network": {
+      "downloadMbps": 50,
+      "uploadMbps": 10,
+      "latencyMs": 40
+    },
+    "freshBrowserEachVisit": true,
+    "httpCacheDisabled": true,
+    "uncapped": true,
+    "recording": false,
+    "gpuTimestampQueries": false,
+    "shaderDiskCacheDisabled": false,
+    "limits": "Local transport/CPU comparison; OS/driver caches uncontrolled. Not public cold-start qualification or settled FPS. Starting meadow W movement, no God/Fly/teleport."
+  },
+  "rows": [
+    {
+      "pair": 1,
+      "mode": "whole",
+      "playableMs": 534.6999999880791,
+      "navigationMs": 6069.300000011921,
+      "completeMs": 8292.300000011921,
+      "navigationEncodedBytes": 29079907,
+      "completeEncodedBytes": 38154695,
+      "navigationTails": {
+        "samples": 930,
+        "meanMs": 5.9533333333589695,
+        "meanFps": 167.97312429938864,
+        "p50Ms": 5.199999988079071,
+        "p95Ms": 19.69999998807907,
+        "p99Ms": 21.30000001192093,
+        "maxMs": 35.80000001192093,
+        "above6_94": 104,
+        "above8_33": 79,
+        "above16_67": 65,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 335,
+        "meanMs": 6.614328358066616,
+        "meanFps": 151.18693023161347,
+        "p50Ms": 3.599999964237213,
+        "p95Ms": 21,
+        "p99Ms": 21.400000035762787,
+        "maxMs": 30.19999998807907,
+        "above6_94": 60,
+        "above8_33": 60,
+        "above16_67": 58,
+        "above33_33": 0
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 46204,
+        "gpuHelperPids": [
+          46230
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+        "purpose": "Region timing pair1 whole",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    },
+    {
+      "pair": 1,
+      "mode": "core",
+      "playableMs": 532.5,
+      "navigationMs": 4765.599999964237,
+      "completeMs": 8726.599999964237,
+      "navigationEncodedBytes": 21068630,
+      "completeEncodedBytes": 40784456,
+      "navigationTails": {
+        "samples": 732,
+        "meanMs": 5.78551912568306,
+        "meanFps": 172.84533648170012,
+        "p50Ms": 5,
+        "p95Ms": 18.299999952316284,
+        "p99Ms": 21.30000001192093,
+        "maxMs": 36.19999998807907,
+        "above6_94": 68,
+        "above8_33": 55,
+        "above16_67": 47,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 591,
+        "meanMs": 6.690862944182608,
+        "meanFps": 149.45755253729314,
+        "p50Ms": 3.899999976158142,
+        "p95Ms": 21,
+        "p99Ms": 22.099999964237213,
+        "maxMs": 28.100000023841858,
+        "above6_94": 94,
+        "above8_33": 94,
+        "above16_67": 91,
+        "above33_33": 0
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 46607,
+        "gpuHelperPids": [
+          46611
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+        "purpose": "Region timing pair1 core",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    },
+    {
+      "pair": 2,
+      "mode": "core",
+      "playableMs": 531.3999999761581,
+      "navigationMs": 4803.899999976158,
+      "completeMs": 8763.899999976158,
+      "navigationEncodedBytes": 21068630,
+      "completeEncodedBytes": 40784456,
+      "navigationTails": {
+        "samples": 751,
+        "meanMs": 5.692010652447509,
+        "meanFps": 175.68484338131196,
+        "p50Ms": 5,
+        "p95Ms": 18.599999964237213,
+        "p99Ms": 21.399999976158142,
+        "maxMs": 36.60000002384186,
+        "above6_94": 66,
+        "above8_33": 55,
+        "above16_67": 46,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 587,
+        "meanMs": 6.734412265798708,
+        "meanFps": 148.49105765006192,
+        "p50Ms": 3.800000011920929,
+        "p95Ms": 21,
+        "p99Ms": 22.69999998807907,
+        "maxMs": 33.60000002384186,
+        "above6_94": 100,
+        "above8_33": 97,
+        "above16_67": 93,
+        "above33_33": 1
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 46954,
+        "gpuHelperPids": [
+          46958
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+        "purpose": "Region timing pair2 core",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    },
+    {
+      "pair": 2,
+      "mode": "whole",
+      "playableMs": 535.8999999761581,
+      "navigationMs": 6101.199999988079,
+      "completeMs": 8301.599999964237,
+      "navigationEncodedBytes": 29079907,
+      "completeEncodedBytes": 38154695,
+      "navigationTails": {
+        "samples": 943,
+        "meanMs": 5.9044538706003795,
+        "meanFps": 169.36367391728263,
+        "p50Ms": 5.100000023841858,
+        "p95Ms": 19.299999952316284,
+        "p99Ms": 21.19999998807907,
+        "maxMs": 36.799999952316284,
+        "above6_94": 99,
+        "above8_33": 77,
+        "above16_67": 64,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 332,
+        "meanMs": 6.605722891638078,
+        "meanFps": 151.3838858220741,
+        "p50Ms": 3.5,
+        "p95Ms": 21,
+        "p99Ms": 21.700000047683716,
+        "maxMs": 33.5,
+        "above6_94": 58,
+        "above8_33": 58,
+        "above16_67": 57,
+        "above33_33": 1
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 47269,
+        "gpuHelperPids": [
+          47293
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+        "purpose": "Region timing pair2 whole",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    },
+    {
+      "pair": 3,
+      "mode": "whole",
+      "playableMs": 533.8000000119209,
+      "navigationMs": 6015.400000035763,
+      "completeMs": 8183.300000011921,
+      "navigationEncodedBytes": 29079907,
+      "completeEncodedBytes": 38154695,
+      "navigationTails": {
+        "samples": 933,
+        "meanMs": 5.877491961402014,
+        "meanFps": 170.14059850138196,
+        "p50Ms": 5.199999988079071,
+        "p95Ms": 19.19999998807907,
+        "p99Ms": 21.299999952316284,
+        "maxMs": 51.89999997615814,
+        "above6_94": 93,
+        "above8_33": 78,
+        "above16_67": 64,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 325,
+        "meanMs": 6.648923076849718,
+        "meanFps": 150.40029617455033,
+        "p50Ms": 3.599999964237213,
+        "p95Ms": 21,
+        "p99Ms": 21.599999964237213,
+        "maxMs": 33.799999952316284,
+        "above6_94": 57,
+        "above8_33": 57,
+        "above16_67": 57,
+        "above33_33": 1
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 47573,
+        "gpuHelperPids": [
+          47577
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1",
+        "purpose": "Region timing pair3 whole",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    },
+    {
+      "pair": 3,
+      "mode": "core",
+      "playableMs": 535.2000000476837,
+      "navigationMs": 4724.400000035763,
+      "completeMs": 8710.300000011921,
+      "navigationEncodedBytes": 21068630,
+      "completeEncodedBytes": 40784456,
+      "navigationTails": {
+        "samples": 730,
+        "meanMs": 5.7406849315721695,
+        "meanFps": 174.19524184305575,
+        "p50Ms": 5,
+        "p95Ms": 18.5,
+        "p99Ms": 21.200000047683716,
+        "maxMs": 37.60000002384186,
+        "above6_94": 68,
+        "above8_33": 55,
+        "above16_67": 44,
+        "above33_33": 1
+      },
+      "completeTails": {
+        "samples": 587,
+        "meanMs": 6.778875638821259,
+        "meanFps": 147.51708886252476,
+        "p50Ms": 3.800000011920929,
+        "p95Ms": 20.900000035762787,
+        "p99Ms": 21.69999998807907,
+        "maxMs": 26,
+        "above6_94": 101,
+        "above8_33": 99,
+        "above16_67": 96,
+        "above33_33": 0
+      },
+      "passed": true,
+      "ownership": {
+        "owner": "root",
+        "browserPid": 47911,
+        "gpuHelperPids": [
+          47937
+        ],
+        "cdpPort": null,
+        "url": "http://127.0.0.1:7074/?dev=&play=&clean=&pixelRatio=1&regionCore=1",
+        "purpose": "Region timing pair3 core",
+        "renderingClients": 0,
+        "active": false,
+        "controllerPid": 46201
+      }
+    }
+  ],
+  "runtimeChange": "Default adoption happens after first play. It does not correct the retained public 1140.1ms miss or the invalid-fixture 4725.9ms start.",
+  "helperReproduction": "Original paired SHA is in timing-declaration. Current helper additionally uses explicit regionCore=0 for whole so it works with old and new defaults. The recorded pairs used the exact old aafce17b product.",
+  "nativeAcceptance": "Five local and five public default/UI/fault/retry/disposal cases pass after selector correction in 7673031. Existing woodland contact/arrival/LOD motion remains independently retained."
+}

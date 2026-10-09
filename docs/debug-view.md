@@ -52,6 +52,15 @@ native Lite projection to verify the clicked pixel and capture live motion.
 Each selection exposes a readonly **Spawn link**: select it and copy it.
 For example, **`?dev&play&at=cathedral-nave`** or
 **`?dev&play&at=cathedral-undercroft`**. Other URL options survive.
+
+On the current desktop preview, physical surfaces and reduced trees load first
+by default. In **Developer tools**, choose **Reload with whole-region loading**
+to compare the original packet, then **Reload with physical surfaces first** to
+return. Both reloads preserve the selected destination and its spawn link.
+The whole-packet opt-out is `?dev&regionCore=0`; without `?dev` the opt-out is
+ignored. Optional full tree detail can continue after routes become safe.
+[Measured benefit and transfer cost](baselines/region-core-adoption-2026-10-09/README.md).
+
 `at=` is ignored without `dev`; unknown destinations cannot move the player.
 Both the menu jump and a spawn link wait for the complete region/collision boundary;
 they do not weaken the progressive first-play fence. Spawn links still load the

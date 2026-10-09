@@ -1,0 +1,81 @@
+[
+ {
+  "label": "root-bare",
+  "requested": "/",
+  "playableMs": 212,
+  "clean": true,
+  "camera": "play",
+  "usingPhysics": true,
+  "url": "/",
+  "development": false,
+  "havokPreload": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+  "streaming": [
+   {
+    "url": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+    "type": "application/wasm",
+    "encoding": "br",
+    "success": true
+   }
+  ],
+  "navigations": 1,
+  "havokWasmRequests": 1,
+  "havokURLs": [
+   "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br"
+  ],
+  "fallbackLogs": [],
+  "documentRequests": 1
+ },
+ {
+  "label": "root-with-query",
+  "requested": "/?play&clean&noEnemies",
+  "playableMs": 205,
+  "clean": true,
+  "camera": "play",
+  "usingPhysics": true,
+  "url": "/?play&clean&noEnemies",
+  "development": false,
+  "havokPreload": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+  "streaming": [
+   {
+    "url": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+    "type": "application/wasm",
+    "encoding": "br",
+    "success": true
+   }
+  ],
+  "navigations": 1,
+  "havokWasmRequests": 1,
+  "havokURLs": [
+   "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br"
+  ],
+  "fallbackLogs": [],
+  "documentRequests": 1
+ },
+ {
+  "label": "direct-game",
+  "requested": "/ashen-reach.html?play&clean",
+  "playableMs": 202,
+  "clean": true,
+  "camera": "play",
+  "usingPhysics": true,
+  "url": "/ashen-reach?play&clean",
+  "development": false,
+  "havokPreload": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+  "streaming": [
+   {
+    "url": "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br",
+    "type": "application/wasm",
+    "encoding": "br",
+    "success": true
+   }
+  ],
+  "navigations": 1,
+  "havokWasmRequests": 1,
+  "havokURLs": [
+   "https://ba01c765.fardel.pages.dev/physics/HavokPhysics-8f4493dae88a.wasm.br"
+  ],
+  "fallbackLogs": [],
+  "documentRequests": 1
+ }
+]
+entry points OK

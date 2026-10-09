@@ -1,20 +1,23 @@
 # Reduce the region wait without opening unsafe surfaces
 
-**Experimental implementation complete locally after offline analysis at source9237092.
-No new load-time/FPS qualification.** The existing whole-region stream remains
-default; ?dev → Developer tools exposes the candidate reload toggle. Independent
-source work may continue under the user's parallel-work authorization; G06's
-outstanding isolated FPS gate still holds acceptance/release. The latest user asks why region collision
-waits; the active Gothic direction and one-second playable-start contract remain.
+**Desktop default adoption passes on 2026-10-09**, product 7673031 /
+[ba01c765](https://ba01c765.fardel.pages.dev/?dev&play), Telegram 903/reviewed VE.
+Three valid local 50 Mbps pairs: 21.48% median navigation gain; separate core
+188.5–240.3 FPS, p99≤6.5 ms / worst 13.6 ms. Functional/public/error/motion gates pass.
+Full-ready is 434 ms later, combined region bytes 11.7% larger. Whole-packet
+comparison remains in ?dev → Developer tools. G06–G08 performance is complete;
+production remains held by the independent first-completion startup misses.
+[Actual adoption evidence and limitations](../../baselines/region-core-adoption-2026-10-09/README.md).
+The design and baseline findings below explain the implemented split.
 
 ## Findings and decision
 
-The current region loader transfers one **22,401,010-byte HTTP-Brotli packet**,
+Before adoption, the baseline region loader transferred one **22,401,010-byte HTTP-Brotli packet**,
 consumes **158,144,000 decoded bytes in1,037 blocks**, uploads visible meshes and
 installs collision, then installs the remaining entries from **681 boxes**. Only
 then does it remove the starting fence, retire skyline proxies, register shadows
 and allow every developer jump/click teleport. Foliage, enhancements and NPCs are
-already outside this navigation gate. Streaming improved three local50Mbit/s
+already outside this navigation gate. Streaming improved three local 50Mbit/s
 pairs to5.91–6.07s from7.48–7.63s; those are earlier declared local measurements,
 not a current production or universal cold-start result.
 
@@ -96,7 +99,7 @@ packages remain a separate, more complex follow-on if needed.
    Existing ?dev destination jumps, shareable links and surface click picking
    remain the reproducible controls; expose the experimental mode through a
    Developer tools reload toggle and preserve `regionCore=1` in spawn links.
-   Ignore that mode without ?dev. Accurately distinguish safe routes from
+   Core is now the ordinary default; ignore opt-out `regionCore=0` without ?dev. Accurately distinguish safe routes from
    optional detail loading. No hidden shortcut, auto-travel or coordinate clamp.
 
 ## Why the simpler cathedral-prefix proposal is insufficient
@@ -170,4 +173,5 @@ or hashing dependency is proposed:
 
 [Additional eight-case public woodland motion proof](../../baselines/region-core-motion-2026-10-09/README.md)
 closes selected-trunk contact, paused arrival and100/140m visibility checks.
-Paired timing and settled performance remain required before default adoption.
+Paired timing and settled performance subsequently pass in the adoption evidence
+linked above; public startup qualification remains independent.

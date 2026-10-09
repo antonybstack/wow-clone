@@ -1,0 +1,18 @@
+{
+  "verdict": "No causal correction demonstrated; production remains held.",
+  "visits": [
+    {
+      "label": "candidate",
+      "reportSha256": "41ce824e74997d4beda5d0c801b95a1028f36f4314039b0fb78af9d5f9d99a8d",
+      "tracePath": ".cache/startup-completion-2026-10-09/candidate-1.trace.json",
+      "traceSha256": "fed84be76f68e96d01e44c1b179b61cb1e8e06c519b5457a42f04f4b55e05339"
+    },
+    {
+      "label": "production",
+      "reportSha256": "a3a94600172a19a66ff606cc7d209244fbe5f3796e67f4a07fb2504c7e76629c",
+      "tracePath": ".cache/startup-completion-2026-10-09/production-1.trace.json",
+      "traceSha256": "f541572cb8d3ddc3924f4582dd98cdab930e0dad304a539d1c293b598082aadd"
+    }
+  ],
+  "traceLimits": "Unlabelled compositor/Dawn/Metal work is not attributed to game materials. These successful diagnostic traces do not explain an untraced earlier 523ms callback window. OS/driver caches uncontrolled even with Chrome shader disk cache off."
+}
