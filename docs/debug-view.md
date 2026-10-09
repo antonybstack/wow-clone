@@ -29,9 +29,25 @@ then choose **Developer tools → Destination → Jump to destination**.
 **Vaelmark — nave** starts inside the cathedral; **Vaelmark — undercroft**
 starts at the lower chamber threshold. The same menu lists the bridge, entrance,
 chapels, gallery, bell landings, parapet and existing region landmarks.
-God mode and Fly mode have visible toggles; while flying, click ground to teleport.
+God mode and Fly mode have visible toggles; while flying, click a solid surface
+to teleport (ground, bridge, castle floor, roof or wall).
 Jumping switches back to ordinary Havok walking. Fly-off preserves the current
 position so an elevated floor can catch the character rather than resetting to terrain.
+
+Click teleport selects the **nearest collision surface**, not the terrain beneath
+the pixel. It uses Lite `createPickingRay` and the existing Havok world. The local
+player is excluded with a lazy 1 mm `shapeCast` probe because Lite 1.31.1's public
+`physicsRaycast` lacks `ignoreBody`; ordinary gameplay raycasts remain unchanged.
+The probe belongs to the player's existing physics owner and is released on
+disposal. Floor/roof hits preserve flying hover; wall and underside hits use the
+upright capsule's support distance along the surface normal. Sky misses do
+nothing. Collision must be fully ready before clicking can teleport, and there
+is no terrain fallback through architecture. Contact clearance is relative to the
+selected surface; this is a flying dev tool, not a search for a walkable landing
+or a guarantee of clearance from every adjacent surface in a tight corner.
+After a canvas click, **Esc releases pointer lock; press Esc again** to open the
+menu. `check-dev-surface.mjs` uses the same menu/Fly/Space/mouse controls and
+native Lite projection to verify the clicked pixel and capture live motion.
 
 Each selection exposes a readonly **Spawn link**: select it and copy it.
 For example, **`?dev&play&at=cathedral-nave`** or

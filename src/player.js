@@ -392,6 +392,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         .map((mesh) => ({ mesh, type: mesh.metadata.collider }));
     let controller = null;
     let physicsWorld = null;
+    let selfFilteredRay = null;
     let stickQuery = null;
     let usingPhysics = false;
     let sceneDisposed = false;
@@ -406,6 +407,7 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
         controller = null;
         physicsWorld = null;
         stickQuery = null;
+        selfFilteredRay = null;
         usingPhysics = false;
     };
     // Register before Havok's asynchronous WASM load: scene teardown may race it.
@@ -686,8 +688,25 @@ export async function setupPlayer(engine, scene, rig, options = {}) {
             counts.meshCount+=added.meshCount;counts.boxCount+=added.boxCount;
             return {dispose(){if(!live)return;dispose();counts.meshCount-=added.meshCount;counts.boxCount-=added.boxCount;}};
         },
-        raycast: (from, to) => !sceneDisposed && usingPhysics && physicsWorld
-            ? physicsRaycast(physicsWorld, from, to) : null,
+        raycast(from, to, {ignorePlayer = false} = {}) {
+            if (sceneDisposed || !usingPhysics || !physicsWorld) return null;
+            if (!ignorePlayer) return physicsRaycast(physicsWorld, from, to);
+            // Lite 1.31.1's public ray query has no ignoreBody, but its native
+            // shapeCast does. A lazy 1 mm sphere sweep excludes the controller
+            // without changing gameplay collision masks or skipping occluders.
+            // Owned with the other query shapes; no first-play allocation.
+            // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+            selfFilteredRay ||= {
+                shape: own.shape(createPhysicsShape(physicsWorld, {
+                    type: PhysicsShapeType.SPHERE, parameters: {radius: .001},
+                })),
+                rotation: identityQuat,
+                ignoreBody: controller?.getBody(),
+            };
+            selfFilteredRay.startPosition = from;
+            selfFilteredRay.endPosition = to;
+            return shapeCast(physicsWorld, selfFilteredRay);
+        },
         get capsuleHeight() { return capsuleHeightOf(); },
         get capsuleRadius() { return spec.radius * heightScale; },
         get heightScale() { return heightScale; },

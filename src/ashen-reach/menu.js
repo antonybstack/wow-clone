@@ -65,7 +65,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <input id="dev-destination-link" type="url" readonly aria-label="Spawn link">
           <button type="button" data-action="god" aria-pressed="false">God mode</button>
           <button type="button" data-action="fly" aria-pressed="false">Fly mode</button>
-          <p>While flying, click the ground to teleport. G / F also toggle God / Fly.</p>
+          <p>While flying, click a solid surface to teleport (floors, roofs or ground). G / F also toggle God / Fly.</p>
           <button type="button" data-action="hub">Back</button>
         </div>
       </div>
