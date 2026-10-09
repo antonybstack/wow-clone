@@ -81,6 +81,6 @@ All G08 owned contexts and slot 7 harness are closed: Chrome 99825 / CDP 10037,
 Vite 99776+99820 / 5873, compiled 13042 / 7074 and media 10177 / 7077 stopped; predecessor
 compiled 99863 / 4388 stopped on rebuild. Review tabs 1147996194/6198/6202/6206
 closed. All four ports have no listener. Grok 97463 and its report-only resume
-ended; no owned renderer remains. User Edge 2931 / fifteen original tabs, Chrome 13883 / 
-NewTab and unrelated Vite4000 10171+10205 are preserved. Native ownership receipts
+ended; no owned renderer remains. User Edge 2931 / fifteen original tabs, Chrome 13883 /
+New Tab and unrelated Vite4000 10171+10205 are preserved. Native ownership receipts
 in the task cache record per-context close; no FPS claim relies on this audit.
