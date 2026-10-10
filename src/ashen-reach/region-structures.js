@@ -63,9 +63,21 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
   }
   const collisionBatch=new Batch('Region structure collision');
   const batches=[...new Set([stone,roof,rock,glow])],before=batches.reduce((sum,b)=>sum+b.idx.length/3,0),destinations=[];
+  let decorativeTriangles=0;
   for(const site of sites){
     const {x,z,floorY,yaw,height:H}=site,c=Math.cos(yaw),s=Math.sin(yaw);
-    const map=(u,y,d)=>[x+u*c+d*s,floorY+y,z-u*s+d*c];
+    const map=(u,y,d)=>[x+u*c+d*s,floorY+y,z-u*s+d*c],discoveries=[];
+    // Small original inscriptions reuse the material batch and existing support.
+    // Decorative markings never change the walking collision mesh.
+    // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/10-mesh-generators.md
+    const inscription=(u,y,d)=>{
+      const first=stone.idx.length;
+      outwardBox(stone,map(u,y,d),[.85,.50,.035],TRIM,yaw);
+      outwardBox(stone,map(u-.25,y,d+.025),[.035,.34,.01],DARK,yaw);
+      outwardBox(stone,map(u-.25,y+.07,d+.025),[.18,.035,.01],DARK,yaw);
+      for(const [i,length]of [.44,.38,.29].entries())outwardBox(stone,map(u+.13,y+.13-i*.10,d+.025),[length,.025,.01],DARK,yaw);
+      decorativeTriangles+=(stone.idx.length-first)/3;
+    };
     const box=(u,y,d,w,h,depth,color=STONE,batch=stone)=>{
       if(Math.min(w,h,depth)<=0)throw new RangeError('Structure box must have positive dimensions');
       outwardBox(batch,map(u,y,d),[w,h,depth],color,yaw);
@@ -280,9 +292,16 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
           stairs:{start:map(side,0,start),end:map(side,walkY,end),steps,run:end-start,rise:walkY,
             visualTriangles:treadTriangles},
           rampTriangles};
+        // Offset beside the hero so the ordinary rear camera can read the relief.
+        inscription(-1.15,walkY+.78,9.235);
+        const lookout=map(-side,walkY,15.3),cathedral=landmarks.find(s=>s.id==='vaelmark');
+        discoveries.push(
+          {id:'eastwatch-dispatch',label:'Eastwatch dispatch',verb:'Read',standingSurfaceY:floorY+walkY,stand:map(0,walkY,10.6),interact:map(-1.15,walkY+1.10,9.42)},
+          {id:'eastwatch-view',label:'Vaelmark spires',verb:'Observe',standingSurfaceY:floorY+walkY,stand:lookout,interact:map(-side+.10,walkY+1.30,15.3),heading:cathedral?Math.atan2(cathedral.x-lookout[0],cathedral.z-lookout[2]):yaw-Math.PI/2},
+        );
       }
       destinations.push({...site,entrance:map(0,0,-20),courtyard:map(0,0,-10),hall:map(0,0,7),
-        interior:map(0,0,10),motif,rearWindow,...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
+        interior:map(0,0,10),motif,rearWindow,discoveries,...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
     }else{
       support(6,6);box(0,-.15,0,6,.3,6,TRIM);box(0,-.15,-3,4,.3,2,TRIM);
       const top=H*.78;
@@ -306,5 +325,5 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
     }
   }
   return {collisionBatch,destinations,triangles:batches.reduce((sum,b)=>sum+b.idx.length/3,0)-before,
-    collisionTriangles:collisionBatch.idx.length/3};
+    collisionTriangles:collisionBatch.idx.length/3,decorativeTriangles};
 }

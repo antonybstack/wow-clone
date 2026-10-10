@@ -40,7 +40,8 @@ function hit(from,to){
 test('all six landmarks retain position, orientation and skyline with bounded geometry',()=>{
  assert.equal(built.destinations.length,6);assert(built.triangles>3000&&built.triangles<13000);
  const walk=built.destinations.find(s=>s.id==='east-keep').wallWalk;
- assert.equal(built.triangles-built.collisionTriangles,walk.stairs.visualTriangles-walk.rampTriangles,'only visible stair treads differ from their smooth collision ramp');
+ assert.equal(built.decorativeTriangles,72,'one bounded nonblocking dispatch plaque');
+ assert.equal(built.triangles-built.collisionTriangles,walk.stairs.visualTriangles-walk.rampTriangles+built.decorativeTriangles,'visible stair treads and inscription differ from the collision mesh');
  for(let i=0;i<landmarks.length;i++){
   const a=landmarks[i],b=built.destinations[i];assert.equal(b.id,a.id);assert.equal(b.floorY,a.floorY);
   assert.deepEqual(b.entrance,point(a,0,0,a.kind==='keep'?-20:-3));
@@ -60,6 +61,18 @@ test('all material and collision triangles are finite, nondegenerate and coheren
    for(const index of batch.idx.slice(i,i+3))assert(dot(normal,batch.n.slice(index*3,index*3+3))>0,'winding agrees with lighting');
   }
  }
+});
+
+test('Eastwatch readings sit in reachable air above supported surfaces, with the balcony separated from the lower hall',()=>{
+ const site=built.destinations.find(s=>s.id==='east-keep');
+ assert.deepEqual(site.discoveries.map(a=>a.id),['eastwatch-dispatch','eastwatch-view']);
+ for(const anchor of site.discoveries){
+  const origin=[anchor.stand[0],anchor.standingSurfaceY+1.3,anchor.stand[2]];
+  assert.equal(hit(origin,anchor.interact),null,anchor.id+': blocked interaction air');
+  assert(hit([anchor.stand[0],anchor.standingSurfaceY+.2,anchor.stand[2]],[anchor.stand[0],anchor.standingSurfaceY-.4,anchor.stand[2]]),anchor.id+': unsupported standing point');
+ }
+ const dispatch=site.discoveries[0];
+ assert(hit(point(site,0,1.3,10.6),dispatch.interact),'lower hall must remain physically separated from the upper reading');
 });
 
 test('threshold, courtyard, hall and return have continuous flush floors and capsule clearance',()=>{

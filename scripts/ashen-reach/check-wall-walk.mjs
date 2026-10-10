@@ -11,6 +11,8 @@ import {captureSurface,appendFrame,writeCaptureManifest} from '../lib/capture-ma
 const url=new URL(process.env.ASHEN_TEST_URL||'http://127.0.0.1:7074/');
 for(const [key,value] of [['dev',''],['play',''],['clean',''],['at','east-keep'],['pixelRatio','1']])url.searchParams.set(key,value);
 const dir=process.env.ASHEN_CAPTURE_DIR||'.cache/wall-walk',record=process.env.ASHEN_RECORD==='1';
+const exploration=process.env.ASHEN_CHECK_EXPLORATION==='1';
+if(exploration)url.searchParams.delete('clean');
 await fs.mkdir(dir+'/frames',{recursive:true});
 const browser=await chromium.connectOverCDP(CDP_URL);
 assert(browser.contexts().flatMap(c=>c.pages()).every(p=>p.url()==='about:blank'),'Blank the owned harness first');
@@ -19,9 +21,9 @@ await fs.writeFile(dir+'/ownership.json',JSON.stringify(ownership,null,2));
 const context=await browser.newContext({viewport:{width:1280,height:720},deviceScaleFactor:1}),page=await context.newPage();
 const errors=[],report={url:url.href,errors,samples:[],contacts:[],initialPlacement:'public developer spawn link only'};
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
-const state=()=>page.evaluate(()=>{const p=ASHEN.player,d=p.getDebugState();return{x:p.body.position.x,y:p.body.position.y,z:p.body.position.z,feet:p.body.position.y-p.capsuleHeight/2,facing:p.getFacing(),physics:d.usingPhysics,recoveries:d.recoveries,flying:p.isFlying()};});
+const state=()=>page.evaluate(()=>{const p=ASHEN.player,d=p.getDebugState();return{x:p.body.position.x,y:p.body.position.y,z:p.body.position.z,feet:p.body.position.y-p.capsuleHeight/2,facing:p.getFacing(),physics:d.usingPhysics,recoveries:d.recoveries,flying:p.isFlying(),god:ASHEN.dev.god};});
 let initialRecoveries,site,cdp,manifest,captureError;const writes=[];
-function valid(s,label){assert(s.physics&&!s.flying&&Number.isFinite(s.y),label);assert.equal(s.recoveries,initialRecoveries,label+': recovery teleport');}
+function valid(s,label){assert(s.physics&&!s.flying&&Number.isFinite(s.y),label);if(exploration)assert(!s.god,label+': God mode enabled');assert.equal(s.recoveries,initialRecoveries,label+': recovery teleport');}
 async function face(yaw){
  const start=Date.now();
  for(;;){const s=await state(),error=Math.atan2(Math.sin(yaw-s.facing),Math.cos(yaw-s.facing));if(Math.abs(error)<.04)break;
@@ -45,18 +47,44 @@ async function go(point,label){
 const world=(u,y,d)=>[site.x+u*Math.cos(site.yaw)+d*Math.sin(site.yaw),site.floorY+y,site.z-u*Math.sin(site.yaw)+d*Math.cos(site.yaw)];
 const local=s=>({u:(s.x-site.x)*Math.cos(site.yaw)-(s.z-site.z)*Math.sin(site.yaw),d:(s.x-site.x)*Math.sin(site.yaw)+(s.z-site.z)*Math.cos(site.yaw)});
 async function contact(label,point,yaw,check){await go(point,label+':approach');await face(yaw);await page.keyboard.down('w');await page.waitForTimeout(1100);await page.keyboard.up('w');const s=await state();valid(s,label);assert(Math.abs(s.feet-site.wallWalk.floorY)<.3,label+': fell from walk');const coordinates=local(s);assert(check(coordinates),`${label}: failed guard ${JSON.stringify(coordinates)}`);report.contacts.push({label,...s,...coordinates});}
+async function readDiscovery(id){
+ await page.waitForFunction(id=>ASHEN.combat.exploration.snapshot().candidate===id,id);
+ const before=await page.evaluate(()=>{const s=ASHEN.combat.snapshot();return {progress:s.progress,objective:s.objective};});
+ if(manifest)(manifest.markers??={})[id]=Date.now()/1000;
+ await page.screenshot({path:dir+'/'+id+'.png'});await page.keyboard.press('KeyX');await page.waitForFunction(()=>ASHEN.menu.isOpen);
+ assert(await page.locator(`[data-discovery="${id}"]`).isVisible());assert.equal(await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record.phase),'unstarted');
+ assert.deepEqual(await page.evaluate(()=>{const s=ASHEN.combat.snapshot();return {progress:s.progress,objective:s.objective};}),before);
+ await page.waitForTimeout(900);await page.screenshot({path:dir+'/'+id+'-journal.png'});
+ if(id==='eastwatch-dispatch'){await page.locator('[data-action="journal-region-map"]').click();await page.locator('[data-map-destination="vaelmark"]').click();assert.equal(await page.locator('[data-map-destination="vaelmark"]').getAttribute('aria-pressed'),'true');await page.waitForTimeout(800);}
+ await page.keyboard.press('Escape');await page.keyboard.press('KeyX');await page.waitForFunction(()=>ASHEN.menu.isOpen);assert.equal(await page.evaluate(id=>ASHEN.combat.exploration.snapshot().record.discovered.filter(x=>x===id).length,id),1);await page.keyboard.press('Escape');await page.waitForTimeout(250);
+ assert.match(await page.locator('#exploration-prompt button').innerText(),/Read again|Revisit/);
+ (report.discoveries??=[]).push({id,record:await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record),unchangedCombat:before});
+}
 async function stopCapture(){if(!manifest)return;await cdp.send('Page.stopScreencast');cdp.removeAllListeners('Page.screencastFrame');await Promise.all(writes);if(captureError)throw captureError;await writeCaptureManifest(dir,manifest,await captureSurface(page));manifest=null;}
 try{
  await page.goto(url.href,{waitUntil:'commit'});await page.waitForFunction(()=>window.ASHEN?.ready&&ASHEN.hostilesReady,null,{timeout:120000});
- report.start=await state();initialRecoveries=report.start.recoveries;valid(report.start,'start');assert.equal(initialRecoveries,0);
+ report.start=await state();initialRecoveries=report.start.recoveries;if(!exploration)valid(report.start,'start');assert.equal(initialRecoveries,0);
  site=await page.evaluate(()=>ASHEN.world.regionStructures.destinations.find(s=>s.id==='east-keep'));assert(site.wallWalk);report.site=site;
- await page.keyboard.press('Escape');await page.getByRole('button',{name:'Developer tools',exact:true}).click();const god=page.getByRole('button',{name:'God mode: off',exact:true});if(await god.count())await god.click();await page.keyboard.press('Escape');
+ await page.keyboard.press('Escape');await page.getByRole('button',{name:'Developer tools',exact:true}).click();const god=page.locator('[data-action="god"]');if((await god.getAttribute('aria-pressed')==='true')===exploration)await god.click();await page.keyboard.press('Escape');
+ if(exploration){await page.waitForFunction(()=>ASHEN.combat?.exploration.snapshot().reliquary);report.start=await state();valid(report.start,'mortal start');}
  if(record){manifest={version:1,...await captureSurface(page),frames:[]};cdp=await context.newCDPSession(page);cdp.on('Page.screencastFrame',e=>{cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(!manifest||captureError)return;try{const bytes=Buffer.from(e.data,'base64'),name=`frame-${String(manifest.frames.length).padStart(5,'0')}.jpg`;appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes});writes.push(fs.writeFile(dir+'/frames/'+name,bytes).catch(e=>captureError=e));}catch(e){captureError=e;}});await cdp.send('Page.startScreencast',{format:'jpeg',quality:87,maxWidth:1280,maxHeight:720,everyNthFrame:4});await page.waitForTimeout(800);}
  await go(site.courtyard,'courtyard');await page.screenshot({path:dir+'/courtyard.png'});
  for(const [i,point] of site.wallWalk.route.entries()){await go(point,'outbound:'+i);if(i===4)await page.screenshot({path:dir+'/stair-landing.png'});if(i===6){await face(site.wallWalk.windowYaw);await page.waitForTimeout(1200);await page.screenshot({path:dir+'/window-view.png'});}if(i===8&&site.wallWalk.hallBalcony){await page.waitForTimeout(1200);await page.screenshot({path:dir+'/hall-balcony.png'});}}
  await page.screenshot({path:dir+'/left-end.png'});
- for(const [i,point] of [...site.wallWalk.route].reverse().entries())await go(point,'return:'+i);
- await go(site.courtyard,'courtyard-return');await go(site.hall,'lower-hall');await go(site.interior,'beneath-balcony');await page.screenshot({path:dir+'/lower-hall.png'});await go(site.hall,'lower-hall-return');await go(site.courtyard,'courtyard-final-return');await go(site.entrance,'gate-return');
+ if(exploration){
+  const view=site.discoveries.find(a=>a.id==='eastwatch-view');await go(view.stand,'lookout');await face(view.heading);
+  // Ordinary RMB/scroll/H inspection of the actual distant spires; no rig overrides.
+  await page.mouse.move(640,360);await page.mouse.down({button:'right'});await page.mouse.move(640,396,{steps:12});await page.mouse.up({button:'right'});await page.mouse.wheel(0,900);await page.keyboard.press('KeyH');await page.waitForTimeout(900);await readDiscovery(view.id);
+  (report.lookout??={}).camera=await page.evaluate(()=>({yaw:ASHEN.rig.yaw,pitch:ASHEN.rig.pitch,radius:ASHEN.camera.radius}));
+  await page.mouse.move(640,396);await page.mouse.down({button:'right'});await page.mouse.move(640,360,{steps:12});await page.mouse.up({button:'right'});await page.mouse.wheel(0,-600);await page.keyboard.press('KeyH');
+ }
+ for(const [i,point] of [...site.wallWalk.route].reverse().entries()){
+  await go(point,'return:'+i);
+  if(exploration&&i===4){await face(site.yaw+Math.PI);await page.waitForTimeout(600);await readDiscovery('eastwatch-dispatch');}
+ }
+ await go(site.courtyard,'courtyard-return');await go(site.hall,'lower-hall');await go(site.interior,'beneath-balcony');await page.screenshot({path:dir+'/lower-hall.png'});
+ if(exploration){assert.equal(await page.evaluate(()=>ASHEN.combat.exploration.snapshot().candidate==='eastwatch-dispatch'),false);}
+ await go(site.hall,'lower-hall-return');await go(site.courtyard,'courtyard-final-return');await go(site.entrance,'gate-return');
  report.returned=await state();await page.screenshot({path:dir+'/gate-return.png'});await page.waitForTimeout(800);await stopCapture();
  // Native collision contacts are separate from the uninterrupted captured tour.
  for(const [i,point] of site.wallWalk.route.slice(0,5).entries())await go(point,'contacts-ascent:'+i);
@@ -74,10 +102,20 @@ try{
  }
  for(const [i,point] of site.wallWalk.route.slice(0,6).reverse().entries())await go(point,'contacts-return:'+i);
  await go(site.entrance,'final-gate');report.end=await state();
+ if(exploration){
+  await page.reload();await page.waitForFunction(()=>ASHEN.ready&&ASHEN.hostilesReady&&ASHEN.navigationReady&&ASHEN.combat?.exploration,null,{timeout:120000});
+  const saved=await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record);assert.equal(saved.phase,'unstarted');assert.deepEqual(saved.discovered,['eastwatch-dispatch','eastwatch-view']);report.reload=saved;
+  await page.keyboard.press('Escape');await page.getByRole('button',{name:'Journal',exact:true}).click();assert.equal(await page.locator('[data-exploration-journal] article').count(),2);await page.keyboard.press('Escape');
+ }
  report.gpuErrors=await page.evaluate(()=>ASHEN.gpu.errors);assert.deepEqual(errors,[]);assert.deepEqual(report.gpuErrors,[]);report.passed=true;
 }catch(error){report.failure=error.stack;await page.screenshot({path:dir+'/failure.png'}).catch(()=>{});throw error;
 }finally{
  for(const key of ['w','a','d'])await page.keyboard.up(key).catch(()=>{});await cdp?.send('Page.stopScreencast').catch(()=>{});await Promise.all(writes);
- await fs.writeFile(dir+'/report.json',JSON.stringify(report,null,2));await context.close();await browser.close();await fs.writeFile(dir+'/ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0},null,2));
+ try{if(manifest&&manifest.frames.length>=2&&!captureError)await writeCaptureManifest(dir,manifest,await captureSurface(page));}
+ catch(error){captureError??=error;}
+ if(captureError){report.captureFailure=captureError.stack;report.passed=false;}
+ try{await fs.writeFile(dir+'/report.json',JSON.stringify(report,null,2));}
+ finally{await context.close();await browser.close();await fs.writeFile(dir+'/ownership.json',JSON.stringify({...ownership,active:false,renderingClients:0},null,2));}
 }
+if(captureError)throw captureError;
 console.log(`PASS native Eastwatch stair, complete guarded route, ${report.contacts.length} guard contacts and gate return; no Fly, recoveries or runtime/GPU errors`);

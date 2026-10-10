@@ -278,3 +278,44 @@ frames and original timestamps remain under `.cache/vaelmark-expedition-2026-10-
 reproduce with `ASHEN_CDP_PORT=10037 ASHEN_RETURN_MODE=capture
 ASHEN_CAPTURE_DIR=<owned-directory> node scripts/ashen-reach/check-hollowmere-return.mjs`
 on an isolated owned Vite5873/Chrome slot. `survey` covers early phase clues.
+
+
+## G15 Eastwatch dispatch and spires
+
+Eastwatch now offers two optional, phase-independent readings on the existing
+upper route. The balcony dispatch points to the memorial before the west bell;
+the north-wall observation identifies Vaelmark's visible spires. Both reuse the
+≤5 Hz candidate scan, activation-time self-filtered Havok ray, existing journal
+and changed-only save. A 72-triangle original relief reuses the stone batch with
+zero collision, new textures, lights, timers or camera changes. Authored local
+transforms supply direct/prepared anchors; the lower hall cannot claim the
+upper reading. The spires are visible above the battlements; the bridge and
+whole facade are obscured and are not claimed as a clear vista.
+
+Nineteen focused state/geometry checks and the final [native receipt](g15-native.json.gz)
+pass: ordinary courtyard/stair/walk/balcony/dispatch/gate return, both readings
+before the cathedral, repeat credit, Journal→Region map/Vaelmark selection, six
+guard contacts and actual reload of exactly two independent IDs with phase
+`unstarted`. Initial Developer entrance only; subsequent God/Fly off, Havok
+active, zero recoveries or recorded runtime/GPU errors. The lookout inspection
+uses ordinary RMB, wheel and H; the dispatch uses the restored rear camera.
+The first functional recording was withheld after root found actor occlusion
+and a weaker battlement position. Final relief/air target offsets 1.15 m beside
+the actor; the supported lookout moves to local d15.3. No added upper floor.
+[Source review and later root corrections](g15-review.md); raw first/final/survey
+files remain under `.cache/vaelmark-expedition-2026-10-09/g15-*`.
+
+[Packet receipt](g15-packets.json) preserves the exact 149,963-byte near packet,
+17 local-light candidates and two shadow maps; fixed render geometry adds72
+triangles. Final source provenance passes. Root reviewed advancing recorded
+walking, the two journal seeks and the ordinary gate-return motion.
+[Live VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/eastwatch-dispatch.mp4)
+retains 78.572486 s source elapsed /78.571515 s encoded, 1,934 original1280×720
+frames, square pixels/rotation0,34,364,922 bytes. [Manifest](g15-capture.json.gz) /
+[public receipt](g15-public-video.json) prove exact SHA, video/mp4, range206 and
+native play/seek. Telegram **909** returns1280×720/79s ([receipt](g15-telegram.json));
+application inline/fullscreen remains unclaimed. Capture is not FPS evidence.
+Final integration/performance and sealed game preview remain G17/G18. Reproduce
+with `ASHEN_CHECK_EXPLORATION=1 ASHEN_RECORD=1 ASHEN_CDP_PORT=10037
+ASHEN_TEST_URL=<owned-origin> ASHEN_CAPTURE_DIR=<owned-directory>
+node scripts/ashen-reach/check-wall-walk.mjs`.

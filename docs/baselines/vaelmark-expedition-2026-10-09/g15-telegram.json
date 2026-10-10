@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 909,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 78.571515,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 79
+  },
+  "verified": true,
+  "file": "eastwatch-dispatch.mp4",
+  "sha256": "72d07cf785ec88bee6cf3763823b1953889be574d7b3cf06548342e0fc8bcb83",
+  "sentAt": "2026-10-10T05:59:29.686066+00:00"
+}

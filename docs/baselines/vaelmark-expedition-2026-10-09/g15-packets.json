@@ -1,0 +1,35 @@
+{
+  "before": {
+    "near": {
+      "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "encodedBytes": 149963,
+      "rawBytes": 641752
+    },
+    "skyline": 592542,
+    "regionIndex": 99056,
+    "localLightCandidates": 17,
+    "fixedTriangles": 478899
+  },
+  "after": {
+    "near": {
+      "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "encodedBytes": 149963,
+      "rawBytes": 641752
+    },
+    "skyline": 592542,
+    "regionIndex": 98746,
+    "localLightCandidates": 17,
+    "fixedTriangles": 478971
+  },
+  "regionFiles": {
+    "region-484959dcaca3.br": 22415830,
+    "foliage-28ada63f5a13.br": 4413215,
+    "region-core-d317e9a542f1.br": 14388923,
+    "region-detail-ece7a869e72b.br": 10640787
+  },
+  "addedRenderTriangles": 72,
+  "addedCollisionTriangles": 0,
+  "newTextures": 0,
+  "localShadowMapSlots": 2,
+  "provenanceVerified": true
+}

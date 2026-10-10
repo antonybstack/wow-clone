@@ -60,7 +60,11 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
   }
   const bell=westBell();if(interactionReachable(player,bell))return {id:'vaelmark-bell',action:'ring-bell',anchor:bell,label:'West bell rope',verb:'Ring'};
   const altar=world.hollowmere?.altar;
-  return interactionReachable(player,altar)?{id:'hollowmere-return',action:'return-hollowmere',anchor:altar,label:'Hollowmere altar',verb:record.phase==='relic-claimed'?'Record remembrance':'Read'}:null;
+  if(interactionReachable(player,altar))return {id:'hollowmere-return',action:'return-hollowmere',anchor:altar,label:'Hollowmere altar',verb:record.phase==='relic-claimed'?'Record remembrance':'Read'};
+  for(const site of world.regionStructures?.destinations??[])for(const anchor of site.discoveries??[]){
+   if(interactionReachable(player,anchor))return {id:anchor.id,action:anchor.id,anchor,label:anchor.label,verb:record.discovered.includes(anchor.id)?(anchor.verb==='Observe'?'Revisit':'Read again'):anchor.verb};
+  }
+  return null;
  }
  function paint(){
   const text=candidate?.id===feedbackFor&&feedbackTime>0?feedback:'';

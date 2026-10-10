@@ -15,7 +15,8 @@ independent startup/resource gates. Local episode closure now passes; the comple
 | G12 reliquary/remembrance | Native implementation and reviewed connected motion pass | Four final native cases, twelve focused checks, unchanged packets/XP/watchman; Telegram906/verified VE. |
 | G13 readability | Native implementation and reviewed motion pass | 27 CPU checks, matched walking views/ordinary crypt circuit; corrected housing self-shadow, offset box, unchanged near bytes/two shadow maps; Telegram 907/VE. |
 | G14 Hollowmere closure | Native return/reload and reviewed motion pass | Three early clues, two accepted ordinary return/reload cases, 21 focused checks; one candle/30 triangles, same two maps; VE exact playback/seek passes. Telegram 908/verified VE. |
-| G15–G16 regional extensions | Pending | Ordered extensions; core and finishing reserve take priority. |
+| G15 Eastwatch | Native implementation and reviewed motion pass | 19 focused checks, two readings/repeats, ordinary climb/return, six guards and actual reload; 72 render/zero collision triangles, same near packet/two shadow maps. Telegram909/verified VE. |
+| G16 regional discoveries | Pending | Ordered extension; ground-level tower watchmarks and existing keep benches are the intended supports, subject to native verification. |
 | G17–G18 verification/delivery | Pending | Final native traversal, performance, sealed preview and reviewed motion; conditional production gates. |
 
 ## Browser and process ownership
@@ -118,4 +119,40 @@ closed; all native/public-video contexts closed. No media server was needed: Vit
 preserved with zero game pages. G15 dispatch/lookout is next.
 
 Telegram908 validates 1280×720 and a 61 s API integer duration for the 60.542561 s
-file. Ledger must be associated with the finished G14 commit after commit.
+file. Ledger is recorded at finished G14 commit 3e53350; push succeeded.
+
+G15 uses one 72-triangle nonblocking original stone dispatch plaque on the
+existing balcony guard, plus a north-wall viewpoint facing the actual cathedral.
+No new floor/stair/texture/material or update owner. Region discovery reuses
+G10 state/storage/journal and the <=5 Hz reach/ray scan, preserving episode phase.
+Root cancelled its first preparer PID40667 after correcting the vista orientation;
+final frozen source preparer PID47383 is running. Nineteen focused checks pass.
+Source-only Grok uses session01a1240f-6f05-70a1-ae36-3066824807b2/five turns,
+no renderer. Extended existing wall-walk helper will use God/Fly off for G15,
+check two discoveries/repeats/map/actual reload/lower-floor rejection, and retain
+its existing guard contacts. Chrome98468/CDP10037 and Vite98437/5873 remain idle
+until the prepared provenance verifies. G14 review tab is closed, no media server.
+
+G15's first native functional run passes two independent discoveries, six guard
+contacts, gate return and actual reload (God/Fly off, active Havok, zero recovery
+or runtime/GPU errors). Root withheld visual acceptance: the central plaque was
+hidden by the actor and the first battlement viewpoint obscured the silhouette.
+Root offset the relief/air target 1.15 m beside the actor and moved the lookout
+to the existing north walk at local d15.3. Ordinary RMB/scroll/H inspection shows
+the actual cathedral spires; a self-filtered native sight ray reaches cathedral
+masonry at [17.6634,77.7859,300.4004], not a nearby keep. The journal describes the
+spires, without claiming the obscured bridge is visible. No camera engine change
+or new walk floor. Four short native viewpoint surveys retain their limits;
+they are visual diagnostics, not FPS samples. Final frozen preparer PID89158
+(session10919) owns regeneration. All survey contexts are closed; Chrome98468
+/CDP10037 and Vite98437/5873 remain owned, idle. Edge's fifteen user tabs and
+Chrome's New Tab are preserved; fresh inventory has no user game page.
+
+G15 final preparation/provenance and native run pass. Root reviewed actual
+78.571515 s MP4 segments; exact public VE MIME/hash/range/play/seek and Telegram
+909 returned1280×720/79s pass. Final native/encode/upload/delivery jobs ended;
+review tab1147996260 closed. Old Chrome98468/Vite98437 stopped. Reused root
+slot now Vite99627+99651/5873, Chrome99676/GPU99682/CDP10037, idle/zero game
+contexts after final native/reload and public video checks. G16 is next.
+The existing G12 verification helper is being extended for G17's complete fresh
+return; that uncommitted helper-only change is excluded from the G15 commit.
