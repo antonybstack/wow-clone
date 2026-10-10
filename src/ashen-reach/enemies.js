@@ -233,7 +233,7 @@ function setYaw(node, yaw) {
 }
 
 function syncRoot(enemy) {
-  enemy.position.y = height(enemy.position.x, enemy.position.z);
+  enemy.position.y = enemy.diagnosticFloorY ?? height(enemy.position.x, enemy.position.z);
   enemy.root.position.set(enemy.position.x, enemy.position.y, enemy.position.z);
   setYaw(enemy.root, enemy.yaw);
   const y = enemy.position.y + (enemy.capsuleHeight || 1.68) * 0.5;
@@ -245,6 +245,13 @@ function syncRoot(enemy) {
     enemy.colliderDesc.enabled = live;
   }
   if (live) enemy.moveCollider?.(enemy.position.x, y, enemy.position.z);
+}
+
+/** Restore a developer rehearsal using the same render/collision owners as play. */
+export function syncDiagnosticEnemy(enemy) {
+  show(enemy, !enemy.hidden);
+  enemy.actor?.play(enemy.state === 'dead' ? 'death' : 'idle');
+  syncRoot(enemy);
 }
 
 function enter(enemy, state) {
@@ -261,9 +268,11 @@ function enter(enemy, state) {
 }
 
 function respawn(enemy) {
-  enemy.position.x = enemy.spawn.x;
-  enemy.position.z = enemy.spawn.z;
-  enemy.position.y = height(enemy.spawn.x, enemy.spawn.z);
+  if (enemy.diagnosticFloorY === undefined) {
+    enemy.position.x = enemy.spawn.x;
+    enemy.position.z = enemy.spawn.z;
+    enemy.position.y = height(enemy.spawn.x, enemy.spawn.z);
+  }
   enemy.hp = enemy.hpMax;
   enemy.yaw = enemy.spawnYaw;
   enemy.attackCooldown = 0;
@@ -271,7 +280,7 @@ function respawn(enemy) {
   enemy.hidden = false;
   show(enemy, true);
   enemy.actor?.play("idle");
-  enter(enemy, "idle");
+  enter(enemy, enemy.diagnosticFloorY === undefined ? "idle" : "diagnostic");
   syncRoot(enemy);
 }
 

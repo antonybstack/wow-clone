@@ -321,7 +321,7 @@ async function main(){
 
  // Request an already-ready late provider; importing chart geometry into this
  // early menu would move optional region work onto the first-play critical path.
- const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on),getDevTools:()=>tools,getRegionMap:()=>combat?.regionMap,getJournal:()=>combat?.journal,getExploration:()=>combat?.exploration});
+ const menu=createGameMenu({onArmory:()=>armory?.open(),onDev:on=>tools.setEnabled?.(on),getDevTools:()=>tools,getRegionMap:()=>combat?.regionMap,getJournal:()=>combat?.journal,getExploration:()=>combat?.exploration,getCombat:()=>combat});
  // Reuse scene cancellation to remove the DOM handler before disposed body
  // meshes can be reached by later movement/view keys.
  // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#signal
@@ -814,7 +814,7 @@ async function main(){
   if(nearbyFoliage)await nearbyFoliage.catch(()=>regionP);
   else await foliageP; // The diagnostic full-world path creates its pools later.
   lifetime.throwIfAborted();
-  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets,onAudioStatusChange:()=>menu.refreshSound(),isNavigationReady:()=>ashen.navigationReady,onOpenJournal:()=>menu.openJournal()});
+  combat=await createCombat(engine,scene,canvas,player,body,world,input,dummy,rig,churchyardEnemies,createObjective(),{sockets,setDevModes:(god,flying)=>{tools.setFlying(flying);tools.setGod(god);},onAudioStatusChange:()=>menu.refreshSound(),isNavigationReady:()=>ashen.navigationReady,onOpenJournal:()=>menu.openJournal()});
   lifetime.throwIfAborted();
   menu.refreshRegionMap();
   markStartup('combat-ready');

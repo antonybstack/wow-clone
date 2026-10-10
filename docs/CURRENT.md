@@ -4,7 +4,9 @@ Updated **2026-10-10 PDT**. Read this before choosing work. Latest user directio
 controls scope; historical milestone lists are evidence, not an active queue.
 **Current focus: combat feel and an interacting fire-caster kit in the Gothic region.**
 The [12-milestone combat overhaul plan](plans/combat-overhaul/plan-2026-10-10.md)
-is researched and reviewed; implementation has not started. C01–C04 deliver
+is researched and reviewed; C01 implementation is underway. Developer combat
+rehearsals and the bounded timing trace are implemented; live baseline verification
+is pending. C01–C04 deliver
 baseline, input buffering, instants while moving/contact, and readable feedback;
 C05–C09 add burns, procs, area rules, enemies and utilities; C10–C12 integrate
 VFX, a Gothic encounter and release verification. First three milestones have

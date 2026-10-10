@@ -33,7 +33,7 @@ function devQueryOn() {
   return new URLSearchParams(location.search).has("dev") || document.body.classList.contains("dev-mode");
 }
 
-export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools, getRegionMap, getJournal, getExploration } = {}) {
+export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools, getRegionMap, getJournal, getExploration, getCombat } = {}) {
   const root = document.createElement("div");
   root.id = "game-menu";
   root.hidden = true;
@@ -78,6 +78,14 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <p data-region-loading-mode></p>
           <button type="button" data-action="region-loading" disabled>Reload with whole-region loading</button>
           <p data-exploration-status role="status"></p>
+          <label for="dev-combat-scenario">Combat rehearsal</label>
+          <select id="dev-combat-scenario" aria-label="Combat rehearsal"></select>
+          <p data-combat-status role="status"></p>
+          <button type="button" data-action="combat-scenario" disabled>Start combat rehearsal</button>
+          <button type="button" data-action="combat-restore" disabled>Restore before rehearsal</button>
+          <button type="button" data-action="combat-trace" disabled>Download combat timing trace</button>
+          <button type="button" data-action="combat-trace-clear" disabled>Clear combat trace</button>
+          <p>Diagnostic placement restores health and mana; God / Fly are off. Rehearsal rewards and journal writes are disabled. Restore returns actors, resources and your position. Timing trace keeps the last 512 events.</p>
           <button type="button" data-action="exploration-reset" disabled>Reset exploration for this session</button>
           <p>Rehearsal progress lasts until reload; your saved journal is preserved.</p>
           <button type="button" data-action="hub">Back</button>
@@ -220,6 +228,19 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       ? `Exploration: ${snap.record.phase}${snap.sessionOnly?' · session rehearsal':''}.`:'Exploration is preparing.';
     root.querySelector('[data-action="exploration-reset"]').disabled=!enabled||!exploration;
     const ready = enabled && !!tools?.navigationReady;
+    const combat = getCombat?.();
+    const scenarioSelect = root.querySelector('#dev-combat-scenario');
+    if (!scenarioSelect.options.length && combat) {
+      scenarioSelect.replaceChildren(...combat.scenarios.list.map(s => new Option(s.name, s.id)));
+    }
+    const selectedScenario = combat?.scenarios.list.find(s => s.id === scenarioSelect.value);
+    root.querySelector('[data-combat-status]').textContent = combat
+      ? `${combat.scenarios.active ? 'Active rehearsal: ' + combat.scenarios.active + '. ' : ''}${selectedScenario?.note || ''} Trace: ${combat.trace.size} events (${combat.trace.dropped} older events dropped).`
+      : 'Combat is preparing.';
+    scenarioSelect.disabled = !enabled || !combat;
+    root.querySelector('[data-action="combat-scenario"]').disabled = !ready || !combat || combat.life.dead;
+    root.querySelector('[data-action="combat-restore"]').disabled = !enabled || !combat?.scenarios.active;
+    for (const action of ['combat-trace', 'combat-trace-clear']) root.querySelector(`[data-action="${action}"]`).disabled = !enabled || !combat;
     destinationSelect.disabled = !destinations.length || !enabled;
     root.querySelector('[data-action="jump"]').disabled = !ready || !destinationSelect.value;
     const devStatus=root.querySelector('[data-dev-status]');
@@ -254,6 +275,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     }
   }
   destinationSelect.addEventListener("change", refreshDevTools);
+  root.querySelector('#dev-combat-scenario').addEventListener('change', refreshDevTools);
   destinationLink.addEventListener("focus", () => destinationLink.select());
 
   function paintMetricsButton() {
@@ -384,6 +406,23 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       devPane.hidden = false;
       refreshDevTools();
       focusFirst();
+    } else if (action === 'combat-scenario' && devQueryOn()) {
+      if (getCombat?.()?.scenarios.start(root.querySelector('#dev-combat-scenario').value)) close();
+      else refreshDevTools();
+    } else if (action === 'combat-restore' && devQueryOn()) {
+      getCombat?.()?.scenarios.restore(); refreshDevTools();
+    } else if (action === 'combat-trace-clear' && devQueryOn()) {
+      getCombat?.()?.trace.clear(); refreshDevTools();
+    } else if (action === 'combat-trace' && devQueryOn()) {
+      const combat = getCombat?.();
+      if (combat) {
+        const content = { schema: 1, scenario: combat.scenarios.active, dropped: combat.trace.dropped, events: combat.trace.snapshot() };
+        const url = URL.createObjectURL(new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' }));
+        const link = document.createElement('a'); link.href = url; link.download = 'ashen-combat-trace.json'; link.click();
+        // Retain the Blob through the download dispatch, then release its owner.
+        // https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL_static
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
     } else if (action === "jump") {
       if (getDevTools?.()?.jumpTo?.(destinationSelect.value)) close();
       else refreshDevTools();

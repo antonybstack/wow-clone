@@ -6,9 +6,9 @@ import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
 import { GravePulse } from "../spells/grave-pulse.js";
 import { Targeting } from "../targeting.js";
-import { setInputEnabled, notifyActionInput } from "../input.js";
+import { setInputEnabled, notifyActionInput, onActionInput } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
-import { enemySnapshot, updateEnemies } from "./enemies.js";
+import { enemySnapshot, updateEnemies, syncDiagnosticEnemy } from "./enemies.js";
 import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
@@ -27,6 +27,10 @@ import {
   yawTo,
 } from "./auto-attack.js";
 import { dev } from "./dev-tools.js";
+
+import { createCombatTrace } from './combat/combat-trace.js';
+import { createCombatScenarios } from './combat/combat-scenarios.js';
+import { devDestinations } from './dev-destinations.js';
 
 const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
@@ -208,6 +212,12 @@ export async function createCombat(
     combatUntil: 0,
     time: 0,
   };
+  const trace = createCombatTrace({ enabled: () => dev.enabled });
+  const record = (type, detail = {}) => trace.record(type, life.time, detail);
+  const unsubscribeTrace = onActionInput(action => {
+    if (action === 1) record('input', { slot: input.spellPressed, targetId: targeting.current?.id ?? null });
+  });
+  lifetime.addEventListener('abort', unsubscribeTrace, { once: true });
   const plantPlayer = () => {
     const x = 0,
       z = 0;
@@ -261,6 +271,7 @@ export async function createCombat(
     const dealt = Math.min(target.hp, profile.damage);
     target.hp -= dealt;
     target.hits = (target.hits || 0) + 1;
+    record('hit', { slot: 'melee', targetId: target.id, amount: dealt });
     hud.hit(target, dealt);
     hud.message("");
     markCombat();
@@ -312,6 +323,7 @@ export async function createCombat(
     hasLineOfSight: () => spellLineOfSight(player, target).clear,
   });
   const impact = (result, isLava = false) => {
+    record('hit', { slot: isLava ? 2 : 1, targetId: result.target.id, amount: result.damage });
     const t = result.target.position,
       p = player.body.position,
       length = Math.hypot(t.x - p.x, t.z - p.z) || 1;
@@ -354,6 +366,7 @@ export async function createCombat(
   let queuedCast = 0;
   const beginSpell = (key) => {
     if (gcd > 0.04) {
+      record('reject', { slot: key, reason: 'Global cooldown', readyAt: life.time + gcd });
       hud.message("Global cooldown");
       return;
     }
@@ -366,13 +379,14 @@ export async function createCombat(
             : castArgs(target),
         ) || (dev.god ? "" : progression.refuseMana(key));
     if (reason) {
+      record('reject', { slot: key, reason });
       ability.lastResult = reason;
       hud.message(reason);
       return;
     }
     const pose = body.getState();
     if (pose.castingShoot) {
-      if (pose.castElapsed + 0.02 >= pose.castReleaseTime && key !== 2) queuedCast = key;
+      if (pose.castElapsed + 0.02 >= pose.castReleaseTime && key !== 2) { queuedCast = key; record('queue', { slot: key, targetId: target?.id }); }
       else hud.message("Finishing cast");
       return;
     }
@@ -384,6 +398,7 @@ export async function createCombat(
     input.castInstant = true;
     input.castSpell = key === 2 ? "lava" : key === 3 ? "pulse" : null;
     pending = { target, key, ability };
+    record('start', { slot: key, targetId: target?.id });
     gcd = GCD;
     player.setMoveScale?.(CAST_MOVE_SCALE);
     ability.lastResult = "windup";
@@ -399,6 +414,7 @@ export async function createCombat(
   const cancel = (reason) => {
     queuedCast = 0;
     if (!pending) return;
+    record('cancel', { slot: pending.key, reason });
     player.setMoveScale?.(1);
     if (pending.key === 2) {
       lavaFx.cancel();
@@ -527,7 +543,29 @@ export async function createCombat(
     if (body.playMelee?.()) auto.pendingHit = true;
     else auto.timer = 0.3;
   };
+  const scenarios = createCombatScenarios({
+    enabled: () => dev.enabled, ready: () => options.isNavigationReady?.() && visible,
+    player, rig, life, progress: progression.progress, dummy, enemies, dev,
+    destinations: () => devDestinations(world), groundHeight: height,
+    setModes: (god, flying) => { options.setDevModes?.(god, flying); },
+    syncEnemy: enemy => {
+      if (enemy !== dummy) syncDiagnosticEnemy(enemy);
+      else { dummy.root.rotation.x = 0; dummy.root.rotation.z = 0; }
+    },
+    reset() {
+      cancel('Diagnostic scenario reset'); targeting.clear(); body.cancelMelee?.();
+      Object.assign(auto, { enabled: false, timer: 0, queued: false, pendingHit: false });
+      gcd = meleeRecover = 0; hitAge = 10; lava.flight = null;
+      for (const ability of [spell, lava, pulse]) {
+        ability.cooldown = ability.resetIn = 0; ability.damagedTarget = null;
+      }
+      deathVeil.hidden = true;
+      record('scenario-reset');
+    },
+  });
   return {
+    trace,
+    scenarios,
     targeting,
     regionMap,
     exploration,
@@ -597,17 +635,18 @@ export async function createCombat(
         targeting,
         onPlayerHit,
         onKill(enemy) {
+          if (scenarios.active) return;
           const result = progression.awardXp(enemy, life, life.time);
           settleKill(result, objective?.onKill(enemy)?.completed);
         },
       });
-      const offered = objective?.tick({
+      const offered = !scenarios.active && objective?.tick({
         player,
         enemies,
         dt,
         dead: life.dead,
       });
-      exploration.tick(dt,{dead:life.dead});
+      if (!scenarios.active) exploration.tick(dt,{dead:life.dead});
       if (offered?.completed) settleKill({ gained: 0, leveled: false }, true);
       else if (offered?.message) hud.message(offered.message);
       if (life.dead) {
@@ -685,9 +724,10 @@ export async function createCombat(
         if ((key === 1 || key === 2 || key === 3) && visible) {
           if (pending) {
             if (pending.key === key) {
+              record('repress-cancel', { slot: key });
               cancel("Cast cancelled");
               player.setMoveScale?.(1);
-            } else hud.message("Already casting");
+            } else { record('reject', { slot: key, reason: 'Already casting' }); hud.message('Already casting'); }
           } else beginSpell(key);
         } else if (queuedCast && visible && !pending && !body.getState().castingShoot) {
           const next = queuedCast;
@@ -706,6 +746,7 @@ export async function createCombat(
           cancel("Cast interrupted");
         else if (state.castElapsed >= state.castReleaseTime) {
           const request = pending;
+          record('release', { slot: request.key, targetId: request.target?.id, animationElapsed: state.castElapsed, animationDeadline: state.castReleaseTime });
           pending = null;
           player.setMoveScale?.(1);
           if (request.key === 2) {
@@ -736,6 +777,7 @@ export async function createCombat(
               rig?.impulse?.(0.34);
               markCombat();
               for (const hit of result.hits) {
+                record('hit', { slot: 3, targetId: hit.target.id, amount: hit.damage });
                 hud.hit(hit.target, hit.damage);
                 if (hit.target === dummy) {
                   hitDummy = true;
