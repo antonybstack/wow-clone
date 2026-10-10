@@ -8,7 +8,7 @@ has C01 baseline evidence and C02–C04 implemented: authoritative action timing
 input buffering, moving/airborne instants, contact deadlines, readable cooldowns
 and persistent combat bindings. [C03](baselines/combat-c03-2026-10-10/README.md)
 is pushed (`e2d4d2f`, test/delivery follow-up `fae4e9e`), Telegram **914** / verified VE.
-[C04](baselines/combat-c04-2026-10-10/README.md): **60 CPU tests**, build, native
+[C04](baselines/combat-c04-2026-10-10/README.md) is pushed (`f955297`), Telegram **915** / verified VE: **60 CPU tests**, build, native
 HUD/keybinding/reload/source-switch checks and mortal contact pass. Isolated
 M1 Max / uncapped Chromium WebGPU / 1280×720 DPR 1 / seven enemies: three
 12-second runs per dummy/pack, **165–188 FPS**, **6.5–8.6 ms p99**, matched
@@ -85,8 +85,7 @@ fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
 
 Root closed the user Edge 5173 game tab with explicit authorization. All root
 C03/C04 game contexts and slot 8 Chrome45113/Vite45088 (CDP10137/Vite5973) are
-closed/stopped after measurement. C04 local/VE motion review owns only temporary
-Edge video tabs and preview7075; close both after delivery. Other user tabs and
+closed/stopped after measurement. C04 local/VE video tabs and preview 7075 are also closed; final browser inventory shows no game or review tabs. Other user tabs and
 Vite29712/5173 and Vite4000 10171/10205 remain intact. Grok source review/encode
 workers and Opus VFX are finished/idle with no browser ownership.
 

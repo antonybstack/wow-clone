@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 915,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 27.8154,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 28
+  },
+  "verified": true,
+  "file": "c04-feedback.mp4",
+  "sha256": "e564a39f3f1826c3b8b0ab5091ab04947d3140997a0ccf47f0ef8f9b0b1dd05a",
+  "sentAt": "2026-10-10T18:15:58.774036+00:00"
+}

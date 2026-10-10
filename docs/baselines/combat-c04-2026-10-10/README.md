@@ -41,3 +41,7 @@ All six runs pass FPS/p99 and matched median budgets. Raw intervals retained; ze
 [Live 27.82 s native check montage](https://ve.sparkify.dev/wow-clone/ashen-reach/combat/2026-10-10/c04-feedback.mp4): 1280×720, square pixels, no rotation, h264, silent. Diagnostic placements/armory swaps between checks. Root reviewed ordinary native playback and detailed stills. The wait behind the gravestone remains in this clip; the separate passing mortal contact is a trace/still receipt. Race switches prove accepted casts, not full silhouette acceptance: the Orc sampling is partly occluded by a gravestone. C10 needs a clear open-ground normal/slow-motion pass for every source rig/equipment shape.
 
 C05 begins the sustainable kit: free Fire filler, in-combat mana, shared ordered damage and Ashen Brand. C06 adds procs and independent projectiles; C07–C12 remain outstanding. Full native 100-action chain, mortal chapel route, death/blur/soak and production release gates remain open. Production remains a7df082.
+
+## Delivery and cleanup
+
+Implementation commit **f955297** is pushed. Root-reviewed local and public native video playback/seek pass; public bytes exactly match, video/mp4 and HTTP206 pass. Telegram **915** returned matching 1280×720 dimensions and 28 s rounded duration. Application inline/fullscreen remains unverified. All root game contexts, slot 8 Chrome/Vite, preview 7075 and video tabs are closed; no managed workers remain active. User's unrelated tabs and Vite 5173/4000 remain.
