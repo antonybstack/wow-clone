@@ -106,7 +106,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       </div>
       <div class="game-menu-keys" hidden>
         <h1>Keybindings</h1>
-        <div class="combat-bindings">${[[1,'Fire Blast'],[2,'Lava Ball'],[3,'Pyre Burst'],['attack','Attack']].map(([id,name])=>`<label>${name} key <select data-combat-binding="${id}" aria-label="${name} key">${ACTION_BINDING_KEYS.map(code=>`<option value="${code}">${bindingLabel(code)}</option>`).join('')}</select></label>`).join('')}</div>
+        <div class="combat-bindings">${[[1,'Fire Blast'],[2,'Lava Ball'],[3,'Pyre Burst'],[4,'Ashen Brand'],['attack','Attack']].map(([id,name])=>`<label>${name} key <select data-combat-binding="${id}" aria-label="${name} key">${ACTION_BINDING_KEYS.map(code=>`<option value="${code}">${bindingLabel(code)}</option>`).join('')}</select></label>`).join('')}</div>
         <button type="button" data-reset-combat-keys>Reset combat keys</button>
         <p data-binding-status role="status">Combat keys are saved on this browser. Number-pad keys follow their matching digit.</p>
         <label for="combat-queue-window">Spell queue window</label>

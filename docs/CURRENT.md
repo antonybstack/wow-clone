@@ -4,9 +4,9 @@ Updated **2026-10-10 PDT**. Read this before choosing work. Latest user directio
 controls scope; historical milestone lists are evidence, not an active queue.
 **Current focus: combat feel and an interacting fire-caster kit in the Gothic region.**
 The [12-milestone combat overhaul plan](plans/combat-overhaul/plan-2026-10-10.md)
-has C01 baseline evidence and C02–C04 implemented: authoritative action timing,
+has C01 baseline evidence and C02–C05 implemented: authoritative action timing,
 input buffering, moving/airborne instants, contact deadlines, readable cooldowns
-and persistent combat bindings. [C03](baselines/combat-c03-2026-10-10/README.md)
+persistent combat bindings, free filler, in-combat mana regeneration and Ashen Brand. [C03](baselines/combat-c03-2026-10-10/README.md)
 is pushed (`e2d4d2f`, test/delivery follow-up `fae4e9e`), Telegram **914** / verified VE.
 [C04](baselines/combat-c04-2026-10-10/README.md) is pushed (`f955297`), Telegram **915** / verified VE: **60 CPU tests**, build, native
 HUD/keybinding/reload/source-switch checks and mortal contact pass. Isolated
@@ -15,7 +15,16 @@ M1 Max / uncapped Chromium WebGPU / 1280×720 DPR 1 / seven enemies: three
 median throughput change under 0.2%. Counts/tails/raw intervals are retained.
 C01's independent RAF callback FPS is not a comparable submitted-frame baseline.
 
-**Next: C05 sustainable combat and Ashen Brand**, followed by procs, safe area
+[C05](baselines/combat-c05-2026-10-10/README.md) adds Brand's six timed ticks,
+late-refresh window and persisted lesson, plus one damage/kill owner. 73 focused
+CPU tests, build, native UI/tick/refresh/reload, zero-mana filler, mortal contact,
+and death → dummy recovery checks pass. A 90 s God-off dummy rhythm has 56 inputs,
+no mana refusals or death. Final isolated samples: **165–187 FPS**, pack p99
+6.5–6.6 ms; dummy p99 7.8/11.6/9.0 ms. The occasional >10 ms run and +1.2 ms median
+tail versus a same-day C04 control are an explicit **C12 release blocker**.
+Throughput meets the target; strict tail qualification remains open.
+
+**Next: C06 Ember Surge, crits and independent Lava projectiles**, then safe area
 damage, enemies/utilities, presentation and the Gothic encounter. Full native
 100-action chain, mortal chapel traversal, clear source/equipment silhouette
 review, death/blur/soak and production release gates remain open. Opus VFX code
@@ -83,11 +92,12 @@ fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
 
 ## Ownership and operating rules
 
-Root closed the user Edge 5173 game tab with explicit authorization. All root
-C03/C04 game contexts and slot 8 Chrome45113/Vite45088 (CDP10137/Vite5973) are
-closed/stopped after measurement. C04 local/VE video tabs and preview 7075 are also closed; final browser inventory shows no game or review tabs. Other user tabs and
-Vite29712/5173 and Vite4000 10171/10205 remain intact. Grok source review/encode
-workers and Opus VFX are finished/idle with no browser ownership.
+Root closed the user Edge 5173 game tab with explicit authorization. C05 game
+contexts are closed; slot8 Chrome77674/Vite77625 (CDP10137/Vite5973) and control
+slot9 Chrome7221/Vite7144 (CDP10237/Vite6073) are stopped. The clean temporary C04
+worktree was removed. Other user tabs and Vite29712/5173 and Vite4000 10171/10205
+remain intact. Grok source review and build workers finished; the bounded final
+encoder owns no browser. Media delivery cleanup is recorded in the C05 receipt.
 
 Root implements and accepts. Grok handles bounded operations/review; the latest
 user request explicitly permits Opus 5.5 for parallel combat VFX work. Preserve unrelated

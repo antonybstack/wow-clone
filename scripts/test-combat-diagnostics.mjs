@@ -51,3 +51,8 @@ test('unready, non-dev and invalid scenarios cannot mutate the game', () => {
   f.block(); assert.equal(f.scenarios.start('pack'), false);
   assert.equal(f.resets(), 0); assert.equal(f.progress.mana, 23);
 });
+
+test('restoring a saved rehearsal cannot rewind a newer player generation',()=>{
+ const f=fixture();f.life.generation=4;assert(f.scenarios.start('dummy'));
+ f.life.generation=8;assert(f.scenarios.restore());assert.equal(f.life.generation,8);
+});

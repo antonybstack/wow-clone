@@ -15,7 +15,9 @@ export function createCombatScenarios({ enabled, ready, player, rig, life, progr
   function restore() {
     if (!saved) return false;
     reset();
-    Object.assign(life, saved.life);
+    // A restored actor is a new combat generation, never a saved incarnation.
+    const generation=life.generation;
+    Object.assign(life, saved.life, {generation});
     // xpToNext is a getter; only restore mutable data fields.
     for (const [key, value] of Object.entries(saved.progress)) if (key !== 'xpToNext') progress[key] = value;
     for (const { entity, position, values } of saved.entities) {

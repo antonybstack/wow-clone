@@ -124,12 +124,12 @@ export function createActionScheduler({ definitions, getTarget, resource, valida
       event('action-queued', queued, { readyAt, expiresAt: queued.expiresAt });
       return { ok: true, queued: true, actionId: action.actionId };
     },
-    advance(time) {
+    advance(time, {drainQueue=true} = {}) {
       if (disposed) return;
       if (!Number.isFinite(time) || time < now) throw new RangeError('Combat time must be monotonic');
       now = time;
       if (active && active.releaseAt <= now + EPSILON) release();
-      if (queued && queued.readyAt <= now + EPSILON) {
+      if (drainQueue && queued && queued.readyAt <= now + EPSILON) {
         const next = queued; queued = null;
         if (now > next.expiresAt + EPSILON) event('queue-expired', next, { reason: 'Input expired after a late frame' });
         else {

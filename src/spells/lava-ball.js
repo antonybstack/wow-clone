@@ -3,8 +3,8 @@ export const LAVA_BALL = Object.freeze({
   name: "Lava Ball",
   key: 2,
   castTime: 1.5,
-  damage: 240,
-  range: 24,
+  damage: 140,
+  range: 30,
   cooldown: 3,
   speed: 20,
 });
@@ -33,6 +33,8 @@ export class LavaBall extends FireBlast {
       position: vec(origin),
       end,
       target,
+      targetGeneration:target.generation??0,
+      damageContext:args.damageContext,
       age: 0,
       direction: {
         x: (end.x - origin.x) / length,
@@ -48,6 +50,9 @@ export class LavaBall extends FireBlast {
   advance(dt, raycast) {
     const f = this.flight;
     if (!f) return null;
+    if(f.target.hp<=0||f.target.hidden||(f.target.generation??0)!==f.targetGeneration){
+      this.flight=null;return {ok:false,position:vec(f.position),reason:'Target is unavailable'};
+    }
     f.age += dt;
     const remaining = Math.hypot(
         f.end.x - f.position.x,
@@ -80,7 +85,7 @@ export class LavaBall extends FireBlast {
           f.target.position.z - f.end.z,
         ) < 0.8;
       const hit = (collision.hasHit ? own : arrived && stillAtAim)
-        ? this.hit(f.target)
+        ? this.hit(f.target,f.damageContext)
         : { ok: false, reason: "Lava Ball struck an obstacle" };
       this.lastResult = hit.ok ? "hit" : hit.reason;
       return { ...hit, position: point };

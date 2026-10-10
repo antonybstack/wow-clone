@@ -2,9 +2,9 @@
 export const FIRE_BLAST = Object.freeze({
   name: "Fire Blast",
   key: 1,
-  damage: 120,
-  range: 20,
-  cooldown: 1,
+  damage: 60,
+  range: 30,
+  cooldown: 0,
   requiresGround: false,
 });
 export class FireBlast {
@@ -50,9 +50,10 @@ export class FireBlast {
     if (reason) return { ok: false, reason };
     this.casts++;
     this.cooldown = this.config.cooldown;
-    return this.hit(target);
+    return this.hit(target,args.damageContext);
   }
-  hit(target) {
+  hit(target, context) {
+    if(this.dealDamage)return this.dealDamage(target,this.config.damage,context);
     if (target.hp <= 0)
       return { ok: false, reason: "Training dummy is recovering" };
     const damage = Math.min(target.hp, this.config.damage);

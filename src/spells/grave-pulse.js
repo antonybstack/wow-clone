@@ -1,11 +1,11 @@
-/** Charged fire nova at the caster's feet. No target required. */
+/** Instant fire nova at the caster's feet. No target required. */
 export const GRAVE_PULSE = Object.freeze({
   name: "Pyre Burst",
   key: 3,
   damage: 90,
   radius: 8,
-  cooldown: 6,
-  castTime: 1.1,
+  cooldown: 8,
+  castTime: 0,
 });
 
 const xz = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
@@ -45,7 +45,8 @@ export class GravePulse {
     if (!this.inRange(position, hostiles).length) return "No enemies in range";
     return "";
   }
-  hit(target) {
+  hit(target,context) {
+    if(this.dealDamage)return this.dealDamage(target,this.config.damage,context);
     if (target.hp <= 0)
       return { ok: false, reason: "Training dummy is recovering" };
     const damage = Math.min(target.hp, this.config.damage);
@@ -62,7 +63,7 @@ export class GravePulse {
     this.lastResult = reason || "hit";
     if (reason) return { ok: false, reason, hits: [] };
     const hits = this.inRange(args.position, args.hostiles)
-      .map((t) => this.hit(t))
+      .map((t) => this.hit(t,args.damageContext))
       .filter((r) => r.ok);
     this.casts++;
     this.cooldown = this.config.cooldown;

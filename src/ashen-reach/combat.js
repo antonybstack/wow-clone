@@ -8,7 +8,7 @@ import { GravePulse } from "../spells/grave-pulse.js";
 import { Targeting } from "../targeting.js";
 import { setInputEnabled, notifyActionInput, onActionInput, onInputReset } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
-import { enemySnapshot, updateEnemies, syncDiagnosticEnemy } from "./enemies.js";
+import { enemySnapshot, updateEnemies, syncDiagnosticEnemy, markEnemyDead } from "./enemies.js";
 import { createFireBlastAudio } from "./fire-blast-audio.js";
 import { createFireBlastVfx } from "./fire-blast-vfx.js";
 import { height, pathX } from "./geometry.js";
@@ -35,6 +35,9 @@ import { createCombatClock } from './combat/combat-clock.js';
 import { createInputIntents } from './combat/input-intents.js';
 import { movementRefusal, canAutoFace, facingRefusal, inContactRange } from './combat/movement-policy.js';
 import { ABILITIES, ABILITY_SLOTS } from './combat/ability-definitions.js';
+import {createDamageResolver} from './combat/damage-resolver.js';
+import {createAuraStore,ASHEN_BRAND} from './combat/aura-store.js';
+import {createEventTimeline,COMBAT_PHASE} from './combat/event-timeline.js';
 import { devDestinations } from './dev-destinations.js';
 
 const PLAYER_HP = PLAYER_HP_BASE;
@@ -148,6 +151,7 @@ export async function createCombat(
       fx.handPosition,
       player,
     );
+  const brand=new FireBlast({name:'Ashen Brand',key:4,damage:0,range:30,cooldown:0,requiresGround:false});
   const pulse = new GravePulse(),
     pulseFx = await createGravePulseVfx(engine, scene, player, world, fx.handPosition);
   const audio = await createFireBlastAudio(scene);
@@ -201,7 +205,7 @@ export async function createCombat(
     hitDirection = { x: 0, z: 1 },
     hitDummy = false,
     gcd = 0,
-    meleeRecover = 0,
+    dummyRecoveryAt = null,
     swingHit = false;
   const auto = { enabled: false, timer: 0, queued: false, pendingHit: false };
   let readWeapon = () => null;
@@ -209,6 +213,7 @@ export async function createCombat(
   let visible = false,
     pending = null;
   const life = {
+    id:'player',generation:0,
     hp: PLAYER_HP,
     hpMax: PLAYER_HP,
     dead: false,
@@ -217,7 +222,7 @@ export async function createCombat(
     time: 0,
   };
   const trace = createCombatTrace({ enabled: () => dev.enabled });
-  const record = (type, detail = {}) => trace.record(type, life.time, detail);
+  const record = (type, detail = {}) => trace.record(type, detail.time ?? life.time, detail);
   const plantPlayer = () => {
     const x = 0,
       z = 0;
@@ -227,11 +232,6 @@ export async function createCombat(
   const syncPlayerHp = () => {
     player.hp = life.hp;
     player.hpMax = life.hpMax;
-  };
-  const keepDummyRecovery = (ability) => {
-    if (!ability?.damagedTarget || ability.damagedTarget.recover) return;
-    ability.damagedTarget = dummy.hp <= 0 ? dummy : null;
-    if (!ability.damagedTarget) ability.resetIn = 0;
   };
   const markCombat = () => {
     life.combatUntil = life.time + REGEN_DELAY;
@@ -262,6 +262,36 @@ export async function createCombat(
       }
     }
   };
+  const timeline=createEventTimeline();
+  const targetById=id=>id==='player'?life:hostiles.find(t=>t.id===id);
+  const damage=createDamageResolver({getTarget:targetById,
+    onKill(target,event){
+      auras.clearTarget(target.id);
+      if(lava.flight?.target===target)lava.flight=null;
+      if(target===life){die();return;}
+      if(target===dummy){dummyRecoveryAt=event.time+3;return;}
+      markEnemyDead(target);
+      if(!scenarios.active){const result=progression.awardXp(target,life,event.time);settleKill(result,objective?.onKill(target)?.completed);}
+      record('kill',{...event});
+    },
+    onHit(target,event){
+      record('hit',{...event});markCombat();
+      if(target===life){syncPlayerHp();if(!life.dead)body.playHit?.();}
+      else hud.hit(target,event.amount,event.flags?.includes('periodic'));
+    },
+  });
+  const auras=createAuraStore({getTarget:targetById,isSourceAlive:id=>id!=='player'||!life.dead,
+    onTick(a,tick){damage.resolve({...tick,sourceId:a.sourceId,targetId:a.targetId,targetGeneration:a.targetGeneration,
+      abilityId:a.effectId,amount:a.amount,damageType:'fire',flags:['periodic']});},
+    onChange(type,a,reason){record(type,{abilityId:a.effectId,targetId:a.targetId,targetGeneration:a.targetGeneration,expiresAt:a.expiresAt,reason});},
+  });
+  const deal=(target,amount,context={})=>damage.resolve({time:life.time,sourceId:'player',...context,
+    targetId:target.id,targetGeneration:context.targetGeneration??target.generation??0,amount});
+  spell.dealDamage=deal;lava.dealDamage=deal;pulse.dealDamage=deal;
+  let brandLearned=false;
+  try{brandLearned=localStorage.getItem('ashen-brand-learned')==='true';}catch{}
+  const canUseBrand=()=>brandLearned||!!(dev.enabled&&scenarios.active);
+  hud.onLearnBrand=()=>{brandLearned=true;try{localStorage.setItem('ashen-brand-learned','true');}catch{};hud.closeLesson();};
   const connectSwing = (profile) => {
     const target = hostiles.find(t => t.id === auto.targetId && (t.generation ?? 0) === auto.targetGeneration);
     if (!target || target.hp <= 0 || target.hidden) return;
@@ -271,13 +301,8 @@ export async function createCombat(
     if (facingError(player.getFacing(), p, target.position) > Math.PI / 2) return;
     const los = spellLineOfSight(player, target);
     if (!los.clear) return;
-    const dealt = Math.min(target.hp, profile.damage);
-    target.hp -= dealt;
-    target.hits = (target.hits || 0) + 1;
-    record('hit', { slot: 'melee', targetId: target.id, amount: dealt });
-    hud.hit(target, dealt);
-    hud.message("");
-    markCombat();
+    const hit=deal(target,profile.damage,{abilityId:'melee',damageType:'physical',time:auto.contactAt,targetGeneration:auto.targetGeneration});
+    if(!hit.ok)return;
     if (target === dummy) {
       hitDummy = true;
       hitAge = 0;
@@ -286,12 +311,14 @@ export async function createCombat(
         p = player.body.position,
         length = Math.hypot(t.x - p.x, t.z - p.z) || 1;
       hitDirection = { x: (t.x - p.x) / length, z: (t.z - p.z) / length };
-      if (dummy.hp <= 0) meleeRecover = 3;
+
     }
   };
   const die = () => {
     if (life.dead) return;
     life.dead = true;
+    auras.clearSource('player');lava.flight=null;
+    for(const enemy of enemies)enemy.attackWindup=null;
     life.hp = 0;
     syncPlayerHp();
     auto.enabled = false;
@@ -304,7 +331,8 @@ export async function createCombat(
   };
   const releaseSpirit = (force = false) => {
     if (!life.dead && !force) return false;
-    life.dead = false;
+    life.dead = false;life.generation++;
+    auras.clearSource('player');lava.flight=null;
     life.hp = life.hpMax;
     life.inCombat = false;
     life.combatUntil = 0;
@@ -326,7 +354,6 @@ export async function createCombat(
     hasLineOfSight: () => spellLineOfSight(player, target).clear,
   });
   const impact = (result, isLava = false) => {
-    record('hit', { slot: isLava ? 2 : 1, targetId: result.target.id, amount: result.damage });
     const t = result.target.position,
       p = player.body.position,
       length = Math.hypot(t.x - p.x, t.z - p.z) || 1;
@@ -340,16 +367,13 @@ export async function createCombat(
       audio.play();
       fx.trigger(result.target);
     }
-    hud.message("");
-    hud.hit(result.target, result.damage);
-    markCombat();
-    keepDummyRecovery(spell);
-    keepDummyRecovery(lava);
+
   };
   for (const [slot, key] of [
     [hud.slot, 1],
     [hud.lavaSlot, 2],
     [hud.pulseSlot, 3],
+    [hud.brandSlot, 4],
   ]) {
     slot.onclick = () => {
       input.spellPressed = key;
@@ -374,7 +398,7 @@ export async function createCombat(
   let animationAction = null;
   let nextHudPreview=0;
   const actionViews={};
-  const abilityFor = id => id === 'lava-ball' ? lava : id === 'pyre-burst' ? pulse : spell;
+  const abilityFor = id => ({'fire-blast':spell,'lava-ball':lava,'pyre-burst':pulse,'ashen-brand':brand})[id];
   const scheduler = createActionScheduler({
     definitions: ABILITIES,
     getTarget: id => hostiles.find(target => target.id === id),
@@ -382,6 +406,8 @@ export async function createCombat(
       spend: amount => { progression.progress.mana -= amount; } },
     validate(action, definition, phase) {
       if (life.dead || !visible) return 'Combat unavailable';
+      if(definition.id==='ashen-brand'&&!canUseBrand())return 'Learn Ashen Brand';
+      if(definition.id==='ashen-brand'&&auras.size>=64&&!auras.hasTarget(action.targetId))return 'Too many active burns';
       const motion = actionMotion();
       const movement = movementRefusal(definition, motion);
       if (movement) return movement;
@@ -421,7 +447,7 @@ export async function createCombat(
       pending.ability.lastResult = 'windup'; hud.message('');
       if (key === 2) { lavaFx.begin(); audio.lavaCharge(); }
       else if (key === 3) { pulseFx.begin(); audio.lavaCharge(); }
-      else fx.beginWindup();
+      else if(key===1)fx.beginWindup();
     },
     onCancel(action, reason) {
       const key = action.definition.slot;
@@ -432,31 +458,36 @@ export async function createCombat(
       else fx.cancelWindup();
       abilityFor(action.abilityId).lastResult = reason; hud.message(reason);
     },
-    onRelease(action) {
-      const key = action.definition.slot, target = hostiles.find(t => t.id === action.targetId);
-      pending = null; player.setMoveScale?.(1);
-      const ability = abilityFor(action.abilityId);
-      ability.cooldown = 0;
-      if (key === 2) {
-        const p = lavaFx.origin(), origin = { x: p[0], y: p[1], z: p[2] };
-        const result = lava.release(castArgs(target), origin);
-        if (result.ok) { markCombat(); lavaFx.launch(origin); audio.lavaRelease(); }
-        else { lavaFx.cancel(); audio.lavaCancel(); hud.message(result.reason); }
-      } else if (key === 3) {
-        const result = pulse.cast({ position: player.body.position, grounded: player.getGrounded(), hostiles });
-        if (result.ok) {
-          pulseFx.trigger(); audio.pulse(); rig?.impulse?.(.34); markCombat();
-          for (const hit of result.hits) {
-            record('hit', { actionId: action.actionId, abilityId: action.abilityId, targetId: hit.target.id, targetGeneration: hit.target.generation, amount: hit.damage });
-            hud.hit(hit.target, hit.damage);
-            if (hit.target === dummy) { hitDummy = true; hitAge = 0; hitScale = 2.2; hitDirection = { x: 0, z: 1 }; }
-            keepDummyRecovery(pulse);
-          }
-        } else hud.message(result.reason);
-      } else {
-        const result = spell.cast(castArgs(target));
-        if (result.ok) impact(result); else { fx.cancelWindup(); hud.message(result.reason); }
-      }
+    onRelease(action, releasedAt) {
+      const key=action.definition.slot,target=hostiles.find(t=>t.id===action.targetId);
+      pending=null;player.setMoveScale?.(1);
+      const ability=abilityFor(action.abilityId);ability.cooldown=0;
+      const damageContext={actionId:action.actionId,abilityId:action.abilityId,variant:action.definition.variant??'normal',
+        targetGeneration:action.targetGeneration,time:releasedAt,flags:['direct']};
+      if(key===4){
+        const result=auras.apply({sourceId:'player',targetId:target.id,targetGeneration:action.targetGeneration,time:releasedAt});
+        if(result.ok){brand.casts++;markCombat();}else hud.message(result.reason);
+      }else if(key===2){
+        const p=lavaFx.origin(),origin={x:p[0],y:p[1],z:p[2]};
+        const result=lava.release({...castArgs(target),damageContext},origin);
+        if(result.ok){markCombat();lavaFx.launch(origin);audio.lavaRelease();}
+        else{lavaFx.cancel();audio.lavaCancel();hud.message(result.reason);}
+      }else timeline.add(releasedAt,COMBAT_PHASE.impact,()=>{
+        if(life.dead)return;
+        if(key===3){
+          // Each area target gets its own generation; the action's selected
+          // target generation is irrelevant to a self-centred burst.
+          const {targetGeneration,...areaContext}=damageContext;
+          const result=pulse.cast({position:player.body.position,grounded:player.getGrounded(),hostiles,damageContext:areaContext});
+          if(result.ok){
+            pulseFx.trigger();audio.pulse();rig?.impulse?.(.34);
+            for(const hit of result.hits)if(hit.target===dummy){hitDummy=true;hitAge=0;hitScale=2.2;hitDirection={x:0,z:1};}
+          }else hud.message(result.reason);
+        }else{
+          const result=spell.cast({...castArgs(target),damageContext});
+          if(result.ok)impact(result);else{fx.cancelWindup();hud.message(result.reason);}
+        }
+      });
     },
   });
   try { scheduler.setQueueWindow(Number(localStorage.getItem('ashen-combat-queue-window') ?? .3)); }
@@ -466,21 +497,21 @@ export async function createCombat(
     if (action !== 1 || animationLab || !visible || life.dead) return;
     const abilityId = ABILITY_SLOTS[input.spellPressed];
     if (!abilityId) return;
+    if(abilityId==='ashen-brand'&&!canUseBrand()){hud.showLesson();return;}
     const target = targeting.current;
     if (!intents.push({ abilityId, targetId: target?.id ?? null, targetGeneration: target?.generation ?? 0,
       inputAt: scheduler.now, receivedMs: performance.now() })) record('input-overflow', { rejected: intents.rejected });
   });
   const removeInputReset = onInputReset(() => { body.cancelCombatGesture?.(); cancel('Input released'); });
   lifetime.addEventListener('abort', () => {
-    removeActionInput(); removeInputReset(); intents.clear(); scheduler.dispose();
+    removeActionInput(); removeInputReset(); intents.clear(); scheduler.dispose();auras.clear();timeline.clear();lava.flight=null;
   }, { once: true });
-  const onPlayerHit = (amount) => {
-    if (life.dead || dev.god) return;
-    life.hp = Math.max(0, life.hp - amount);
-    syncPlayerHp();
-    markCombat();
-    body.playHit?.();
-    if (!life.hp) die();
+  const onPlayerHit = (amount,enemy,offset=0) => {
+    const generation=life.generation,time=life.time+offset,sourceGeneration=enemy.generation??0;
+    timeline.add(time,COMBAT_PHASE.contact,()=>{
+      if(life.dead||dev.god||enemy.hp<=0||(enemy.generation??0)!==sourceGeneration)return;
+      damage.resolve({sourceId:enemy.id,targetId:'player',targetGeneration:generation,abilityId:'shade-melee',damageType:'physical',amount,time});
+    });
   };
   const tickLife = (dt) => {
     life.time = clock.time;
@@ -531,7 +562,7 @@ export async function createCombat(
       marks.push({
         position: enemy.position,
         y: enemy.position.y + 2.2,
-        text: enemy.name,
+        text: enemy.name+(auras.hasTarget(enemy.id)?' · Brand':''),
         color: enemy.nameColor,
       });
     }
@@ -605,7 +636,9 @@ export async function createCombat(
       cancel('Diagnostic scenario reset'); scheduler.reset(); targeting.clear(); body.cancelMelee?.(); body.cancelCombatGesture?.();
       for(const enemy of enemies) enemy.attackWindup=null;
       Object.assign(auto, { enabled: false, timer: 0, queued: false, pendingHit: false, contactAt: 0, targetId: null, targetGeneration: null });
-      gcd = meleeRecover = 0; hitAge = 10; lava.flight = null;
+      auras.clear();timeline.clear();life.generation++;dummyRecoveryAt=null;dummy.generation=(dummy.generation??0)+1;
+      for(const enemy of enemies)enemy.generation=(enemy.generation??0)+1;
+      gcd = 0; hitAge = 10; lava.flight = null;
       for (const ability of [spell, lava, pulse]) {
         ability.cooldown = ability.resetIn = 0; ability.damagedTarget = null;
       }
@@ -630,6 +663,7 @@ export async function createCombat(
     spell,
     lava,
     pulse,
+    brand,auras,
     dummy,
     enemies,
     registerEnemy(enemy) {
@@ -658,6 +692,7 @@ export async function createCombat(
       progress: progression.snapshot(),
       dev: { god: dev.god, flying: dev.flying },
       gcd: scheduler.gcdRemaining,
+      auras:auras.snapshot(life.time),brandLearned,
       queue: scheduler.queued, reservedMana: scheduler.reserved, availableMana: scheduler.available, inputOverflow: intents.rejected,
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
@@ -685,6 +720,12 @@ export async function createCombat(
       lava.update(dt);
       pulse.update(dt);
       tickLife(dt);
+      // Keep the deadline while dead; the death path discards combat events.
+      if(!life.dead&&dummyRecoveryAt!==null&&dummyRecoveryAt<=life.time){
+        const at=dummyRecoveryAt;
+        timeline.add(at,COMBAT_PHASE.interrupt,()=>{dummyRecoveryAt=null;auras.clearTarget(dummy.id);if(lava.flight?.target===dummy)lava.flight=null;dummy.hp=dummy.hpMax;dummy.generation=(dummy.generation??0)+1;});
+      }
+      auras.schedule(life.time,timeline);
       updateEnemies(enemies, dt, {
         player,
         world,
@@ -693,11 +734,7 @@ export async function createCombat(
         targeting,
         onPlayerHit,
         onCombatEvent: (type, enemy, detail) => record(type, { sourceId: enemy.id, sourceGeneration: enemy.generation, ...detail }),
-        onKill(enemy) {
-          if (scenarios.active) return;
-          const result = progression.awardXp(enemy, life, life.time);
-          settleKill(result, objective?.onKill(enemy)?.completed);
-        },
+
       });
       const offered = !scenarios.active && objective?.tick({
         player,
@@ -709,6 +746,7 @@ export async function createCombat(
       if (offered?.completed) settleKill({ gained: 0, leveled: false }, true);
       else if (offered?.message) hud.message(offered.message);
       if (life.dead) {
+        timeline.clear();
         input.spellPressed = 0;
         input.attackPressed = false;
         input.tabPressed = false;
@@ -778,15 +816,22 @@ export async function createCombat(
         input.castHold = input.spellHeld2 = input.castInstant = false;
         const motionReason = scheduler.active && movementRefusal(scheduler.active.definition, actionMotion());
         if (motionReason) cancel(motionReason);
-        scheduler.advance(life.time);
-        intents.drain(intent => scheduler.request(intent));
+        if(scheduler.active?.releaseAt<=life.time)timeline.add(scheduler.active.releaseAt,COMBAT_PHASE.release,()=>scheduler.advance(life.time,{drainQueue:false}));
+        timeline.add(life.time,COMBAT_PHASE.release,()=>{scheduler.advance(life.time);intents.drain(intent=>scheduler.request(intent));});
         gcd = scheduler.gcdRemaining;
-        for (const [id, ability] of [['fire-blast', spell], ['lava-ball', lava], ['pyre-burst', pulse]]) ability.cooldown = scheduler.cooldown(id);
+        for (const [id, ability] of [['fire-blast', spell], ['lava-ball', lava], ['pyre-burst', pulse], ['ashen-brand',brand]]) ability.cooldown = scheduler.cooldown(id);
         if (animationAction) body.syncCombatCast?.(Math.max(0, life.time - animationAction.startedAt));
       }
-      if (visible && !animationLab) tickAuto(dt);
+      if (visible && !animationLab && auto.enabled)timeline.add(life.time,COMBAT_PHASE.release,()=>{if(!life.dead)tickAuto(dt);});
+      if(auto.pendingHit&&!swingHit&&life.time>=auto.contactAt){
+        const at=auto.contactAt;
+        timeline.add(at,COMBAT_PHASE.contact,()=>{if(!life.dead&&auto.pendingHit&&auto.contactAt===at){swingHit=true;auto.pendingHit=false;connectSwing(weaponProfile(readWeapon()));}});
+      }
+      timeline.drain(life.time);
+      gcd=scheduler.gcdRemaining;
     },
     afterAnimation(dt) {
+      if(lava.flight?.damageContext)lava.flight.damageContext.time=life.time;
       if (animationAction && !body.getState().castingShoot) animationAction = null;
       const collision = lava.advance(dt, player.raycast);
       if (collision) {
@@ -805,14 +850,7 @@ export async function createCombat(
         dummy.root.rotation.x = tilt * hitDirection.z;
         dummy.root.rotation.z = -tilt * hitDirection.x;
       }
-      if (auto.pendingHit && !swingHit && life.time >= auto.contactAt) {
-        swingHit = true; auto.pendingHit = false;
-        connectSwing(weaponProfile(readWeapon()));
-      }
-      if (meleeRecover > 0) {
-        meleeRecover = Math.max(0, meleeRecover - dt);
-        if (!meleeRecover && dummy.hp <= 0) { dummy.hp = dummy.hpMax; dummy.generation++; }
-      }
+      auras.expire(life.time);
       fx.update(dt);
       lavaFx.update(dt, body.getState().castElapsed, lava.flight);
       pulseFx.update(dt);
@@ -820,6 +858,7 @@ export async function createCombat(
       // scheduler remains the authority on the accepting update, including queues.
       if(life.time>=nextHudPreview){
         nextHudPreview=life.time+.1;
+        hud.paintAuras(auras.snapshot(life.time),targeting.current?.id);
         for(const definition of Object.values(ABILITIES)){
           const preview=scheduler.preview({abilityId:definition.id,targetId:targeting.current?.id});
           actionViews[definition.id]={...preview};

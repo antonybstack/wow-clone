@@ -1,6 +1,6 @@
 /**
  * Experience, levels and mana. Health regeneration stays in combat.js;
- * mana uses the same out-of-combat delay and per-second rate.
+ * mana regenerates at 6/s in combat, with a separately tuned rate outside combat.
  */
 
 export const PLAYER_HP_BASE = 100;
@@ -8,9 +8,9 @@ export const PLAYER_MANA_BASE = 100;
 export const HP_PER_LEVEL = 15;
 export const MANA_PER_LEVEL = 15;
 export const SHADE_XP = 50;
-export const FIRE_BLAST_MANA = 20;
-export const LAVA_BALL_MANA = 40;
-export const GRAVE_PULSE_MANA = 30;
+export const FIRE_BLAST_MANA = 0;
+export const LAVA_BALL_MANA = 12;
+export const GRAVE_PULSE_MANA = 20;
 
 /** XP required to go from `level` to `level + 1`. */
 export function xpToNext(level) {
@@ -27,6 +27,7 @@ export function manaMaxFor(level) {
 
 export function manaCost(spellKey) {
   if (spellKey === 2) return LAVA_BALL_MANA;
+  if (spellKey === 4) return 8;
   if (spellKey === 3) return GRAVE_PULSE_MANA;
   return FIRE_BLAST_MANA;
 }
@@ -70,8 +71,8 @@ export function createProgression() {
   };
 
   const regenMana = (dt, inCombat, perSec) => {
-    if (inCombat || progress.mana >= progress.manaMax) return;
-    progress.mana = Math.min(progress.manaMax, progress.mana + perSec * dt);
+    if (progress.mana >= progress.manaMax) return;
+    progress.mana = Math.min(progress.manaMax, progress.mana + (inCombat ? 6 : perSec) * dt);
   };
 
   const fillMana = () => {

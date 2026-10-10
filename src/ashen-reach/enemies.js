@@ -257,6 +257,8 @@ export function syncDiagnosticEnemy(enemy) {
   syncRoot(enemy);
 }
 
+export function markEnemyDead(enemy) { if(enemy.state!=='dead')enter(enemy,'dead'); }
+
 function enter(enemy, state) {
   enemy.state = state;
   enemy.stateAge = 0;
@@ -398,6 +400,7 @@ function tickEnemy(enemy, dt, ctx) {
     if (playerDead) enter(enemy, "return");
     else if (dist > ENEMY_TUNING.meleeRange + 0.55) enter(enemy, "chase");
     else if (enemy.attackWindup !== null && enemy.attackWindup !== undefined) {
+      const contactOffset=Math.min(0,enemy.attackWindup-dt);
       enemy.attackWindup = Math.max(0, enemy.attackWindup - dt);
       if (!enemy.attackWindup) {
         enemy.attackWindup = null;
@@ -407,7 +410,7 @@ function tickEnemy(enemy, dt, ctx) {
         ctx.onCombatEvent?.('enemy-contact', enemy, { connected });
         if (connected) {
           enemy.hitsLanded = (enemy.hitsLanded || 0) + 1;
-          onPlayerHit(ENEMY_TUNING.attackDamage, enemy);
+          onPlayerHit(ENEMY_TUNING.attackDamage, enemy, contactOffset);
         }
       }
     } else if (enemy.attackCooldown <= 0 && dist <= ENEMY_TUNING.meleeRange + 0.35 && canSee) {
