@@ -19,3 +19,13 @@ User-directed sealed upload of the Vaelmark desktop preview. Startup unqualified
 - Harness cleanup: [cleanup.json](cleanup.json)
 
 Result: [production-deployment-2026-10-10.md](../../plans/gothic-exploration/results/production-deployment-2026-10-10.md).
+
+## Native helper recovery
+
+Root retained the executed [corrected expedition helper](check-expedition.mjs.gz)
+and [default entry helper](check-default-entry.mjs.gz), with
+[decoded hashes](native-helper-snapshots.json). Decompress into
+`.cache/gothic-prod-2026-10-10/` to preserve their relative imports. The corrected
+helper changes only import locations and progression comparisons that allow
+bounded ordinary mana regeneration; it preserves actual unseeded reloads.
+No runtime or product script changed for this deployment.

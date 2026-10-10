@@ -1,0 +1,16 @@
+[
+  {
+    "name": "check-expedition.mjs",
+    "sha256": "96e883308dd0912138b8674ec6affcd32ee5be2dd53c6b9382b1d075d656143d",
+    "bytes": 29731,
+    "restoreUnder": ".cache/gothic-prod-2026-10-10/",
+    "note": "Relative imports depend on this two-level cache location; does not alter sealed product inputs."
+  },
+  {
+    "name": "check-default-entry.mjs",
+    "sha256": "5ca2676997c21c776413f8ff7d31f4ee9bf58758cb86ad9fc217c385d874b12a",
+    "bytes": 5731,
+    "restoreUnder": ".cache/gothic-prod-2026-10-10/",
+    "note": "Relative imports depend on this two-level cache location; does not alter sealed product inputs."
+  }
+]

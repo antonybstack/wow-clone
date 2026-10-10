@@ -4,8 +4,10 @@ Start with **[CURRENT.md](CURRENT.md)** for the shipped game and current initiat
 
 ## Current direction and plans
 
+- **[Combat overhaul: investigation and 12-milestone plan](plans/combat-overhaul/plan-2026-10-10.md)** — latest requested planning focus: responsive inputs, instants while moving, procs, burns, area attacks, buffs, enemy decisions and an integrated Gothic encounter. Implementation has not started.
+
 - **[Long-term game vision](plans/gothic-exploration/vision.md)** — a purposeful Gothic region, deeper adventure, character production and shared expeditions.
-- **[Next 24 hours: the Bell of Vaelmark](plans/gothic-exploration/next-24-hours-2026-10-09.md)** — planned G09–G18, detailed implementation briefs, bounded startup diagnosis, saved exploration and explicit delivery gates. Execution has not started.
+- **[Bell of Vaelmark execution plan](plans/gothic-exploration/next-24-hours-2026-10-09.md)** — G09–G18 desktop-preview branch completed; [release result](plans/gothic-exploration/results/expedition-release-2026-10-10.md). CURRENT records subsequent production deployment and the retained startup limitation.
 - **[Completed Gothic foundations and acceptance scope](plans/gothic-exploration/plan.md)** — G01–G08 desktop previews; connected spaces and normal-control traversal already built.
 - **[G01 result: playable undercroft, measurements and sealed preview](plans/gothic-exploration/results/undercroft-2026-10-08.md)** — complete locally/preview; existing lower route.
 - **[G03 regional circuit and fork repairs](baselines/g03-region-2026-10-09/README.md)** — eight connected public destinations, reviewed motion.
