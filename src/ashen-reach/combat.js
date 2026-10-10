@@ -16,6 +16,7 @@ import { createLavaBallVfx } from "./lava-ball-vfx.js";
 import { createGravePulseVfx } from "./grave-pulse-vfx.js";
 import { createMinimap } from "./minimap.js";
 import {createRegionMap} from './region-map.js';
+import {createExploration} from './exploration.js';
 import { createProgression, PLAYER_HP_BASE } from "./progression.js";
 import { spellLineOfSight } from "./spell-visibility.js";
 import {
@@ -154,6 +155,8 @@ export async function createCombat(
   const deathVeil = lifeHud.querySelector(".death-veil");
   const progression = createProgression();
   const regionMap = createRegionMap({player, world, signal:lifetime});
+  const exploration=createExploration({scene,player,world,input,canvas,
+    isNavigationReady:options.isNavigationReady??(()=>false),onOpenJournal:options.onOpenJournal});
   const minimap = createMinimap({
     player,
     enemies,
@@ -527,6 +530,8 @@ export async function createCombat(
   return {
     targeting,
     regionMap,
+    exploration,
+    journal:exploration.journal,
     spell,
     lava,
     pulse,
@@ -574,6 +579,7 @@ export async function createCombat(
       visible = v;
       hud.setVisible(v);
       minimap.setVisible(v);
+      exploration.setVisible(v);
     },
     interrupt(reason = "Cast interrupted") {
       cancel(reason);
@@ -601,6 +607,7 @@ export async function createCombat(
         dt,
         dead: life.dead,
       });
+      exploration.tick(dt,{dead:life.dead});
       if (offered?.completed) settleKill({ gained: 0, leveled: false }, true);
       else if (offered?.message) hud.message(offered.message);
       if (life.dead) {

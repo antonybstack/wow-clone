@@ -33,7 +33,7 @@ function devQueryOn() {
   return new URLSearchParams(location.search).has("dev") || document.body.classList.contains("dev-mode");
 }
 
-export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools, getRegionMap } = {}) {
+export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTools, getRegionMap, getJournal, getExploration } = {}) {
   const root = document.createElement("div");
   root.id = "game-menu";
   root.hidden = true;
@@ -49,6 +49,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <button type="button" data-action="resume">Resume <kbd>Esc</kbd></button>
           <button type="button" data-action="armory">Armory <kbd>C</kbd></button>
           <button type="button" data-action="region-map">Region map</button>
+          <button type="button" data-action="journal">Journal</button>
           <button type="button" data-action="sound">Sound</button>
           <button type="button" data-action="keys">Keybindings</button>
           <button type="button" data-action="dev" aria-pressed="false">Developer mode</button>
@@ -76,6 +77,17 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <p>While flying, click a solid surface to teleport (floors, roofs or ground). G / F also toggle God / Fly.</p>
           <p data-region-loading-mode></p>
           <button type="button" data-action="region-loading" disabled>Reload with whole-region loading</button>
+          <p data-exploration-status role="status"></p>
+          <button type="button" data-action="exploration-reset" disabled>Reset exploration for this session</button>
+          <p>Rehearsal progress lasts until reload; your saved journal is preserved.</p>
+          <button type="button" data-action="hub">Back</button>
+        </div>
+      </div>
+      <div class="game-menu-journal" hidden>
+        <h1 id="journal-title">Journal</h1>
+        <div data-journal><p role="status">Preparing the journal…</p></div>
+        <div class="game-menu-buttons">
+          <button type="button" data-action="journal-guide">Open Vaelmark guide</button>
           <button type="button" data-action="hub">Back</button>
         </div>
       </div>
@@ -89,6 +101,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <li><span>Auto attack</span><kbd>T</kbd></li>
           <li><span>Fire Blast / Lava Ball / Pyre Burst</span><kbd>1 / 2 / 3</kbd></li>
           <li><span>Armory</span><kbd>C</kbd></li>
+          <li><span>Interact with nearby discoveries</span><kbd>X</kbd></li>
           <li><span>Camera</span><kbd>V</kbd></li>
           <li><span>Reset</span><kbd>R</kbd></li>
           <li><span>Hide help</span><kbd>H</kbd></li>
@@ -112,6 +125,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   const panel = root.querySelector('.game-menu-panel');
   const keysPane = root.querySelector(".game-menu-keys");
   const devPane = root.querySelector(".game-menu-dev");
+  const journalPane=root.querySelector('.game-menu-journal');
   const destinationSelect = root.querySelector("#dev-destination");
   const destinationLink = root.querySelector("#dev-destination-link");
   let destinationSource;
@@ -140,6 +154,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
 
   function showHub() {
     mapPane.hidden = true;
+    journalPane.hidden = true;
     panel.classList.remove('region-map-open');
     root.setAttribute('aria-labelledby', 'game-menu-title');
     keysPane.hidden = true;
@@ -149,6 +164,14 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
 
   function refreshRegionMap() {
     if (!mapPane.hidden) getRegionMap?.()?.open(mapPane.querySelector('[data-region-map]'));
+  }
+
+  function openJournal(){
+    open();showHub();hub.hidden=true;journalPane.hidden=false;
+    root.setAttribute('aria-labelledby','journal-title');
+    getJournal?.()?.open(journalPane.querySelector('[data-journal]'));
+    journalPane.querySelector('[data-action="journal-guide"]').disabled=!getRegionMap?.();
+    focusFirst();
   }
 
   function paintSound() {
@@ -191,6 +214,10 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       destinationSource = destinations;
     }
     const enabled = devQueryOn() && !!tools?.dev?.enabled;
+    const exploration=getExploration?.(),snap=exploration?.snapshot();
+    root.querySelector('[data-exploration-status]').textContent=snap
+      ? `Exploration: ${snap.record.phase}${snap.sessionOnly?' · session rehearsal':''}.`:'Exploration is preparing.';
+    root.querySelector('[data-action="exploration-reset"]').disabled=!enabled||!exploration;
     const ready = enabled && !!tools?.navigationReady;
     destinationSelect.disabled = !destinations.length || !enabled;
     root.querySelector('[data-action="jump"]').disabled = !ready || !destinationSelect.value;
@@ -262,7 +289,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     paintMetricsButton();
   }
 
-  const activePane = () => !mapPane.hidden ? mapPane : !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
+  const activePane = () => !journalPane.hidden ? journalPane : !mapPane.hidden ? mapPane : !devPane.hidden ? devPane : !keysPane.hidden ? keysPane : hub;
   // Include the native select and readonly URL in the dialog's focus loop.
   // https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
   // A nested chart can hide a whole subtree while its individual buttons keep
@@ -329,6 +356,12 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     const action = button.dataset.action;
     if (action === "resume") close();
     else if (action === "armory") chooseArmory();
+    else if (action === 'journal') openJournal();
+    else if (action === 'journal-guide') {
+      journalPane.hidden=true;mapPane.hidden=false;panel.classList.add('region-map-open');
+      root.setAttribute('aria-labelledby','region-map-title');
+      getRegionMap?.()?.openGuide(mapPane.querySelector('[data-region-map]'));focusFirst();
+    }
     else if (action === 'region-map') {
       hub.hidden = keysPane.hidden = devPane.hidden = true;
       mapPane.hidden = false;
@@ -356,6 +389,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     } else if (action === 'region-loading'&&devQueryOn()) {
       const tools=getDevTools?.();
       if(tools?.regionCoreAvailable)location.assign(tools.regionLoadingURL(destinationSelect.value));
+    } else if(action==='exploration-reset'&&devQueryOn()){
+      getExploration?.()?.resetSession();refreshDevTools();
     } else if (action === "god" || action === "fly") {
       const tools = getDevTools?.();
       if (action === "god") tools?.setGod?.(!tools.dev.god);
@@ -419,5 +454,6 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     refreshSound: paintSound,
     refreshDevTools,
     refreshRegionMap,
+    openJournal,
   };
 }

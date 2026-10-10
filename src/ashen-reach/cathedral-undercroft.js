@@ -106,6 +106,10 @@ export function buildCathedralUndercroft(ctx,{flight,rail}){
     id:'vaelmark-undercroft',name:'Vaelmark Undercroft',floorY:y,bounds,entry,bottom,
     stair:{width:stairWidth,gradeDegrees:Math.atan(depth/(stairEnd-stairStart))*180/Math.PI},
     opening:UNDERCROFT.opening,terrainClearance,lamps,
+    // Standing datum and visible target are distinct: the overhead memorial lamp
+    // and the tomb centroid are unsuitable interaction points. Native Havok
+    // still validates the air path from the player at activation time.
+    memorial:{standingSurfaceY:y,stand:[-9.6,y,329],interact:[-8.65,y+1.15,329]},
     route:[[0,floorY,328],[-12,floorY,328],[-14.5,floorY,328],entry,bottom,[-14.5,y,348.5],[-7,y,348.5],[-7,y,337],[-10,y,334],[-10,y,325],[-4,y,325],[-4,y,334],[-7,y,337],[-7,y,348.5],[-14.5,y,348.5],bottom,entry,[-14.5,floorY,328],[-12,floorY,328],[0,floorY,328]],
   };
 }

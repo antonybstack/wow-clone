@@ -33,6 +33,8 @@ export const input = {
     spellPressed: 0,
     /** Edge. T or the Attack button toggles melee. */
     attackPressed: false,
+    /** Edge. X or the nearby Interact button; local exploration consumes it. */
+    interactPressed: false,
     spellHeld2: false,
     tabPressed: false,
     tabBack: false,
@@ -163,7 +165,7 @@ function isHudWidget(el) {
         return false;
     }
     return !!(/** @type {Element} */ (el).closest(
-        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label, #game-menu, #touch-controls",
+        "#hud-paper, #hud-hint, #hud-bag, #hud-bar, #hud-actions, #hud .action-bar, #hud .simple-pane, #hud .help-pane, #hud .hud-actions, #hud button, #hud select, #hud input, #hud textarea, #hud label, #game-menu, #touch-controls, [data-world-interaction]",
     ));
 }
 
@@ -485,6 +487,7 @@ export function initInput(canvas) {
         keys[event.code] = true;
         if (event.code === "Space") notifyActionInput(3);
         if (!event.ctrlKey && !event.metaKey && !event.altKey) {
+            if (event.code === "KeyX") input.interactPressed = true;
             if (event.code === "KeyB") {
                 input.toggleBag = true;
             }

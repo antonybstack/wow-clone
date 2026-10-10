@@ -66,6 +66,7 @@ export function createRegionMap({player, world, signal}) {
   signal.addEventListener('abort', () => {content?.remove(); selectedId = null; content = canvas = ctx = staticLayer = status = clearButton = null;}, {once:true});
   return {
     open(container) {if (signal.aborted) return false; mount(container); if(guide.isOpen)guide.refresh();else paint(); return true;},
+    openGuide(container){if(signal.aborted)return false;mount(container);if(guide.open(container)){content.hidden=true;return true;}return false;},
     get selected() {return selected();},
   };
 }
