@@ -1,0 +1,52 @@
+{
+  "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+  "commitMs": 24,
+  "ashenSeenMs": 721,
+  "playableWallMs": 877,
+  "navigationWallMs": 4152,
+  "hostilesWallMs": 4163,
+  "readyWallMs": 5117,
+  "meanings": {
+    "playableMs": "dressed character on Havok; first playable frame revealed",
+    "navigationMs": "route render blocks and mesh/box collision installed",
+    "hostilesReady": "town enemies registered",
+    "loadMs_ready": "hostiles + foliage + textures finished; suite-level ASHEN.ready",
+    "regionMs": "marked immediately after ready",
+    "wallMs": "worker Date.now() from navigation commit, includes Vite/network",
+    "marksFromBegin": "ASHEN.startup.timings() minus begin (in-page performance.now())"
+  },
+  "native": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "viewport": {
+      "w": 1280,
+      "h": 720,
+      "dpr": 1
+    },
+    "playableMs": 301.59999990463257,
+    "navigationMs": 3573.1999999284744,
+    "loadMs": 4547.799999952316,
+    "regionMs": 4547.799999952316,
+    "flags": {
+      "ready": true,
+      "playableReady": true,
+      "combatReady": true,
+      "navigationReady": true,
+      "regionReady": true,
+      "hostilesReady": true
+    },
+    "marksFromBegin": {
+      "playable": 301.5,
+      "navigationReady": 3573.100000023842,
+      "hostilesReady": 840.7000000476837,
+      "ready": 4547.700000047684,
+      "regionReady": 4547.700000047684,
+      "firstGpuCompleted": 301.10000002384186
+    },
+    "gpu": {
+      "depthBundle": "native",
+      "errors": []
+    },
+    "hardwareConcurrency": 10
+  },
+  "contention": "unknown — user Edge game on 127.0.0.1:5173/?dev and user Vite 5173/4000 preserved"
+}

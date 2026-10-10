@@ -1,0 +1,724 @@
+{
+  "dropped": 0,
+  "size": 86,
+  "types": {
+    "scenario-reset": 6,
+    "input": 25,
+    "start": 10,
+    "repress-cancel": 2,
+    "cancel": 3,
+    "release": 7,
+    "hit": 20,
+    "reject": 13
+  },
+  "events": [
+    {
+      "sequence": 0,
+      "type": "scenario-reset",
+      "time": 4.493600000023826,
+      "wallMs": 6061.199999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 1,
+      "type": "input",
+      "time": 5.142899999976143,
+      "wallMs": 6718.399999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 2,
+      "type": "start",
+      "time": 5.163600000023826,
+      "wallMs": 6729.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 3,
+      "type": "input",
+      "time": 5.404899999976143,
+      "wallMs": 6973.5
+    },
+    {
+      "slot": 1,
+      "sequence": 4,
+      "type": "repress-cancel",
+      "time": 5.4087999999523015,
+      "wallMs": 6974.699999928474
+    },
+    {
+      "slot": 1,
+      "reason": "Cast cancelled",
+      "sequence": 5,
+      "type": "cancel",
+      "time": 5.4087999999523015,
+      "wallMs": 6974.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 6,
+      "type": "input",
+      "time": 7.018999999999981,
+      "wallMs": 8593.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 7,
+      "type": "start",
+      "time": 7.033799999952297,
+      "wallMs": 8599.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "animationElapsed": 0.5555000000000001,
+      "animationDeadline": 0.55,
+      "sequence": 8,
+      "type": "release",
+      "time": 7.574499999999981,
+      "wallMs": 9140.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "amount": 120,
+      "sequence": 9,
+      "type": "hit",
+      "time": 7.574499999999981,
+      "wallMs": 9141
+    },
+    {
+      "slot": 2,
+      "targetId": "ashen-training-dummy",
+      "sequence": 10,
+      "type": "input",
+      "time": 8.728899999976136,
+      "wallMs": 10298.199999928474
+    },
+    {
+      "slot": 2,
+      "targetId": "ashen-training-dummy",
+      "sequence": 11,
+      "type": "start",
+      "time": 8.73760000002382,
+      "wallMs": 10303.5
+    },
+    {
+      "slot": 2,
+      "targetId": "ashen-training-dummy",
+      "sequence": 12,
+      "type": "input",
+      "time": 9.137899999976135,
+      "wallMs": 10707.699999928474
+    },
+    {
+      "slot": 2,
+      "sequence": 13,
+      "type": "repress-cancel",
+      "time": 9.153100000023818,
+      "wallMs": 10719.099999904633
+    },
+    {
+      "slot": 2,
+      "reason": "Cast cancelled",
+      "sequence": 14,
+      "type": "cancel",
+      "time": 9.153100000023818,
+      "wallMs": 10719.099999904633
+    },
+    {
+      "slot": 3,
+      "targetId": "ashen-training-dummy",
+      "sequence": 15,
+      "type": "input",
+      "time": 11.951000000000002,
+      "wallMs": 13518.599999904633
+    },
+    {
+      "slot": 3,
+      "targetId": "ashen-training-dummy",
+      "sequence": 16,
+      "type": "start",
+      "time": 11.96589999997616,
+      "wallMs": 13532.099999904633
+    },
+    {
+      "slot": 3,
+      "targetId": "ashen-training-dummy",
+      "animationElapsed": 1.1093999999761572,
+      "animationDeadline": 1.1,
+      "sequence": 17,
+      "type": "release",
+      "time": 13.060399999976172,
+      "wallMs": 14626.299999952316
+    },
+    {
+      "slot": 3,
+      "targetId": "ashen-training-dummy",
+      "amount": 90,
+      "sequence": 18,
+      "type": "hit",
+      "time": 13.060399999976172,
+      "wallMs": 14626.399999976158
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-1",
+      "amount": 90,
+      "sequence": 19,
+      "type": "hit",
+      "time": 13.060399999976172,
+      "wallMs": 14626.399999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 20,
+      "type": "input",
+      "time": 13.954199999928488,
+      "wallMs": 15526.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 21,
+      "type": "start",
+      "time": 13.969199999928488,
+      "wallMs": 15535.299999952316
+    },
+    {
+      "slot": 1,
+      "reason": "Cast interrupted",
+      "sequence": 22,
+      "type": "cancel",
+      "time": 14.153500000000015,
+      "wallMs": 15719.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 23,
+      "type": "input",
+      "time": 16.36789999997619,
+      "wallMs": 17937.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "sequence": 24,
+      "type": "start",
+      "time": 16.377299999952346,
+      "wallMs": 17943.399999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "animationElapsed": 0.5500000000000002,
+      "animationDeadline": 0.55,
+      "sequence": 25,
+      "type": "release",
+      "time": 16.917899999976182,
+      "wallMs": 18484.099999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "ashen-training-dummy",
+      "amount": 120,
+      "sequence": 26,
+      "type": "hit",
+      "time": 16.917899999976182,
+      "wallMs": 18484.099999904633
+    },
+    {
+      "slot": "melee",
+      "targetId": "ashen-training-dummy",
+      "amount": 38,
+      "sequence": 27,
+      "type": "hit",
+      "time": 18.578100000023866,
+      "wallMs": 20144.199999928474
+    },
+    {
+      "sequence": 28,
+      "type": "scenario-reset",
+      "time": 20.40039999997622,
+      "wallMs": 22291.699999928474
+    },
+    {
+      "sequence": 29,
+      "type": "scenario-reset",
+      "time": 4.493600000023826,
+      "wallMs": 22292.899999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-1",
+      "sequence": 30,
+      "type": "input",
+      "time": 5.165499999999981,
+      "wallMs": 22964.099999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-1",
+      "sequence": 31,
+      "type": "start",
+      "time": 5.17889999997614,
+      "wallMs": 22974.199999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-1",
+      "animationElapsed": 0.5508000000715257,
+      "animationDeadline": 0.55,
+      "sequence": 32,
+      "type": "release",
+      "time": 5.716300000071504,
+      "wallMs": 23511.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-1",
+      "amount": 120,
+      "sequence": 33,
+      "type": "hit",
+      "time": 5.716300000071504,
+      "wallMs": 23511.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-2",
+      "sequence": 34,
+      "type": "input",
+      "time": 6.967700000047654,
+      "wallMs": 24765.099999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-2",
+      "sequence": 35,
+      "type": "start",
+      "time": 6.972499999999971,
+      "wallMs": 24767.799999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-2",
+      "animationElapsed": 0.5553999999761583,
+      "animationDeadline": 0.55,
+      "sequence": 36,
+      "type": "release",
+      "time": 7.52310000002381,
+      "wallMs": 25318.599999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-2",
+      "amount": 120,
+      "sequence": 37,
+      "type": "hit",
+      "time": 7.52310000002381,
+      "wallMs": 25318.599999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 38,
+      "type": "input",
+      "time": 8.653399999976136,
+      "wallMs": 26471
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 39,
+      "type": "start",
+      "time": 8.676800000071504,
+      "wallMs": 26472
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "animationElapsed": 0.559600000023842,
+      "animationDeadline": 0.55,
+      "sequence": 40,
+      "type": "release",
+      "time": 9.212999999999987,
+      "wallMs": 27008.299999952316
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "amount": 120,
+      "sequence": 41,
+      "type": "hit",
+      "time": 9.212999999999987,
+      "wallMs": 27008.399999976158
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-3",
+      "sequence": 42,
+      "type": "input",
+      "time": 10.17049999999998,
+      "wallMs": 27976.5
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-3",
+      "sequence": 43,
+      "type": "start",
+      "time": 10.18399999999998,
+      "wallMs": 27979.299999952316
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-3",
+      "animationElapsed": 1.1028000000715257,
+      "animationDeadline": 1.1,
+      "sequence": 44,
+      "type": "release",
+      "time": 11.273300000071483,
+      "wallMs": 29068.599999904633
+    },
+    {
+      "slot": 3,
+      "targetId": "ashen-training-dummy",
+      "amount": 90,
+      "sequence": 45,
+      "type": "hit",
+      "time": 11.273300000071483,
+      "wallMs": 29068.699999928474
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-1",
+      "amount": 90,
+      "sequence": 46,
+      "type": "hit",
+      "time": 11.273300000071483,
+      "wallMs": 29068.699999928474
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-2",
+      "amount": 90,
+      "sequence": 47,
+      "type": "hit",
+      "time": 11.273300000071483,
+      "wallMs": 29068.699999928474
+    },
+    {
+      "slot": 3,
+      "targetId": "grave-shade-3",
+      "amount": 90,
+      "sequence": 48,
+      "type": "hit",
+      "time": 11.273300000071483,
+      "wallMs": 29068.699999928474
+    },
+    {
+      "slot": 2,
+      "targetId": "grave-shade-3",
+      "sequence": 49,
+      "type": "input",
+      "time": 11.984499999999938,
+      "wallMs": 29783
+    },
+    {
+      "slot": 2,
+      "reason": "Not enough mana",
+      "sequence": 50,
+      "type": "reject",
+      "time": 11.988800000071464,
+      "wallMs": 29784
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-3",
+      "amount": 38,
+      "sequence": 51,
+      "type": "hit",
+      "time": 13.397899999976064,
+      "wallMs": 31193.399999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 52,
+      "type": "input",
+      "time": 14.392399999976034,
+      "wallMs": 32199
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 53,
+      "type": "reject",
+      "time": 14.406200000047559,
+      "wallMs": 32201.399999976158
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 54,
+      "type": "input",
+      "time": 14.814200000047547,
+      "wallMs": 32621.399999976158
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 55,
+      "type": "reject",
+      "time": 14.827899999976022,
+      "wallMs": 32623.099999904633
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 56,
+      "type": "input",
+      "time": 15.251300000071378,
+      "wallMs": 33048.799999952316
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 57,
+      "type": "reject",
+      "time": 15.254899999976011,
+      "wallMs": 33050.09999990463
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-3",
+      "amount": 38,
+      "sequence": 58,
+      "type": "hit",
+      "time": 15.455600000023695,
+      "wallMs": 33251
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 59,
+      "type": "input",
+      "time": 15.677700000047528,
+      "wallMs": 33477.09999990463
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 60,
+      "type": "reject",
+      "time": 15.691499999999845,
+      "wallMs": 33486.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 61,
+      "type": "input",
+      "time": 16.102399999975987,
+      "wallMs": 33902.89999997616
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 62,
+      "type": "reject",
+      "time": 16.116300000071355,
+      "wallMs": 33911.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 63,
+      "type": "input",
+      "time": 16.524399999976005,
+      "wallMs": 34325
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 64,
+      "type": "reject",
+      "time": 16.53820000004753,
+      "wallMs": 34333.39999997616
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 65,
+      "type": "input",
+      "time": 16.945999999999838,
+      "wallMs": 34749.59999990463
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 66,
+      "type": "reject",
+      "time": 16.959800000071365,
+      "wallMs": 34755.09999990463
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 67,
+      "type": "input",
+      "time": 17.368999999999836,
+      "wallMs": 35170.699999928474
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 68,
+      "type": "reject",
+      "time": 17.382800000071363,
+      "wallMs": 35178
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-3",
+      "amount": 38,
+      "sequence": 69,
+      "type": "hit",
+      "time": 17.507300000071364,
+      "wallMs": 35302.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 70,
+      "type": "input",
+      "time": 17.79260000002368,
+      "wallMs": 35593.89999997616
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 71,
+      "type": "reject",
+      "time": 17.806399999975994,
+      "wallMs": 35601.699999928474
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 72,
+      "type": "input",
+      "time": 18.21880000007136,
+      "wallMs": 36019.09999990463
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 73,
+      "type": "reject",
+      "time": 18.232399999975993,
+      "wallMs": 36027.5
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 74,
+      "type": "input",
+      "time": 18.639499999999828,
+      "wallMs": 36447.199999928474
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 75,
+      "type": "reject",
+      "time": 18.653200000047512,
+      "wallMs": 36448.39999997616
+    },
+    {
+      "slot": 1,
+      "targetId": "grave-shade-3",
+      "sequence": 76,
+      "type": "input",
+      "time": 19.07589999997598,
+      "wallMs": 36873.299999952316
+    },
+    {
+      "slot": 1,
+      "reason": "Not enough mana",
+      "sequence": 77,
+      "type": "reject",
+      "time": 19.080200000047505,
+      "wallMs": 36875.5
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-3",
+      "amount": 36,
+      "sequence": 78,
+      "type": "hit",
+      "time": 19.559200000047493,
+      "wallMs": 37354.59999990463
+    },
+    {
+      "sequence": 79,
+      "type": "scenario-reset",
+      "time": 19.712899999975967,
+      "wallMs": 37836.09999990463
+    },
+    {
+      "sequence": 80,
+      "type": "scenario-reset",
+      "time": 4.493600000023826,
+      "wallMs": 37836.89999997616
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-1",
+      "amount": 38,
+      "sequence": 81,
+      "type": "hit",
+      "time": 7.547700000047667,
+      "wallMs": 40888.59999990463
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-1",
+      "amount": 38,
+      "sequence": 82,
+      "type": "hit",
+      "time": 9.607100000023815,
+      "wallMs": 42948.09999990463
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-1",
+      "amount": 38,
+      "sequence": 83,
+      "type": "hit",
+      "time": 11.668999999999986,
+      "wallMs": 45010
+    },
+    {
+      "slot": "melee",
+      "targetId": "grave-shade-1",
+      "amount": 38,
+      "sequence": 84,
+      "type": "hit",
+      "time": 13.712999999999997,
+      "wallMs": 47053.59999990463
+    },
+    {
+      "sequence": 85,
+      "type": "scenario-reset",
+      "time": 15.92500000000001,
+      "wallMs": 49581.699999928474
+    }
+  ]
+}

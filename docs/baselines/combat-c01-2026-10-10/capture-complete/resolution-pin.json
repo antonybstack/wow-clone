@@ -1,0 +1,27 @@
+{
+  "method": "ASHEN.metrics.setInternalResolution(1280,720)",
+  "developerUiControl": false,
+  "before": {
+    "id": "renderCanvas",
+    "width": 960,
+    "height": 540
+  },
+  "got": [
+    1280,
+    720
+  ],
+  "after": {
+    "id": "renderCanvas",
+    "width": 1280,
+    "height": 720
+  },
+  "client": {
+    "w": 1280,
+    "h": 720
+  },
+  "viewport": {
+    "w": 1280,
+    "h": 720,
+    "dpr": 1
+  }
+}

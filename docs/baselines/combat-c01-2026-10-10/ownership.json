@@ -1,0 +1,18 @@
+{
+  "owner": "grok-c01",
+  "browserPid": 22340,
+  "gpuHelperPids": [
+    22346
+  ],
+  "cdpPort": 10137,
+  "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+  "purpose": "C01 functional scenarios + combat capture; no FPS claim; contention unknown",
+  "renderingClients": 1,
+  "active": true,
+  "slot": 8,
+  "existingPages": [
+    "about:blank"
+  ],
+  "blankHarness": true,
+  "vitePort": 5973
+}

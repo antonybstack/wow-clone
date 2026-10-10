@@ -4,9 +4,9 @@ Updated **2026-10-10 PDT**. Read this before choosing work. Latest user directio
 controls scope; historical milestone lists are evidence, not an active queue.
 **Current focus: combat feel and an interacting fire-caster kit in the Gothic region.**
 The [12-milestone combat overhaul plan](plans/combat-overhaul/plan-2026-10-10.md)
-is researched and reviewed; C01 implementation is underway. Developer combat
-rehearsals and the bounded timing trace are implemented; live baseline verification
-is pending. C01–C04 deliver
+has C01 baseline evidence and C02 integrated for live verification. Developer combat
+rehearsals, bounded trace, authoritative timing and input buffering are implemented.
+[Baseline](baselines/combat-c01-2026-10-10/result.md): raw RAF191–196FPS but17.7–17.8ms p99; engine-buffer disagreement and blocked pack workload require follow-up. Performance qualification is open. C01–C04 deliver
 baseline, input buffering, instants while moving/contact, and readable feedback;
 C05–C09 add burns, procs, area rules, enemies and utilities; C10–C12 integrate
 VFX, a Gothic encounter and release verification. First three milestones have
@@ -74,9 +74,12 @@ fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
 
 ## Ownership and operating rules
 
-Owned production harness slot 8 closed: Chrome 58891, Vite 58846+58866, CDP
-10137 and Vite 5973 gone. Unrelated Vite 29712/5173 and Vite4000 10171/10205
-preserved; user Edge 2931 untouched. No owned game renderer remains.
+C01 slot8 harness and root video-review tabs/preview are closed. C02 Grok worker owns
+slot8 Chrome45113/Vite45088, CDP10137/Vite5973 for functional scheduler checks
+(no FPS). Track cleanup in .cache/combat-c02-2026-10-10/live-result.md.
+Root closed the user Edge5173 game tab with explicit authorization. Other user tabs
+and Vite29712/5173 and Vite4000 10171/10205 remain intact. Opus VFX and Grok
+scheduler review are finished/idle with no browser ownership.
 
 Root implements and accepts. Grok handles bounded operations/review; the latest
 user request explicitly permits Opus 5.5 for parallel combat VFX work. Preserve unrelated

@@ -1,0 +1,26 @@
+{
+  "owner": "grok-c01",
+  "slot": 8,
+  "vitePort": 5973,
+  "vitePid": 70385,
+  "viteListenerPid": 70439,
+  "cdpPort": 10137,
+  "browserPid": 70472,
+  "gpuPid": 70498,
+  "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+  "viewport": "1280x720",
+  "dpr": 1,
+  "headless": true,
+  "uncapped": true,
+  "idleHarness": true,
+  "purpose": "C01 functional scenarios + combat capture; no FPS claim",
+  "contention": "unknown — user Edge 2931 game on 127.0.0.1:5173/?dev; user Vite 29712/5173 and 10171/10205/4000 preserved",
+  "preserved": {
+    "vite5173": 29712,
+    "vite4000": 10205,
+    "npm4000": 10171,
+    "edge": 2931,
+    "userChrome": 13883
+  },
+  "startedAt": "2026-10-10T16:59:48.723Z"
+}

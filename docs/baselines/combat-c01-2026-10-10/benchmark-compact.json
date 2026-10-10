@@ -1,0 +1,5750 @@
+{
+  "sourceRuntime": "d7dce45",
+  "recordedAt": "2026-10-10T17:20:59.135Z",
+  "hardware": "Apple M1 Max",
+  "os": "25.6.0",
+  "browser": "155.0.8059.39",
+  "viewport": [
+    1280,
+    720
+  ],
+  "dpr": 1,
+  "conditions": "Uncapped Chromium WebGPU. God on for sustainable spell workload; diagnostic scenario placement. Seven enemies. No screenshots, recording or GPU timing readback during samples. RAF throughput, not physical display FPS.",
+  "runs": [
+    {
+      "scenario": "dummy",
+      "repetition": 1,
+      "elapsedMs": 12007.4,
+      "frames": 2327,
+      "fps": 193.79715841897496,
+      "p50": 3.5,
+      "p95": 17.5,
+      "p99": 17.700000000000728,
+      "max": 17.80000000000291,
+      "over16_67": 327,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.004917000000205007,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1299.4426249999997,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.768624999999,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4301.05875,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.6992089999985,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7299.681292000001,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8601.047917,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10001.084209,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.26975,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.620700000047677
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.12946488876333254,
+              "y": 0.6579986951813513,
+              "z": 16.427178559479074
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.372967680469142,
+              "y": 1.0877735688483843,
+              "z": 29.05930011797052
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 6.0164266832195965,
+              "y": 0.6962870645051267,
+              "z": 47.363552540621114
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.619321434237755,
+              "y": 1.6715029435043074,
+              "z": 63.110440623078865
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.4772924212871161,
+              "y": 3.8416020571882235,
+              "z": 86.54180043177557
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0135508080400837,
+              "y": 9.045486775629678,
+              "z": 125.60968748484638
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.77980000007157,
+            "time": 19.648999999999813
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.982700000047682,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "chase",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Jog_Fwd_Loop",
+              "position": {
+                "x": 1.128025072407113,
+                "y": 0.27085319411845765,
+                "z": 8.649546636031067
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.923467061066045,
+                "y": 0.8700612862212019,
+                "z": 27.898324759675436
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.7943639475840323,
+                "y": 0.5461862702792254,
+                "z": 48.26819551623517
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.879054854853874,
+                "y": 1.5254912504794218,
+                "z": 60.11614375859691
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.515132343964211,
+                "y": 4.323576936793696,
+                "z": 86.99485660318913
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9486488316958357,
+                "y": 5.071506025084603,
+                "z": 108.6200493471833
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8193984319582133,
+                "y": 7.77196809725519,
+                "z": 125.51262005107918
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 147.48174913527333,
+          "meanMs": 6.7804999999205275,
+          "medianMs": 3.5,
+          "p95Ms": 20.899999976158142,
+          "p99Ms": 21.299999952316284,
+          "worstMs": 22.600000023841858,
+          "minMs": 2.9000000953674316,
+          "above8_333": 115,
+          "above16_667": 115,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.780 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "dummy",
+      "repetition": 2,
+      "elapsedMs": 12011.000000000004,
+      "frames": 2360,
+      "fps": 196.48655399217378,
+      "p50": 3.400000000001455,
+      "p95": 17.5,
+      "p99": 17.700000000000728,
+      "max": 17.80000000000291,
+      "over16_67": 335,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.006833999999798834,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.4295420000017,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.71775,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.0538339999985,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.139083999999,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.580375000001,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8601.428709,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.861667000001,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.128291999998,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.5978000000715245
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.15631991894626163,
+              "y": 0.6571518272368927,
+              "z": 16.44249340772788
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.39704899308169,
+              "y": 1.0914419756988574,
+              "z": 29.078686391616245
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 5.989593206851896,
+              "y": 0.6964601261801128,
+              "z": 47.34819995878502
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6434002959180313,
+              "y": 1.6706197638990976,
+              "z": 63.09105130531901
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.4504329340035378,
+              "y": 3.8506107274173047,
+              "z": 86.557107461725
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0151655268111295,
+              "y": 9.046418269898611,
+              "z": 125.6113183459218
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.756500000119342,
+            "time": 19.625800000071454
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.980100000023841,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "chase",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Jog_Fwd_Loop",
+              "position": {
+                "x": 1.127921025778499,
+                "y": 0.27082059846496215,
+                "z": 8.650991914839434
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.923888002089817,
+                "y": 0.8701303330355414,
+                "z": 27.89883269689601
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.8039360044626835,
+                "y": 0.5459776313049762,
+                "z": 48.2629402738368
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9274926184890724,
+                "y": 1.5265020064139374,
+                "z": 60.148317046405325
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.5334705549701164,
+                "y": 4.323510607725611,
+                "z": 86.9479308832138
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.94275734722206,
+                "y": 5.074432432138627,
+                "z": 108.62540484827568
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8528879373065272,
+                "y": 7.777169243900583,
+                "z": 125.5444350756884
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 147.18508524469522,
+          "meanMs": 6.7941666666666665,
+          "medianMs": 3.4000000953674316,
+          "p95Ms": 20.899999976158142,
+          "p99Ms": 21.299999952316284,
+          "worstMs": 21.800000071525574,
+          "minMs": 2.799999952316284,
+          "above8_333": 117,
+          "above16_667": 116,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.794 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "dummy",
+      "repetition": 3,
+      "elapsedMs": 12006.800000000003,
+      "frames": 2334,
+      "fps": 194.38984575407264,
+      "p50": 3.5,
+      "p95": 17.5,
+      "p99": 17.700000000004366,
+      "max": 17.80000000000291,
+      "over16_67": 333,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.007582999998703599,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1299.6887920000008,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.120917,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4301.019291999997,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.583500000001,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.287417,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.372833000001,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.284542000001,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.374208000001,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.593100000143046
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.16183164995370078,
+              "y": 0.656974718106412,
+              "z": 16.445636629812984
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.401991445818558,
+              "y": 1.0921949028266793,
+              "z": 29.082665233749115
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 5.984085899553196,
+              "y": 0.6964943369566782,
+              "z": 47.34504899225197
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6483422456251424,
+              "y": 1.6704384764727156,
+              "z": 63.08707183841164
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.4449202882199919,
+              "y": 3.8524749809404457,
+              "z": 86.56024907918098
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0159253945679816,
+              "y": 9.046856152630363,
+              "z": 125.61208581005813
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.753800000071642,
+            "time": 19.616300000071455
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.9924999999999993,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "chase",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Jog_Fwd_Loop",
+              "position": {
+                "x": 1.1277937020099416,
+                "y": 0.2708909736659475,
+                "z": 8.647969528972244
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.926301226463883,
+                "y": 0.8703474432944711,
+                "z": 27.89756285364276
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.7963540984833091,
+                "y": 0.5461344509447044,
+                "z": 48.268419974954824
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.914397927341904,
+                "y": 1.527021112155518,
+                "z": 60.14783564944524
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.524728752719205,
+                "y": 4.323829067337693,
+                "z": 86.97316888872606
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.92031290704922,
+                "y": 5.086698546308573,
+                "z": 108.65546619802868
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.89595884764657,
+                "y": 7.783470006667703,
+                "z": 125.58240795918111
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 146.997574542596,
+          "meanMs": 6.802833333214124,
+          "medianMs": 3.5,
+          "p95Ms": 20.899999976158142,
+          "p99Ms": 21.299999952316284,
+          "worstMs": 22.100000023841858,
+          "minMs": 2.899999976158142,
+          "above8_333": 117,
+          "above16_667": 116,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.803 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "pack",
+      "repetition": 1,
+      "elapsedMs": 12003.100000000006,
+      "frames": 2301,
+      "fps": 191.7004773766776,
+      "p50": 3.099999999998545,
+      "p95": 17.599999999998545,
+      "p99": 17.799999999995634,
+      "max": 17.900000000001455,
+      "over16_67": 351,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.0014579999988200143,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.3968329999989,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2801.2753329999978,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.925457999998,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.531667000003,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.952125000003,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.702917000002,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.395499999999,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.125708,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.5942000000476755
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -0.8748744472793686,
+              "y": 0.28224906748394873,
+              "z": 8
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 1.1251255527206314,
+              "y": 0.28976812202022484,
+              "z": 8
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.1251255527206316,
+              "y": 0.2641846643558116,
+              "z": 8
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6471856191806243,
+              "y": 1.6704809062072123,
+              "z": 63.08800320294035
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.446210481821777,
+              "y": 3.852038224204011,
+              "z": 86.55951380706308
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0140257252324365,
+              "y": 9.045760884696543,
+              "z": 125.61016714977438
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 20.504200000047682,
+            "time": 19.603600000023686
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.8748744472793686,
+                "y": 0.28224906748394873,
+                "z": 8
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 1.1251255527206314,
+                "y": 0.28976812202022484,
+                "z": 8
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 3.1251255527206316,
+                "y": 0.2641846643558116,
+                "z": 8
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.962335787915006,
+                "y": 1.527950950356371,
+                "z": 60.17913060752744
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.558533777145389,
+                "y": 4.325065796207699,
+                "z": 86.8935346164805
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.900619771845937,
+                "y": 5.096794506456564,
+                "z": 108.67503183899414
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.893646897601886,
+                "y": 7.781540256378495,
+                "z": 125.5678420300383
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1910,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 23,
+          "types": {
+            "input": 9,
+            "reject": 8,
+            "start": 1,
+            "release": 1,
+            "hit": 4
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 161.12140497968298,
+          "meanMs": 6.206499999960264,
+          "medianMs": 3.200000047683716,
+          "p95Ms": 20.699999928474426,
+          "p99Ms": 21,
+          "worstMs": 21.100000023841858,
+          "minMs": 2.5,
+          "above8_333": 106,
+          "above16_667": 105,
+          "drawCalls": 426,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.206 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "pack",
+      "repetition": 2,
+      "elapsedMs": 12016.900000000001,
+      "frames": 2302,
+      "fps": 191.56354800322876,
+      "p50": 3.099999999998545,
+      "p95": 17.5,
+      "p99": 17.79999999998836,
+      "max": 17.90000000000873,
+      "over16_67": 353,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.001374999999825377,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.6665829999984,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.806958000001,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.365250000003,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.429874999994,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.603416000005,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.492332999995,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.775583000002,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11499.888333000003,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.620100000023837
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -0.8748744472793686,
+              "y": 0.28224906748394873,
+              "z": 8
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 1.1251255527206314,
+              "y": 0.28976812202022484,
+              "z": 8
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.1251255527206316,
+              "y": 0.2641846643558116,
+              "z": 8
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6199523214690812,
+              "y": 1.67147980568348,
+              "z": 63.1099326059989
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.4765886792335159,
+              "y": 3.841836426625605,
+              "z": 86.54220148934522
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0187748982882403,
+              "y": 9.048495544752589,
+              "z": 125.614963800198
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 20.531399999976152,
+            "time": 19.65220000004752
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.8748744472793686,
+                "y": 0.28224906748394873,
+                "z": 8
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 1.1251255527206314,
+                "y": 0.28976812202022484,
+                "z": 8
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 3.1251255527206316,
+                "y": 0.2641846643558116,
+                "z": 8
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.880439161897746,
+                "y": 1.525676965049369,
+                "z": 60.11868402699859
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.5243683834252297,
+                "y": 4.327014210218142,
+                "z": 87.00116848472938
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.953494066361315,
+                "y": 5.068808744643219,
+                "z": 108.61290603220995
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8317346995180213,
+                "y": 7.774061706636027,
+                "z": 125.52568815178869
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1910,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 23,
+          "types": {
+            "input": 9,
+            "reject": 8,
+            "start": 1,
+            "release": 1,
+            "hit": 4
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 161.24264330336612,
+          "meanMs": 6.20183333337307,
+          "medianMs": 3.200000047683716,
+          "p95Ms": 20.699999928474426,
+          "p99Ms": 21,
+          "worstMs": 21.399999976158142,
+          "minMs": 2.5,
+          "above8_333": 105,
+          "above16_667": 105,
+          "drawCalls": 426,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.202 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "pack",
+      "repetition": 3,
+      "elapsedMs": 12002.300000000003,
+      "frames": 2309,
+      "fps": 192.379793872841,
+      "p50": 3.099999999991269,
+      "p95": 17.59999999999127,
+      "p99": 17.80000000000291,
+      "max": 17.89999999999418,
+      "over16_67": 353,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.0011249999952269718,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.392292000004,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.844458000007,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.311417000004,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.757375000001,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.314958000003,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.823082999996,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.605916999993,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.234041999996,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": false,
+          "combatUntil": 0,
+          "time": 7.591700000047682
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -0.8748744472793686,
+              "y": 0.28224906748394873,
+              "z": 8
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 1.1251255527206314,
+              "y": 0.28976812202022484,
+              "z": 8
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "diagnostic",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.1251255527206316,
+              "y": 0.2641846643558116,
+              "z": 8
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6498143158733501,
+              "y": 1.6703844742977816,
+              "z": 63.08588646519143
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.443278223381651,
+              "y": 3.853031238771379,
+              "z": 86.56118488020346
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0161153614222864,
+              "y": 9.046965576483583,
+              "z": 125.61227767600653
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 20.49689999997615,
+            "time": 19.612200000047526
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.8748744472793686,
+                "y": 0.28224906748394873,
+                "z": 8
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 1.1251255527206314,
+                "y": 0.28976812202022484,
+                "z": 8
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "diagnostic",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": 3.1251255527206316,
+                "y": 0.2641846643558116,
+                "z": 8
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.917136140116925,
+                "y": 1.5269878271371817,
+                "z": 60.14871818009405
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.5337356463354883,
+                "y": 4.323632251118689,
+                "z": 86.94830880640603
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9542592842456243,
+                "y": 5.067403327768483,
+                "z": 108.60270995862786
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8754975587364862,
+                "y": 7.780546569149648,
+                "z": 125.56490744387177
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1910,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 23,
+          "types": {
+            "input": 9,
+            "reject": 8,
+            "start": 1,
+            "release": 1,
+            "hit": 4
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 161.2556439444383,
+          "meanMs": 6.201333333452543,
+          "medianMs": 3.1999999284744263,
+          "p95Ms": 20.700000047683716,
+          "p99Ms": 20.90000009536743,
+          "worstMs": 21.200000047683716,
+          "minMs": 2.399999976158142,
+          "above8_333": 105,
+          "above16_667": 105,
+          "drawCalls": 426,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1269881,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.201 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "mortal",
+      "repetition": 1,
+      "elapsedMs": 12010.700000000012,
+      "frames": 2291,
+      "fps": 190.74658429566952,
+      "p50": 3.599999999991269,
+      "p95": 17.5,
+      "p99": 17.69999999999709,
+      "max": 17.80000000000291,
+      "over16_67": 328,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.0012500000011641532,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.1693750000122,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2801.048541000011,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.601541000011,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.562375000009,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.116666000002,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8601.015958000004,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.659750000006,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.493583000003,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": true,
+          "combatUntil": 0,
+          "time": 7.599200000047681
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "chase",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Jog_Fwd_Loop",
+            "position": {
+              "x": 1.6290820522152878,
+              "y": 0.4981530213155679,
+              "z": 14.454761788753393
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.395576773120178,
+              "y": 1.0912177008515394,
+              "z": 29.077501204600058
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 5.99123368136343,
+              "y": 0.6964498493756203,
+              "z": 47.349138544559096
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6419282257951788,
+              "y": 1.670673762777983,
+              "z": 63.0922366784382
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.4520749987020498,
+              "y": 3.8500563817139404,
+              "z": 86.55617166078235
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.013930741748674,
+              "y": 9.0457060722026,
+              "z": 125.61007121674302
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.756899999976202,
+            "time": 19.62089999997608
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.9873000000715249,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "attack",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 7,
+              "attackCooldown": 1.186600000023841,
+              "clip": "Punch_Cross",
+              "position": {
+                "x": 3.086980033710414,
+                "y": 0.2595240908009614,
+                "z": 8.13789664860305
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.9261960679937005,
+                "y": 0.8703464704553627,
+                "z": 27.897816822353953
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.809709665924472,
+                "y": 0.5458608634159314,
+                "z": 48.25835478532795
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9196566230908862,
+                "y": 1.5272191821281946,
+                "z": 60.152259267914374
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.524397526313128,
+                "y": 4.323979191648018,
+                "z": 86.97529376530012
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.945844213669788,
+                "y": 5.072120125620604,
+                "z": 108.6154267248837
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8623012150858116,
+                "y": 7.778506273531741,
+                "z": 125.55242180413066
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 146.7351430667645,
+          "meanMs": 6.815,
+          "medianMs": 3.600000023841858,
+          "p95Ms": 21.100000023841858,
+          "p99Ms": 21.399999976158142,
+          "worstMs": 21.699999928474426,
+          "minMs": 3.0999999046325684,
+          "above8_333": 112,
+          "above16_667": 111,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1271631,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.815 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "mortal",
+      "repetition": 2,
+      "elapsedMs": 12015.299999999988,
+      "frames": 2315,
+      "fps": 192.67101112747932,
+      "p50": 3.5,
+      "p95": 17.5,
+      "p99": 17.69999999999709,
+      "max": 17.80000000000291,
+      "over16_67": 327,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.0012920000008307397,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.8636669999978,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.6355829999957,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4299.834625000003,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.836125000002,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.461291999993,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.202208000002,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 10000.490957999995,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.122166999994,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": true,
+          "combatUntil": 0,
+          "time": 7.597200000047672
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "chase",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Jog_Fwd_Loop",
+            "position": {
+              "x": 1.6275753366494028,
+              "y": 0.49861036897219657,
+              "z": 14.461290173561554
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.3976799445295836,
+              "y": 1.0915380936859083,
+              "z": 29.07919432893772
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 5.988890146307036,
+              "y": 0.6964645183960995,
+              "z": 47.34779770771612
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6440311831493516,
+              "y": 1.6705966212941998,
+              "z": 63.09054328823915
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.44972919194993,
+              "y": 3.850848440795026,
+              "z": 86.5575085192947
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.0165902787278642,
+              "y": 9.047239054324923,
+              "z": 125.61275734104888
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.76379999995238,
+            "time": 19.623700000047606
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.9810999999046321,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "attack",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 7,
+              "attackCooldown": 1.127599999904632,
+              "clip": "Punch_Cross",
+              "position": {
+                "x": 3.0878087272896124,
+                "y": 0.2596440510932494,
+                "z": 8.134306036880725
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.926511543654978,
+                "y": 0.8703638597413493,
+                "z": 27.89739354126955
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.7912298293322787,
+                "y": 0.5462638537114107,
+                "z": 48.26847360287918
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9201837651222236,
+                "y": 1.5271353731740722,
+                "z": 60.15162302432059
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.5469341977478956,
+                "y": 4.3267768116481715,
+                "z": 86.94124344383309
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9244859905092753,
+                "y": 5.084851620737959,
+                "z": 108.65391936473156
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.879843046981292,
+                "y": 7.779297350791791,
+                "z": 125.55401552666656
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 148.22134387351778,
+          "meanMs": 6.746666666666667,
+          "medianMs": 3.600000023841858,
+          "p95Ms": 21,
+          "p99Ms": 21.399999976158142,
+          "worstMs": 22.5,
+          "minMs": 3,
+          "above8_333": 109,
+          "above16_667": 109,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1271631,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0.10000002384185791,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.747 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    },
+    {
+      "scenario": "mortal",
+      "repetition": 3,
+      "elapsedMs": 12015.399999999994,
+      "frames": 2291,
+      "fps": 190.67197097058784,
+      "p50": 3.599999999991269,
+      "p95": 17.5,
+      "p99": 17.70000000001164,
+      "max": 17.90000000000873,
+      "over16_67": 325,
+      "over33_33": 0,
+      "over50": 0,
+      "inputLog": [
+        {
+          "atMs": 0.0010829999955603853,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 1300.8699170000036,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 2800.365791999997,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 4300.830583000003,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 5800.142542000001,
+          "key": "Digit3"
+        },
+        {
+          "atMs": 7300.297417000009,
+          "key": "Digit2"
+        },
+        {
+          "atMs": 8600.367083000005,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 9999.494583000007,
+          "key": "Digit1"
+        },
+        {
+          "atMs": 11500.509583000006,
+          "key": "Digit1"
+        }
+      ],
+      "start": {
+        "life": {
+          "hp": 100,
+          "hpMax": 100,
+          "dead": false,
+          "inCombat": true,
+          "combatUntil": 0,
+          "time": 7.589499999999997
+        },
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "dev": {
+          "god": true,
+          "flying": false
+        },
+        "gcd": 0,
+        "enemies": [
+          {
+            "id": "grave-shade-1",
+            "name": "Grave Shade",
+            "zone": "churchyard",
+            "state": "chase",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Jog_Fwd_Loop",
+            "position": {
+              "x": 1.6217744816848276,
+              "y": 0.5003666026843836,
+              "z": 14.486424455228647
+            },
+            "spawn": {
+              "x": 3.580394906355525,
+              "z": 16
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-2",
+            "name": "Ash Wight",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -6.405777154505907,
+              "y": 1.0927716173342057,
+              "z": 29.085712857677958
+            },
+            "spawn": {
+              "x": -3.8894697155169853,
+              "z": 30
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-3",
+            "name": "Lych Stalker",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 5.9798675362840745,
+              "y": 0.6965202384488727,
+              "z": 47.342635485838706
+            },
+            "spawn": {
+              "x": 2.928819246428747,
+              "z": 48
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "grave-shade-4",
+            "name": "Barrow Shade",
+            "zone": "churchyard",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": 0.6521275690130789,
+              "y": 1.670299612170995,
+              "z": 63.084023735932085
+            },
+            "spawn": {
+              "x": -1.652739280759643,
+              "z": 62
+            },
+            "bounds": {
+              "xMin": -16,
+              "xMax": 16,
+              "zMin": 1,
+              "zMax": 69
+            }
+          },
+          {
+            "id": "town-wraith-1",
+            "name": "Street Wraith",
+            "zone": "town",
+            "state": "patrol",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Walk_Loop",
+            "position": {
+              "x": -1.440697835898428,
+              "y": 3.8539062214518247,
+              "z": 86.56265542459866
+            },
+            "spawn": {
+              "x": 1.7720018013288021,
+              "z": 86
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-2",
+            "name": "Lane Shade",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": -2.073443312549629,
+              "y": 5.131129677683436,
+              "z": 105.57841942740428
+            },
+            "spawn": {
+              "x": -1.906665666750373,
+              "z": 108
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          },
+          {
+            "id": "town-wraith-3",
+            "name": "Well Haunt",
+            "zone": "town",
+            "state": "idle",
+            "hp": 360,
+            "hpMax": 360,
+            "hostile": true,
+            "hidden": false,
+            "hits": 0,
+            "hitsLanded": 0,
+            "attackCooldown": 0,
+            "clip": "Idle_Loop",
+            "position": {
+              "x": 3.015260510294879,
+              "y": 9.046473021618745,
+              "z": 125.61141427895312
+            },
+            "spawn": {
+              "x": 1.0306760737604208,
+              "z": 126
+            },
+            "bounds": {
+              "xMin": -3.4,
+              "xMax": 3.4,
+              "zMin": 76,
+              "zMax": 138
+            }
+          }
+        ],
+        "dummy": {
+          "hp": 2000,
+          "hpMax": 2000
+        },
+        "target": "ashen-training-dummy",
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "auto": {
+          "enabled": false,
+          "timer": 0,
+          "queued": false,
+          "pendingHit": false,
+          "weapon": "ironSword"
+        }
+      },
+      "end": {
+        "combat": {
+          "life": {
+            "hp": 100,
+            "hpMax": 100,
+            "dead": false,
+            "inCombat": true,
+            "combatUntil": 22.750399999976224,
+            "time": 19.622499999999956
+          },
+          "progress": {
+            "level": 1,
+            "xp": 0,
+            "xpToNext": 100,
+            "mana": 100,
+            "manaMax": 100
+          },
+          "dev": {
+            "god": true,
+            "flying": false
+          },
+          "gcd": 0.9902000000476826,
+          "enemies": [
+            {
+              "id": "grave-shade-1",
+              "name": "Grave Shade",
+              "zone": "churchyard",
+              "state": "attack",
+              "hp": 270,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 1,
+              "hitsLanded": 7,
+              "attackCooldown": 1.1652000000476825,
+              "clip": "Punch_Cross",
+              "position": {
+                "x": 3.087281376805632,
+                "y": 0.2595676816998336,
+                "z": 8.136590971719233
+              },
+              "spawn": {
+                "x": 3.580394906355525,
+                "z": 16
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-2",
+              "name": "Ash Wight",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -4.926196067993699,
+                "y": 0.8703573238921012,
+                "z": 27.89807079106514
+              },
+              "spawn": {
+                "x": -3.8894697155169853,
+                "z": 30
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-3",
+              "name": "Lych Stalker",
+              "zone": "churchyard",
+              "state": "idle",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Idle_Loop",
+              "position": {
+                "x": -0.8018746400084237,
+                "y": 0.5460279784858001,
+                "z": 48.26322085295752
+              },
+              "spawn": {
+                "x": 2.928819246428747,
+                "z": 48
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "grave-shade-4",
+              "name": "Barrow Shade",
+              "zone": "churchyard",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.9306121597020267,
+                "y": 1.5273835331999235,
+                "z": 60.15889713794095
+              },
+              "spawn": {
+                "x": -1.652739280759643,
+                "z": 62
+              },
+              "bounds": {
+                "xMin": -16,
+                "xMax": 16,
+                "zMin": 1,
+                "zMax": 69
+              }
+            },
+            {
+              "id": "town-wraith-1",
+              "name": "Street Wraith",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": 2.5312183218239794,
+                "y": 4.323393274081186,
+                "z": 86.95277071404664
+              },
+              "spawn": {
+                "x": 1.7720018013288021,
+                "z": 86
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-2",
+              "name": "Lane Shade",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -2.95379401408357,
+                "y": 5.067745596572531,
+                "z": 108.60417014977084
+              },
+              "spawn": {
+                "x": -1.906665666750373,
+                "z": 108
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            },
+            {
+              "id": "town-wraith-3",
+              "name": "Well Haunt",
+              "zone": "town",
+              "state": "patrol",
+              "hp": 360,
+              "hpMax": 360,
+              "hostile": true,
+              "hidden": false,
+              "hits": 0,
+              "hitsLanded": 0,
+              "attackCooldown": 0,
+              "clip": "Walk_Loop",
+              "position": {
+                "x": -1.8452068740436867,
+                "y": 7.775767335243058,
+                "z": 125.53553046501438
+              },
+              "spawn": {
+                "x": 1.0306760737604208,
+                "z": 126
+              },
+              "bounds": {
+                "xMin": -3.4,
+                "xMax": 3.4,
+                "zMin": 76,
+                "zMax": 138
+              }
+            }
+          ],
+          "dummy": {
+            "hp": 1430,
+            "hpMax": 2000
+          },
+          "target": "ashen-training-dummy",
+          "objective": {
+            "phase": "idle",
+            "inside": false,
+            "promptCount": 0,
+            "completeCount": 0,
+            "lastMessage": "",
+            "killed": [],
+            "remaining": [
+              "grave-shade-1",
+              "grave-shade-2",
+              "grave-shade-3",
+              "grave-shade-4"
+            ],
+            "bonusXp": 100,
+            "watchman": {
+              "x": 0.3503803000354113,
+              "z": 77.4
+            },
+            "triggerRadius": 8
+          },
+          "auto": {
+            "enabled": false,
+            "timer": 0,
+            "queued": false,
+            "pendingHit": false,
+            "weapon": "ironSword"
+          }
+        },
+        "trace": {
+          "size": 26,
+          "types": {
+            "input": 9,
+            "start": 5,
+            "reject": 3,
+            "release": 4,
+            "hit": 5
+          },
+          "note": "truncated in compact copy; full events in benchmark.json"
+        },
+        "metrics": {
+          "samples": 600,
+          "fps": 147.11290915777857,
+          "meanMs": 6.7975,
+          "medianMs": 3.600000023841858,
+          "p95Ms": 21.100000023841858,
+          "p99Ms": 21.5,
+          "worstMs": 22.200000047683716,
+          "minMs": 3.100000023841858,
+          "above8_333": 111,
+          "above16_667": 109,
+          "drawCalls": 523,
+          "resolution": [
+            1280,
+            720
+          ],
+          "viewport": [
+            1280,
+            720
+          ],
+          "dpr": 1,
+          "maxDevicePixelRatio": 1,
+          "horizonTriangles": 129524,
+          "farTriangles": 289206,
+          "scatterTrees": 598,
+          "scatterRocks": 139,
+          "shafts": 0,
+          "shaftTriangles": 0,
+          "motes": 4200,
+          "moteTriangles": 8400,
+          "foliageInstances": 117311,
+          "triangles": 942603,
+          "drawBatches": 57,
+          "worldTriangles": 942603,
+          "sceneTriangles": 1271631,
+          "drawnMeshes": 95,
+          "hiddenMeshes": 49,
+          "totalMeshes": 144,
+          "triangleCountMs": 0,
+          "gpuTimingSupported": true,
+          "gpuTimingEnabled": false,
+          "gpuTimingReadback": "disabled",
+          "gpuMs": null,
+          "gpuMeanMs": null,
+          "gpuP95Ms": null,
+          "gpuSamples": 0,
+          "vsyncCapped": false,
+          "capHz": null,
+          "capMs": null,
+          "capReason": "mean 6.798 ms is not locked to a known display interval"
+        },
+        "gpuErrors": []
+      }
+    }
+  ],
+  "errors": [],
+  "ownership": {
+    "owner": "grok-c01",
+    "browserPid": 22340,
+    "gpuHelperPids": [
+      22346
+    ],
+    "cdpPort": 10137,
+    "url": "http://127.0.0.1:5973/?dev&play",
+    "purpose": "exclusive C01 raw combat FPS baseline",
+    "renderingClients": 1,
+    "active": true
+  },
+  "boot": {
+    "loadMs": 4610.899999976158,
+    "playableMs": 351.3000000715256,
+    "enemies": 7,
+    "usingPhysics": true
+  },
+  "finishedAt": "2026-10-10T17:23:02.442Z"
+}

@@ -1,0 +1,217 @@
+{
+  "started": "2026-10-10T17:23:37.929Z",
+  "phase": "capture",
+  "source": "d7dce455b36cbd6d809d12a0533b0947364ebe81",
+  "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+  "ownership": {
+    "owner": "grok-c01",
+    "browserPid": 22340,
+    "gpuHelperPids": [
+      22346
+    ],
+    "cdpPort": 10137,
+    "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+    "purpose": "C01 functional scenarios + combat capture; no FPS claim; contention unknown",
+    "renderingClients": 1,
+    "active": true,
+    "slot": 8,
+    "existingPages": [
+      "about:blank"
+    ],
+    "blankHarness": true,
+    "vitePort": 5973
+  },
+  "errors": [],
+  "findings": [
+    {
+      "level": "pass",
+      "msg": "Boot ready=true playableMs=301.59999990463257 navigationMs=3573.1999999284744 loadMs=4547.799999952316"
+    },
+    {
+      "level": "pass",
+      "msg": "API list=[{\"id\":\"dummy\",\"name\":\"Training dummy\"},{\"id\":\"pack\",\"name\":\"Three-target pack\"},{\"id\":\"cathedral\",\"name\":\"Cathedral wall / floor\"},{\"id\":\"mortal\",\"name\":\"Mortal combat route\"}] trace={\"size\":0,\"dropped\":0}"
+    },
+    {
+      "level": "pass",
+      "msg": "pinned ASHEN.metrics.setInternalResolution(1280,720) canvas 1280x720 (was 960x540)"
+    },
+    {
+      "level": "pass",
+      "msg": "capture frames=1513 elapsed=62.937 viewport=1280x720 dpr=1"
+    }
+  ],
+  "boot": {
+    "url": "http://127.0.0.1:5973/ashen-reach.html?dev&play",
+    "commitMs": 24,
+    "ashenSeenMs": 721,
+    "playableWallMs": 877,
+    "navigationWallMs": 4152,
+    "hostilesWallMs": 4163,
+    "readyWallMs": 5117,
+    "meanings": {
+      "playableMs": "dressed character on Havok; first playable frame revealed",
+      "navigationMs": "route render blocks and mesh/box collision installed",
+      "hostilesReady": "town enemies registered",
+      "loadMs_ready": "hostiles + foliage + textures finished; suite-level ASHEN.ready",
+      "regionMs": "marked immediately after ready",
+      "wallMs": "worker Date.now() from navigation commit, includes Vite/network",
+      "marksFromBegin": "ASHEN.startup.timings() minus begin (in-page performance.now())"
+    },
+    "native": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "viewport": {
+        "w": 1280,
+        "h": 720,
+        "dpr": 1
+      },
+      "playableMs": 301.59999990463257,
+      "navigationMs": 3573.1999999284744,
+      "loadMs": 4547.799999952316,
+      "regionMs": 4547.799999952316,
+      "flags": {
+        "ready": true,
+        "playableReady": true,
+        "combatReady": true,
+        "navigationReady": true,
+        "regionReady": true,
+        "hostilesReady": true
+      },
+      "marksFromBegin": {
+        "playable": 301.5,
+        "navigationReady": 3573.100000023842,
+        "hostilesReady": 840.7000000476837,
+        "ready": 4547.700000047684,
+        "regionReady": 4547.700000047684,
+        "firstGpuCompleted": 301.10000002384186
+      },
+      "gpu": {
+        "depthBundle": "native",
+        "errors": []
+      },
+      "hardwareConcurrency": 10
+    },
+    "contention": "unknown — user Edge game on 127.0.0.1:5173/?dev and user Vite 5173/4000 preserved"
+  },
+  "apiBoot": {
+    "scenarioList": [
+      {
+        "id": "dummy",
+        "name": "Training dummy"
+      },
+      {
+        "id": "pack",
+        "name": "Three-target pack"
+      },
+      {
+        "id": "cathedral",
+        "name": "Cathedral wall / floor"
+      },
+      {
+        "id": "mortal",
+        "name": "Mortal combat route"
+      }
+    ],
+    "trace": {
+      "size": 0,
+      "dropped": 0
+    },
+    "enemyCount": 7,
+    "gpu": {
+      "depthBundle": "native",
+      "errors": [],
+      "frames": 751
+    },
+    "audio": {
+      "error": null,
+      "initializing": false,
+      "muted": true
+    },
+    "exploration": {
+      "phase": "unstarted",
+      "sessionOnly": false,
+      "candidate": null,
+      "discovered": 0
+    },
+    "objective": {
+      "phase": "idle",
+      "remaining": 4
+    }
+  },
+  "resolutionPin": {
+    "method": "ASHEN.metrics.setInternalResolution(1280,720)",
+    "developerUiControl": false,
+    "before": {
+      "id": "renderCanvas",
+      "width": 960,
+      "height": 540
+    },
+    "got": [
+      1280,
+      720
+    ],
+    "after": {
+      "id": "renderCanvas",
+      "width": 1280,
+      "height": 720
+    },
+    "client": {
+      "w": 1280,
+      "h": 720
+    },
+    "viewport": {
+      "w": 1280,
+      "h": 720,
+      "dpr": 1
+    }
+  },
+  "resolutionPinAfterDummy": {
+    "method": "ASHEN.metrics.setInternalResolution(1280,720)",
+    "developerUiControl": false,
+    "before": {
+      "id": "renderCanvas",
+      "width": 1280,
+      "height": 720
+    },
+    "got": [
+      1280,
+      720
+    ],
+    "after": {
+      "id": "renderCanvas",
+      "width": 1280,
+      "height": 720
+    },
+    "client": {
+      "w": 1280,
+      "h": 720
+    },
+    "viewport": {
+      "w": 1280,
+      "h": 720,
+      "dpr": 1
+    }
+  },
+  "capture": {
+    "frames": 1513,
+    "elapsedSeconds": 62.937429904937744,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "canvas": {
+      "width": 1280,
+      "height": 720,
+      "cssWidth": 1280,
+      "cssHeight": 720
+    },
+    "devicePixelRatio": 1,
+    "actionCount": 90,
+    "audio": {
+      "error": null,
+      "initializing": false,
+      "muted": true
+    },
+    "note": "Capture adds load; no FPS claim. Scenario teleports/setup are diagnostic."
+  },
+  "finished": "2026-10-10T17:24:47.443Z"
+}

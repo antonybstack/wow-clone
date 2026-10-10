@@ -1,0 +1,1029 @@
+{
+  "elapsedSeconds": 43.398,
+  "actionLog": [
+    {
+      "t": 0.007,
+      "name": "capture-start",
+      "scenario": "dummy",
+      "note": "diagnostic placement",
+      "diagnostic": false
+    },
+    {
+      "t": 0.211,
+      "name": "pin dummy target",
+      "target": "ashen-training-dummy",
+      "note": "native Tab/click; do not claim dummy HP unless this id holds at start",
+      "diagnostic": false
+    },
+    {
+      "t": 0.211,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 0.213,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 0.464,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 0.48,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 0.48,
+      "name": "Fire same-key repress during cast window",
+      "diagnostic": false
+    },
+    {
+      "t": 2.087,
+      "name": "after-fire-repress",
+      "mana": 100,
+      "hp": 100,
+      "dummyHp": 2000,
+      "target": "ashen-training-dummy",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 0,
+          "cooldown": 0
+        }
+      },
+      "scenario": "dummy",
+      "diagnostic": false
+    },
+    {
+      "t": 2.087,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 2.089,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 2.089,
+      "name": "Fire Blast after GCD",
+      "diagnostic": false
+    },
+    {
+      "t": 3.791,
+      "name": "keydown:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 3.793,
+      "name": "keyup:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 3.793,
+      "name": "Lava Ball start",
+      "diagnostic": false
+    },
+    {
+      "t": 4.194,
+      "name": "keydown:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 4.205,
+      "name": "keyup:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 4.205,
+      "name": "Lava same-key repress during charge",
+      "diagnostic": false
+    },
+    {
+      "t": 7.009,
+      "name": "after-lava",
+      "mana": 80,
+      "hp": 100,
+      "dummyHp": 1880,
+      "target": "ashen-training-dummy",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 1,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 0,
+          "cooldown": 0
+        }
+      },
+      "scenario": "dummy",
+      "diagnostic": false
+    },
+    {
+      "t": 7.009,
+      "name": "keydown:Digit3",
+      "diagnostic": false
+    },
+    {
+      "t": 7.014,
+      "name": "keyup:Digit3",
+      "diagnostic": false
+    },
+    {
+      "t": 7.014,
+      "name": "Pyre Burst",
+      "diagnostic": false
+    },
+    {
+      "t": 9.019,
+      "name": "after-pyre",
+      "mana": 50,
+      "hp": 100,
+      "dummyHp": 1790,
+      "target": "ashen-training-dummy",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 1,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 1,
+          "cooldown": 5.106200000047682
+        }
+      },
+      "scenario": "dummy",
+      "diagnostic": false
+    },
+    {
+      "t": 9.019,
+      "name": "move+jump during Fire",
+      "diagnostic": false
+    },
+    {
+      "t": 9.02,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 9.022,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 11.431,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 11.433,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 13.034,
+      "name": "keydown:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 13.036,
+      "name": "keyup:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 13.036,
+      "name": "melee auto-attack",
+      "diagnostic": false
+    },
+    {
+      "t": 15.24,
+      "name": "after-melee",
+      "mana": 30,
+      "hp": 36,
+      "dummyHp": 1632,
+      "target": "ashen-training-dummy",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 2,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 1,
+          "cooldown": 0
+        }
+      },
+      "scenario": "dummy",
+      "diagnostic": false
+    },
+    {
+      "t": 15.803,
+      "name": "scenario-pack-start",
+      "note": "diagnostic teleport/setup",
+      "diagnostic": true
+    },
+    {
+      "t": 16.457,
+      "name": "Tab pack grave-shade-1",
+      "target": "grave-shade-1",
+      "diagnostic": false
+    },
+    {
+      "t": 16.457,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 16.459,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 18.256,
+      "name": "Tab pack grave-shade-2",
+      "target": "grave-shade-2",
+      "diagnostic": false
+    },
+    {
+      "t": 18.256,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 18.26,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 19.964,
+      "name": "Tab pack grave-shade-3",
+      "target": "grave-shade-3",
+      "diagnostic": false
+    },
+    {
+      "t": 19.964,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 19.969,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 21.47,
+      "name": "keydown:Digit3",
+      "diagnostic": false
+    },
+    {
+      "t": 21.471,
+      "name": "keyup:Digit3",
+      "diagnostic": false
+    },
+    {
+      "t": 21.471,
+      "name": "Pyre on pack",
+      "diagnostic": false
+    },
+    {
+      "t": 23.272,
+      "name": "keydown:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 23.281,
+      "name": "keyup:Digit2",
+      "diagnostic": false
+    },
+    {
+      "t": 24.084,
+      "name": "keydown:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 24.089,
+      "name": "keyup:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 25.692,
+      "name": "after-pack",
+      "mana": 10,
+      "hp": 100,
+      "dummyHp": 1910,
+      "target": "grave-shade-3",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 5,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 2,
+          "cooldown": 2.880900000095372
+        }
+      },
+      "scenario": "pack",
+      "diagnostic": false
+    },
+    {
+      "t": 25.692,
+      "name": "mana exhaustion spam Fire",
+      "diagnostic": false
+    },
+    {
+      "t": 25.692,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 25.693,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.114,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.12,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.541,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.547,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.967,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 26.973,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 27.396,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 27.398,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 27.818,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 27.821,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 28.242,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 28.244,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 28.664,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 28.665,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.087,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.088,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.51,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.518,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.94,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 29.945,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 30.366,
+      "name": "keydown:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 30.368,
+      "name": "keyup:Digit1",
+      "diagnostic": false
+    },
+    {
+      "t": 30.799,
+      "name": "mana-check",
+      "mana": 10,
+      "hp": 100,
+      "dummyHp": 1910,
+      "target": "grave-shade-3",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 5,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 2,
+          "cooldown": 0
+        }
+      },
+      "scenario": "pack",
+      "diagnostic": false
+    },
+    {
+      "t": 31.34,
+      "name": "scenario-mortal-start",
+      "note": "diagnostic teleport/setup; God/Fly off; death allowed",
+      "diagnostic": true
+    },
+    {
+      "t": 31.744,
+      "name": "keydown:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 31.745,
+      "name": "keyup:KeyT",
+      "diagnostic": false
+    },
+    {
+      "t": 42.759,
+      "name": "mortal-contact",
+      "mana": 100,
+      "hp": 0,
+      "dummyHp": 2000,
+      "target": "grave-shade-1",
+      "pending": null,
+      "casts": {
+        "fire": {
+          "casts": 5,
+          "cooldown": 0
+        },
+        "lava": {
+          "casts": 0,
+          "cooldown": 0
+        },
+        "pyre": {
+          "casts": 2,
+          "cooldown": 0
+        }
+      },
+      "scenario": "mortal",
+      "diagnostic": false
+    },
+    {
+      "t": 43.083,
+      "name": "combat-restore",
+      "note": "diagnostic restore",
+      "diagnostic": true
+    }
+  ],
+  "mid": {
+    "ready": true,
+    "playableReady": true,
+    "combatReady": true,
+    "navigationReady": true,
+    "regionReady": true,
+    "hostilesReady": true,
+    "playableMs": 329.7000000476837,
+    "navigationMs": 3824.3000000715256,
+    "loadMs": 4842.5,
+    "regionMs": 4842.5,
+    "gpu": {
+      "depthBundle": "native",
+      "errors": [],
+      "frames": 4881
+    },
+    "backgroundError": null,
+    "player": {
+      "x": 2.805,
+      "y": 1.179,
+      "z": 7.2,
+      "facing": 0.3805,
+      "grounded": true,
+      "flying": false,
+      "usingPhysics": true,
+      "recoveries": 0,
+      "phase": "loco"
+    },
+    "rig": {
+      "yaw": 0,
+      "pitch": 0.04,
+      "distance": 3.5
+    },
+    "dev": {
+      "god": false,
+      "flying": false,
+      "enabled": true
+    },
+    "menuOpen": false,
+    "scenario": "pack",
+    "scenarioList": [
+      {
+        "id": "dummy",
+        "name": "Training dummy"
+      },
+      {
+        "id": "pack",
+        "name": "Three-target pack"
+      },
+      {
+        "id": "cathedral",
+        "name": "Cathedral wall / floor"
+      },
+      {
+        "id": "mortal",
+        "name": "Mortal combat route"
+      }
+    ],
+    "trace": {
+      "size": 78,
+      "dropped": 0
+    },
+    "life": {
+      "hp": 100,
+      "hpMax": 100,
+      "dead": false,
+      "inCombat": true,
+      "time": 19.502
+    },
+    "progress": {
+      "level": 1,
+      "xp": 0,
+      "mana": 10,
+      "manaMax": 100
+    },
+    "dummy": {
+      "id": "ashen-training-dummy",
+      "hp": 1910,
+      "hpMax": 2000,
+      "x": 1.125,
+      "y": 0.29,
+      "z": 8
+    },
+    "enemyCount": 7,
+    "enemies": [
+      {
+        "id": "grave-shade-1",
+        "name": "Grave Shade",
+        "state": "diagnostic",
+        "hp": 150,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": true,
+        "diagnosticFloorY": 0.28224906748394873,
+        "x": -0.875,
+        "y": 0.282,
+        "z": 8
+      },
+      {
+        "id": "grave-shade-2",
+        "name": "Ash Wight",
+        "state": "diagnostic",
+        "hp": 150,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": true,
+        "diagnosticFloorY": 0.28976812202022484,
+        "x": 1.125,
+        "y": 0.29,
+        "z": 8
+      },
+      {
+        "id": "grave-shade-3",
+        "name": "Lych Stalker",
+        "state": "diagnostic",
+        "hp": 36,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": true,
+        "diagnosticFloorY": 0.2641846643558116,
+        "x": 3.125,
+        "y": 0.264,
+        "z": 8
+      },
+      {
+        "id": "grave-shade-4",
+        "name": "Barrow Shade",
+        "state": "patrol",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": -3.039,
+        "y": 1.532,
+        "z": 60.254
+      },
+      {
+        "id": "town-wraith-1",
+        "name": "Street Wraith",
+        "state": "patrol",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 2.586,
+        "y": 4.325,
+        "z": 86.808
+      },
+      {
+        "id": "town-wraith-2",
+        "name": "Lane Shade",
+        "state": "patrol",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": -2.839,
+        "y": 5.132,
+        "z": 108.761
+      },
+      {
+        "id": "town-wraith-3",
+        "name": "Well Haunt",
+        "state": "patrol",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": -2.036,
+        "y": 7.803,
+        "z": 125.702
+      }
+    ],
+    "target": "grave-shade-3",
+    "pendingSpell": null,
+    "spells": {
+      "fire": {
+        "casts": 5,
+        "cooldown": 0
+      },
+      "lava": {
+        "casts": 0,
+        "cooldown": 0
+      },
+      "pyre": {
+        "casts": 2,
+        "cooldown": 0
+      }
+    },
+    "audio": {
+      "error": null,
+      "initializing": false,
+      "muted": true
+    },
+    "exploration": {
+      "phase": "unstarted",
+      "sessionOnly": false,
+      "candidate": null,
+      "discovered": 0
+    },
+    "objective": {
+      "phase": "idle",
+      "remaining": 4
+    },
+    "losDummy": {
+      "clear": false,
+      "obstacle": "Collision_grave-shade-2"
+    },
+    "losEnemies": {
+      "grave-shade-1": {
+        "clear": true,
+        "obstacle": null
+      },
+      "grave-shade-2": {
+        "clear": true,
+        "obstacle": null
+      },
+      "grave-shade-3": {
+        "clear": true,
+        "obstacle": null
+      }
+    }
+  },
+  "endSnap": {
+    "ready": true,
+    "playableReady": true,
+    "combatReady": true,
+    "navigationReady": true,
+    "regionReady": true,
+    "hostilesReady": true,
+    "playableMs": 329.7000000476837,
+    "navigationMs": 3824.3000000715256,
+    "loadMs": 4842.5,
+    "regionMs": 4842.5,
+    "gpu": {
+      "depthBundle": "native",
+      "errors": [],
+      "frames": 6426
+    },
+    "backgroundError": null,
+    "player": {
+      "x": 0,
+      "y": 0.886,
+      "z": 0,
+      "facing": 0,
+      "grounded": true,
+      "flying": false,
+      "usingPhysics": true,
+      "recoveries": 1,
+      "phase": "loco"
+    },
+    "rig": {
+      "yaw": 0,
+      "pitch": 0.04,
+      "distance": 3.5
+    },
+    "dev": {
+      "god": true,
+      "flying": false,
+      "enabled": true
+    },
+    "menuOpen": true,
+    "scenario": null,
+    "scenarioList": [
+      {
+        "id": "dummy",
+        "name": "Training dummy"
+      },
+      {
+        "id": "pack",
+        "name": "Three-target pack"
+      },
+      {
+        "id": "cathedral",
+        "name": "Cathedral wall / floor"
+      },
+      {
+        "id": "mortal",
+        "name": "Mortal combat route"
+      }
+    ],
+    "trace": {
+      "size": 86,
+      "dropped": 0
+    },
+    "life": {
+      "hp": 100,
+      "hpMax": 100,
+      "dead": false,
+      "inCombat": false,
+      "time": 4.494
+    },
+    "progress": {
+      "level": 1,
+      "xp": 0,
+      "mana": 100,
+      "manaMax": 100
+    },
+    "dummy": {
+      "id": "ashen-training-dummy",
+      "hp": 2000,
+      "hpMax": 2000,
+      "x": 1.125,
+      "y": 0.29,
+      "z": 8
+    },
+    "enemyCount": 7,
+    "enemies": [
+      {
+        "id": "grave-shade-1",
+        "name": "Grave Shade",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 3.58,
+        "y": 0.353,
+        "z": 18.398
+      },
+      {
+        "id": "grave-shade-2",
+        "name": "Ash Wight",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": -7.544,
+        "y": 1.265,
+        "z": 30
+      },
+      {
+        "id": "grave-shade-3",
+        "name": "Lych Stalker",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 2.929,
+        "y": 0.632,
+        "z": 45.609
+      },
+      {
+        "id": "grave-shade-4",
+        "name": "Barrow Shade",
+        "state": "patrol",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 1.442,
+        "y": 1.638,
+        "z": 62
+      },
+      {
+        "id": "town-wraith-1",
+        "name": "Street Wraith",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 1.772,
+        "y": 4.37,
+        "z": 88.395
+      },
+      {
+        "id": "town-wraith-2",
+        "name": "Lane Shade",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": -2.855,
+        "y": 5.031,
+        "z": 108
+      },
+      {
+        "id": "town-wraith-3",
+        "name": "Well Haunt",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "lockedState": false,
+        "diagnosticFloorY": null,
+        "x": 1.031,
+        "y": 7.64,
+        "z": 123.584
+      }
+    ],
+    "target": null,
+    "pendingSpell": null,
+    "spells": {
+      "fire": {
+        "casts": 5,
+        "cooldown": 0
+      },
+      "lava": {
+        "casts": 0,
+        "cooldown": 0
+      },
+      "pyre": {
+        "casts": 2,
+        "cooldown": 0
+      }
+    },
+    "audio": {
+      "error": null,
+      "initializing": false,
+      "muted": true
+    },
+    "exploration": {
+      "phase": "unstarted",
+      "sessionOnly": false,
+      "candidate": null,
+      "discovered": 0
+    },
+    "objective": {
+      "phase": "idle",
+      "remaining": 4
+    },
+    "losDummy": {
+      "clear": true,
+      "obstacle": null
+    },
+    "losEnemies": {
+      "grave-shade-1": {
+        "clear": true,
+        "obstacle": null
+      },
+      "grave-shade-2": {
+        "clear": true,
+        "obstacle": null
+      },
+      "grave-shade-3": {
+        "clear": true,
+        "obstacle": null
+      }
+    }
+  },
+  "audio": {
+    "error": null,
+    "initializing": false,
+    "muted": true
+  },
+  "note": "Scenario teleports/setup/restore are diagnostic. Capture adds load; no FPS claim. Audio muted in this headless session."
+}

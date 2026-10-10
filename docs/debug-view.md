@@ -450,3 +450,21 @@ browser's response reader, with truncation, trailing-data and cancellation guard
 Acceptance measurements using `measure-region-fps.mjs` must set
 `ASHEN_FPS_RAW=1`; the default removes raw interval arrays. Inspect current
 helper flags before launch and retain full windows, not only rolling summaries.
+
+### Combat rehearsals and timing trace
+
+With `?dev`, open Menu → Developer tools → Combat rehearsal. Training dummy,
+Three-target pack, Cathedral wall/floor and Mortal combat route use existing actors
+and Havok surfaces. Start supplies diagnostic position/health/mana with God/Fly off;
+XP and journal updates are suppressed until Restore before rehearsal. Restore
+returns the prior actors, resources, camera and player position; diagnostic position
+changes can increment the controller recovery counter and are not traversal proof.
+The cathedral preset includes nave, side-chapel and upper-gallery targets for actual
+LOS/floor checks. Mortal uses ordinary AI, so death remains possible.
+
+Download combat timing trace exports the last 512 developer events as JSON.
+Clear combat trace starts a fresh sample. Input/start/rejection/release/hit timestamps
+are game evidence, not physical input-to-photon measurements. Capture and FPS
+measurement must be separate; verify both viewport and actual canvas dimensions.
+The default desktop canvas may be 75% of the viewport, so a 1280×720 screenshot
+alone does not establish a 1280×720 internal render.
