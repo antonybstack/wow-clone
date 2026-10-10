@@ -1,0 +1,17 @@
+{
+  "sealPath": "/Users/antbly/dev/wow-clone/.cache/vaelmark-expedition-2026-10-09/pages-seal.json",
+  "sealFileSha256": "3121159825937b7c0539971835367f06c835d1f7004f0ee48e1910de25f705bc",
+  "sealSha256": "6ef7b8ef9bf46d6f336cb708aea1eb441b18eeeaf1cf2a02d66f7e24f1943517",
+  "fileCount": 649,
+  "totalBytes": 399412147,
+  "sourceHead": "479902384bda743620848cd9b969bb0813510301",
+  "productInputsSha256": "4ae465709c49cbf875bb79624f93c0644b3adf0f4ffbdbfacf2af3d353a5860c",
+  "scope": "G10-G16 functional desktop expedition; G17 native persistence/failure/1201s soak and 21 isolated FPS windows. Cold start unqualified; no production promotion.",
+  "createdAt": "2026-10-10T07:31:25.189Z",
+  "expectedSealSha256": "6ef7b8ef9bf46d6f336cb708aea1eb441b18eeeaf1cf2a02d66f7e24f1943517",
+  "sealShaMatchesExpected": true,
+  "distExists": true,
+  "distFileCount": 649,
+  "distTotalBytes": 399412147,
+  "distMatchesSealCounts": true
+}

@@ -1,0 +1,26 @@
+{
+  "url": "https://play.sparkify.dev/?play&clean&pixelRatio=1",
+  "seeded": true,
+  "errors": [],
+  "first": {
+    "record": {
+      "version": 1,
+      "episode": "vaelmark-bell-v1",
+      "phase": "returned",
+      "discovered": [
+        "bell-watch-view",
+        "hollowmere-return",
+        "vaelmark-bell",
+        "vaelmark-inscription",
+        "vaelmark-relic"
+      ]
+    },
+    "physics": true,
+    "recoveries": 0,
+    "god": false,
+    "flying": false,
+    "gpuErrors": []
+  },
+  "passed": false,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n\n\u001b[39m  {\n\u001b[39m    discovered: [\n\u001b[32m+\u001b[39m     'bell-watch-view',\n\u001b[32m+\u001b[39m     'hollowmere-return',\n\u001b[32m+\u001b[39m     'vaelmark-bell',\n\u001b[39m      'vaelmark-inscription',\n\u001b[31m-\u001b[39m     'vaelmark-bell',\n\u001b[39m      'vaelmark-relic',\n\u001b[31m-\u001b[39m     'hollowmere-return',\n\u001b[31m-\u001b[39m     'bell-watch-view'\n\u001b[39m    ],\n\u001b[39m    episode: 'vaelmark-bell-v1',\n\u001b[39m    phase: 'returned',\n\u001b[39m    version: 1\n\u001b[39m  }\n\n    at file:///Users/antbly/dev/wow-clone/.cache/gothic-prod-2026-10-10/check-saved-persistence.mjs:61:10"
+}

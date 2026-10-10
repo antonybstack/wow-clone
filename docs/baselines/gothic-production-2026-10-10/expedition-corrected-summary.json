@@ -1,0 +1,329 @@
+{
+  "passed": true,
+  "errors": [],
+  "cases": [
+    {
+      "case": "connected fresh-journal inscription, west bell, reliquary claim, both aisles and nave return",
+      "initialDeveloperNaveSetup": true,
+      "ordinaryInputs": true,
+      "start": {
+        "x": 0,
+        "y": 45.803875000000005,
+        "z": 310,
+        "facing": 0,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "end": {
+        "x": -0.1988852736777008,
+        "y": 45.803875000000005,
+        "z": 328.00621587967316,
+        "facing": -10.859685000425637,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "contactStart": {
+        "x": -9.619498074762001,
+        "y": 40.204265625000005,
+        "z": 329.1716176949639,
+        "facing": -4.728210001337579,
+        "feet": 39.330265625,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "contact": {
+        "x": -8.569629454396294,
+        "y": 40.204265625000005,
+        "z": 329.33772215467457,
+        "facing": -4.728210001337579,
+        "feet": 39.330265625,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "unchangedCombat": {
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "lifeTime": 14.318800000071539
+      },
+      "casterState": {
+        "sun": [],
+        "local": [],
+        "slots": 2,
+        "triangles": 512
+      },
+      "final": {
+        "record": {
+          "version": 1,
+          "episode": "vaelmark-bell-v1",
+          "phase": "relic-claimed",
+          "discovered": [
+            "vaelmark-bell",
+            "vaelmark-inscription",
+            "vaelmark-relic"
+          ]
+        },
+        "warning": null,
+        "sessionOnly": false,
+        "candidate": null,
+        "bell": {
+          "active": false,
+          "time": 3.6,
+          "rings": 1,
+          "angle": 0,
+          "ropeY": 74.17268781190694
+        },
+        "reliquary": {
+          "time": 1.6,
+          "active": false,
+          "open": true,
+          "claimed": true,
+          "relicVisible": false,
+          "angle": 0.6248973167276999
+        },
+        "propTriangles": 512
+      },
+      "stepCount": 99
+    },
+    {
+      "case": "ordinary nave/terrace/bridge/chapel return, ordinary hostile clearing, one-time altar completion, journal map and chapel escape",
+      "freshJournal": true,
+      "ordinaryInputs": true,
+      "start": {
+        "x": -0.1988852736777008,
+        "y": 45.803875000000005,
+        "z": 328.00621587967316,
+        "facing": -10.859685000425637,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "end": {
+        "x": 0.2589487007151642,
+        "y": 7.576912425210634,
+        "z": 114.02716912887368,
+        "facing": 4.600804374438126,
+        "feet": 6.702912425210634,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "initialCombat": {
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "lifeTime": 14.318800000071539
+      },
+      "unchangedAltarCombat": {
+        "progress": {
+          "level": 2,
+          "xp": 0,
+          "xpToNext": 200,
+          "mana": 115,
+          "manaMax": 115
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "lifeTime": 223.82740000007195
+      },
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "returned",
+        "discovered": [
+          "hollowmere-return",
+          "vaelmark-bell",
+          "vaelmark-inscription",
+          "vaelmark-relic"
+        ]
+      },
+      "stepCount": 19
+    },
+    {
+      "case": "ordinary post-completion town/Bell Watch/return route, optional read/repeat and retained map knowledge",
+      "ordinaryInputs": true,
+      "unchangedWatchInteractionCombat": {
+        "progress": {
+          "level": 2,
+          "xp": 0,
+          "xpToNext": 200,
+          "mana": 115,
+          "manaMax": 115
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        },
+        "lifeTime": 250.59390000006823
+      },
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "returned",
+        "discovered": [
+          "bell-watch-view",
+          "hollowmere-return",
+          "vaelmark-bell",
+          "vaelmark-inscription",
+          "vaelmark-relic"
+        ]
+      },
+      "end": {
+        "x": -0.01237629985052756,
+        "y": 7.4982834167480465,
+        "z": 114.12702343780845,
+        "facing": 9.424894375532471,
+        "feet": 6.624283416748047,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "stepCount": 118
+    },
+    {
+      "case": "actual completed episode reload without phase seeding",
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "returned",
+        "discovered": [
+          "bell-watch-view",
+          "hollowmere-return",
+          "vaelmark-bell",
+          "vaelmark-inscription",
+          "vaelmark-relic"
+        ]
+      }
+    },
+    {
+      "case": "ordinary armory equipment change and actual reload preserve the completed journal independently",
+      "oldTorso": "wayfarerTunic",
+      "newTorso": "lectorCoat",
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "returned",
+        "discovered": [
+          "bell-watch-view",
+          "hollowmere-return",
+          "vaelmark-bell",
+          "vaelmark-inscription",
+          "vaelmark-relic"
+        ]
+      }
+    }
+  ],
+  "actionTiming": {
+    "recording": false,
+    "kind": "ordinary actions, traversal and menu pauses; no video/stills, separate from settled FPS",
+    "tails": {
+      "samples": 16158,
+      "meanMs": 16.666023022652794,
+      "meanFps": 60.00231720793736,
+      "p50Ms": 16.699999928474426,
+      "p95Ms": 17.399999976158142,
+      "p99Ms": 17.600000023841858,
+      "maxMs": 20.300000071525574,
+      "above6_94": 16158,
+      "above8_33": 16158,
+      "above16_67": 9251,
+      "above33_33": 0
+    }
+  }
+}

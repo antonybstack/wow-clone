@@ -3,6 +3,8 @@
 Updated **2026-10-10 PDT**. Read this before choosing work. Latest user direction
 controls scope; historical milestone lists are evidence, not an active queue.
 **Direction: Gothic region and cathedral exploration. Mobile is backlogged.**
+Combat planning is opening at
+[plans/combat-overhaul/plan-2026-10-10.md](plans/combat-overhaul/plan-2026-10-10.md).
 
 ## Completed expedition and public preview
 
@@ -39,31 +41,32 @@ Root-reviewed live playback, exact VE bytes/MIME/range/play/seek and Telegram
 [raw receipts](baselines/vaelmark-expedition-2026-10-09/README.md),
 [long-term vision](plans/gothic-exploration/vision.md).
 
-## Production hold and next actionable work
+## Production (user-directed, startup unqualified)
 
-Production **7d00c56 / Pages 5723a4ab-5dfd-4902-959b-7496948ea51f** is unchanged
-at [play.sparkify.dev](https://play.sparkify.dev). Rollback **6004840 /
-e39117b8-db74-4563-a6c0-b428c8d5d10e**. No promotion/rollback ran.
-The valid cold qualification missed the inclusive 1 s target at 1,140.1 ms; an
-invalid God fixture records 4,725.9 ms concern. A new single fresh-process diagnostic
-retains **8,841.1 ms first play**, with engine creation/first GPU completion
-dominant and a 2,454.5 ms region-navigation interval. No cause/fix attributed;
-campaign stopped. The historical required-texture failure is still unexplained.
+[play.sparkify.dev](https://play.sparkify.dev) serves sealed Pages
+**94db62ac-9d58-43ad-ad52-5d0001a6f3a1 / source a7df082**
+([immutable](https://94db62ac.fardel.pages.dev)), 649 files / seal
+`6ef7b8ef9bf46d6f336cb708aea1eb441b18eeeaf1cf2a02d66f7e24f1943517`.
+Rollback **5723a4ab / 7d00c56**. User-directed promotion of the desktop
+preview; the 1 s startup gate did not pass and was not waived. 652/652
+integrity checks pass on the immutable URL and the custom domain. Public
+default entry walks with Havok; 26323 ms is ready+navigation+hostiles, not
+first play. Native expedition/Hollowmere/Bell Watch, actual reload and
+torso swap pass after a retained first helper abort on regenerating mana
+(109.5304 → 109.5968). [Production result](plans/gothic-exploration/results/production-deployment-2026-10-10.md),
+[receipts](baselines/gothic-production-2026-10-10/README.md).
 
-Next: discriminate fresh engine creation and first GPU completion using adapter,
-cache and trace context, then implement an attributed supported correction before
-new exact-build startup qualification. Do not retry unchanged 80-start cohorts or
-promote by waiver. Later game horizon: a meaningful regional encounter and
-replayable expedition variant. [Release contract](DEPLOY.md),
-[retained hold](baselines/gothic-production-2026-10-09/README.md).
+Startup backlog unchanged: valid cold miss 1,140.1 ms; diagnostic
+**8,841.1 ms first play**; historical required-texture failure open. Do not
+retry unchanged 80-start cohorts. Next attributed startup work still needs
+fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
+[retained hold evidence](baselines/gothic-production-2026-10-09/README.md).
 
 ## Ownership and operating rules
 
-All owned game/video contexts and review tab 1147996268 are closed. Chrome 56212/
-GPU 56218, Vite 56163+56187, preview 99703 and WebKit 35146 are stopped; ports 10037/
-5873/7074 closed. User Chrome 13883/New Tab, Edge 2931/fifteen unrelated tabs, Orca
-and unrelated Vite 4000/10171+10205 preserved. Final inventory has no game URL.
-[Cleanup receipt](baselines/vaelmark-expedition-2026-10-09/g18-cleanup.json).
+Owned production harness slot 8 closed: Chrome 58891, Vite 58846+58866, CDP
+10137 and Vite 5973 gone. Unrelated Vite 29712/5173 and Vite4000 10171/10205
+preserved; user Edge 2931 untouched. No owned game renderer remains.
 
 Root implements/accepts; only Grok for bounded delegation. Preserve unrelated
 AGENTS.md / docs/plans/character-mmo/next-ten.md edits. Commit/push completed owned

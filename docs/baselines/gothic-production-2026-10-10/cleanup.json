@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-10T16:32:00Z",
+  "stopped": {
+    "slot": 8,
+    "chromePid": 58891,
+    "vitePid": 58846,
+    "viteListenerPid": 58866,
+    "cdpPort": 10137,
+    "vitePort": 5973
+  },
+  "verifiedGone": [58891, 58846, 58866],
+  "cdpClosed": true,
+  "slotStateRemoved": true,
+  "preserved": [
+    {"pid": 29712, "port": 5173, "kind": "vite"},
+    {"pid": 10171, "kind": "npm-exec-vite"},
+    {"pid": 10205, "port": 4000, "kind": "vite"},
+    {"pid": 2931, "kind": "Microsoft Edge"}
+  ]
+}

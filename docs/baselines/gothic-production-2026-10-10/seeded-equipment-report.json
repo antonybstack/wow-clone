@@ -1,0 +1,46 @@
+{
+  "url": "https://play.sparkify.dev/?play&clean&pixelRatio=1",
+  "seeded": true,
+  "errors": [],
+  "first": {
+    "record": {
+      "version": 1,
+      "episode": "vaelmark-bell-v1",
+      "phase": "returned",
+      "discovered": [
+        "bell-watch-view",
+        "hollowmere-return",
+        "vaelmark-bell",
+        "vaelmark-inscription",
+        "vaelmark-relic"
+      ]
+    },
+    "physics": true,
+    "recoveries": 0,
+    "god": false,
+    "flying": false,
+    "gpuErrors": []
+  },
+  "oldTorso": "wayfarerTunic",
+  "newTorso": "lectorCoat",
+  "after": {
+    "record": {
+      "version": 1,
+      "episode": "vaelmark-bell-v1",
+      "phase": "returned",
+      "discovered": [
+        "bell-watch-view",
+        "hollowmere-return",
+        "vaelmark-bell",
+        "vaelmark-inscription",
+        "vaelmark-relic"
+      ]
+    },
+    "torso": "lectorCoat",
+    "physics": true,
+    "recoveries": 0,
+    "god": false,
+    "gpuErrors": []
+  },
+  "passed": true
+}

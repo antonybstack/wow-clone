@@ -1,0 +1,1727 @@
+{
+  "cases": [
+    {
+      "case": "connected fresh-journal inscription, west bell, reliquary claim, both aisles and nave return",
+      "initialDeveloperNaveSetup": true,
+      "ordinaryInputs": true,
+      "start": {
+        "x": 0,
+        "y": 45.803875000000005,
+        "z": 310,
+        "facing": 0,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "end": {
+        "x": -0.14278223488490377,
+        "y": 45.803875000000005,
+        "z": 328.01484490187215,
+        "facing": -10.893600000303993,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "steps": [
+        {
+          "x": 0,
+          "y": 45.803875000000005,
+          "z": 327.7344999999983,
+          "facing": 0,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -11.659630747509496,
+          "y": 45.803875000000005,
+          "z": 327.97192677919094,
+          "facing": -1.5723299997568125,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.341096102304398,
+          "y": 45.803875000000005,
+          "z": 328.00753214572995,
+          "facing": -1.4871599998176093,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.498959122437418,
+          "y": 45.803875000000005,
+          "z": 329.8677458095344,
+          "facing": -0.08465999981760977,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.53348099129123,
+          "y": 40.27438357543946,
+          "z": 346.7902406889811,
+          "facing": -0.0020399995744228155,
+          "feet": 39.400383575439456,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.502063138527395,
+          "y": 40.20177161106967,
+          "z": 348.3062434806948,
+          "facing": 0.08262000024318697,
+          "feet": 39.327771611069664,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.158590957119046,
+          "y": 40.20261617848319,
+          "z": 348.4762385731153,
+          "facing": 1.48486500018239,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.002000137588097,
+          "y": 40.20261617848319,
+          "z": 337.16316362515,
+          "facing": 3.0140999999999996,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.910193009948623,
+          "y": 40.20261617848319,
+          "z": 334.13388405638295,
+          "facing": 3.906599999999999,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.620183733426579,
+          "y": 40.20261617848319,
+          "z": 329.2466570694582,
+          "facing": 2.969985000121593,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.99203021755332,
+          "y": 40.20261617848319,
+          "z": 333.7771348931845,
+          "facing": -0.001274999999999242,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.154132441025287,
+          "y": 40.20261617848319,
+          "z": 336.86946608751464,
+          "facing": 0.6788099998176105,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -6.995393610235638,
+          "y": 40.20261617848319,
+          "z": 348.42015066858744,
+          "facing": -0.002295000243186275,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.227065335706957,
+          "y": 40.20261617848319,
+          "z": 348.47009728956874,
+          "facing": -1.5322950005471698,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.485876477856852,
+          "y": 40.20261617848319,
+          "z": 347.3177794163055,
+          "facing": -3.0194550006687626,
+          "feet": 39.32861617848319,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.476956550300567,
+          "y": 45.72785571289063,
+          "z": 330.2339270258047,
+          "facing": -3.1449150004863724,
+          "feet": 44.85385571289063,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.469977309013847,
+          "y": 45.803875000000005,
+          "z": 328.1463817462836,
+          "facing": -3.1449150004863724,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -12.256835668905516,
+          "y": 45.803875000000005,
+          "z": 327.9885201827456,
+          "facing": -4.802670000547165,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.23875309909943454,
+          "y": 45.803875000000005,
+          "z": 327.9862197537196,
+          "facing": -4.801395000243181,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.01252384956774687,
+          "y": 45.803875000000005,
+          "z": 298.12850328362134,
+          "facing": -3.184695000243184,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -16.80934355999152,
+          "y": 45.803875000000005,
+          "z": 298.01780598161764,
+          "facing": -1.612875000303982,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -16.945184447577926,
+          "y": 45.803875000000005,
+          "z": 298.81978279786773,
+          "facing": -0.16779000048637233,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -16.992594824382753,
+          "y": 45.803875000000005,
+          "z": 302.6695464294377,
+          "facing": -0.08134500054716907,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.97442021673686,
+          "y": 45.803875000000005,
+          "z": 302.7580368445025,
+          "facing": -1.5261750006079657,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.238253582214213,
+          "y": 46.846843750000005,
+          "z": 309.0108997389453,
+          "facing": 0.007139998966456625,
+          "feet": 45.97284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.99402974142853,
+          "y": 47.887859375000005,
+          "z": 309.1462612552569,
+          "facing": 1.5394349992096434,
+          "feet": 47.013859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.819987435375115,
+          "y": 48.928875000000005,
+          "z": 302.9732288553127,
+          "facing": 3.113294999331237,
+          "feet": 48.054875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.96759136297164,
+          "y": 49.971843750000005,
+          "z": 302.76183328607607,
+          "facing": 4.684349999392033,
+          "feet": 49.09784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.222297399435128,
+          "y": 51.012859375000005,
+          "z": 309.04694893167084,
+          "facing": 6.257189999270437,
+          "feet": 50.138859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.980378634454487,
+          "y": 52.053875000000005,
+          "z": 309.1546678638013,
+          "facing": 7.829009999513623,
+          "feet": 51.179875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.764302311206766,
+          "y": 53.096843750000005,
+          "z": 302.99169418306343,
+          "facing": 9.361049999696016,
+          "feet": 52.22284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.006191181390335,
+          "y": 54.137859375000005,
+          "z": 302.8221130816554,
+          "facing": 10.934399999392046,
+          "feet": 53.263859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.216793540660014,
+          "y": 55.178875000000005,
+          "z": 308.98607149787716,
+          "facing": 12.59138999957445,
+          "feet": 54.304875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.966515782993541,
+          "y": 56.221843750000005,
+          "z": 309.24467397525433,
+          "facing": 14.077274999392065,
+          "feet": 55.34784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.85098304705911,
+          "y": 57.262859375000005,
+          "z": 302.9515139392864,
+          "facing": 15.689639999574466,
+          "feet": 56.388859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.969294372049355,
+          "y": 58.303875000000005,
+          "z": 302.79330848729904,
+          "facing": 17.220659999513686,
+          "feet": 57.429875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.158785929616617,
+          "y": 59.346843750000005,
+          "z": 309.07203682783387,
+          "facing": 18.87764999939211,
+          "feet": 58.47284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.026874282389006,
+          "y": 60.387859375000005,
+          "z": 309.2192901976215,
+          "facing": 20.31941999963531,
+          "feet": 59.513859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.769159790018355,
+          "y": 61.428875000000005,
+          "z": 302.93969365066397,
+          "facing": 21.892769999331342,
+          "feet": 60.554875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.891414496532917,
+          "y": 62.471843750000005,
+          "z": 302.79938699153456,
+          "facing": 23.46458999927056,
+          "feet": 61.59784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.23000316701138,
+          "y": 63.512859375000005,
+          "z": 309.0817869956258,
+          "facing": 25.07899499902739,
+          "feet": 62.638859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.108238247965172,
+          "y": 64.553875,
+          "z": 309.2111387588026,
+          "facing": 26.608229999149,
+          "feet": 63.679875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.791834654489831,
+          "y": 65.59684374999999,
+          "z": 303.04684777736816,
+          "facing": 28.223144999331407,
+          "feet": 64.72284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.013289989725532,
+          "y": 66.63785937499999,
+          "z": 302.8338170036408,
+          "facing": 29.795729999453016,
+          "feet": 65.763859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.195010517394994,
+          "y": 67.67887499999999,
+          "z": 308.9986267752072,
+          "facing": 31.407839999574627,
+          "feet": 66.804875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.075311168473917,
+          "y": 68.72184374999999,
+          "z": 309.2037504242243,
+          "facing": 32.93783999957458,
+          "feet": 67.84784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.839839587101954,
+          "y": 69.76285937499999,
+          "z": 302.9287709078936,
+          "facing": 34.50812999914898,
+          "feet": 68.888859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.983486890561714,
+          "y": 70.80387499999999,
+          "z": 302.8273815856739,
+          "facing": 36.083009998905744,
+          "feet": 69.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.182132840808602,
+          "y": 70.80387499999999,
+          "z": 305.7418996815022,
+          "facing": 37.69562999884491,
+          "feet": 69.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.191564492480776,
+          "y": 70.80387499999999,
+          "z": 302.9449936951875,
+          "facing": 34.59278999927056,
+          "feet": 69.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.998102565397815,
+          "y": 69.76285937499999,
+          "z": 302.81152516897987,
+          "facing": 33.06100499884502,
+          "feet": 68.888859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.767813097282193,
+          "y": 68.72184374999999,
+          "z": 308.98805538884574,
+          "facing": 31.445069999027453,
+          "feet": 67.84784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.964770212410166,
+          "y": 67.67887499999999,
+          "z": 309.1830963922172,
+          "facing": 29.95765499914903,
+          "feet": 66.804875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.194743393534793,
+          "y": 66.63785937499999,
+          "z": 303.01042659872314,
+          "facing": 28.38659999908822,
+          "feet": 65.763859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.002257465102158,
+          "y": 65.59684374999999,
+          "z": 302.82210718946635,
+          "facing": 26.814779998845015,
+          "feet": 64.72284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.848988164666716,
+          "y": 64.553875,
+          "z": 309.00260702971855,
+          "facing": 25.157534998905795,
+          "feet": 63.679875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.044761305872914,
+          "y": 63.512859375000005,
+          "z": 309.191465434966,
+          "facing": 23.670884999209765,
+          "feet": 62.638859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.167955249117266,
+          "y": 62.471843750000005,
+          "z": 303.01449380686137,
+          "facing": 22.01108999957453,
+          "feet": 61.59784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.97797609260027,
+          "y": 61.428875000000005,
+          "z": 302.76720061951926,
+          "facing": 20.47930499945292,
+          "feet": 60.554875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.802007625628873,
+          "y": 60.387859375000005,
+          "z": 309.05050996168325,
+          "facing": 18.952109999513702,
+          "feet": 59.513859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.000380444944145,
+          "y": 59.346843750000005,
+          "z": 309.1997931708956,
+          "facing": 17.376974999392093,
+          "feet": 58.47284375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.207334967123703,
+          "y": 58.303875000000005,
+          "z": 303.0285576592929,
+          "facing": 15.718964999574467,
+          "feet": 57.429875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.012410320393528,
+          "y": 57.262859375000005,
+          "z": 302.8207297201689,
+          "facing": 14.186669999635253,
+          "feet": 56.388859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.788314021169878,
+          "y": 56.221843750000005,
+          "z": 308.9943043070717,
+          "facing": 12.527384999513645,
+          "feet": 55.34784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.99246853792422,
+          "y": 55.17314556402631,
+          "z": 309.1809225192368,
+          "facing": 11.03996999963523,
+          "feet": 54.29914556402631,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.199369066145724,
+          "y": 54.137844957782455,
+          "z": 302.9975385042758,
+          "facing": 9.38450999981761,
+          "feet": 53.26384495778245,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.999987770668625,
+          "y": 53.0888860583897,
+          "z": 302.81651845826116,
+          "facing": 7.897094999939195,
+          "feet": 52.214886058389695,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.796320148600113,
+          "y": 52.053875000000005,
+          "z": 308.9854352675018,
+          "facing": 6.32349000048637,
+          "feet": 51.179875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -18.991581640598326,
+          "y": 51.012859375000005,
+          "z": 309.2340103255401,
+          "facing": 4.7491200002431855,
+          "feet": 50.138859375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.216313637194606,
+          "y": 49.971843750000005,
+          "z": 302.9291106490659,
+          "facing": 3.1790849998176087,
+          "feet": 49.09784375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -15.019922829699823,
+          "y": 48.92783820666029,
+          "z": 302.83069150352316,
+          "facing": 1.6049699999392044,
+          "feet": 48.05383820666029,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.826065598556394,
+          "y": 47.88586192960092,
+          "z": 309.0093510875816,
+          "facing": 0.03136499987840818,
+          "feet": 47.01186192960092,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.031367736599414,
+          "y": 46.84106750075798,
+          "z": 309.1721777146412,
+          "facing": -1.5001650001823885,
+          "feet": 45.96706750075798,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -19.182991686269038,
+          "y": 45.800880873979146,
+          "z": 302.98844533005257,
+          "facing": -3.198465000486372,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -17.211422712441465,
+          "y": 45.800880873979146,
+          "z": 302.807465091454,
+          "facing": -4.643295000547169,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -17.003069598034116,
+          "y": 45.800880873979146,
+          "z": 299.1965712151272,
+          "facing": -3.1992300003647802,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -16.98530872013369,
+          "y": 45.800880873979146,
+          "z": 298.1418207413561,
+          "facing": -3.1584300003647803,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.19661030113082256,
+          "y": 45.800880873979146,
+          "z": 298.0273412792285,
+          "facing": -4.77028500012159,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.020300063263561225,
+          "y": 45.800880873979146,
+          "z": 327.7642535439243,
+          "facing": -6.1730400001823815,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -11.787600982042308,
+          "y": 45.800880873979146,
+          "z": 328.02253246719636,
+          "facing": -7.873125000303969,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.357497660487036,
+          "y": 45.800880873979146,
+          "z": 327.9883819890673,
+          "facing": -7.830540000182376,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.469080483685897,
+          "y": 45.800880873979146,
+          "z": 329.84773686756387,
+          "facing": -6.343125000303972,
+          "feet": 44.926880873979144,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.539638860642036,
+          "y": 40.24641040039063,
+          "z": 346.87517198059555,
+          "facing": -6.256680000364768,
+          "feet": 39.37241040039063,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.506926408875715,
+          "y": 40.204265625000005,
+          "z": 348.39083942284617,
+          "facing": -6.256680000364768,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.157592019824579,
+          "y": 40.204265625000005,
+          "z": 348.48463037589585,
+          "facing": -4.725150000607959,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.030528067405623,
+          "y": 40.204265625000005,
+          "z": 337.1677436784277,
+          "facing": -3.152820000547165,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.82469818824596,
+          "y": 40.204265625000005,
+          "z": 334.1894831501264,
+          "facing": -2.3880750006079627,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.711833667196682,
+          "y": 40.204265625000005,
+          "z": 329.06835394320785,
+          "facing": -1.7923950008511476,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -9.99037880125323,
+          "y": 40.204265625000005,
+          "z": 325.2284434483795,
+          "facing": -3.069180000972741,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -4.1659917989588156,
+          "y": 40.204265625000005,
+          "z": 325.01756362237614,
+          "facing": -4.558635000729552,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -4.025625287349277,
+          "y": 40.204265625000005,
+          "z": 333.76810890430454,
+          "facing": -6.132495000547158,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -6.861818240881748,
+          "y": 40.204265625000005,
+          "z": 336.8677494468735,
+          "facing": -7.0242300006687515,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -7.009481580372649,
+          "y": 40.204265625000005,
+          "z": 348.3037966768944,
+          "facing": -6.258720000547161,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.350244603511346,
+          "y": 40.204265625000005,
+          "z": 348.4893187333998,
+          "facing": -7.915710000425562,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.496317407819825,
+          "y": 40.204265625000005,
+          "z": 347.0969600382924,
+          "facing": -9.320250000303977,
+          "feet": 39.330265625,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.537537793406402,
+          "y": 45.722385437011724,
+          "z": 330.2505322269815,
+          "facing": -9.449024999999995,
+          "feet": 44.84838543701172,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -14.486640961226684,
+          "y": 45.803875000000005,
+          "z": 328.1769537968603,
+          "facing": -9.449024999999995,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -12.153034667768308,
+          "y": 45.803875000000005,
+          "z": 328.02318695763756,
+          "facing": -10.855605000060805,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.14278223488490377,
+          "y": 45.803875000000005,
+          "z": 328.01484490187215,
+          "facing": -10.893600000303993,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        }
+      ],
+      "contactStart": {
+        "x": -9.62196794121602,
+        "y": 40.204265625000005,
+        "z": 329.1801384758718,
+        "facing": -4.726170000851146,
+        "feet": 39.330265625,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "contact": {
+        "x": -8.573467494885307,
+        "y": 40.204265625000005,
+        "z": 329.3248262937033,
+        "facing": -4.726170000851146,
+        "feet": 39.330265625,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "unchangedCombat": {
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        }
+      },
+      "casterState": {
+        "sun": [],
+        "local": [],
+        "slots": 2,
+        "triangles": 512
+      },
+      "final": {
+        "record": {
+          "version": 1,
+          "episode": "vaelmark-bell-v1",
+          "phase": "relic-claimed",
+          "discovered": [
+            "vaelmark-bell",
+            "vaelmark-inscription",
+            "vaelmark-relic"
+          ]
+        },
+        "warning": null,
+        "sessionOnly": false,
+        "candidate": null,
+        "bell": {
+          "active": false,
+          "time": 3.6,
+          "rings": 1,
+          "angle": 0,
+          "ropeY": 74.17268781190694
+        },
+        "reliquary": {
+          "time": 1.6,
+          "active": false,
+          "open": true,
+          "claimed": true,
+          "relicVisible": false,
+          "angle": 0.6248973167276999
+        },
+        "propTriangles": 512
+      }
+    },
+    {
+      "case": "ordinary nave/terrace/bridge/chapel return, ordinary hostile clearing, one-time altar completion, journal map and chapel escape",
+      "freshJournal": true,
+      "ordinaryInputs": true,
+      "start": {
+        "x": -0.14278223488490377,
+        "y": 45.803875000000005,
+        "z": 328.01484490187215,
+        "facing": -10.893600000303993,
+        "feet": 44.929875,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "end": {
+        "x": 0.28238618906589147,
+        "y": 7.581090503252838,
+        "z": 113.97986217599525,
+        "facing": -1.5403928787964942,
+        "feet": 6.7070905032528385,
+        "physics": true,
+        "recoveries": 0,
+        "god": false,
+        "flying": false
+      },
+      "steps": [
+        {
+          "x": -0.026101044097255215,
+          "y": 45.803875000000005,
+          "z": 310.1740318018384,
+          "facing": -9.44698500072956,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 0.02078729848612499,
+          "y": 45.803875000000005,
+          "z": 298.1648005180107,
+          "facing": -9.320250000911951,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.004796931309235886,
+          "y": 45.803875000000005,
+          "z": 280.20635960122263,
+          "facing": -9.533175001215938,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.0037280903554977266,
+          "y": 45.803875000000005,
+          "z": 270.17591686240314,
+          "facing": -9.533175001215938,
+          "feet": 44.929875,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.006656940156363525,
+          "y": 8.654680759429931,
+          "z": 145.13902544820067,
+          "facing": -9.488805000668767,
+          "feet": 7.780680759429932,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -2.701667686812522,
+          "y": 8.897077590942382,
+          "z": 142.1251862780606,
+          "facing": -8.638890000790354,
+          "feet": 8.023077590942382,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -2.8094709575915533,
+          "y": 8.934734375,
+          "z": 132.10008085016767,
+          "facing": -9.446220000851154,
+          "feet": 8.060734375,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": -0.014639663607375425,
+          "y": 7.498659476490048,
+          "z": 114.1186004724988,
+          "facing": -9.616050000911953,
+          "feet": 6.624659476490049,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 0.9053247531284991,
+          "y": 7.664246428383367,
+          "z": 114.023139694088,
+          "facing": -10.89309000079037,
+          "feet": 6.790246428383368,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 2.0485049778624704,
+          "y": 7.895933455642081,
+          "z": 113.99151742078605,
+          "facing": -10.97673000097276,
+          "feet": 7.021933455642081,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 3.89882957211968,
+          "y": 8.194950266405117,
+          "z": 113.98596781230951,
+          "facing": -11.019060001033557,
+          "feet": 7.320950266405117,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 8.907703819493037,
+          "y": 8.209808380126953,
+          "z": 114.02912271060245,
+          "facing": -10.976475001215947,
+          "feet": 7.335808380126953,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 6.111625119704138,
+          "y": 8.209808380126953,
+          "z": 113.98058247382079,
+          "facing": -7.871340001398316,
+          "feet": 7.335808380126953,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 8.791016046370673,
+          "y": 8.209808380126953,
+          "z": 113.9962469327882,
+          "facing": 1.6648736570386173,
+          "feet": 7.335808380126953,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 6.229076329195603,
+          "y": 8.209808380126953,
+          "z": 114.01382207321154,
+          "facing": -1.5639363430829756,
+          "feet": 7.335808380126953,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 4.246155875499229,
+          "y": 8.209808380126953,
+          "z": 113.98713719006193,
+          "facing": -1.5842528789180876,
+          "feet": 7.335808380126953,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 2.4972954103055014,
+          "y": 7.970260563812067,
+          "z": 113.96362661174955,
+          "facing": -1.5842528789180876,
+          "feet": 7.096260563812067,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 1.3319009323809812,
+          "y": 7.768185669616996,
+          "z": 113.94794347357391,
+          "facing": -1.5842528789180876,
+          "feet": 6.894185669616997,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        },
+        {
+          "x": 0.28238618906589147,
+          "y": 7.581090503252838,
+          "z": 113.97986217599525,
+          "facing": -1.5403928787964942,
+          "feet": 6.7070905032528385,
+          "physics": true,
+          "recoveries": 0,
+          "god": false,
+          "flying": false
+        }
+      ],
+      "initialCombat": {
+        "progress": {
+          "level": 1,
+          "xp": 0,
+          "xpToNext": 100,
+          "mana": 100,
+          "manaMax": 100
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        }
+      },
+      "unchangedAltarCombat": {
+        "progress": {
+          "level": 2,
+          "xp": 0,
+          "xpToNext": 200,
+          "mana": 115,
+          "manaMax": 115
+        },
+        "objective": {
+          "phase": "idle",
+          "inside": false,
+          "promptCount": 0,
+          "completeCount": 0,
+          "lastMessage": "",
+          "killed": [],
+          "remaining": [
+            "grave-shade-1",
+            "grave-shade-2",
+            "grave-shade-3",
+            "grave-shade-4"
+          ],
+          "bonusXp": 100,
+          "watchman": {
+            "x": 0.3503803000354113,
+            "z": 77.4
+          },
+          "triggerRadius": 8
+        }
+      },
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "returned",
+        "discovered": [
+          "hollowmere-return",
+          "vaelmark-bell",
+          "vaelmark-inscription",
+          "vaelmark-relic"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "combatClears": [
+    {
+      "target": "town-wraith-2",
+      "remaining": [
+        {
+          "id": "town-wraith-2",
+          "hp": 240
+        },
+        {
+          "id": "town-wraith-3",
+          "hp": 360
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 0,
+        "xpToNext": 100,
+        "mana": 80,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-2",
+      "remaining": [
+        {
+          "id": "town-wraith-2",
+          "hp": 120
+        },
+        {
+          "id": "town-wraith-3",
+          "hp": 360
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 0,
+        "xpToNext": 100,
+        "mana": 60,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-2",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 360
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 40,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 240
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 20,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 120
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 0,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 82
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 0,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 44
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 0,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 6
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 0,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [
+        {
+          "id": "town-wraith-3",
+          "hp": 6
+        }
+      ],
+      "progress": {
+        "level": 1,
+        "xp": 50,
+        "xpToNext": 100,
+        "mana": 0,
+        "manaMax": 100
+      }
+    },
+    {
+      "target": "town-wraith-3",
+      "remaining": [],
+      "progress": {
+        "level": 2,
+        "xp": 0,
+        "xpToNext": 200,
+        "mana": 115,
+        "manaMax": 115
+      }
+    },
+    {
+      "target": "town-wraith-2",
+      "remaining": [
+        {
+          "id": "town-wraith-2",
+          "hp": 240
+        }
+      ],
+      "progress": {
+        "level": 2,
+        "xp": 0,
+        "xpToNext": 200,
+        "mana": 95,
+        "manaMax": 115
+      }
+    },
+    {
+      "target": "town-wraith-2",
+      "remaining": [
+        {
+          "id": "town-wraith-2",
+          "hp": 120
+        }
+      ],
+      "progress": {
+        "level": 2,
+        "xp": 0,
+        "xpToNext": 200,
+        "mana": 75,
+        "manaMax": 115
+      }
+    },
+    {
+      "target": "town-wraith-2",
+      "remaining": [],
+      "progress": {
+        "level": 2,
+        "xp": 50,
+        "xpToNext": 200,
+        "mana": 55,
+        "manaMax": 115
+      }
+    }
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\u001b[32m+ actual\u001b[39m \u001b[31m- expected\u001b[39m\n... Skipped lines\n\n\u001b[39m  {\n\u001b[39m    objective: {\n\u001b[39m      bonusXp: 100,\n\u001b[39m      completeCount: 0,\n\u001b[39m      inside: false,\n\u001b[34m...\u001b[39m\n\u001b[39m      level: 2,\n\u001b[32m+\u001b[39m     mana: 109.59679999971405,\n\u001b[31m-\u001b[39m     mana: 109.53039999961868,\n\u001b[39m      manaMax: 115,\n\u001b[39m      xp: 50,\n\u001b[39m      xpToNext: 200\n\u001b[39m    }\n\u001b[39m  }\n\n    at finishReturn (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-vaelmark-reliquary.mjs:93:319)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-vaelmark-reliquary.mjs:179:21"
+}

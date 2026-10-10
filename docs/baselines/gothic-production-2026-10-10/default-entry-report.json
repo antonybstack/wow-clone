@@ -1,0 +1,35 @@
+{
+  "url": "https://play.sparkify.dev/?play&clean&pixelRatio=1",
+  "recording": true,
+  "errors": [],
+  "gpuErrors": null,
+  "readyMs": 26323,
+  "boot": {
+    "physics": true,
+    "recoveries": 0,
+    "god": false,
+    "flying": false,
+    "gpuErrors": [],
+    "href": "https://play.sparkify.dev/?play&clean&pixelRatio=1",
+    "srcImport": false
+  },
+  "start": {
+    "x": -0.00028281350299501817,
+    "y": 0.888169020845665,
+    "z": -0.0004990826199395125
+  },
+  "end": {
+    "x": -0.00099595891049741,
+    "y": 1.5529507343625668,
+    "z": 16.81268027103114,
+    "physics": true,
+    "recoveries": 0,
+    "god": false,
+    "flying": false,
+    "gpuErrors": []
+  },
+  "moved": 16.813179368775415,
+  "frames": 76,
+  "elapsedSeconds": 2.732640027999878,
+  "passed": true
+}

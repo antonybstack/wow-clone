@@ -1,0 +1,159 @@
+{
+  "checkedAt": "2026-10-10T16:08:58.014714+00:00",
+  "canonical": {
+    "id": "94db62ac-9d58-43ad-ad52-5d0001a6f3a1",
+    "url": "https://94db62ac.fardel.pages.dev",
+    "environment": "production",
+    "commit": "a7df082d9364706a11cecc03ceee3d32fccfbca6",
+    "branch": "main",
+    "latest_stage_name": "deploy",
+    "latest_stage_status": "success",
+    "aliases": [
+      "https://play.sparkify.dev"
+    ],
+    "created_on": "2026-10-10T16:08:33.15523Z"
+  },
+  "latest_deployment": {
+    "id": "94db62ac-9d58-43ad-ad52-5d0001a6f3a1",
+    "url": "https://94db62ac.fardel.pages.dev",
+    "environment": "production",
+    "commit": "a7df082d9364706a11cecc03ceee3d32fccfbca6",
+    "branch": "main",
+    "latest_stage_name": "deploy",
+    "latest_stage_status": "success",
+    "aliases": [
+      "https://play.sparkify.dev"
+    ],
+    "created_on": "2026-10-10T16:08:33.15523Z"
+  },
+  "recentDeployments": [
+    {
+      "id": "94db62ac-9d58-43ad-ad52-5d0001a6f3a1",
+      "url": "https://94db62ac.fardel.pages.dev",
+      "environment": "production",
+      "commit": "a7df082d9364706a11cecc03ceee3d32fccfbca6",
+      "branch": "main",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://play.sparkify.dev"
+      ],
+      "created_on": "2026-10-10T16:08:33.15523Z"
+    },
+    {
+      "id": "1c84608d-a319-4a30-aa84-a5d05099441c",
+      "url": "https://1c84608d.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "479902384bda743620848cd9b969bb0813510301",
+      "branch": "gothic-expedition-desktop-20261009",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://gothic-expedition-desktop-20.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-10T07:31:51.197985Z"
+    },
+    {
+      "id": "ba01c765-1e8c-4641-b995-293ebdb56e0a",
+      "url": "https://ba01c765.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "76730318d780b2b4295d2d51adb1dad6859b74a8",
+      "branch": "region-core-default-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://region-core-default-2026-10.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T21:04:24.165189Z"
+    },
+    {
+      "id": "aafce17b-ee0a-48d9-be58-d95c3749e41d",
+      "url": "https://aafce17b.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "4b6707a6ea7502026ac77daefa322c1a5657866b",
+      "branch": "g08-region-progress-2026-10",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://g08-region-progress-2026-10.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T13:14:44.349201Z"
+    },
+    {
+      "id": "2603a250-973d-4cb7-b5b5-0115b3f9c2ef",
+      "url": "https://2603a250.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "62bb96de1cee981cae1b32054a13f76d2d433231",
+      "branch": "g08-region-progress-2026-10",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": null,
+      "created_on": "2026-10-09T13:11:59.216569Z"
+    },
+    {
+      "id": "f56f0786-72c6-4d1d-8edf-e0335b17485a",
+      "url": "https://f56f0786.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "139c2d59a139282ac03942c57e5da623d4097077",
+      "branch": "g07-cathedral-guide-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://g07-cathedral-guide-2026-10.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T12:47:29.485782Z"
+    },
+    {
+      "id": "fc70ac46-b4e5-47d8-8439-38481ab23129",
+      "url": "https://fc70ac46.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "6ea3c6a145c0006783938b33719e795604e54bde",
+      "branch": "region-core-candidate-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://region-core-candidate-2026-1.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T12:23:16.302631Z"
+    },
+    {
+      "id": "2fd14837-c23e-48f9-95be-07f9ab0f66e6",
+      "url": "https://2fd14837.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "1b35554ffd5a8ba57a364ae9208f734fa2c93021",
+      "branch": "g06-hall-balcony-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://g06-hall-balcony-2026-10-09.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T11:26:07.110471Z"
+    },
+    {
+      "id": "ae9f12cc-d750-4d60-9d00-63ef7c297520",
+      "url": "https://ae9f12cc.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "c3419d42c7d0063cb68f0090db0c4be9e9b266be",
+      "branch": "g05-wall-walk-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://g05-wall-walk-2026-10-09.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T10:30:08.151103Z"
+    },
+    {
+      "id": "4f787280-3df8-4c1a-bfa7-f2f2d2910d0d",
+      "url": "https://4f787280.fardel.pages.dev",
+      "environment": "preview",
+      "commit": "9d5d4fef325f9d9c8fb7904c25a251a9c781a5cb",
+      "branch": "g04-map-2026-10-09",
+      "stage": "deploy",
+      "status": "success",
+      "aliases": [
+        "https://g04-map-2026-10-09.fardel.pages.dev"
+      ],
+      "created_on": "2026-10-09T09:55:38.763999Z"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-10-10T16:06:57.864973Z",
+  "source": "native Pages project API canonical_deployment",
+  "project": "fardel",
+  "productionBranch": "main",
+  "canonical": {
+    "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "url": "https://5723a4ab.fardel.pages.dev",
+    "environment": "production",
+    "commit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "latest_stage_name": "deploy",
+    "latest_stage_status": "success",
+    "aliases": ["https://play.sparkify.dev"]
+  },
+  "latest_deployment_at_record": {
+    "id": "1c84608d-a319-4a30-aa84-a5d05099441c",
+    "url": "https://1c84608d.fardel.pages.dev",
+    "environment": "preview",
+    "commit": "479902384bda743620848cd9b969bb0813510301",
+    "note": "Existing sealed desktop preview; not canonical production."
+  },
+  "historicalWorkingRollback": {
+    "id": "e39117b8-db74-4563-a6c0-b428c8d5d10e",
+    "commit": "6004840"
+  },
+  "rollbackIfThisPromotionFails": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+  "operatorChangedCanonical": false
+}

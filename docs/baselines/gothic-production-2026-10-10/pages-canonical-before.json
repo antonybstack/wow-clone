@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "checkedAt": "2026-10-10T16:06:57.864973Z",
+  "project": "fardel",
+  "subdomain": "fardel.pages.dev",
+  "production_branch": "main",
+  "canonical": {
+    "id": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+    "url": "https://5723a4ab.fardel.pages.dev",
+    "environment": "production",
+    "is_skipped": false,
+    "created_on": "2026-10-07T17:31:44.211134Z",
+    "commit": "7d00c56c06f02899e2319ffdddea97728013c0b1",
+    "commit_message": "Defer covered ponytail assets through the native source transaction",
+    "branch": "main",
+    "latest_stage_name": "deploy",
+    "latest_stage_status": "success",
+    "aliases": [
+      "https://play.sparkify.dev"
+    ]
+  },
+  "latest_deployment": {
+    "id": "1c84608d-a319-4a30-aa84-a5d05099441c",
+    "url": "https://1c84608d.fardel.pages.dev",
+    "environment": "preview",
+    "commit": "479902384bda743620848cd9b969bb0813510301",
+    "latest_stage_status": "success",
+    "latest_stage_name": "deploy"
+  },
+  "expectedCanonicalId": "5723a4ab-5dfd-4902-959b-7496948ea51f",
+  "expectedSourcePrefix": "7d00c56",
+  "matchesExpected": true,
+  "domains": [
+    "fardel.pages.dev",
+    "play.sparkify.dev"
+  ]
+}
