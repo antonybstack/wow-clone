@@ -5,6 +5,7 @@ export const FIRE_BLAST = Object.freeze({
   damage: 120,
   range: 20,
   cooldown: 1,
+  requiresGround: false,
 });
 export class FireBlast {
   constructor(config = FIRE_BLAST) {
@@ -30,7 +31,7 @@ export class FireBlast {
     let reason = "";
     if (!target) reason = "Select a target · Tab";
     else if (target.hp <= 0) reason = "Training dummy is recovering";
-    else if (!grounded) reason = "Land before casting";
+    else if (this.config.requiresGround !== false && !grounded) reason = "Land before casting";
     else if (
       Math.hypot(
         target.position.x - position.x,

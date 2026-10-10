@@ -278,6 +278,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     let landingPeak = 0;
     let castElapsed = 0;
     let combatSampleElapsed = null;
+    let combatGesture = null;
     let castLegWeight = 1;
     let castLegSuppressed = false;
     let activeCastShot = null, activeCastLower = null, activeCastProfile = def.castMotion;
@@ -456,7 +457,41 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         }
     };
 
+    const stopCombatGesture = () => {
+        if (combatGesture) halt(combatGesture.group);
+        combatGesture = null;
+    };
+    const playCombatInstant = kind => {
+        stopCombatGesture(); endMelee();
+        halt(activeCastShot); halt(activeCastLower); halt(visual.spellEnter);
+        state.castingShoot = false; state.channeling = false; state.channelPhase = '';
+        combatSampleElapsed = null; castCancelTime = null;
+        const selected = visual.castMotions?.[kind];
+        const group = selected?.upper ?? visual.spellShoot;
+        if (!group) return false; // Cosmetic absence cannot veto an accepted spell.
+        const release = selected?.profile?.releaseTime ?? def.castMotion?.releaseTime ?? 0;
+        // Sample only an authored upper-body release segment. Native Lite keeps
+        // the source curves and additive layers; legs/jump stay on locomotion.
+        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/07-animation.md
+        group.mask = visual.spellMask;
+        playOneshot(group);
+        combatGesture = { group, elapsed: 0, offset: Math.max(0, release - .06), duration: .42 };
+        return true;
+    };
+    const updateCombatGesture = h => {
+        const g = combatGesture;
+        if (!g) return;
+        g.elapsed += h;
+        if (g.elapsed >= g.duration) { stopCombatGesture(); return; }
+        if (!g.group.isPlaying) playAnimation(g.group);
+        g.group.speedRatio = 0;
+        g.group.currentTime = Math.min(g.group.duration - .001, g.offset + g.elapsed);
+        const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); };
+        setAnimationWeight(g.group, ease(g.elapsed / .08) * ease((g.duration - g.elapsed) / .14));
+    };
+
     const beginShoot = () => {
+        stopCombatGesture();
         finishPoseTransition();
         endMelee();
         const { jumpClips, spellLoop, spellEnter, spellExit, spellMask, additiveCast } = visual;
@@ -926,7 +961,8 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
         applyLocoOverlay(visual, castOverlay);
         // After applyLocoOverlay, which owns the cast masks on the same clips,
         // and before the frame's single evaluateHandAnimation/manager update.
-        updateCarry(h, motion, castOverlay);
+        updateCarry(h, motion, castOverlay || !!combatGesture);
+        updateCombatGesture(h);
         if (groups.length) {
             evaluateHandAnimation(visual, h * 1000);
         }
@@ -1209,6 +1245,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             if (!inspection) return;
             inspection.dispose(); inspection = null;
             poseTransition = null; landingPeak = landingElapsed = 0;
+            stopCombatGesture();
             castElapsed = 0; castCancelTime = null; activeCastShot = activeCastLower = null;
             state.phase = "loco"; state.jump = ""; state.castingShoot = false;
             state.channeling = false; state.channelPhase = ""; state.channelBlocked = false;
@@ -1221,9 +1258,16 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             updateCarry(0, { forward: 0, strafe: 0 }, false);
             evaluateHandAnimation(visual, 0);
         },
+        playCombatInstant,
+        cancelCombatGesture: stopCombatGesture,
         syncCombatCast(elapsed) { combatSampleElapsed = Math.max(0, elapsed); },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
-        playMelee() {
+        playMelee({ preemptCast = false } = {}) {
+            if (combatGesture && !preemptCast) return false;
+            if (preemptCast) {
+                stopCombatGesture(); halt(activeCastShot); halt(activeCastLower);
+                state.castingShoot = false; combatSampleElapsed = null;
+            }
             if (state.phase === "air" || state.castingShoot || state.channeling) return false;
             const clip = visual?.groups?.find((group) => group.name === MELEE_CLIP);
             const mask = ensureSwingMask();

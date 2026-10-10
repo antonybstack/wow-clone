@@ -4,7 +4,7 @@ import {FireBlast} from '../src/spells/fire-blast.js';
 const fixture=()=>({target:{id:'dummy',position:{x:0,y:0,z:8},hp:600,hpMax:600},position:{x:0,y:1.1,z:0},grounded:true});
 const clear=()=>({hasHit:false});
 test('lava release reserves cooldown but does not apply damage before impact',()=>{
- const s=new LavaBall(),a=fixture();assert.ok(s.release(a,a.position).ok);assert.equal(a.target.hp,600);assert.equal(s.cooldown,6);assert.equal(s.casts,1);
+ const s=new LavaBall(),a=fixture();assert.ok(s.release(a,a.position).ok);assert.equal(a.target.hp,600);assert.equal(s.cooldown,LAVA_BALL.cooldown);assert.equal(s.casts,1);
  assert.equal(s.advance(.2,clear),null);assert.equal(a.target.hp,600);
  const result=s.advance(1,clear);assert.equal(result.damage,240);assert.equal(a.target.hp,360);assert.equal(s.flight,null);assert.equal(s.advance(1,clear),null);
 });

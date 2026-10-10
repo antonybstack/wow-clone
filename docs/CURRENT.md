@@ -4,7 +4,7 @@ Updated **2026-10-10 PDT**. Read this before choosing work. Latest user directio
 controls scope; historical milestone lists are evidence, not an active queue.
 **Current focus: combat feel and an interacting fire-caster kit in the Gothic region.**
 The [12-milestone combat overhaul plan](plans/combat-overhaul/plan-2026-10-10.md)
-has C01 baseline evidence and C02 integrated and functionally verified. Developer combat
+has C01 baseline evidence, C02 integrated, and the C03 moving-instant slice implemented and functionally verified. [C03 evidence](baselines/combat-c03-2026-10-10/README.md): 54 CPU / 12 native checks, submitted-frame 165–189 FPS and 6.5–9.1ms p99 in six isolated runs. Broader C03/C12 acceptance remains open; C04 feedback and bindings are in progress. Developer combat
 rehearsals, bounded trace, authoritative timing and input buffering are implemented.
 [Baseline](baselines/combat-c01-2026-10-10/result.md): raw RAF191–196FPS but17.7–17.8ms p99; engine-buffer disagreement and blocked pack workload require follow-up. Performance qualification is open. C01–C04 deliver
 baseline, input buffering, instants while moving/contact, and readable feedback;

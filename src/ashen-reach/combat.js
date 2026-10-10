@@ -33,13 +33,13 @@ import { createCombatScenarios } from './combat/combat-scenarios.js';
 import { createActionScheduler } from './combat/action-scheduler.js';
 import { createCombatClock } from './combat/combat-clock.js';
 import { createInputIntents } from './combat/input-intents.js';
+import { movementRefusal, canAutoFace, facingRefusal, inContactRange } from './combat/movement-policy.js';
 import { ABILITIES, ABILITY_SLOTS } from './combat/ability-definitions.js';
 import { devDestinations } from './dev-destinations.js';
 
 const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
 const REGEN_PER_SEC = 4;
-const CAST_MOVE_SCALE = 0.4;
 
 export async function loadTrainingDummy(engine, scene, world, buffer) {
   const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
@@ -263,11 +263,14 @@ export async function createCombat(
     }
   };
   const connectSwing = (profile) => {
-    const target = targeting.current;
+    const target = hostiles.find(t => t.id === auto.targetId && (t.generation ?? 0) === auto.targetGeneration);
     if (!target || target.hp <= 0 || target.hidden) return;
-    if (meleeDistance(player.body.position, target.position) > profile.range + 0.4) return;
+    const p = player.body.position;
+    const feet = { x: p.x, y: p.y - player.capsuleHeight / 2, z: p.z };
+    if (!inContactRange(feet, target.position, profile.range + .4)) return;
+    if (facingError(player.getFacing(), p, target.position) > Math.PI / 2) return;
     const los = spellLineOfSight(player, target);
-    if (!los.clear && los.obstacle !== "Collision world unavailable") return;
+    if (!los.clear) return;
     const dealt = Math.min(target.hp, profile.damage);
     target.hp -= dealt;
     target.hits = (target.hits || 0) + 1;
@@ -363,6 +366,9 @@ export async function createCombat(
       canvas.focus();
     });
   }
+  const actionMotion = () => ({ ...player.getMotion?.(),
+    grounded: player.getGrounded() && body.getState().phase !== 'air',
+    forward: input.forward, strafe: input.strafe, jump: input.jump });
   const intents = createInputIntents();
   const clock = createCombatClock();
   let animationAction = null;
@@ -374,7 +380,13 @@ export async function createCombat(
       spend: amount => { progression.progress.mana -= amount; } },
     validate(action, definition, phase) {
       if (life.dead || !visible) return 'Combat unavailable';
+      const motion = actionMotion();
+      const movement = movementRefusal(definition, motion);
+      if (movement) return movement;
       const target = hostiles.find(t => t.id === action.targetId);
+      const aim = target ? facingError(player.getFacing(), player.body.position, target.position) : 0;
+      const facing = facingRefusal(definition, aim, canAutoFace(motion, input));
+      if (facing) return facing;
       const ability = abilityFor(action.abilityId);
       // Cooldowns have one deadline owner. Reuse geometry validation without
       // allowing the legacy countdown to veto a scheduler-approved start.
@@ -395,10 +407,14 @@ export async function createCombat(
     onStart(action) {
       const key = action.definition.slot, target = hostiles.find(t => t.id === action.targetId);
       pending = { target, key, ability: abilityFor(action.abilityId), action };
-      animationAction = action;
-      if (key !== 3) player.setFacing(yawTo(player.body.position, target.position));
-      input.castInstant = true; input.castSpell = key === 2 ? 'lava' : key === 3 ? 'pulse' : null;
-      player.setMoveScale?.(CAST_MOVE_SCALE);
+      if (key !== 3 && canAutoFace(actionMotion(), input)) player.setFacing(yawTo(player.body.position, target.position));
+      if (action.definition.castTime > 0) {
+        animationAction = action;
+        input.castInstant = true; input.castSpell = key === 2 ? 'lava' : null;
+      } else {
+        animationAction = null;
+        body.playCombatInstant?.(key === 2 ? 'lava' : key === 3 ? 'pulse' : null);
+      }
       pending.ability.lastResult = 'windup'; hud.message('');
       if (key === 2) { lavaFx.begin(); audio.lavaCharge(); }
       else if (key === 3) { pulseFx.begin(); audio.lavaCharge(); }
@@ -451,7 +467,7 @@ export async function createCombat(
     if (!intents.push({ abilityId, targetId: target?.id ?? null, targetGeneration: target?.generation ?? 0,
       inputAt: scheduler.now, receivedMs: performance.now() })) record('input-overflow', { rejected: intents.rejected });
   });
-  const removeInputReset = onInputReset(() => cancel('Input released'));
+  const removeInputReset = onInputReset(() => { body.cancelCombatGesture?.(); cancel('Input released'); });
   lifetime.addEventListener('abort', () => {
     removeActionInput(); removeInputReset(); intents.clear(); scheduler.dispose();
   }, { once: true });
@@ -538,7 +554,7 @@ export async function createCombat(
     const target = targeting.current;
     const alive = !!(target && target.hp > 0 && !target.hidden && target.state !== "dead");
     const from = player.body.position;
-    const casting = !!pending || !!body.getState().castingShoot;
+    const casting = !!scheduler.active;
     if (casting && auto.pendingHit && !swingHit) {
       auto.queued = true;
       auto.pendingHit = false;
@@ -555,7 +571,7 @@ export async function createCombat(
       casting,
       grounded: player.getGrounded() && body.getState().phase !== "air",
       canTurn: !input.rmb && !input.faceCamera && !input.turn && !input.looking && !moving,
-      blocked: alive && !los.clear && los.obstacle !== "Collision world unavailable",
+      blocked: alive && !los.clear,
     });
     auto.enabled = step.enabled;
     auto.timer = step.timer;
@@ -566,8 +582,12 @@ export async function createCombat(
     if (step.action !== "swing") return;
     if (step.turn) player.setFacing(yawTo(from, target.position));
     swingHit = false;
-    if (body.playMelee?.()) auto.pendingHit = true;
-    else auto.timer = 0.3;
+    // Contact belongs to gameplay even if an instant preempts the gesture.
+    // The native clip supplies the authored contact offset, never the clock.
+    body.playMelee?.({ preemptCast: true });
+    auto.pendingHit = true;
+    auto.contactAt = life.time + body.getState().meleeRelease;
+    auto.targetId = target.id; auto.targetGeneration = target.generation ?? 0;
   };
   const scenarios = createCombatScenarios({
     enabled: () => dev.enabled, ready: () => options.isNavigationReady?.() && visible,
@@ -579,8 +599,9 @@ export async function createCombat(
       else { dummy.root.rotation.x = 0; dummy.root.rotation.z = 0; }
     },
     reset() {
-      cancel('Diagnostic scenario reset'); scheduler.reset(); targeting.clear(); body.cancelMelee?.();
-      Object.assign(auto, { enabled: false, timer: 0, queued: false, pendingHit: false });
+      cancel('Diagnostic scenario reset'); scheduler.reset(); targeting.clear(); body.cancelMelee?.(); body.cancelCombatGesture?.();
+      for(const enemy of enemies) enemy.attackWindup=null;
+      Object.assign(auto, { enabled: false, timer: 0, queued: false, pendingHit: false, contactAt: 0, targetId: null, targetGeneration: null });
       gcd = meleeRecover = 0; hitAge = 10; lava.flight = null;
       for (const ability of [spell, lava, pulse]) {
         ability.cooldown = ability.resetIn = 0; ability.damagedTarget = null;
@@ -668,6 +689,7 @@ export async function createCombat(
         playerDead: life.dead,
         targeting,
         onPlayerHit,
+        onCombatEvent: (type, enemy, detail) => record(type, { sourceId: enemy.id, sourceGeneration: enemy.generation, ...detail }),
         onKill(enemy) {
           if (scenarios.active) return;
           const result = progression.awardXp(enemy, life, life.time);
@@ -751,6 +773,8 @@ export async function createCombat(
       input.spellPressed = 0;
       if (!animationLab) {
         input.castHold = input.spellHeld2 = input.castInstant = false;
+        const motionReason = scheduler.active && movementRefusal(scheduler.active.definition, actionMotion());
+        if (motionReason) cancel(motionReason);
         scheduler.advance(life.time);
         intents.drain(intent => scheduler.request(intent));
         gcd = scheduler.gcdRemaining;
@@ -778,13 +802,9 @@ export async function createCombat(
         dummy.root.rotation.x = tilt * hitDirection.z;
         dummy.root.rotation.z = -tilt * hitDirection.x;
       }
-      const swung = body.getState();
-      if (swung.melee && auto.pendingHit && !swingHit && swung.meleeElapsed >= swung.meleeRelease) {
-        swingHit = true;
-        auto.pendingHit = false;
+      if (auto.pendingHit && !swingHit && life.time >= auto.contactAt) {
+        swingHit = true; auto.pendingHit = false;
         connectSwing(weaponProfile(readWeapon()));
-      } else if (!swung.melee) {
-        swingHit = false;
       }
       if (meleeRecover > 0) {
         meleeRecover = Math.max(0, meleeRecover - dt);

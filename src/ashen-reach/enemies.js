@@ -1,3 +1,4 @@
+import { inContactRange } from './combat/movement-policy.js';
 /**
  * Roaming hostiles. Same target shape as the training dummy so
  * existing spells, targeting and the combat HUD keep working.
@@ -186,7 +187,7 @@ function xz(a, b) {
 }
 
 function lineOfSight(enemy, player, raycast) {
-  if (typeof raycast !== "function") return true;
+  if (typeof raycast !== "function") return false;
   const from = {
     x: enemy.position.x,
     y: enemy.position.y + 1.15,
@@ -195,7 +196,7 @@ function lineOfSight(enemy, player, raycast) {
   const p = player.body.position;
   const to = { x: p.x, y: p.y + 0.35, z: p.z };
   const hit = raycast(from, to);
-  if (!hit) return true;
+  if (!hit) return false;
   if (!hit.hasHit) return true;
   const id = hit.body?.node?.metadata?.colliderId;
   if (id === enemy.id) return true;
@@ -249,6 +250,8 @@ function syncRoot(enemy) {
 
 /** Restore a developer rehearsal using the same render/collision owners as play. */
 export function syncDiagnosticEnemy(enemy) {
+  // Restore plays idle, so an interrupted punch must restart its own windup.
+  enemy.attackWindup=null;
   show(enemy, !enemy.hidden);
   enemy.actor?.play(enemy.state === 'dead' ? 'death' : 'idle');
   syncRoot(enemy);
@@ -257,6 +260,7 @@ export function syncDiagnosticEnemy(enemy) {
 function enter(enemy, state) {
   enemy.state = state;
   enemy.stateAge = 0;
+  if (state !== 'attack') enemy.attackWindup = null;
   if (state === "idle") enemy.idleFor = 1.4 + (enemy.waypoint % 3) * 0.5;
   if (state === "dead") {
     enemy.hostile = false;
@@ -277,6 +281,7 @@ function respawn(enemy) {
   enemy.hp = enemy.hpMax;
   enemy.yaw = enemy.spawnYaw;
   enemy.attackCooldown = 0;
+  enemy.attackWindup = null;
   enemy.hostile = true;
   enemy.hidden = false;
   show(enemy, true);
@@ -392,12 +397,27 @@ function tickEnemy(enemy, dt, ctx) {
     face(enemy, playerPos.x, playerPos.z);
     if (playerDead) enter(enemy, "return");
     else if (dist > ENEMY_TUNING.meleeRange + 0.55) enter(enemy, "chase");
-    else if (enemy.attackCooldown <= 0 && dist <= ENEMY_TUNING.meleeRange + 0.35) {
+    else if (enemy.attackWindup !== null && enemy.attackWindup !== undefined) {
+      enemy.attackWindup = Math.max(0, enemy.attackWindup - dt);
+      if (!enemy.attackWindup) {
+        enemy.attackWindup = null;
+        const feet = { x: playerPos.x, y: playerPos.y - player.capsuleHeight / 2, z: playerPos.z };
+        const connected = inContactRange(enemy.position, feet, ENEMY_TUNING.meleeRange + .35)
+          && lineOfSight(enemy, player, raycast);
+        ctx.onCombatEvent?.('enemy-contact', enemy, { connected });
+        if (connected) {
+          enemy.hitsLanded = (enemy.hitsLanded || 0) + 1;
+          onPlayerHit(ENEMY_TUNING.attackDamage, enemy);
+        }
+      }
+    } else if (enemy.attackCooldown <= 0 && dist <= ENEMY_TUNING.meleeRange + 0.35 && canSee) {
       enemy.attackCooldown = ENEMY_TUNING.attackCooldown;
-      enemy.hitsLanded = (enemy.hitsLanded || 0) + 1;
+      // Authored Punch_Cross contact trial: sample .32 source seconds at .58 speed.
+      // Contact authority is this gameplay deadline; animation only presents it.
+      enemy.attackWindup = .32 / PUNCH_SPEED;
       const clip = enemy.actor?.play("punch", { oneshot: true, loop: false, speed: PUNCH_SPEED });
       if (clip) clip.currentTime = 0;
-      onPlayerHit(ENEMY_TUNING.attackDamage, enemy);
+      ctx.onCombatEvent?.('enemy-windup', enemy, { duration: enemy.attackWindup });
     }
   } else if (enemy.state === "return") {
     face(enemy, enemy.spawn.x, enemy.spawn.z);
@@ -484,6 +504,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
     waypoint: index % waypoints.length,
     waypoints,
     attackCooldown: 0,
+    attackWindup: null,
     age: index * 1.7,
     deadAge: 0,
     hidden: false,
@@ -577,6 +598,7 @@ export function enemySnapshot(enemies) {
     hits: e.hits,
     hitsLanded: e.hitsLanded,
     attackCooldown: e.attackCooldown,
+    attackWindup: e.attackWindup,
     clip: e.actor?.clipName || null,
     position: { x: e.position.x, y: e.position.y, z: e.position.z },
     spawn: { x: e.spawn.x, z: e.spawn.z },
