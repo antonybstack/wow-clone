@@ -134,7 +134,13 @@ export function buildCathedralExploration(ctx){
   for(const [r,y] of [[.78,3.05],[.48,3.4],[.31,4.1]])for(let i=0;i<sides;i++){const angle=i/sides*Math.PI*2;bellVertices.push([x+Math.cos(angle)*r,fy+bell+y,306+Math.sin(angle)*r]);}
   const faces=[];for(let ring=0;ring<2;ring++)for(let i=0;i<sides;i++)faces.push([ring*sides+i,ring*sides+(i+1)%sides,(ring+1)*sides+(i+1)%sides,(ring+1)*sides+i]);faces.push(Array.from({length:sides},(_,i)=>2*sides+i));
   ctx.solid(stone,bellVertices,faces,bronze);beam(stone,[x,fy+bell+2.92,306],[x,fy+bell+4.3,306],.12,bronze);
-  metadata.towers.push({id:x<0?'west-bell':'east-bell',entrance:[x,fy,299],base:[x-2.2,fy,302.8],route,landing:[x-2.2,fy+bell,306]});
+  metadata.towers.push({id:x<0?'west-bell':'east-bell',entrance:[x,fy,299],base:[x-2.2,fy,302.8],route,landing:[x-2.2,fy+bell,306],
+   // Rope hangs beside the outer guard, away from both final stair flights.
+   // Share the authored landing and beam datums; never use the bell's centroid
+   // as a standing height or infer support from decorative geometry.
+   bellInteraction:{standingSurfaceY:fy+bell,stand:[x-2.2,fy+bell,306],interact:[x-3.02,fy+bell+1.1,306],
+    ropePivot:[x-3.02,fy+bell+4.25,306],clapperPivot:[x,fy+bell+3.72,306]},
+  });
  }
  metadata.undercroft=buildCathedralUndercroft(ctx,{flight,rail});
  metadata.lamps.push(...metadata.undercroft.lamps);

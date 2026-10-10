@@ -5,8 +5,8 @@ import {createAudioEngineAsync,createSoundBufferAsync,createSoundAsync,playSound
 export async function createFireBlastAudio(scene){
  const lifetime=sceneLifetime(scene);lifetime.throwIfAborted();
  let engine=null,sound=null,charge=null,played=0,lavaPlayed=0,error=null,muted=true;
- let preparation=null,initializing=false;
- const release=()=>{if(engine)disposeAudioEngine(engine);engine=null;sound=null;charge=null;};
+ let preparation=null,initializing=false,bell=null,bellPreparation=null,bellError=null,bellPlayed=0;
+ const release=()=>{if(engine)disposeAudioEngine(engine);engine=null;sound=null;charge=null;bell=null;};
  const unlock=()=>{if(!muted&&engine&&engine.state!=='running')void unlockAudioEngineAsync(engine).catch(()=>{});};
  onSceneDispose(scene,()=>{document.removeEventListener('keydown',unlock);document.removeEventListener('pointerdown',unlock);release();});
  // Native AudioContext construction took 177–193 ms on the initial muted walk.
@@ -51,8 +51,31 @@ export async function createFireBlastAudio(scene){
  // A later keyboard/pointer gesture can resume an initialized, unmuted engine.
  // Normal movement while muted never initializes audio.
  document.addEventListener('keydown',unlock);document.addEventListener('pointerdown',unlock);
+ // The optional expedition cue shares the native mixer, master mute and device.
+ // Its failure does not reject spell preparation or dispose working spell audio.
+ // Decode before making a graph, and reject a late arrival into a closed scene.
+ // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/packages/babylon-lite/src/audio/static-sound.ts
+ const prepareBell=()=>{
+  if(muted||lifetime.aborted)return Promise.resolve(false);
+  if(bellPreparation)return bellPreparation;
+  bellPreparation=(async()=>{
+   await prepare();if(lifetime.aborted||!engine)return false;
+   const created=engine,buffer=await createSoundBufferAsync(created,'/ashen-reach/exploration/vaelmark-bell.wav');
+   if(lifetime.aborted||engine!==created)return false;
+   bell=await createSoundAsync(created,buffer,{maxInstances:2,volume:.65});
+   return !lifetime.aborted&&engine===created;
+  })().catch(e=>{if(!lifetime.aborted){bellError=String(e);console.warn('Vaelmark bell cue unavailable',e);}return false;});
+  return bellPreparation;
+ };
  return {
   prepare,
+  prepareBell,
+  ringBell(stillEligible){
+   if(muted||lifetime.aborted)return;
+   void prepareBell().then(ready=>{if(ready&&!muted&&!lifetime.aborted&&engine?.state==='running'&&stillEligible()){
+    playSound(bell);bellPlayed++;
+   }}).catch(()=>{});
+  },
   play(){if(sound&&engine?.state==='running'){playSound(sound);played++;}},
   lavaCharge(){if(charge&&engine?.state==='running')playSound(charge);},
   lavaCancel(){if(charge)stopSound(charge);},
@@ -61,7 +84,7 @@ export async function createFireBlastAudio(scene){
   pulse(){if(charge)stopSound(charge);if(sound&&engine?.state==='running'){playSound(sound,{playbackRate:.42,volume:1});playSound(sound,{playbackRate:.28,volume:.88});playSound(sound,{playbackRate:.62,volume:.5});}},
   setMuted(value){muted=!!value;if(engine)setMasterVolume(engine,muted?0:.65);if(!muted)unlock();return muted?Promise.resolve():prepare();},
   get muted(){return muted;},
-  get status(){return {ready:!!sound&&!!charge,initializing,state:engine?.state,played,lavaPlayed,error,duration:sound?.buffer.duration};},
+  get status(){return {ready:!!sound&&!!charge,initializing,state:engine?.state,played,lavaPlayed,error,duration:sound?.buffer.duration,bellReady:!!bell,bellPlayed,bellError};},
   // Only diagnostics request a stream; normal play creates no recording graph.
   capture(){lifetime.throwIfAborted();if(!sound||!charge)throw new Error('Prepare audio before requesting a capture');const output=createAudioEngineMediaStream(engine);return {stream:output.stream,dispose:()=>disposeAudioEngineMediaStream(output),time:engine.currentTime};},
  };

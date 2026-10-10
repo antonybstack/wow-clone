@@ -10,8 +10,9 @@ independent startup/resource gates. No completed expedition is claimed yet.
 | Milestone | State | Next action or evidence |
 | --- | --- | --- |
 | G09 startup attribution | Bounded investigation closed; no fix | Root source inspection and retained-artifact Grok review yield no supported new discriminator. No unchanged retries; production hold remains. |
-| G10 memorial and journal | Native implementation and motion pass | 20 focused CPU checks, seven native cases, reviewed VE MP4/Telegram 904; independent review report pending. Final integration remains G17/G18. |
-| G11–G14 required episode | Pending | Bell, reliquary, readability and Hollowmere closure follow accepted G10. |
+| G10 memorial and journal | Native implementation and motion pass | 20 focused CPU checks, seven native cases, reviewed VE MP4/Telegram 904; independent G10 review finds no actionable defects. Final integration remains G17/G18. |
+| G11 west bell | Native implementation and reviewed motion pass | Six native cases, two camera-only cases, twelve focused checks; 184 triangles/zero collision, optional native audio. |
+| G12–G14 required episode | Pending | Reliquary, readability and Hollowmere closure follow the accepted bell. |
 | G15–G16 regional extensions | Pending | Ordered extensions; core and finishing reserve take priority. |
 | G17–G18 verification/delivery | Pending | Final native traversal, performance, sealed preview and reviewed motion; conditional production gates. |
 
@@ -41,9 +42,15 @@ max p99 6.4 ms / worst 11 ms; zero errors/recoveries/>16.67ms. No improvement cl
 
 G09 Grok review ended at six turns; report-only resume is complete and owns no
 renderer. G10 source-only Grok review hit six turns before its report; one
-report-only continuation is active, no additional probes or browser ownership.
+report-only continuation ended with the report, no additional probes or browser ownership.
 
 Root review tabs 1147996232/6236 are closed. Media 7077 / PID 41620 stopped. All G10
 functional, direct-public-video and interior-baseline contexts closed; Chrome 98468
 and Vite 98362/98437 remain owned idle for the next milestone. User Edge 15 tabs and
 Chrome New Tab are preserved.
+
+G11 six-case native and two-case camera-only contexts are closed. Reviewed MP4
+exact public bytes/play/seek pass; Telegram 905 matches 1280×720/7.897s. Owned
+review tabs 1147996240/6244 closed; media PID 4480/19564, port7077 stopped.
+G11 Grok source reviewer ended after writing its report; no renderer. Slot7
+Chrome98468/CDP10037 and Vite98362/98437/5873 remain owned idle for G12.

@@ -31,7 +31,7 @@ async function walkTo(point){
  await page.keyboard.up('KeyW');return state;
 }
 async function mortal(){await page.keyboard.press('Escape');await page.locator('[data-action="developer-tools"]').click();const button=page.locator('[data-action="god"]');if(await button.getAttribute('aria-pressed')==='true')await button.click();await page.keyboard.press('Escape');}
-async function entry(){await page.goto(url);await page.waitForFunction(()=>ASHEN?.ready&&ASHEN.navigationReady&&ASHEN.hostilesReady&&ASHEN.combat?.exploration,null,{timeout:120000});await page.evaluate(()=>ASHEN.metrics.setInternalResolution(1280,720));await mortal();await page.waitForTimeout(500);}
+async function entry(){await page.goto(url);await page.waitForFunction(()=>globalThis.ASHEN?.ready&&ASHEN.navigationReady&&ASHEN.hostilesReady&&ASHEN.combat?.exploration,null,{timeout:120000});await page.evaluate(()=>ASHEN.metrics.setInternalResolution(1280,720));await mortal();await page.waitForTimeout(500);}
 try{
  await entry();const start=await position();
  assert.equal(await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record.phase),'unstarted');

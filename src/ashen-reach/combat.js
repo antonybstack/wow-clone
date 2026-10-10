@@ -155,7 +155,7 @@ export async function createCombat(
   const deathVeil = lifeHud.querySelector(".death-veil");
   const progression = createProgression();
   const regionMap = createRegionMap({player, world, signal:lifetime});
-  const exploration=createExploration({scene,player,world,input,canvas,
+  const exploration=createExploration({engine,scene,player,world,input,canvas,audio,
     isNavigationReady:options.isNavigationReady??(()=>false),onOpenJournal:options.onOpenJournal});
   const minimap = createMinimap({
     player,

@@ -165,7 +165,9 @@ export function createSunShadows(engine,scene,sun,{depthOnlyFragment=false}={}){
    candidateDynamic.length=0;
    if(state.characters)for(const mesh of scene.meshes){
     const family=mesh.material?._buildGroup?._materialFamily;
-    if(mesh.visible!==false&&(family==='pbr'||family==='standard')&&!worldCasterSet.has(mesh))candidateDynamic.push(mesh);
+    // Small decorative exploration mechanisms explicitly opt out; they do not
+    // belong to the character caster scan or the cached static world batch.
+    if(mesh.visible!==false&&!mesh.ashenNonCaster&&(family==='pbr'||family==='standard')&&!worldCasterSet.has(mesh))candidateDynamic.push(mesh);
    }
    let changed=force||candidateDynamic.length!==dynamic.length;
    if(!changed)for(let i=0;i<candidateDynamic.length;i++)if(candidateDynamic[i]!==dynamic[i]){changed=true;break;}
