@@ -1,0 +1,54 @@
+{
+  "near": {
+    "file": "near-ccb9dc565ff6.br",
+    "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+    "encodedBytes": 149963,
+    "rawBytes": 641752
+  },
+  "region": {
+    "compression": "http-br",
+    "file": "region-index-a4aba24dfdd3.br",
+    "sha256": "a4aba24dfdd3a88332ae3078a30af44e36d8853e5135fb632e9828eb49e22e52",
+    "encodedBytes": 99527,
+    "rawBytes": 1482590,
+    "experimentalCore": true
+  },
+  "skyline": {
+    "file": "skyline-24569a693cc4.br",
+    "sha256": "24569a693cc4c009c1933a53debf37a6b0daeeb2f32fe278ffd18e620f360af2",
+    "encodedBytes": 595466,
+    "rawBytes": 2670960
+  },
+  "addedRenderTrianglesG10G16": 758,
+  "addedCollisionTriangles": 0,
+  "files": [
+    {
+      "file": "skyline-24569a693cc4.br",
+      "bytes": 595466
+    },
+    {
+      "file": "near-ccb9dc565ff6.br",
+      "bytes": 149963
+    },
+    {
+      "file": "region-index-a4aba24dfdd3.br",
+      "bytes": 99527
+    },
+    {
+      "file": "foliage-28ada63f5a13.br",
+      "bytes": 4413215
+    },
+    {
+      "file": "region-detail-ece7a869e72b.br",
+      "bytes": 10640787
+    },
+    {
+      "file": "region-b421de196dce.br",
+      "bytes": 22425016
+    },
+    {
+      "file": "region-core-864fa63d2775.br",
+      "bytes": 14388419
+    }
+  ]
+}

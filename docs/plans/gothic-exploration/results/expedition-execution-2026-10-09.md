@@ -16,7 +16,7 @@ independent startup/resource gates. Local episode closure now passes; the comple
 | G13 readability | Native implementation and reviewed motion pass | 27 CPU checks, matched walking views/ordinary crypt circuit; corrected housing self-shadow, offset box, unchanged near bytes/two shadow maps; Telegram 907/VE. |
 | G14 Hollowmere closure | Native return/reload and reviewed motion pass | Three early clues, two accepted ordinary return/reload cases, 21 focused checks; one candle/30 triangles, same two maps; VE exact playback/seek passes. Telegram 908/verified VE. |
 | G15 Eastwatch | Native implementation and reviewed motion pass | 19 focused checks, two readings/repeats, ordinary climb/return, six guards and actual reload; 72 render/zero collision triangles, same near packet/two shadow maps. Telegram909/verified VE. |
-| G16 regional discoveries | Pending | Ordered extension; ground-level tower watchmarks and existing keep benches are the intended supports, subject to native verification. |
+| G16 regional discoveries | In progress | Five out-of-order direct native entry/read/repeat/escape and reload cases pass; 20 focused checks. Tower stance/tablet contrast corrected in direct visual surveys. Final prepared motion/delivery pending. |
 | G17–G18 verification/delivery | Pending | Final native traversal, performance, sealed preview and reviewed motion; conditional production gates. |
 
 ## Browser and process ownership
@@ -156,3 +156,32 @@ slot now Vite99627+99651/5873, Chrome99676/GPU99682/CDP10037, idle/zero game
 contexts after final native/reload and public video checks. G16 is next.
 The existing G12 verification helper is being extended for G17's complete fresh
 return; that uncommitted helper-only change is excluded from the G15 commit.
+
+G15 is pushed as dc34c42 and Telegram909 ledger recorded at that commit. G16
+implements five optional accounts/watchmarks and map Read labels, without gating
+routes or episode progress. Tower entries read existing ground-chamber crests;
+keeps reuse existing benches for original tablets (144 added render triangles,
+zero collision/lights/materials/loops).20 focused checks and five out-of-order
+native direct-authoring visits pass, God/Fly off, Havok active, zero recoveries
+or runtime/GPU errors, actual reload retaining exactly five IDs/unstarted.
+The first helper failed before gameplay because its ready predicate referenced
+ASHEN before the slower direct path exposed it; guarded globalThis fixes that
+operator fixture, with failure retained. Root held first visual acceptance, then
+shifted tower stands localu-.9 and account stands locald6.3; both corrected
+views pass. Gold tablet inlay in the existing warm batch now reads clearly
+beside the actor, with no light-source allocation. Final prepared rebuild is
+running; source freeze covers world inputs. All direct survey contexts closed.
+Root Chrome99676/CDP10037 and Vite99651/5873 are idle; Grok source reviewer
+owns no renderer and is limited to a report-only resume after its6-turn cap.
+
+
+G16 final prepared five-case native pass retains exactly five optional reads at
+unstarted after actual reload; map shows all eight destinations and five Read
+labels. No runtime/GPU errors or recoveries. Source review ended with no
+consequential finding; root corrected its six-box arithmetic typo. Final near
+packet remains149963 bytes; whole22425016/core14388419/index99527/skyline595466.
+Timestamped81.257s motion reviewed in native Edge segments, VE exact bytes/
+MIME/range/native play/seek accepted, Telegram910. Review1147996264 closed.
+Root now owns Chrome56212/GPU56218/CDP10037 and Vite56163+56187/5873; one
+G17 fresh whole-episode native context, no other owned game pages. G17 extends
+the existing G12 helper; its pending change is excluded from the G16 commit.

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {emptyExploration,validateExploration,transitionExploration,EXPLORATION_PHASES,PHASE_DISCOVERIES} from '../src/ashen-reach/exploration-state.js';
+import {emptyExploration,validateExploration,transitionExploration,EXPLORATION_PHASES,PHASE_DISCOVERIES,REGIONAL_DISCOVERIES} from '../src/ashen-reach/exploration-state.js';
 import {loadExploration,saveExploration,decodeExploration,EXPLORATION_STORAGE_KEY as KEY,EXPLORATION_RECOVERY_KEY as RECOVERY} from '../src/ashen-reach/exploration-store.js';
 const steps=['read-inscription','ring-bell','claim-relic','return-hollowmere'];
 const storage=()=>{const data=new Map();return {data,getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};};
@@ -19,8 +19,16 @@ test('a premature bell, relic or return does not skip the memorial',()=>{
  for(const action of steps.slice(1)){const next=transitionExploration(emptyExploration(),action);assert(next.blocked);assert(!next.changed);assert.deepEqual(next.record,emptyExploration());}
 });
 test('regional discovery is independent, idempotent and cannot grant episode progress',()=>{
- const next=transitionExploration(emptyExploration(),'eastwatch-dispatch');assert(next.changed);assert.equal(next.record.phase,'unstarted');
- assert.equal(transitionExploration(next.record,'eastwatch-dispatch').changed,false);assert.throws(()=>transitionExploration(next.record,'unknown'));
+ const complete=steps.reduce((r,action)=>transitionExploration(r,action).record,emptyExploration());
+ for(const initial of [emptyExploration(),complete]){
+  let record=initial;
+  for(const id of [...REGIONAL_DISCOVERIES].reverse()){
+   const next=transitionExploration(record,id);assert(next.changed);record=next.record;
+   assert.equal(record.phase,initial.phase);assert.equal(transitionExploration(record,id).changed,false);
+  }
+  assert.equal(record.discovered.length,initial.discovered.length+REGIONAL_DISCOVERIES.length);
+  assert.throws(()=>transitionExploration(record,'unknown'));
+ }
 });
 test('unknown, oversized, duplicate and prerequisite-inconsistent records are rejected',()=>{
  const base=emptyExploration();

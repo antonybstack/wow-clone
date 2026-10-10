@@ -5,8 +5,8 @@ import {buildRegionStructures} from '../src/ashen-reach/region-structures.js';
 
 const landmarks=[
  {id:'east-keep',name:'Eastwatch',kind:'keep',x:196,z:-38,floorY:45.688,yaw:Math.PI/2,height:39,width:32},
- {id:'west',kind:'keep',x:-186,z:112,floorY:49.655,yaw:-Math.PI/2,height:35,width:32},
- {id:'south',kind:'keep',x:74,z:-214,floorY:54.184,yaw:Math.PI,height:43,width:32},
+ {id:'west-keep',kind:'keep',x:-186,z:112,floorY:49.655,yaw:-Math.PI/2,height:35,width:32},
+ {id:'south-keep',kind:'keep',x:74,z:-214,floorY:54.184,yaw:Math.PI,height:43,width:32},
  {id:'east-tower',kind:'tower',x:132,z:-55,floorY:19.792,yaw:0,height:24,width:6},
  {id:'west-tower',kind:'tower',x:-125,z:-80,floorY:5.347,yaw:0,height:22,width:6},
  {id:'north-tower',kind:'tower',x:78,z:168,floorY:13.886,yaw:0,height:26,width:6},
@@ -40,7 +40,7 @@ function hit(from,to){
 test('all six landmarks retain position, orientation and skyline with bounded geometry',()=>{
  assert.equal(built.destinations.length,6);assert(built.triangles>3000&&built.triangles<13000);
  const walk=built.destinations.find(s=>s.id==='east-keep').wallWalk;
- assert.equal(built.decorativeTriangles,72,'one bounded nonblocking dispatch plaque');
+ assert.equal(built.decorativeTriangles,216,'one dispatch plaque and two bench tablets');
  assert.equal(built.triangles-built.collisionTriangles,walk.stairs.visualTriangles-walk.rampTriangles+built.decorativeTriangles,'visible stair treads and inscription differ from the collision mesh');
  for(let i=0;i<landmarks.length;i++){
   const a=landmarks[i],b=built.destinations[i];assert.equal(b.id,a.id);assert.equal(b.floorY,a.floorY);
@@ -182,4 +182,18 @@ test('Eastwatch upper view has closed gables beneath the retained roof outline',
  assert(hit(point(site,5.2,11,0),point(site,5.2,11,-4)),'front gable closes above the ground portal');
  assert(hit(point(site,5.2,11,14),point(site,5.2,11,18)),'rear gable closes outside the upper keep body');
  assert.equal(hit(point(site,0,7.15,14),point(site,0,7.15,17.6)),null,'raised door stays open below the gable');
+});
+
+
+test('regional accounts and watchmarks have unique IDs, grounded stands and unobstructed nearby air',()=>{
+ const ids=[];
+ for(const site of built.destinations)for(const anchor of site.discoveries){
+  ids.push(anchor.id);const y=anchor.standingSurfaceY;
+  assert(Math.hypot(anchor.stand[0]-anchor.interact[0],anchor.stand[2]-anchor.interact[2])<=2.5);
+  assert.equal(hit([anchor.stand[0],y+1.3,anchor.stand[2]],anchor.interact),null,anchor.id+': occluded reading');
+  const floor=hit([anchor.stand[0],y+.2,anchor.stand[2]],[anchor.stand[0],y-.2,anchor.stand[2]]);
+  assert(floor&&floor.normal[1]>0,anchor.id+': missing upward-facing support');
+  assert.equal(hit([anchor.stand[0],y+.05,anchor.stand[2]],[anchor.stand[0],y+1.95,anchor.stand[2]]),null,anchor.id+': no headroom');
+ }
+ assert.equal(ids.length,7);assert.equal(new Set(ids).size,7);
 });

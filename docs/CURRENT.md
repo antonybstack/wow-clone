@@ -19,14 +19,14 @@ ordinary cathedral episode pass (Telegram 906/VE). G13 readability/native motion
 passes (Telegram 907/VE), including a reproduced/corrected lamp self-shadow defect;
 G14 Hollowmere completion/ordinary return and actual reload pass (Telegram 908/VE).
 G15 Eastwatch optional dispatch/spires, ordinary route/guards and reload pass
-(Telegram909/VE). G16–G18 remain pending.
+(Telegram909/VE). G16 five regional readings and retained map Read labels pass (Telegram910/VE). G17–G18 remain pending.
 [Execution record](plans/gothic-exploration/results/expedition-execution-2026-10-09.md).
 The [game vision](plans/gothic-exploration/vision.md) prioritizes a purposeful Gothic
 region, followed by deeper adventure, character production and shared expeditions.
 The [next 24 hours](plans/gothic-exploration/next-24-hours-2026-10-09.md) specify
 G09–G18: a two-hour startup investigation limit; a saved inscription → bell →
 reliquary episode; clearer navigation; ordered regional extensions; and six hours
-reserved for integration and delivery. G10–G15 are implemented locally; the full fresh-journal integration and published
+reserved for integration and delivery. G10–G16 are implemented locally; the full fresh-journal integration and published
 game preview remain pending. Production remains held by
 the independent gates below; an unresolved hold does not prevent preview game
 development. Historical milestone lists are not additional active queues.

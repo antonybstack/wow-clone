@@ -319,3 +319,35 @@ Final integration/performance and sealed game preview remain G17/G18. Reproduce
 with `ASHEN_CHECK_EXPLORATION=1 ASHEN_RECORD=1 ASHEN_CDP_PORT=10037
 ASHEN_TEST_URL=<owned-origin> ASHEN_CAPTURE_DIR=<owned-directory>
 node scripts/ashen-reach/check-wall-walk.mjs`.
+
+
+## G16 Regional accounts and watchmarks
+
+Westwatch/Southwatch tablets reuse existing hall benches; ground-chamber crests
+identify Ash Tower/Moor Tower/Bell Watch. Two original tablets add144 render
+triangles, zero collision, materials, shadow maps or light sources. Their gold
+inlay uses the existing warm batch. The pause-only region map marks known reads
+without hiding routes or coupling optional visits to the bell sequence. Content
+and prepared destination metadata use the same authored transforms.
+
+Twenty focused state/geometry checks pass, including all seven optional IDs
+before/after completion, native-supported reading stands/headroom and clear
+interaction rays. [Bounded source review/adjudication](g16-review.md) has no
+consequential finding. Five direct-authoring visits and final prepared native
+visits pass out of order, with mortal Havok movement, no recoveries, unchanged
+interaction XP/watchman state, repeat reads and actual reload retaining five IDs
+at unstarted. [Final native report](g16-native.json.gz) / [ownership](g16-ownership.json).
+The first helper's unguarded ASHEN-ready predicate failed before gameplay; the
+operator guard is corrected and the failed run remains locally retained. Root
+withheld early composition acceptance, moved stands beside the actor and brightened
+tablet inlay before the final prepared/native run.
+
+[Packet receipt](g16-packets.json): near149,963 bytes/exact unchanged SHA,
+skyline595,466, whole-region22,425,016, core14,388,419, index99,527,
+foliage4,413,215. Added G10–G16 totals758 render/0 collision triangles; no new
+texture atlas or maps. [Root motion review](g16-motion-review.md),
+[capture](g16-capture.json.gz), [public video](g16-public-video.json) and
+[Telegram910](g16-telegram.json) document81.257s/1280×720/SAR1/rotation0.
+[Direct MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/regional-discoveries.mp4).
+API dimensions are verified; Telegram app playback is unclaimed. Final integrated
+performance and sealed game preview remain G17/G18.

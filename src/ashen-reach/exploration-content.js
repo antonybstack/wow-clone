@@ -9,7 +9,7 @@ export const JOURNAL_ENTRIES=Object.freeze({
  'eastwatch-view':{title:'From the Eastwatch walls',text:'Above the valley, Vaelmark’s spires mark the northern road. The road returns through Hollowmere before turning north toward the cathedral.'},
  'westwatch-account':{title:'The western border',text:'These walls sheltered the last travellers crossing the moor. Their account names Vaelmark as a place of remembrance, not a refuge from the weather.'},
  'southwatch-account':{title:'The southern road',text:'Southwatch guarded the road beyond the valley. Its switchbacks carried supplies toward Hollowmere long after the bells fell silent.'},
- 'ash-tower-view':{title:'Ash Tower',text:'This watch faces the eastern rise. Eastwatch keeps the high road; the lower path returns toward the town.'},
- 'moor-tower-view':{title:'Moor Tower',text:'Low on the moor, this tower watched travellers before their climb toward Westwatch. Its returning road leads back to Hollowmere.'},
- 'bell-watch-view':{title:'Bell Watch',text:'The northern watch stands between the town and Vaelmark. Beyond it, the cathedral’s bridge carries the road up to the front terrace.'},
+ 'ash-tower-view':{title:'Ash Tower',text:'The sun carved in this chamber names the eastern watch. Eastwatch keeps the high road; the lower path returns toward the town.'},
+ 'moor-tower-view':{title:'Moor Tower',text:'The chamber’s cross marks the moor watch. Travellers passed here before their climb toward Westwatch. Its returning road leads back to Hollowmere.'},
+ 'bell-watch-view':{title:'Bell Watch',text:'A bell carved in the chamber marks the northern watch between the town and Vaelmark. Beyond it, the cathedral’s bridge carries the road up to the front terrace.'},
 });

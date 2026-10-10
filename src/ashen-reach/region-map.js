@@ -6,7 +6,7 @@ import {createCathedralGuide} from './cathedral-guide.js';
 const WIDTH = 560, HEIGHT = 560;
 const CORE_BOUNDS = {minX:-260, maxX:260, minZ:-250, maxZ:380};
 
-export function createRegionMap({player, world, signal}) {
+export function createRegionMap({player, world, signal,getDiscovered=()=>[]}) {
   let selectedId = null, content, canvas, ctx, staticLayer, status, clearButton, guideButton;
   const guide=createCathedralGuide({world,player,signal,onBack:()=>{content.hidden=false;paint();guideButton.focus();}});
   const transform = createMapTransform(CORE_BOUNDS, WIDTH, HEIGHT, 28);
@@ -26,8 +26,16 @@ export function createRegionMap({player, world, signal}) {
     const description = site ? `${site.name} selected. Follow the blue route from the central street; the diamond marks its entrance.` : 'Choose a destination to highlight its route and keep an entrance pin on the minimap.';
     if (status.textContent !== description) status.textContent = description;
     clearButton.disabled = !site;
+    // Read knowledge only on open/selection, alongside the existing cached map
+    // repaint. Selection and available routes remain independent of journal credit.
+    const discovered=new Set(getDiscovered());
     for (const button of content.querySelectorAll('[data-map-destination]')) {
-      button.setAttribute('aria-pressed', String(button.dataset.mapDestination === selectedId));
+      const id=button.dataset.mapDestination,landmark=world.landmarks.find(s=>s.id===id);
+      const ids=id==='vaelmark'?['vaelmark-inscription']:id==='hollowmere-chapel'?['hollowmere-return']
+        :world.regionStructures?.destinations?.find(s=>s.id===id)?.discoveries?.map(a=>a.id)??[];
+      const read=ids.some(id=>discovered.has(id)),label=`${landmark.name}${read?' · Read':''}`;
+      button.dataset.read=String(read);if(button.textContent!==label)button.textContent=label;
+      button.setAttribute('aria-pressed', String(id === selectedId));
     }
   }
 

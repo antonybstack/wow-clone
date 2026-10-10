@@ -300,6 +300,20 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
           {id:'eastwatch-view',label:'Vaelmark spires',verb:'Observe',standingSurfaceY:floorY+walkY,stand:lookout,interact:map(-side+.10,walkY+1.30,15.3),heading:cathedral?Math.atan2(cathedral.x-lookout[0],cathedral.z-lookout[2]):yaw-Math.PI/2},
         );
       }
+      if(site.id==='west-keep'||site.id==='south-keep'){
+        // Rest the original account tablet on the existing bench, not a new
+        // collider or pedestal. Gold markings reuse the existing warm emissive
+        // batch for contrast, with no light source or shadow-map allocation.
+        const first=stone.idx.length+glow.idx.length,u=4.5,y=.8175,d=8.25;
+        outwardBox(stone,map(u,y,d),[.85,.035,.50],TRIM,yaw);
+        outwardBox(glow,map(u-.25,y+.0225,d),[.035,.01,.34],[.65,.52,.32,0],yaw);
+        outwardBox(glow,map(u-.25,y+.0225,d+.07),[.18,.01,.035],[.65,.52,.32,0],yaw);
+        for(const [i,length]of [.44,.38,.29].entries())outwardBox(glow,map(u+.13,y+.0225,d+.13-i*.10),[length,.01,.025],[.65,.52,.32,0],yaw);
+        decorativeTriangles+=(stone.idx.length+glow.idx.length-first)/3;
+        discoveries.push({id:site.id==='west-keep'?'westwatch-account':'southwatch-account',
+          label:site.id==='west-keep'?'Western border account':'Southern road account',verb:'Read',
+          standingSurfaceY:floorY,stand:map(3.15,0,6.3),interact:map(3.70,1.25,8.25),heading:yaw+Math.PI/2});
+      }
       destinations.push({...site,entrance:map(0,0,-20),courtyard:map(0,0,-10),hall:map(0,0,7),
         interior:map(0,0,10),motif,rearWindow,discoveries,...(wallWalk?{wallWalk}:{}),footprint:{width:32,depth:40},gateWidth:5,hallDoorWidth:3,topY:floorY+H*1.05});
     }else{
@@ -320,8 +334,14 @@ export function buildRegionStructures({stone,roof,rock,glow,groundHeight,landmar
       }
       pyramid(0,top,0,H*.45,4.15,6);
       for(const y of [H*.42,H*.60]){box(0,y,-3.025,.8,1.7,.1,DARK,roof);box(0,y,-3.09,.20,1.1,.035,LAMP,glow);}
+      // Read the authored ground-chamber crest; the sealed upper stages are
+      // decorative. No invented tower floor or remote vista activation.
+      const watchmark={'east-tower':['ash-tower-view','Ash Tower watchmark'],
+        'west-tower':['moor-tower-view','Moor Tower watchmark'],'north-tower':['bell-watch-view','Bell Watch mark']}[site.id];
+      if(watchmark)discoveries.push({id:watchmark[0],label:watchmark[1],verb:'Read',standingSurfaceY:floorY,
+        stand:map(-.9,0,.5),interact:map(0,1.4,1.85),heading:yaw});
       destinations.push({...site,entrance:map(0,0,-3),interior:map(0,0,.5),hall:map(0,0,.5),
-        motif,rearWindow:{bottom:2.8,spring:4.5,tip:6.6,width:1.8},footprint:{width:6,depth:6},gateWidth:3,topY:floorY+H*1.23});
+        motif,discoveries,rearWindow:{bottom:2.8,spring:4.5,tip:6.6,width:1.8},footprint:{width:6,depth:6},gateWidth:3,topY:floorY+H*1.23});
     }
   }
   return {collisionBatch,destinations,triangles:batches.reduce((sum,b)=>sum+b.idx.length/3,0)-before,

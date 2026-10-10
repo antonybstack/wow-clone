@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 910,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 81.256881,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 82
+  },
+  "verified": true,
+  "file": "regional-discoveries.mp4",
+  "sha256": "5a487aa07344053bb30e33c47d47cf81aa99ef27ec3e2d80bf0a0d997d9ab1b5",
+  "sentAt": "2026-10-10T06:29:14.261985+00:00"
+}
