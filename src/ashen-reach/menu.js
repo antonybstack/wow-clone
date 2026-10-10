@@ -1,6 +1,7 @@
 /**
  * Esc game-menu hub. Hidden until opened. Parent wires createGameMenu from main.js.
  */
+import {actionBindings,ACTION_BINDING_KEYS,bindingLabel} from '../action-bindings.js';
 import { setInputEnabled } from "../input.js";
 import { regionProgressLabel } from './region-progress.js';
 
@@ -105,6 +106,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       </div>
       <div class="game-menu-keys" hidden>
         <h1>Keybindings</h1>
+        <div class="combat-bindings">${[[1,'Fire Blast'],[2,'Lava Ball'],[3,'Pyre Burst'],['attack','Attack']].map(([id,name])=>`<label>${name} key <select data-combat-binding="${id}" aria-label="${name} key">${ACTION_BINDING_KEYS.map(code=>`<option value="${code}">${bindingLabel(code)}</option>`).join('')}</select></label>`).join('')}</div>
+        <button type="button" data-reset-combat-keys>Reset combat keys</button>
+        <p data-binding-status role="status">Combat keys are saved on this browser. Number-pad keys follow their matching digit.</p>
         <label for="combat-queue-window">Spell queue window</label>
         <select id="combat-queue-window" aria-label="Spell queue window">
           <option value="0">Off</option><option value="0.1">100 ms</option>
@@ -117,8 +121,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <li><span>Look</span><kbd>RMB</kbd></li>
           <li><span>Jump</span><kbd>Space</kbd></li>
           <li><span>Target</span><kbd>Tab</kbd></li>
-          <li><span>Auto attack</span><kbd>T</kbd></li>
-          <li><span>Fire Blast / Lava Ball / Pyre Burst</span><kbd>1 / 2 / 3</kbd></li>
+
+
           <li><span>Armory</span><kbd>C</kbd></li>
           <li><span>Interact with nearby discoveries</span><kbd>X</kbd></li>
           <li><span>Camera</span><kbd>V</kbd></li>
@@ -148,6 +152,18 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   const destinationSelect = root.querySelector("#dev-destination");
   const destinationLink = root.querySelector("#dev-destination-link");
   let destinationSource;
+  const bindingSelects = [...root.querySelectorAll('[data-combat-binding]')];
+  const syncBindings = () => { for (const select of bindingSelects) select.value=actionBindings.key(select.dataset.combatBinding); };
+  const bindingStatus=root.querySelector('[data-binding-status]');
+  for (const select of bindingSelects) select.addEventListener('change',()=>{
+    const result=actionBindings.set(select.dataset.combatBinding,select.value);
+    bindingStatus.textContent=result.ok?(result.saved?'Combat key saved.':'Combat key changed for this session; browser storage is unavailable.'):result.reason;
+    syncBindings();
+  });
+  root.querySelector('[data-reset-combat-keys]').addEventListener('click',()=>{
+    const result=actionBindings.reset();syncBindings();bindingStatus.textContent=result.saved?'Default combat keys restored.':'Default keys restored for this session.';
+  });
+  syncBindings();
   const queueSelect = root.querySelector('#combat-queue-window');
   queueSelect.addEventListener('change', () => getCombat?.()?.setQueueWindow(Number(queueSelect.value)));
   const soundBtn = root.querySelector('[data-action="sound"]');
@@ -413,6 +429,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     }
     else if (action === "sound") toggleSound();
     else if (action === "keys") {
+      syncBindings();
       queueSelect.value = String(getCombat?.()?.scheduler.queueWindow ?? .3);
       queueSelect.disabled = !getCombat?.();
       const touch = document.body.classList.contains("touch-play");

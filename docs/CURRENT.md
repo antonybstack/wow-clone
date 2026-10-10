@@ -4,14 +4,23 @@ Updated **2026-10-10 PDT**. Read this before choosing work. Latest user directio
 controls scope; historical milestone lists are evidence, not an active queue.
 **Current focus: combat feel and an interacting fire-caster kit in the Gothic region.**
 The [12-milestone combat overhaul plan](plans/combat-overhaul/plan-2026-10-10.md)
-has C01 baseline evidence, C02 integrated, and the C03 moving-instant slice implemented and functionally verified. [C03 evidence](baselines/combat-c03-2026-10-10/README.md): 54 CPU / 12 native checks, submitted-frame 165–189 FPS and 6.5–9.1ms p99 in six isolated runs. Broader C03/C12 acceptance remains open; C04 feedback and bindings are in progress. Developer combat
-rehearsals, bounded trace, authoritative timing and input buffering are implemented.
-[Baseline](baselines/combat-c01-2026-10-10/result.md): raw RAF191–196FPS but17.7–17.8ms p99; engine-buffer disagreement and blocked pack workload require follow-up. Performance qualification is open. C01–C04 deliver
-baseline, input buffering, instants while moving/contact, and readable feedback;
-C05–C09 add burns, procs, area rules, enemies and utilities; C10–C12 integrate
-VFX, a Gothic encounter and release verification. First three milestones have
-detailed handoff steps. Opus 5.5 assessed VFX; Grok reviewed contracts; root
-resolved valid findings. Mobile remains backlogged.
+has C01 baseline evidence and C02–C04 implemented: authoritative action timing,
+input buffering, moving/airborne instants, contact deadlines, readable cooldowns
+and persistent combat bindings. [C03](baselines/combat-c03-2026-10-10/README.md)
+is pushed (`e2d4d2f`, test/delivery follow-up `fae4e9e`), Telegram **914** / verified VE.
+[C04](baselines/combat-c04-2026-10-10/README.md): **60 CPU tests**, build, native
+HUD/keybinding/reload/source-switch checks and mortal contact pass. Isolated
+M1 Max / uncapped Chromium WebGPU / 1280×720 DPR 1 / seven enemies: three
+12-second runs per dummy/pack, **165–188 FPS**, **6.5–8.6 ms p99**, matched
+median throughput change under 0.2%. Counts/tails/raw intervals are retained.
+C01's independent RAF callback FPS is not a comparable submitted-frame baseline.
+
+**Next: C05 sustainable combat and Ashen Brand**, followed by procs, safe area
+damage, enemies/utilities, presentation and the Gothic encounter. Full native
+100-action chain, mortal chapel traversal, clear source/equipment silhouette
+review, death/blur/soak and production release gates remain open. Opus VFX code
+is an unconnected prototype with known lifetime/double-flare/height issues;
+review it before integration. Production is unchanged; mobile remains backlogged.
 
 ## Completed expedition
 
@@ -74,12 +83,12 @@ fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
 
 ## Ownership and operating rules
 
-C01 slot8 harness and root video-review tabs/preview are closed. Root took over the C02 worker’s
-slot8 Chrome45113/Vite45088, CDP10137/Vite5973 for C04 native feedback/capture. C03 isolated submitted-frame measurements finished and its video tabs/preview are closed. C03 commit e2d4d2f is pushed, live clip Telegram914/verified VE. Contexts close between runs.
-[Receipt](baselines/combat-c02-2026-10-10/README.md).
-Root closed the user Edge5173 game tab with explicit authorization. Other user tabs
-and Vite29712/5173 and Vite4000 10171/10205 remain intact. Opus VFX and Grok
-scheduler review are finished/idle with no browser ownership.
+Root closed the user Edge 5173 game tab with explicit authorization. All root
+C03/C04 game contexts and slot 8 Chrome45113/Vite45088 (CDP10137/Vite5973) are
+closed/stopped after measurement. C04 local/VE motion review owns only temporary
+Edge video tabs and preview7075; close both after delivery. Other user tabs and
+Vite29712/5173 and Vite4000 10171/10205 remain intact. Grok source review/encode
+workers and Opus VFX are finished/idle with no browser ownership.
 
 Root implements and accepts. Grok handles bounded operations/review; the latest
 user request explicitly permits Opus 5.5 for parallel combat VFX work. Preserve unrelated

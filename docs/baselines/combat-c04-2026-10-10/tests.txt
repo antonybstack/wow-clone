@@ -1,0 +1,370 @@
+TAP version 13
+# Subtest: rebind changes keyboard and numpad mapping, persists and restores
+ok 1 - rebind changes keyboard and numpad mapping, persists and restores
+  ---
+  duration_ms: 0.650958
+  type: 'test'
+  ...
+# Subtest: conflicting/reserved binds preserve previous settings; corrupt storage restores defaults
+ok 2 - conflicting/reserved binds preserve previous settings; corrupt storage restores defaults
+  ---
+  duration_ms: 0.113625
+  type: 'test'
+  ...
+# Subtest: preference write failure keeps functional binding and reports session-only change
+ok 3 - preference write failure keeps functional binding and reports session-only change
+  ---
+  duration_ms: 0.528
+  type: 'test'
+  ...
+# Subtest: instants release on acceptance; hard casts reserve and commit exactly once
+ok 4 - instants release on acceptance; hard casts reserve and commit exactly once
+  ---
+  duration_ms: 1.935125
+  type: 'test'
+  ...
+# Subtest: repress never cancels; interrupt refunds reservation and retains GCD
+ok 5 - repress never cancels; interrupt refunds reservation and retains GCD
+  ---
+  duration_ms: 0.455625
+  type: 'test'
+  ...
+# Subtest: queue boundaries, replacement and invalid input preserve an existing valid queue
+ok 6 - queue boundaries, replacement and invalid input preserve an existing valid queue
+  ---
+  duration_ms: 0.244042
+  type: 'test'
+  ...
+# Subtest: queued target identity survives selection changes but rejects death, despawn and generation reuse
+ok 7 - queued target identity survives selection changes but rejects death, despawn and generation reuse
+  ---
+  duration_ms: 0.347666
+  type: 'test'
+  ...
+# Subtest: 120 ms hitch expires 110 ms late queue but executes 70 ms late queue once
+ok 8 - 120 ms hitch expires 110 ms late queue but executes 70 ms late queue once
+  ---
+  duration_ms: 0.132875
+  type: 'test'
+  ...
+# Subtest: off-GCD utility neither overwrites cast/queue nor spends reserved mana
+ok 9 - off-GCD utility neither overwrites cast/queue nor spends reserved mana
+  ---
+  duration_ms: 0.15675
+  type: 'test'
+  ...
+# Subtest: a normally queued cast upgrades to proc; instant-only input cannot downgrade
+ok 10 - a normally queued cast upgrades to proc; instant-only input cannot downgrade
+  ---
+  duration_ms: 0.182833
+  type: 'test'
+  ...
+# Subtest: 100 chained eligible inputs execute once at 30, 60 and 144 Hz
+ok 11 - 100 chained eligible inputs execute once at 30, 60 and 144 Hz
+  ---
+  duration_ms: 6.256708
+  type: 'test'
+  ...
+# Subtest: queue off, reset and disposal clear actions without late execution
+ok 12 - queue off, reset and disposal clear actions without late execution
+  ---
+  duration_ms: 0.374458
+  type: 'test'
+  ...
+# Subtest: combat clock retains normal hitch time, excludes pause and requests visible pause for >500ms
+ok 13 - combat clock retains normal hitch time, excludes pause and requests visible pause for >500ms
+  ---
+  duration_ms: 0.440583
+  type: 'test'
+  ...
+# Subtest: input FIFO retains simultaneous offense/utility, rejects newest overflow and clears on takeover
+ok 14 - input FIFO retains simultaneous offense/utility, rejects newest overflow and clears on takeover
+  ---
+  duration_ms: 0.529958
+  type: 'test'
+  ...
+# Subtest: personal cooldown begins at release; a same-spell queue accounts for the future cooldown
+ok 15 - personal cooldown begins at release; a same-spell queue accounts for the future cooldown
+  ---
+  duration_ms: 0.11975
+  type: 'test'
+  ...
+# Subtest: release revalidation cancels and refunds exactly once without starting cooldown
+ok 16 - release revalidation cancels and refunds exactly once without starting cooldown
+  ---
+  duration_ms: 0.073459
+  type: 'test'
+  ...
+# Subtest: haste snapshots cast duration and floors GCD without shortening personal cooldown
+ok 17 - haste snapshots cast duration and floors GCD without shortening personal cooldown
+  ---
+  duration_ms: 0.073833
+  type: 'test'
+  ...
+# Subtest: 500 ms active time is retained; boot and hidden time never produce catch-up
+ok 18 - 500 ms active time is retained; boot and hidden time never produce catch-up
+  ---
+  duration_ms: 0.054292
+  type: 'test'
+  ...
+# Subtest: replacement emits a terminal queue event for the displaced action
+ok 19 - replacement emits a terminal queue event for the displaced action
+  ---
+  duration_ms: 0.062375
+  type: 'test'
+  ...
+# Subtest: long-stall pause remains latched until the visible menu acknowledges it
+ok 20 - long-stall pause remains latched until the visible menu acknowledges it
+  ---
+  duration_ms: 0.055625
+  type: 'test'
+  ...
+# Subtest: HUD preview honors reservation and cooldown without events or mutation
+ok 21 - HUD preview honors reservation and cooldown without events or mutation
+  ---
+  duration_ms: 0.1035
+  type: 'test'
+  ...
+# Subtest: weapon profiles keep the sword faster than the greatstaff
+ok 22 - weapon profiles keep the sword faster than the greatstaff
+  ---
+  duration_ms: 0.494792
+  type: 'test'
+  ...
+# Subtest: facing error wraps behind the character
+ok 23 - facing error wraps behind the character
+  ---
+  duration_ms: 0.106875
+  type: 'test'
+  ...
+# Subtest: a due swing connects in range and waits out the weapon speed
+ok 24 - a due swing connects in range and waits out the weapon speed
+  ---
+  duration_ms: 0.153042
+  type: 'test'
+  ...
+# Subtest: out of range, a blocked target, and the wrong facing do not swing
+ok 25 - out of range, a blocked target, and the wrong facing do not swing
+  ---
+  duration_ms: 1.411541
+  type: 'test'
+  ...
+# Subtest: casts freeze the timer and a queued swing fires when the cast ends
+ok 26 - casts freeze the timer and a queued swing fires when the cast ends
+  ---
+  duration_ms: 0.085791
+  type: 'test'
+  ...
+# Subtest: airborne and dead targets do not spend the swing
+ok 27 - airborne and dead targets do not spend the swing
+  ---
+  duration_ms: 0.064166
+  type: 'test'
+  ...
+# Subtest: instants preserve running and airborne motion; ground-origin attacks require actual ground
+ok 28 - instants preserve running and airborne motion; ground-origin attacks require actual ground
+  ---
+  duration_ms: 0.408625
+  type: 'test'
+  ...
+# Subtest: stationary casts reject translation intent, residual movement and takeoff, but allow turning
+ok 29 - stationary casts reject translation intent, residual movement and takeoff, but allow turning
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: idle auto-facing never overrides steering; ninety-degree cone has an explicit boundary
+ok 30 - idle auto-facing never overrides steering; ninety-degree cone has an explicit boundary
+  ---
+  duration_ms: 0.151208
+  type: 'test'
+  ...
+# Subtest: melee contact rejects floors and escaped reach while accepting ordinary steps
+ok 31 - melee contact rejects floors and escaped reach while accepting ordinary steps
+  ---
+  duration_ms: 0.079375
+  type: 'test'
+  ...
+# Subtest: enemy damage occurs once at contact after a visible windup
+ok 32 - enemy damage occurs once at contact after a visible windup
+  ---
+  duration_ms: 1.080709
+  type: 'test'
+  ...
+# Subtest: contact revalidates wall, vertical floor and range; unavailable collision fails closed
+ok 33 - contact revalidates wall, vertical floor and range; unavailable collision fails closed
+  ---
+  duration_ms: 0.384208
+  type: 'test'
+  ...
+# Subtest: death during enemy windup cancels the hit
+ok 34 - death during enemy windup cancels the hit
+  ---
+  duration_ms: 0.130375
+  type: 'test'
+  ...
+# Subtest: diagnostic restore cancels a pending punch rather than hitting from idle
+ok 35 - diagnostic restore cancels a pending punch rather than hitting from idle
+  ---
+  duration_ms: 0.106459
+  type: 'test'
+  ...
+# Subtest: player death during a windup cancels contact
+ok 36 - player death during a windup cancels contact
+  ---
+  duration_ms: 0.185625
+  type: 'test'
+  ...
+# Subtest: rejected cast neither damages nor consumes cooldown
+ok 37 - rejected cast neither damages nor consumes cooldown
+  ---
+  duration_ms: 0.475291
+  type: 'test'
+  ...
+# Subtest: instant damage, spam rejection, cooldown expiry
+ok 38 - instant damage, spam rejection, cooldown expiry
+  ---
+  duration_ms: 0.176917
+  type: 'test'
+  ...
+# Subtest: range includes exactly 20m
+ok 39 - range includes exactly 20m
+  ---
+  duration_ms: 0.901583
+  type: 'test'
+  ...
+# Subtest: lethal hit holds at zero, rejects damage, then dummy recovers once
+ok 40 - lethal hit holds at zero, rejects damage, then dummy recovers once
+  ---
+  duration_ms: 0.192333
+  type: 'test'
+  ...
+# Subtest: blocked line of sight rejects all gameplay effects and permits retry once clear
+ok 41 - blocked line of sight rejects all gameplay effects and permits retry once clear
+  ---
+  duration_ms: 0.431709
+  type: 'test'
+  ...
+# Subtest: invalid or cooldown cast does not invoke a physics query
+ok 42 - invalid or cooldown cast does not invoke a physics query
+  ---
+  duration_ms: 0.081333
+  type: 'test'
+  ...
+# Subtest: Fire Blast releases while airborne; hardcast configs can require ground
+ok 43 - Fire Blast releases while airborne; hardcast configs can require ground
+  ---
+  duration_ms: 0.12575
+  type: 'test'
+  ...
+# Subtest: rejects airborne, cooldown, and empty radius without consuming
+ok 44 - rejects airborne, cooldown, and empty radius without consuming
+  ---
+  duration_ms: 0.518625
+  type: 'test'
+  ...
+# Subtest: hits every living hostile inside 8m and ignores those outside
+ok 45 - hits every living hostile inside 8m and ignores those outside
+  ---
+  duration_ms: 0.102334
+  type: 'test'
+  ...
+# Subtest: radius includes exactly 8m
+ok 46 - radius includes exactly 8m
+  ---
+  duration_ms: 0.628834
+  type: 'test'
+  ...
+# Subtest: lethal dummy recovers once; shades stay dead
+ok 47 - lethal dummy recovers once; shades stay dead
+  ---
+  duration_ms: 0.127458
+  type: 'test'
+  ...
+# Subtest: mana costs stay distinct per slot
+ok 48 - mana costs stay distinct per slot
+  ---
+  duration_ms: 0.070666
+  type: 'test'
+  ...
+# Subtest: lava release reserves cooldown but does not apply damage before impact
+ok 49 - lava release reserves cooldown but does not apply damage before impact
+  ---
+  duration_ms: 1.205667
+  type: 'test'
+  ...
+# Subtest: swept collision prevents tunnelling across a wall even on a long frame
+ok 50 - swept collision prevents tunnelling across a wall even on a long frame
+  ---
+  duration_ms: 0.107958
+  type: 'test'
+  ...
+# Subtest: target collider contact applies one hit before reaching the target centre
+ok 51 - target collider contact applies one hit before reaching the target centre
+  ---
+  duration_ms: 0.134958
+  type: 'test'
+  ...
+# Subtest: invalid release consumes neither health nor cooldown
+ok 52 - invalid release consumes neither health nor cooldown
+  ---
+  duration_ms: 0.087833
+  type: 'test'
+  ...
+# Subtest: missing physics data terminates the projectile without damage
+ok 53 - missing physics data terminates the projectile without damage
+  ---
+  duration_ms: 0.076375
+  type: 'test'
+  ...
+# Subtest: projectile keeps its launch trajectory when caster or target moves
+ok 54 - projectile keeps its launch trajectory when caster or target moves
+  ---
+  duration_ms: 0.121875
+  type: 'test'
+  ...
+# Subtest: fire and lava share target health, with one recovery from a lethal impact
+ok 55 - fire and lava share target health, with one recovery from a lethal impact
+  ---
+  duration_ms: 0.191417
+  type: 'test'
+  ...
+# Subtest: lava cooldown prevents a duplicate launch and damage clamps at zero
+ok 56 - lava cooldown prevents a duplicate launch and damage clamps at zero
+  ---
+  duration_ms: 0.069792
+  type: 'test'
+  ...
+# Subtest: an upper-body view clears a grave grazing the lower ray
+ok 57 - an upper-body view clears a grave grazing the lower ray
+  ---
+  duration_ms: 0.831833
+  type: 'test'
+  ...
+# Subtest: a solid wall blocking both sight lines remains blocked
+ok 58 - a solid wall blocking both sight lines remains blocked
+  ---
+  duration_ms: 0.0875
+  type: 'test'
+  ...
+# Subtest: a hit on the target clears without another ray
+ok 59 - a hit on the target clears without another ray
+  ---
+  duration_ms: 0.149042
+  type: 'test'
+  ...
+# Subtest: an unavailable collision query does not grant sight
+ok 60 - an unavailable collision query does not grant sight
+  ---
+  duration_ms: 0.069209
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 214.557209

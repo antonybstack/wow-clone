@@ -1,0 +1,246 @@
+
+> ashen-reach@1.0.0 build
+> vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+[plugin rolldown:vite-resolve] Module "node:path" has been externalized for browser compatibility, imported by "/Users/antbly/dev/wow-clone/node_modules/@gltf-transform/core/dist/index.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/Users/antbly/dev/wow-clone/node_modules/@gltf-transform/core/dist/index.js". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 1407 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/v2/engine-Bmc5IJPK.js                              0.08 kB
+dist/assets/v2/lite-error-CbM31Lpb.js                          0.12 kB
+dist/assets/v2/havok-BZX47koC.js                               0.13 kB
+dist/assets/v2/typed-arrays-mqcHaLDm.js                        0.14 kB
+dist/assets/v2/compose-mat4-CvBzCE37.js                        0.19 kB
+dist/assets/v2/constant-e-DvKB8KvI.js                          0.23 kB
+dist/assets/v2/constant-inf-B_CxAHSb.js                        0.23 kB
+dist/assets/v2/constant-nan-J_GBazdN.js                        0.23 kB
+dist/assets/v2/constant-pi-pxCrYLR6.js                         0.23 kB
+dist/assets/v2/constant-tau-x7irwZj2.js                        0.24 kB
+dist/assets/v2/constant-8ba2LFkz.js                            0.25 kB
+dist/assets/v2/get-variable-C_H9hfuO.js                        0.28 kB
+dist/assets/v2/abs-CjY_xeUc.js                                 0.31 kB
+dist/assets/v2/float-to-boolean-DYEmT3lC.js                    0.31 kB
+dist/assets/v2/floor-C-jq9r9A.js                               0.31 kB
+dist/assets/v2/boolean-to-float-CnxDyz0e.js                    0.31 kB
+dist/assets/v2/cos-T_HBq7Uv.js                                 0.31 kB
+dist/assets/v2/log-DHJhmOcN.js                                 0.31 kB
+dist/assets/v2/sin-k9kUH-Pe.js                                 0.31 kB
+dist/assets/v2/tan-CE8i5Zt-.js                                 0.31 kB
+dist/assets/v2/acos-Cc4Kjbxb.js                                0.32 kB
+dist/assets/v2/asin-Dn3BrFZP.js                                0.32 kB
+dist/assets/v2/atan-13uMx4N2.js                                0.32 kB
+dist/assets/v2/ceil-C7C1v3Kq.js                                0.32 kB
+dist/assets/v2/cosh-C29BcRPD.js                                0.32 kB
+dist/assets/v2/log2-rOU8paBq.js                                0.32 kB
+dist/assets/v2/sign-918WdfoU.js                                0.32 kB
+dist/assets/v2/sinh-BOctv1m4.js                                0.32 kB
+dist/assets/v2/tanh-Dvc73-0R.js                                0.32 kB
+dist/assets/v2/boolean-to-int-BL9zYZ58.js                      0.32 kB
+dist/assets/v2/int-to-float-DqrTcNWJ.js                        0.32 kB
+dist/assets/v2/acosh-BT8RrgLz.js                               0.32 kB
+dist/assets/v2/asinh-5tM0l9gb.js                               0.32 kB
+dist/assets/v2/atanh-jq2bmiSs.js                               0.32 kB
+dist/assets/v2/log10-B6ryJm-9.js                               0.32 kB
+dist/assets/v2/round-Dccn9Cdo.js                               0.32 kB
+dist/assets/v2/trunc-CcndtdSV.js                               0.32 kB
+dist/assets/v2/is-nan-C_JwIkZR.js                              0.32 kB
+dist/assets/v2/length-Cm43Fg59.js                              0.33 kB
+dist/assets/v2/fraction-HX9Q1Smh.js                            0.33 kB
+dist/assets/v2/cube-root-B1-lSnrU.js                           0.33 kB
+dist/assets/v2/negation-DAbLZ3dS.js                            0.33 kB
+dist/assets/v2/saturate-BWte5qbo.js                            0.33 kB
+dist/assets/v2/deg-to-rad-sbFlQ8ST.js                          0.33 kB
+dist/assets/v2/int-to-boolean-BJjfx9c3.js                      0.33 kB
+dist/assets/v2/rad-to-deg-CPykaA_Z.js                          0.33 kB
+dist/assets/v2/normalize-CvOyoi1z.js                           0.33 kB
+dist/assets/v2/transpose-CNqVDMiB.js                           0.33 kB
+dist/assets/v2/bitwise-not-B1cFyCmd.js                         0.34 kB
+dist/assets/v2/square-root-CsfZ2bcm.js                         0.34 kB
+dist/assets/v2/exponential-DH6Dhp1H.js                         0.34 kB
+dist/assets/v2/is-infinity-Dl4WIW97.js                         0.34 kB
+dist/assets/v2/determinant-Dh-63Jnv.js                         0.34 kB
+dist/assets/v2/invert-matrix-xax5FA6q.js                       0.34 kB
+dist/assets/v2/leading-zeros-BSQDmDpD.js                       0.34 kB
+dist/assets/v2/add-DHYR8sWF.js                                 0.34 kB
+dist/assets/v2/max-ByYqqqKN.js                                 0.34 kB
+dist/assets/v2/min-BmrhH5Xp.js                                 0.34 kB
+dist/assets/v2/sequence-BfzSWnoI.js                            0.34 kB
+dist/assets/v2/trailing-zeros-DcYm118s.js                      0.34 kB
+dist/assets/v2/dot-NULzdGfD.js                                 0.35 kB
+dist/assets/v2/atan2-BclXbvnI.js                               0.35 kB
+dist/assets/v2/branch-DSdvaYtp.js                              0.35 kB
+dist/assets/v2/one-bits-counter-BXQ-av4f.js                    0.35 kB
+dist/assets/v2/power-DXtdQNg-.js                               0.35 kB
+dist/assets/v2/divide-QwlGusHz.js                              0.35 kB
+dist/assets/v2/cross-Dofn6PLl.js                               0.35 kB
+dist/assets/v2/modulo-BWRMTvUC.js                              0.35 kB
+dist/assets/v2/quat-conjugate-CUFUPiC0.js                      0.35 kB
+dist/assets/v2/multiply-dm_giLfO.js                            0.36 kB
+dist/assets/v2/subtract-BpuIgVO_.js                            0.36 kB
+dist/assets/v2/equality-y0DzZEqB.js                            0.36 kB
+dist/assets/v2/bitwise-or-CABof6sl.js                          0.36 kB
+dist/assets/v2/less-than-CNbvQb-6.js                           0.36 kB
+dist/assets/v2/bitwise-and-CRkhKij7.js                         0.37 kB
+dist/assets/v2/extract2-BZ3i_N2l.js                            0.37 kB
+dist/assets/v2/bitwise-xor-BXMtFKih.js                         0.37 kB
+dist/assets/v2/rotate2d-fxcew5cY.js                            0.37 kB
+dist/assets/v2/greater-than-BCr3-ctY.js                        0.37 kB
+dist/assets/v2/combine2-kWhTjeoy.js                            0.37 kB
+dist/assets/v2/random-BHuttX70.js                              0.37 kB
+dist/assets/v2/rotate3d-BDNWH6yk.js                            0.37 kB
+dist/assets/v2/clamp-DN-nV1D2.js                               0.38 kB
+dist/assets/v2/smooth-step-JJEtWVbp.js                         0.38 kB
+dist/assets/v2/transform-vector-CLy1DVo7.js                    0.38 kB
+dist/assets/v2/bitwise-left-shift-DLvojeam.js                  0.38 kB
+dist/assets/v2/less-than-or-equal-DTDx3aEr.js                  0.39 kB
+dist/assets/v2/vector-slerp-8JD8sfHM.js                        0.39 kB
+dist/assets/v2/bitwise-right-shift-BYqjtbt1.js                 0.39 kB
+dist/assets/v2/angle-between-YLxtyVn_.js                       0.39 kB
+dist/assets/v2/conditional-BRMHx06t.js                         0.39 kB
+dist/assets/v2/greater-than-or-equal-B3zroMRv.js               0.40 kB
+dist/assets/v2/extract3-GejOwawz.js                            0.40 kB
+dist/assets/v2/matrix-multiplication-Q2hM410e.js               0.40 kB
+dist/assets/v2/mix-LopoU-fC.js                                 0.40 kB
+dist/assets/v2/combine3-CjFpg6_S.js                            0.41 kB
+dist/assets/v2/quaternion-slerp-D_jl6myv.js                    0.41 kB
+dist/assets/v2/quaternion-from-up-forward-0GDJFqsT.js          0.41 kB
+dist/assets/v2/quaternion-multiplication-MoavJWon.js           0.42 kB
+dist/assets/v2/quaternion-from-axis-angle-BLX0ZXS1.js          0.42 kB
+dist/assets/v2/extract-matrix-31Hx3zC8.js                      0.42 kB
+dist/assets/v2/quaternion-from-directions-dIONyPFZ.js          0.42 kB
+dist/assets/v2/scene-start-CP78_HDX.js                         0.43 kB
+dist/assets/v2/extract4-D_RhkKo5.js                            0.43 kB
+dist/assets/v2/float-to-int-CqHASVhb.js                        0.43 kB
+dist/assets/v2/extract-matrix2d-bF5_XpjP.js                    0.43 kB
+dist/assets/v2/extract-matrix3d-BjmigGCR.js                    0.43 kB
+dist/assets/v2/combine4-mhgAWlTW.js                            0.44 kB
+dist/assets/v2/quaternion-from-angles-V08TfeKz.js              0.44 kB
+dist/assets/v2/rgb-to-oklch-B7k8LdXW.js                        0.46 kB
+dist/assets/v2/while-loop-D4zxWlkm.js                          0.46 kB
+dist/assets/v2/rgb-from-oklch-_7BZciY4.js                      0.46 kB
+dist/assets/v2/combine-matrix-Dp57QQO3.js                      0.47 kB
+dist/assets/v2/no-op-B6yEVs_u.js                               0.47 kB
+dist/assets/v2/combine-matrix2d-B_BPDKkI.js                    0.47 kB
+dist/assets/v2/combine-matrix3d-PMq0YXGI.js                    0.47 kB
+dist/assets/v2/stop-event-propagation-Detxasfi.js              0.48 kB
+dist/assets/v2/gpu-resource-retirement-CcFTRIM0.js             0.48 kB
+dist/assets/v2/matrix-compose-31V2pHsi.js                      0.48 kB
+dist/assets/v2/axis-angle-from-quaternion-DdMEvIhh.js          0.49 kB
+dist/assets/v2/data-switch-D5mShwuu.js                         0.51 kB
+dist/assets/v2/switch-D5lFDC_A.js                              0.52 kB
+dist/assets/v2/cancel-delay-DwgYrFgH.js                        0.53 kB
+dist/assets/v2/create-quat-from-rotation-mat4-PcdXSPCR.js      0.53 kB
+dist/assets/v2/matrix-decompose-Dm-n7jRs.js                    0.57 kB
+dist/assets/v2/send-custom-event-3XHH7MVC.js                   0.60 kB
+dist/assets/v2/receive-custom-event-CipTiFWq.js                0.63 kB
+dist/assets/v2/on-select-B0Oss0Re.js                           0.63 kB
+dist/assets/v2/set-variable-DVIIYe6R.js                        0.67 kB
+dist/assets/v2/do-n-sadE0Gn2.js                                0.71 kB
+dist/assets/v2/editor-property-CJ21UUlY.js                     0.72 kB
+dist/assets/v2/scene-tick-yhFdQY2W.js                          0.75 kB
+dist/assets/v2/multiply-mat4-into-buffer-DfBnM-FI.js           0.77 kB
+dist/assets/v2/get-property-BmSzQDYd.js                        0.78 kB
+dist/assets/v2/for-loop-r9mAQtLw.js                            0.87 kB
+dist/assets/v2/set-property-Cu2bCVPH.js                        0.89 kB
+dist/body-preview.html                                         0.93 kB │ gzip:   0.42 kB
+dist/assets/v2/console-log-_LQ3zELS.js                         0.97 kB
+dist/assets/v2/multi-gate-dx4XUDgp.js                          0.98 kB
+dist/assets/v2/throttle-CEiOsDLU.js                            1.02 kB
+dist/index.html                                                1.05 kB │ gzip:   0.62 kB
+dist/assets/v2/wait-all-CsYJq09I.js                            1.07 kB
+dist/assets/v2/stop-animation-g7_berl8.js                      1.09 kB
+dist/assets/v2/play-animation-Z5M9Y0fn.js                      1.13 kB
+dist/assets/v2/set-delay-l0qGj_Dc.js                           1.29 kB
+dist/character-lab.html                                        1.31 kB │ gzip:   0.49 kB
+dist/character-crowd-probe.html                                1.31 kB │ gzip:   0.59 kB
+dist/assets/v2/shader-pipeline-cache-BhXWt2RR.js               1.64 kB
+dist/assets/v2/uniform-copy-batch-CYy7qk5q.js                  1.77 kB
+dist/assets/v2/generate-mipmaps-CAvKK0rd.js                    1.85 kB
+dist/assets/v2/pointer-template-BwK3RynH.js                    2.29 kB
+dist/assets/v2/foliage-lod-probe-DWL8b_Sv.js                   2.74 kB
+dist/assets/v2/shader-thin-instance-BKJyJN-J.js                2.88 kB
+dist/assets/v2/thin-instance-gpu-BDbgewXn.js                   2.99 kB
+dist/assets/v2/havok-floating-origin-B3DTHsth.js               3.18 kB
+dist/assets/v2/value-interpolation-0JOSvU0p.js                 3.91 kB
+dist/assets/v2/scene-rebuild-DUjyCfo9.js                       4.32 kB
+dist/assets/v2/havok-thin-instances-gTkxc92D.js                5.76 kB
+dist/assets/v2/scene-runtime-mesh-build-BFGvWaZa.js            6.33 kB
+dist/assets/v2/sockets-COAzZyAw.js                             8.24 kB
+dist/assets/v2/starter-outfit-worker-BiqNvION.js              12.88 kB
+dist/assets/v2/fixture-worker-DTSnt5MN.js                     13.17 kB
+dist/assets/v2/thin-instance-cull-binding-nYI24PBh.js         14.56 kB
+dist/assets/v2/shader-renderable-Bt3KAAOd.js                  15.45 kB
+dist/assets/v2/fg-math-Cq0U7AzX.js                            16.15 kB
+dist/ashen-reach.html                                        100.33 kB │ gzip:  15.45 kB
+dist/assets/v2/world-worker-BZujYZs4.js                      159.92 kB
+dist/physics/HavokPhysics-8f4493dae88a.wasm.br               501.49 kB
+dist/assets/v2/HavokPhysics-BqNY-4N9.wasm                  2,094.56 kB │ gzip: 668.98 kB
+dist/assets/v2/entry-DVqnJsvn.css                              0.86 kB │ gzip:   0.43 kB
+dist/assets/v2/creator-B5d1-Jhl.css                            0.93 kB │ gzip:   0.39 kB
+dist/assets/v2/bodyPreview-Cvnd5wQ3.css                        1.58 kB │ gzip:   0.76 kB
+dist/assets/v2/characterLab-hGmVlny6.css                       1.66 kB │ gzip:   0.78 kB
+dist/assets/v2/ashen-reach-CELGCeSv.css                        6.79 kB │ gzip:   2.15 kB
+dist/assets/v2/armory-Ck2t7RBy.css                             7.33 kB │ gzip:   2.09 kB
+dist/assets/v2/ashenReach-Cle4u34O.js                          0.05 kB │ gzip:   0.07 kB
+dist/assets/v2/startupPreload-DxLzFeLc.js                      0.05 kB │ gzip:   0.07 kB
+dist/assets/v2/havok-floating-origin-BGsY5d9R.js               0.09 kB │ gzip:   0.11 kB
+dist/assets/v2/havok-thin-instances-CGr4ohh8.js                0.10 kB │ gzip:   0.11 kB
+dist/assets/v2/index-Bt5J11Ku.js                               0.13 kB │ gzip:   0.14 kB │ map:     1.03 kB
+dist/assets/v2/lite-error-decoder-D-aKxCAH.js                  0.23 kB │ gzip:   0.19 kB │ map:     0.38 kB
+dist/assets/v2/native-material-staging-zLA-6VbQ.js             0.55 kB │ gzip:   0.39 kB │ map:     1.59 kB
+dist/assets/v2/prime-morph-materials-AtyIPtr-.js               0.66 kB │ gzip:   0.45 kB │ map:     2.13 kB
+dist/assets/v2/modulepreload-polyfill-BwpvBbVl.js              0.76 kB │ gzip:   0.45 kB
+dist/assets/v2/rolldown-runtime-8BhlS34s.js                    0.80 kB │ gzip:   0.47 kB
+dist/assets/v2/prime-starter-world-onizr662.js                 0.83 kB │ gzip:   0.50 kB │ map:     3.20 kB
+dist/assets/v2/module-preload-mISdBNlB.js                      1.32 kB │ gzip:   0.75 kB
+dist/assets/v2/frame-metrics-ezo2dSPv.js                       1.34 kB │ gzip:   0.66 kB │ map:     3.49 kB
+dist/assets/v2/human-identity-assets-CrnWaXD_.js               2.21 kB │ gzip:   1.18 kB │ map:     6.85 kB
+dist/assets/v2/batches-CdUnO6ep.js                             2.26 kB │ gzip:   1.21 kB │ map:     6.28 kB
+dist/assets/v2/equipment-DDV1LWfI.js                           2.56 kB │ gzip:   1.27 kB │ map:     7.77 kB
+dist/assets/v2/human-shape--BlnVIx7.js                         2.60 kB │ gzip:   1.30 kB │ map:    11.00 kB
+dist/assets/v2/sun-shadow-probe-C-IXkk9E.js                    2.64 kB │ gzip:   1.26 kB │ map:     5.11 kB
+dist/assets/v2/local-light-probe-CG9tyL_t.js                   2.65 kB │ gzip:   1.29 kB │ map:     5.20 kB
+dist/assets/v2/foliage-lod-probe-DSDscTqc.js                   2.84 kB │ gzip:   1.48 kB │ map:     6.66 kB
+dist/assets/v2/townsfolk-B_rE9-Pq.js                           3.44 kB │ gzip:   1.67 kB │ map:    10.73 kB
+dist/assets/v2/entry-DL-mLBSU.js                               4.33 kB │ gzip:   1.98 kB │ map:     9.67 kB
+dist/assets/v2/npc-DU8wxAYe.js                                 4.82 kB │ gzip:   2.36 kB │ map:    18.20 kB
+dist/assets/v2/startup-preload-CH_Yt_ZM.js                     4.87 kB │ gzip:   2.11 kB │ map:    14.70 kB
+dist/assets/v2/actor-state-C9ib1qxX.js                         6.06 kB │ gzip:   2.22 kB │ map:    20.47 kB
+dist/assets/v2/characterCrowdProbe-bH4VEAYQ.js                 8.03 kB │ gzip:   3.87 kB │ map:    24.29 kB
+dist/assets/v2/armory-qHI-POGl.js                             10.47 kB │ gzip:   4.26 kB │ map:    34.62 kB
+dist/assets/v2/creator-IEqt5txH.js                            11.80 kB │ gzip:   4.50 kB │ map:    44.04 kB
+dist/assets/v2/appearance-storage-uP6_ZyxH.js                 12.24 kB │ gzip:   4.38 kB │ map:    38.22 kB
+dist/assets/v2/renderer-DE05XUA4.js                           16.96 kB │ gzip:   6.83 kB │ map:    49.65 kB
+dist/assets/v2/enemies-Ce8hIbsC.js                            17.09 kB │ gzip:   6.80 kB │ map:    61.88 kB
+dist/assets/v2/bodyPreview-BzIECoLu.js                        18.44 kB │ gzip:   7.85 kB │ map:    70.18 kB
+dist/assets/v2/appearance-common-CELygNXM.js                  19.62 kB │ gzip:   6.23 kB │ map:    62.10 kB
+dist/assets/v2/ashen-reach-BirKzQSB.js                        64.41 kB │ gzip:  20.77 kB │ map:   200.25 kB
+dist/assets/v2/scene-CeOVprma.js                              71.13 kB │ gzip:  28.26 kB │ map:   280.00 kB
+dist/assets/v2/combat-CErrQDqj.js                             94.36 kB │ gzip:  34.66 kB │ map:   275.33 kB
+dist/assets/v2/protocol-BOlAo-Fo.js                          102.77 kB │ gzip:  30.33 kB │ map:   637.13 kB
+dist/assets/v2/client-CFehIfVq.js                            125.44 kB │ gzip:  43.24 kB │ map:   658.94 kB
+dist/assets/v2/characterLab-CXGof9RD.js                      262.40 kB │ gzip:  73.26 kB │ map:   920.88 kB
+dist/assets/v2/ashen-boot-DzL6uemu.js                        295.35 kB │ gzip: 108.10 kB │ map:   962.69 kB
+dist/assets/v2/lite-runtime-B9tnD2YO.js                      824.30 kB │ gzip: 252.76 kB │ map: 2,922.93 kB
+
+[plugin builtin:vite-reporter]
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/ashen-reach/startup-assets.js is dynamically imported by src/ashen-reach/equipment-stream.js but also statically imported by src/ashen-reach/main.js, dynamic import will not move module into another chunk.
+
+✓ built in 4.78s
+[33m[PLUGIN_TIMINGS] [0mPlugin hooks ran for 4.6s of this 4.8s build (95%).
+The slowest hooks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - vite:prepare-out-dir renderStart (55%, 2.6s, 1 call)
+  - verify-prepared-startup buildStart (28%, 1.3s, 1 call)
+Additional hook time came from the hooks below and from hooks under 1s.
+3 hooks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - vite:build-html transform (5 calls)
+  - vite:worker-import-meta-url transform (3 calls)
+  - vite:asset-import-meta-url transform (2 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.

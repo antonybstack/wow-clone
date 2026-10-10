@@ -372,6 +372,8 @@ export async function createCombat(
   const intents = createInputIntents();
   const clock = createCombatClock();
   let animationAction = null;
+  let nextHudPreview=0;
+  const actionViews={};
   const abilityFor = id => id === 'lava-ball' ? lava : id === 'pyre-burst' ? pulse : spell;
   const scheduler = createActionScheduler({
     definitions: ABILITIES,
@@ -402,6 +404,7 @@ export async function createCombat(
     },
     emit(event) {
       trace.record(event.type, event.time, event);
+      nextHudPreview=0;
       if (event.type === 'action-rejected' || event.type === 'queue-expired') hud.message(event.reason);
     },
     onStart(action) {
@@ -813,6 +816,22 @@ export async function createCombat(
       fx.update(dt);
       lavaFx.update(dt, body.getState().castElapsed, lava.flight);
       pulseFx.update(dt);
+      // Geometry/resource previews are read-only and bounded to 10 Hz. The
+      // scheduler remains the authority on the accepting update, including queues.
+      if(life.time>=nextHudPreview){
+        nextHudPreview=life.time+.1;
+        for(const definition of Object.values(ABILITIES)){
+          const preview=scheduler.preview({abilityId:definition.id,targetId:targeting.current?.id});
+          actionViews[definition.id]={...preview};
+        }
+      }
+      for(const definition of Object.values(ABILITIES)){
+        const view=actionViews[definition.id]??(actionViews[definition.id]={});
+        view.cooldown=scheduler.cooldown(definition.id);
+        view.readyIn=Math.max(view.cooldown,definition.gcd?Math.max(scheduler.gcdRemaining,(scheduler.active?.releaseAt??life.time)-life.time):0);
+        view.queued=scheduler.queued?.abilityId===definition.id;
+        view.queuedTarget=view.queued?hostiles.find(t=>t.id===scheduler.queued.targetId)?.name:null;
+      }
       hud.update(
         dt,
         targeting.current,
@@ -827,6 +846,7 @@ export async function createCombat(
         gcd,
         pulse,
         { enabled: auto.enabled, timer: auto.timer, speed: weaponProfile(readWeapon()).speed, name: weaponProfile(readWeapon()).name, damage: weaponProfile(readWeapon()).damage },
+        actionViews,
       );
       paintHud();
       if (visible) {

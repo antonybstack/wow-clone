@@ -93,6 +93,15 @@ export function createActionScheduler({ definitions, getTarget, resource, valida
       queueWindow = value;
       if (!value && queued) { event('queue-clear', queued, { reason: 'Queue disabled' }); queued = null; }
     },
+    preview({ abilityId, targetId = null }) {
+      const target=targetId==null?null:getTarget(targetId);
+      const action={abilityId,targetId,targetGeneration:target?.generation??0};
+      const definition=definitionFor(action);
+      const reason=check(action,definition,'preview');
+      const cost=resource.isCostExempt?.()?0:definition?.cost??0;
+      return {reason:reason||(cost>available()+EPSILON?'Not enough mana':''),cost,
+        readyIn:Math.max(api.cooldown(abilityId),definition?.gcd?Math.max(api.gcdRemaining,(active?.releaseAt??now)-now):0)};
+    },
     request({ abilityId, targetId = null, targetGeneration, inputAt = now, receivedMs = null, instantOnly = false }) {
       if (disposed) return rejectResult('Combat disposed');
       const target = targetId == null ? null : getTarget(targetId);

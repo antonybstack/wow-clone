@@ -151,3 +151,12 @@ test('long-stall pause remains latched until the visible menu acknowledges it', 
   clock.step(10,{paused:true}); assert.equal(clock.step(10).dt,0);
   assert.equal(clock.step(.1).dt,.1);
 });
+
+test('HUD preview honors reservation and cooldown without events or mutation',()=>{
+ const f=fixture();f.setMana(50);f.press('cast');f.scheduler.advance(.2);
+ const active=f.scheduler.active,count=f.events.length;
+ assert.equal(f.scheduler.preview({abilityId:'ward'}).reason,'Not enough mana');
+ assert.equal(f.scheduler.preview({abilityId:'filler',targetId:'a'}).readyIn,1.3);
+ assert.equal(f.scheduler.preview({abilityId:'filler',targetId:'missing'}).reason,'Target is unavailable');
+ assert.equal(f.scheduler.active,active);assert.equal(f.scheduler.reserved,40);assert.equal(f.mana(),50);assert.equal(f.events.length,count);
+});

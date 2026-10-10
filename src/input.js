@@ -1,3 +1,4 @@
+import {actionBindings} from './action-bindings.js';
 /**
  * WoW-style input for Lite. Pointer-lock mouselook, window-level capture.
  *
@@ -54,18 +55,7 @@ export const input = {
     faceCamera: false,
 };
 
-const SPELL_KEYS = {
-    Digit1: 1,
-    Digit2: 2,
-    Digit3: 3,
-    Digit4: 4,
-    Digit5: 5,
-    Numpad1: 1,
-    Numpad2: 2,
-    Numpad3: 3,
-    Numpad4: 4,
-    Numpad5: 5,
-};
+
 
 const keys = Object.create(null);
 let inputEnabled = true;
@@ -512,12 +502,12 @@ export function initInput(canvas) {
             if (event.code === "KeyU") {
                 input.unequipHelm = true;
             }
-            if (event.code === "KeyT") {
+            if (actionBindings.action(event.code) === "attack") {
                 input.attackPressed = true;
                 notifyActionInput(2);
             }
         }
-        const n = SPELL_KEYS[event.code];
+        const n = !event.ctrlKey && !event.metaKey && !event.altKey ? Number(actionBindings.action(event.code)) : 0;
         if (n) {
             input.spellPressed = n;
             notifyActionInput(1);
@@ -532,7 +522,7 @@ export function initInput(canvas) {
 
     window.addEventListener("keyup", (event) => {
         keys[event.code] = false;
-        if (SPELL_KEYS[event.code] === 2) {
+        if (actionBindings.action(event.code) === "2") {
             input.spellHeld2 = false;
             input.castHold = false;
         }
@@ -605,7 +595,8 @@ export function pollInput() {
     input.strafe = strafe;
     input.walk = !!(keys.ShiftLeft || keys.ShiftRight);
     input.jump = !!(keys.Space || touchJump);
-    input.castHold = !!(keys.Digit2 || keys.Numpad2 || input.spellHeld2);
+    const holdKey=actionBindings.key(2);
+    input.castHold = !!(keys[holdKey] || (holdKey.startsWith('Digit') && keys[`Numpad${holdKey.slice(5)}`]) || input.spellHeld2);
 }
 
 export function endFrame() {
