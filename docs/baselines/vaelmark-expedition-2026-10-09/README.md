@@ -170,3 +170,57 @@ SHA-256, `video/mp4`, decoded playback and journal seek pass
 ([receipt](g12-public-video.json)). Telegram **906** returns1280×720 and integer
 161s for the160.955s file ([sanitized receipt](g12-telegram.json)). Application
 inline/fullscreen remains unverified. No recording-derived FPS claim.
+
+## G13 Walking-camera readability
+
+Two observed gaps are corrected: the west stair mouth now has a restrained warm
+light cue, and the opened reliquary/seal is visible beside the actor from its
+ordinary interaction position. The existing west-chapel fixture moves from
+z335 to z330.5; the middle-descent fixture stays at z342. Its emission point sits
+0.4 m below the opaque housing/bracket, fixing a reproduced self-shadow defect
+without increasing light strength or the two-map budget. A strength-only audition
+did not repair that obstruction. The small box shifts 1.3 m along the solid
+memorial cap; its hinge offset, barrier, aisles and interaction anchor are unchanged.
+
+[Before entrance](g13-stair-mouth-before.png) · [After entrance](g13-stair-mouth-after.png)
+· [Before memorial](g13-memorial-before.png) · [After memorial](g13-memorial-after.png).
+These are original renderer captures from the same authored waypoints, native
+1280×720/DPR1, saved bell-rung phase, default walking camera (pitch .04/radius 3.5),
+and unchanged daylight. Native solver/input variation leaves 1.1/1.3/3.8/10.4 cm
+XZ differences across entrance/turn/memorial/return; they are matched viewpoints,
+not pixel-identical physics or idle animation. [Native receipt](g13-native.json.gz).
+
+Before and final ordinary crypt circuits pass with Havok active, God/Fly disabled
+through Developer tools, zero recoveries and no recorded runtime/GPU errors. The
+final circuit claims the seal and returns to the nave without Developer UI. Initial
+Developer nave placement and a labelled saved bell phase are setup fixtures, not
+the fresh whole-episode acceptance (G12/G17). 27 affected geometry/state/guide
+checks pass; the rendered-world shadow-ray case reproduces the prior housing
+obstruction and verifies the corrected emission path. [Packet receipt](g13-packets.json)
+confirms zero added render/collision triangles, near geometry/hash unchanged at
+149,963 bytes; the moved fixture changes skyline +341 bytes and region/index
+compression. Provenance is verified. No new light, shader, texture or loop.
+
+[Bounded Grok source review](g13-review.md) finds no consequential scoped
+clearance/slot/hinge defect. Its five-turn pass left a checkpoint; one three-turn
+report-only resume completed the report. Parent corrected its minor compass
+comment finding and independently diagnosed the later self-shadow fix, which was
+not in that review. The 2.5 cm inner-cap overhang remains fully inside the broader
+solid trim cap and does not justify a collision or walking change.
+
+Root reviewed actual advancing browser playback, descent/return and the threshold/seal
+seeks in the 35.264023-second [native live MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/undercroft-readability.mp4).
+[Manifest](g13-capture.json), [public-video receipt](g13-public-video.json):
+1280×720, square pixels, rotation zero, source elapsed 35.264240 s retained,
+10,903,494 exact public bytes, `video/mp4`, native decoded playback/seek and HTTP 206
+range pass. Python SimpleHTTPServer’s local MP4 origin reset seek to zero; the
+verified VE origin seeks correctly. Use the existing Vite `@fs` origin (HTTP 206)
+for local media review rather than reimplementing a server. Telegram **907** returns matching 1280×720; its integer 36 s duration covers the
+35.264023 s file ([delivery receipt](g13-telegram.json)). Telegram application
+inline/fullscreen verification remains distinct and unclaimed.
+Captures are not FPS evidence;
+final isolated matching performance and sealed game preview remain G17/G18.
+Raw auditions and intermediate recordings remain under ignored
+`.cache/vaelmark-expedition-2026-10-09/g13-*`; reproduce with
+`ASHEN_CDP_PORT=10037 ASHEN_CAPTURE_DIR=<directory> ASHEN_READABILITY_CAPTURE=1
+node scripts/ashen-reach/check-vaelmark-readability.mjs`.

@@ -19,9 +19,9 @@ for(let i=0;i<cathedral.collisionBatch.idx.length;i+=3){
 }
 
 // CPU segment/triangle check on the actual returned collision mesh, not source strings.
-function hit(from,to){
+function hit(from,to,source=triangles){
   const direction=sub(to,from);let closest=null;
-  for(const triangle of triangles){
+  for(const triangle of source){
     const {a,ab,ac}=triangle,p=cross(direction,ac),det=dot(ab,p);
     if(Math.abs(det)<1e-9)continue;
     const t=sub(from,a),u=dot(t,p)/det;
@@ -188,6 +188,25 @@ test('stair opening is real in collision and the upper slab still supports both 
   assert.equal(hit([-14.5,fy+.2,z],[-14.5,fy-.8,z]),null,`open slab ${z}`);
   for(const x of [-16.5,-12.5])assert(hit([x,fy+.2,z],[x,fy-.2,z]),`slab return ${x},${z}`);
   for(const x of [-16,-13])assert(hit([x-.25,fy+.5,z],[x+.25,fy+.5,z]),`guard at ${x},${z}`);
+ }
+});
+test('the west entrance lamp has an unobstructed shadow path to the first crypt treads',()=>{
+ const lamp=cathedral.exploration.lamps.find(l=>l.id==='cathedral-chapel--1');
+ // Local shadows cast the rendered world, including opaque emissive housings,
+ // rather than just Havok collision. A source inside that box shadows itself.
+ const rendered=[];
+ for(const batch of Object.values(batches))for(let i=0;i<batch.idx.length;i+=3){
+  const [a,b,c]=vertices(batch,i),ab=sub(b,a),ac=sub(c,a);
+  rendered.push({a,ab,ac,normal:cross(ab,ac)});
+ }
+ const u=cathedral.exploration.undercroft;
+ const start=u.entry[2];
+ for(const z of [start+1,start+2]){
+  const surface=cathedral.floorY-(cathedral.floorY-u.floorY)*(z-start)/(u.bottom[2]-start);
+  assert([...lamp.position,surface].every(Number.isFinite),'shadow-ray fixture must be finite');
+  const target=[u.entry[0],surface+.25,z];
+  assert.equal(hit(lamp.position,target,rendered),null,'lamp housing or bracket occludes the stair cue');
+  assert(hit([lamp.position[0],lamp.position[1]+.4,lamp.position[2]],target,rendered),'the prior emission point inside the opaque housing must reproduce the obstruction');
  }
 });
 test('authoring rejects terrain beneath the lower connector outside the chamber',()=>{

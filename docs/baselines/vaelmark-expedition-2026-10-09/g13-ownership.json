@@ -1,0 +1,50 @@
+{
+  "before": {
+    "owner": "root",
+    "browserPid": 98468,
+    "gpuHelperPids": [
+      98477
+    ],
+    "cdpPort": 10037,
+    "url": "http://127.0.0.1:5873/",
+    "purpose": "G13 matched ordinary undercroft viewpoints and return; labelled saved bell-rung setup; no FPS claim",
+    "renderingClients": 0,
+    "active": false
+  },
+  "final": {
+    "owner": "root",
+    "browserPid": 98468,
+    "gpuHelperPids": [
+      98477
+    ],
+    "cdpPort": 10037,
+    "url": "http://127.0.0.1:5873/",
+    "purpose": "G13 matched ordinary undercroft viewpoints and return; labelled saved bell-rung setup; no FPS claim",
+    "renderingClients": 0,
+    "active": false
+  },
+  "review": {
+    "owner": "root",
+    "browser": "Edge",
+    "browserPid": 2931,
+    "tab": "1147996252",
+    "url": "http://127.0.0.1:7077/review.html",
+    "purpose": "Actual G13 MP4 review; no game renderer or FPS measurement",
+    "active": false
+  },
+  "mediaServer": {
+    "pid": 37398,
+    "port": 7077,
+    "owner": "root",
+    "active": false,
+    "exitCode": 0
+  },
+  "finalAudit": {
+    "chromeUserTabs": 1,
+    "edgeUserTabs": 15,
+    "userGameTabs": 0,
+    "ownedContextsClosed": true,
+    "ownedHarness": "slot7 Chrome98468/CDP10037 and Vite98362/98437/5873 remain root-owned idle for G14",
+    "grokWorkers": "both source review passes ended; no renderer"
+  }
+}

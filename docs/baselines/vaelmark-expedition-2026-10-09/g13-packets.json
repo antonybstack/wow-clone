@@ -1,0 +1,25 @@
+{
+  "nearInvariant": true,
+  "nearEncodedBytes": 149963,
+  "nearSha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+  "renderTriangleDelta": 0,
+  "sourceCorrectedWestEmission": {
+    "id": "cathedral-chapel--1",
+    "position": [
+      -14.4,
+      47.722687811906944,
+      330.5
+    ],
+    "strength": 4
+  },
+  "skylineEncodedBytes": {
+    "before": 592693,
+    "after": 593034
+  },
+  "indexEncodedBytes": {
+    "before": 98685,
+    "after": 98510
+  },
+  "geometryChanges": "existing chapel glow and bracket moved only; zero added triangles or colliders",
+  "provenanceVerified": true
+}

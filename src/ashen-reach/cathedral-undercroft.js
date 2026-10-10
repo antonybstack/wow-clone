@@ -112,7 +112,10 @@ export function buildCathedralUndercroft(ctx,{flight,rail}){
     memorial:{standingSurfaceY:y,stand:[-9.6,y,329],interact:[-8.65,y+1.15,329],
       // The small decorative box sits above the existing solid cap. Neither its
       // lid nor its contents is a new walkable/collision surface.
-      reliquaryBase:[-7,y+.92,329],reliquaryHinge:[-7,y+1.22,329.675]},
+      // Offset along the cap so the ordinary over-shoulder camera can
+      // see the opened box beside the actor. Keep its 1.35 m base between the
+      // unchanged end posts and inside the cap; interaction/support stay put.
+      reliquaryBase:[-7,y+.92,327.7],reliquaryHinge:[-7,y+1.22,328.375]},
     route:[[0,floorY,328],[-12,floorY,328],[-14.5,floorY,328],entry,bottom,[-14.5,y,348.5],[-7,y,348.5],[-7,y,337],[-10,y,334],[-10,y,325],[-4,y,325],[-4,y,334],[-7,y,337],[-7,y,348.5],[-14.5,y,348.5],bottom,entry,[-14.5,floorY,328],[-12,floorY,328],[0,floorY,328]],
   };
 }

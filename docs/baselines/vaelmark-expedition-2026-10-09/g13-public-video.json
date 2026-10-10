@@ -1,0 +1,35 @@
+{
+  "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/undercroft-readability.mp4",
+  "status": 200,
+  "mime": "video/mp4",
+  "rangeStatus": 206,
+  "sha256": "7fb27218246ae3863aa52710e2dac351fdce7390e6ad9efefa6913ef306b4120",
+  "bytes": 10903494,
+  "ownership": {
+    "owner": "root",
+    "browserPid": 98468,
+    "gpuHelperPids": [
+      98477
+    ],
+    "cdpPort": 10037,
+    "url": "https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/undercroft-readability.mp4",
+    "purpose": "G13 exact public video decode/play/seek check; media only, no FPS sample",
+    "renderingClients": 0,
+    "active": false
+  },
+  "play": {
+    "time": 0.704006,
+    "width": 1280,
+    "height": 720,
+    "duration": 35.264023,
+    "decoded": 11,
+    "error": null
+  },
+  "seek": {
+    "time": 19.40828,
+    "decoded": 251,
+    "error": null
+  },
+  "passed": true,
+  "errors": []
+}

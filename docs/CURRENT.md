@@ -15,14 +15,16 @@ cold start at 1,140.1 ms; production is unchanged.** No user approval is pending
 source fix. G10 memorial/journal passes local native checks and reviewed motion
 (Telegram 904/VE). G11 west-bell mechanism/audio passes six native cases and
 reviewed motion (Telegram 905/VE). G12 reliquary/one-time remembrance and connected
-ordinary cathedral episode pass (Telegram 906/VE); G13–G18 remain pending.
+ordinary cathedral episode pass (Telegram 906/VE). G13 readability/native motion
+passes (Telegram 907/VE), including a reproduced/corrected lamp self-shadow defect;
+G14–G18 remain pending.
 [Execution record](plans/gothic-exploration/results/expedition-execution-2026-10-09.md).
 The [game vision](plans/gothic-exploration/vision.md) prioritizes a purposeful Gothic
 region, followed by deeper adventure, character production and shared expeditions.
 The [next 24 hours](plans/gothic-exploration/next-24-hours-2026-10-09.md) specify
 G09–G18: a two-hour startup investigation limit; a saved inscription → bell →
 reliquary episode; clearer navigation; ordered regional extensions; and six hours
-reserved for integration and delivery. G10–G12 are implemented locally; the remaining
+reserved for integration and delivery. G10–G13 are implemented locally; the remaining
 episode is not yet complete or published as a new game preview. Production remains held by
 the independent gates below; an unresolved hold does not prevent preview game
 development. Historical milestone lists are not additional active queues.

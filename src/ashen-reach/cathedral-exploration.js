@@ -106,8 +106,18 @@ export function buildCathedralExploration(ctx){
   // Chapel furnishings stay beside the approach and clear of stair travel.
   for(const z of [327,333,339]){wall([side*22,fy+.42,z],[1.4,.84,2],SHADE);box(stone,[side*22,fy+.88,z],[1.6,.12,2.2],TRIM);}
   wall(side<0?[-22,fy+.6,346]:[side*14.5,fy+.6,343],[2.3,1.2,1.8],SHADE);
-  const lamp=[side*14.4,fy+3.2,335];box(glow,lamp,[.28,.65,.28],[.52,.25,.065,0]);beam(stone,[side*12.8,fy+3,335],lamp,.13,SHADE);
-  metadata.lamps.push({id:`cathedral-chapel-${side}`,position:lamp,strength:4});
+  // The west fixture marks the undercroft threshold from the walking camera.
+  // Keep the existing downward spotlight/slot owner and mid-descent fixture;
+  // moving that lower lamp would leave a dark gap halfway down the flight.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/03-lights.md
+  const lampZ=side<0?330.5:335;
+  const lamp=[side*14.4,fy+3.2,lampZ];box(glow,lamp,[.28,.65,.28],[.52,.25,.065,0]);beam(stone,[side*12.8,fy+3,lampZ],lamp,.13,SHADE);
+  // The world glow box is opaque and participates in native depth casting.
+  // Emit below its 0.65 m housing (and the bracket), otherwise the source sits
+  // inside its own occluder: increasing intensity cannot illuminate the stair.
+  // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/17-cascaded-shadow.md
+  const emission=side<0?[lamp[0],lamp[1]-.4,lamp[2]]:lamp;
+  metadata.lamps.push({id:`cathedral-chapel-${side}`,position:emission,strength:4});
   metadata.chapels.push({name,entry:[side*12,fy,328],interior:[side*15.5,fy,328],stairs:[[side*15.5,fy,322.5],[x,fy,322.5],[x,fy,324],[x,fy+8.5,345],[x,fy+8.5,347]],gallery:[side*7,fy+8.5,347],parapet:[side*27,fy+8.5,347]});
  }
  for(const z of [307,349]){platform(0,8.5,z,17,2);for(const edge of [z-1,z+1]){const width=edge===306||edge===350?8.5:5.5;rail([-width,fy+8.5,edge],[width,fy+8.5,edge]);}for(const x of [-8.5,8.5])rail([x,fy+8.5,z-1],[x,fy+8.5,z+1]);}
