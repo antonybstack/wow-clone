@@ -52,7 +52,7 @@ integration performance checks remain G17/G18 gates.
 and guide transition in a 9.510139 s timestamp-preserving live MP4. Source/viewport/
 canvas 1280×720, square pixels, zero rotation; no capture-derived FPS claim.
 [Direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/memorial-journal.mp4).
-Public copy SHA-256 matches the local encoded file; `video/mp4`, advancing decoded playback and seeking pass ([receipt](g10-public-video.json)). Telegram **904** returns matching 1280×720 dimensions and 9.510 s duration. Telegram application inline/fullscreen proportions remain unverified. [Independent source review](g10-review.md) finds no actionable defect in the paths checked. The six-turn pass ended without a report; a single report-only continuation preserved its observations and unchecked areas. It reviewed G10 working files before commit 87b7b66; it does not review subsequent G11 changes.
+Public copy SHA-256 matches the local encoded file; `video/mp4`, advancing decoded playback and seeking pass ([receipt](g10-public-video.json)). Telegram **904** returns matching 1280×720 dimensions and an integer 10 s duration for the 9.510 s encoded file. Telegram application inline/fullscreen proportions remain unverified. [Independent source review](g10-review.md) finds no actionable defect in the paths checked. The six-turn pass ended without a report; a single report-only continuation preserved its observations and unchecked areas. It reviewed G10 working files before commit 87b7b66; it does not review subsequent G11 changes.
 Local raw evidence is `.cache/vaelmark-expedition-2026-10-09/g10-readable/`;
 `check-vaelmark-expedition.mjs` recreates its native checks and timestamp manifest.
 
@@ -117,5 +117,56 @@ labels the diagnostic capture separately. Raw evidence lives in
 `.cache/vaelmark-expedition-2026-10-09/g11-{final,reviewed}/`.
 
 Public MP4 exact bytes/hash, `video/mp4`, decoded playback and seek pass
-([receipt](g11-public-video.json)). Telegram **905** returns matching 1280×720/
-7.897s; application inline/fullscreen remains unverified.
+([receipt](g11-public-video.json)). Telegram **905** returns matching 1280×720 and integer 8 s duration for the
+7.897 s encoded file; application inline/fullscreen remains unverified.
+
+## G12 Memorial reliquary and remembrance
+
+The answered bell opens a small hinged box on the unchanged memorial cap. Its
+bronze seal is revealed before a separate Claim action, and the journal records
+an original remembrance emblem once. The reward points to Hollowmere; no XP,
+equipment entitlement, watchman progress or new chamber is added. A fresh live
+transition waits for the player to return to the crypt before revealing. Saved
+`bell-rung` restores an open box/relic directly; later phases restore an empty,
+open box without replay. Developer rehearsal resets the box and leaves the save
+alone. The lid and relic remain decorative, with no new walkable surface.
+
+[Four final native cases](g12-native.json) pass: connected fresh-journal inscription
+→ west-bell ascent/ring/descent → reliquary claim → both memorial aisles → nave
+return, then three labelled saved-phase reloads. Initial Developer nave placement
+is explicit; all subsequent travel uses ordinary keyboard controls, God/Fly off,
+Havok active, with zero recoveries or recorded runtime/GPU errors. Claim/repeat
+and original journal emblem pass. XP/watchman snapshot is unchanged. Tomb contact
+remains outside the x=-8.25 stone edge, with feet on the crypt floor. New bell +
+reliquary total **512 render triangles, zero collision triangles**; both are
+excluded from sun/local caster lists. Two existing local shadow slots remain.
+Required near geometry and all existing packet bytes remain unchanged; authoring
+adds only two prop-location metadata vectors. Twelve focused state/guide checks
+pass. Final integration/FPS/sealed-public game acceptance remains G17/G18.
+
+[Grok source review and root adjudication](g12-review.md): the single alleged null
+exception was rejected after executing the actual continuous optional chain and
+confirming JavaScript's documented semantics. The reviewer grouped a chain that
+source does not group. Other checked paths had no accepted consequential defect;
+its unchecked areas are retained. No runtime acceptance is inferred from prose.
+
+Raw attempts are retained under `.cache/vaelmark-expedition-2026-10-09/`.
+The first four-case run passes but default framing hides the small box behind
+the actor. Two subsequent camera passes stop at an over-tight -8.60 contact
+assertion; a recorded contact x=-8.5404 is still outside the unchanged edge,
+with feet on the floor. The final helper requires x<-8.50 and floor agreement,
+asserts facing before contact and uses one ordinary LMB orbit rather than
+accumulating it. The final four-case run passes at x=-8.5650. This was a fixture
+correction, with no product collision change. The earlier failures are not passes.
+Future captures should audition their ordinary camera before a long traversal;
+contact assertions must derive from authored boundaries and native tolerances.
+
+**Motion:** root reviewed actual browser replay/seek, closed/open/relic/journal/empty
+poses and ordinary descent/return in the continuous 160.956094-second native
+[VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/reliquary-expedition.mp4).
+Source/viewport/canvas1280×720, square pixels, zero rotation; encoded elapsed
+160.955093s. [Timestamp manifest](g12-capture.json). Exact public 39,902,383 bytes/
+SHA-256, `video/mp4`, decoded playback and journal seek pass
+([receipt](g12-public-video.json)). Telegram **906** returns1280×720 and integer
+161s for the160.955s file ([sanitized receipt](g12-telegram.json)). Application
+inline/fullscreen remains unverified. No recording-derived FPS claim.

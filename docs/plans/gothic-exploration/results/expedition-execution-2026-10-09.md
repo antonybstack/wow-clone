@@ -12,7 +12,8 @@ independent startup/resource gates. No completed expedition is claimed yet.
 | G09 startup attribution | Bounded investigation closed; no fix | Root source inspection and retained-artifact Grok review yield no supported new discriminator. No unchanged retries; production hold remains. |
 | G10 memorial and journal | Native implementation and motion pass | 20 focused CPU checks, seven native cases, reviewed VE MP4/Telegram 904; independent G10 review finds no actionable defects. Final integration remains G17/G18. |
 | G11 west bell | Native implementation and reviewed motion pass | Six native cases, two camera-only cases, twelve focused checks; 184 triangles/zero collision, optional native audio. |
-| G12–G14 required episode | Pending | Reliquary, readability and Hollowmere closure follow the accepted bell. |
+| G12 reliquary/remembrance | Native implementation and reviewed connected motion pass | Four final native cases, twelve focused checks, unchanged packets/XP/watchman; Telegram906/verified VE. |
+| G13–G14 required episode | Pending | Readability and Hollowmere closure follow the accepted cathedral episode. |
 | G15–G16 regional extensions | Pending | Ordered extensions; core and finishing reserve take priority. |
 | G17–G18 verification/delivery | Pending | Final native traversal, performance, sealed preview and reviewed motion; conditional production gates. |
 
@@ -50,7 +51,18 @@ and Vite 98362/98437 remain owned idle for the next milestone. User Edge 15 tabs
 Chrome New Tab are preserved.
 
 G11 six-case native and two-case camera-only contexts are closed. Reviewed MP4
-exact public bytes/play/seek pass; Telegram 905 matches 1280×720/7.897s. Owned
+exact public bytes/play/seek pass; Telegram 905 matches 1280×720; its 8 s integer duration covers the 7.897 s file. Owned
 review tabs 1147996240/6244 closed; media PID 4480/19564, port7077 stopped.
 G11 Grok source reviewer ended after writing its report; no renderer. Slot7
 Chrome98468/CDP10037 and Vite98362/98437/5873 remain owned idle for G12.
+
+G12 root-review tab1147996248 and all native/public-video contexts are closed.
+Media7077/PID73648 stopped. Grok29805 and its report-only continuation ended;
+incorrect optional-chain finding was adjudicated with executable evidence. Final
+native/source/capture/public/Telegram receipts are retained in the baseline.
+
+Next G13 review targets: the default walking view obscures the memorial box
+behind the actor; the west-chapel stair mouth/turn is hard to identify in the
+ordinary route. Audition matched views before a long capture, then correct
+placement/threshold/fixture using existing materials and two shadow slots.
+Chrome98468/CDP10037 and Vite98362/98437/5873 remain root-owned idle.

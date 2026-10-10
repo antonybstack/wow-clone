@@ -3,7 +3,25 @@ import {sceneLifetime} from './scene-lifetime.js';
 import {emptyExploration,transitionExploration,explorationGoal} from './exploration-state.js';
 import {loadExploration,saveExploration} from './exploration-store.js';
 import {JOURNAL_ENTRIES} from './exploration-content.js';
-import {createBellMechanism} from './exploration-props.js';
+import {createBellMechanism,createMemorialReliquary} from './exploration-props.js';
+
+/** Original journal emblem mirrors the bronze seal, without another texture or
+ * inventory entitlement. SVG is built from fixed attributes, never save text. */
+function remembranceEmblem(){
+ const ns='http://www.w3.org/2000/svg';
+ const emblem=document.createElementNS(ns,'svg');
+ const ring=document.createElementNS(ns,'circle'),cross=document.createElementNS(ns,'path');
+ emblem.setAttribute('viewBox','0 0 48 48');
+ emblem.setAttribute('role','img');
+ emblem.setAttribute('aria-label','Bronze Vaelmark remembrance');
+ emblem.classList.add('remembrance-emblem');
+ ring.setAttribute('cx','24');ring.setAttribute('cy','24');ring.setAttribute('r','20');
+ cross.setAttribute('d','M24 10v28M15 19h18');
+ for(const shape of [ring,cross]){
+  shape.setAttribute('fill','none');shape.setAttribute('stroke','currentColor');shape.setAttribute('stroke-width','3');
+ }
+ emblem.append(ring,cross);return emblem;
+}
 
 /** Called only by late createCombat. Candidate work uses its existing simulation
  * dt; activation rechecks Havok instead of trusting a cached proximity prompt.
@@ -19,7 +37,7 @@ export function interactionReachable(player,anchor){
 export function createExploration({engine,scene,player,world,input,canvas,audio,isNavigationReady,onOpenJournal}){
  const signal=sceneLifetime(scene),loaded=loadExploration();
  let record=loaded.record,warning=loaded.warning,sessionOnly=false,visible=true,scan=0,candidate=null,paintKey='',journalContent=null;
- let mechanism=null,bellCooldown=0,lastDead=false,feedback='',feedbackTime=0;
+ let mechanism=null,reliquary=null,pendingReveal=false,bellCooldown=0,lastDead=false,feedback='',feedbackTime=0;
  const prompt=document.createElement('div');prompt.id='exploration-prompt';prompt.hidden=true;prompt.setAttribute('data-world-interaction','');
  const label=document.createElement('span'),button=document.createElement('button'),response=document.createElement('small');button.type='button';button.textContent='Read · X';response.hidden=true;
  response.setAttribute('role','status');prompt.append(label,button,response);document.body.append(prompt);
@@ -28,6 +46,7 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
   #exploration-prompt small{grid-column:1/-1;max-width:420px;line-height:1.4;font-size:14px}#exploration-prompt small[hidden]{display:none}
   #exploration-prompt[hidden]{display:none}#exploration-prompt button{padding:8px 14px;color:#eadbb8;background:#383325;border:1px solid #9b8958;cursor:pointer;white-space:nowrap}
   [data-exploration-journal] h2{font:24px Georgia,serif;color:#eadbb8;margin:12px 0}[data-exploration-journal] p{line-height:1.6}[data-exploration-journal] article{border-top:1px solid #716345;padding-top:12px;margin-top:16px}[data-exploration-journal] article h3{font:19px Georgia,serif;color:#eadbb8;margin:0 0 8px}[data-exploration-journal] .journal-warning{color:#e6c182}[data-exploration-journal] .journal-goal{padding:12px;border:1px solid #716345;background:#202820}
+  [data-exploration-journal] .remembrance-emblem{width:48px;height:48px;float:left;margin:0 12px 8px 0;color:#c5a55d}
  `;document.head.append(style);
  const clear=()=>{input.interactPressed=false;candidate=null;paintKey='';prompt.hidden=true;scan=.2;};
  const offReset=onInputReset(clear);
@@ -35,17 +54,21 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
  const memorial=()=>world.cathedral?.exploration?.undercroft?.memorial;
  const westBell=()=>world.cathedral?.exploration?.towers?.find(t=>t.id==='west-bell')?.bellInteraction;
  function pick(){
-  const anchor=memorial();if(interactionReachable(player,anchor))return {id:'vaelmark-inscription',action:'read-inscription',anchor,label:'Undercroft memorial',verb:'Read'};
+  const anchor=memorial();if(interactionReachable(player,anchor)){
+   if(record.phase==='bell-rung')return {id:'vaelmark-relic',action:'claim-relic',anchor,label:'Vaelmark remembrance',verb:reliquary?.snapshot().open?'Claim':'Opening…'};
+   return {id:'vaelmark-inscription',action:'read-inscription',anchor,label:'Undercroft memorial',verb:'Read'};
+  }
   const bell=westBell();return interactionReachable(player,bell)?{id:'vaelmark-bell',action:'ring-bell',anchor:bell,label:'West bell rope',verb:'Ring'}:null;
  }
  function paint(){
   const text=candidate?.id==='vaelmark-bell'&&feedbackTime>0?feedback:'';
-  const key=`${candidate?.id??''}/${text}/${bellCooldown>0}`;if(key===paintKey)return;paintKey=key;prompt.hidden=!candidate;
-  if(candidate){label.textContent=candidate.label;button.textContent=`${candidate.verb} · X`;button.disabled=candidate.id==='vaelmark-bell'&&bellCooldown>0;response.textContent=text;response.hidden=!text;}
+  const key=`${candidate?.id??''}/${candidate?.verb??''}/${text}/${bellCooldown>0}`;if(key===paintKey)return;paintKey=key;prompt.hidden=!candidate;
+  if(candidate){label.textContent=candidate.label;button.textContent=`${candidate.verb} · X`;button.disabled=candidate.id==='vaelmark-bell'&&bellCooldown>0||candidate.id==='vaelmark-relic'&&!reliquary?.snapshot().open;response.textContent=text;response.hidden=!text;}
  }
  function activate(dead){
   if(!allowed(dead))return false;
   candidate=pick();if(!candidate)return false;
+  if(candidate.id==='vaelmark-relic'&&!reliquary?.snapshot().open)return false;
   if(candidate.id==='vaelmark-bell'){
    if(bellCooldown>0)return false;
    bellCooldown=2;mechanism?.ring();
@@ -57,6 +80,10 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
    feedbackTime=5;
   }
   const next=transitionExploration(record,candidate.action);record=next.record;
+  // Only the live transition waits for the player's return to reveal. Reloads
+  // settle from the saved phase and never replay a half-finished animation.
+  if(next.changed&&candidate.id==='vaelmark-bell')pendingReveal=true;
+  if(next.changed&&candidate.id==='vaelmark-relic')reliquary.claim();
   if(next.changed&&!sessionOnly){warning=saveExploration(record)?null:'Your discovery is available this session, but could not be saved. Reloading may lose it.';}
   if(candidate.id!=='vaelmark-bell')onOpenJournal?.();else paint();return true;
  }
@@ -66,25 +93,29 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
   const title=document.createElement('h2');title.textContent='The Bell of Vaelmark';
   const goal=document.createElement('p');goal.className='journal-goal';goal.textContent=explorationGoal(record.phase);
   const notice=document.createElement('p');notice.className='journal-warning';notice.hidden=!warning;notice.textContent=warning??'';notice.setAttribute('role','status');
-  const articles=record.discovered.map(id=>{const item=JOURNAL_ENTRIES[id],article=document.createElement('article'),heading=document.createElement('h3'),text=document.createElement('p');heading.textContent=item.title;text.textContent=item.text;article.dataset.discovery=id;article.append(heading,text);return article;});
+  const articles=record.discovered.map(id=>{const item=JOURNAL_ENTRIES[id],article=document.createElement('article'),heading=document.createElement('h3'),text=document.createElement('p');heading.textContent=item.title;text.textContent=item.text;article.dataset.discovery=id;
+   if(id==='vaelmark-relic')article.append(remembranceEmblem());
+   article.append(heading,text);return article;});
   journalContent.replaceChildren(title,goal,notice,...articles);
  }
  const journal={open(container){if(signal.aborted)return false;if(!journalContent){journalContent=document.createElement('div');journalContent.setAttribute('data-exploration-journal','');container.replaceChildren(journalContent);}paintJournal();return true;}};
- signal.addEventListener('abort',()=>{offReset();clear();prompt.remove();style.remove();journalContent?.remove();journalContent=null;mechanism=null;},{once:true});
+ signal.addEventListener('abort',()=>{offReset();clear();prompt.remove();style.remove();journalContent?.remove();journalContent=null;mechanism=null;reliquary=null;},{once:true});
  return {
   journal,
   tick(dt,{dead=false}={}){
    lastDead=dead;if(signal.aborted)return;
-   bellCooldown=Math.max(0,bellCooldown-dt);feedbackTime=Math.max(0,feedbackTime-dt);mechanism?.update(dt);
+   bellCooldown=Math.max(0,bellCooldown-dt);feedbackTime=Math.max(0,feedbackTime-dt);mechanism?.update(dt);reliquary?.update(dt);
    if(!allowed(dead)){clear();return;}scan+=dt;
    if(scan>=.2){scan=0;const anchor=westBell();if(anchor&&!mechanism)mechanism=createBellMechanism(engine,scene,anchor);
+    const tomb=memorial();if(tomb?.reliquaryBase&&!reliquary)reliquary=createMemorialReliquary(engine,scene,tomb,pendingReveal?'inscription-read':record.phase);
+    if(pendingReveal&&reliquary&&tomb&&Math.hypot(player.body.position.x-tomb.interact[0],player.body.position.z-tomb.interact[2])<6&&Math.abs(player.body.position.y-player.capsuleHeight/2-tomb.standingSurfaceY)<1.2){pendingReveal=false;reliquary.reveal();}
     if(anchor&&!audio?.muted&&Math.hypot(player.body.position.x-anchor.interact[0],player.body.position.z-anchor.interact[2])<10&&Math.abs(player.body.position.y-player.capsuleHeight/2-anchor.standingSurfaceY)<3)void audio?.prepareBell();
     candidate=pick();paint();
    }
    if(input.interactPressed){input.interactPressed=false;activate(dead);}
   },
   setVisible(on){visible=!!on;if(!visible)clear();},
-  snapshot(){return {record:structuredClone(record),warning,sessionOnly,candidate:candidate?.id??null,bell:mechanism?.snapshot()??null,propTriangles:mechanism?.triangles??0};},
-  resetSession(){if(signal.aborted||!new URLSearchParams(location.search).has('dev'))return false;sessionOnly=true;record=emptyExploration();feedback='';feedbackTime=0;clear();paintJournal();return true;},
+  snapshot(){return {record:structuredClone(record),warning,sessionOnly,candidate:candidate?.id??null,bell:mechanism?.snapshot()??null,reliquary:reliquary?.snapshot()??null,propTriangles:(mechanism?.triangles??0)+(reliquary?.triangles??0)};},
+  resetSession(){if(signal.aborted||!new URLSearchParams(location.search).has('dev'))return false;sessionOnly=true;record=emptyExploration();pendingReveal=false;reliquary?.restore(record.phase);feedback='';feedbackTime=0;clear();paintJournal();return true;},
  };
 }

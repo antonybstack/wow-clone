@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 906,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 160.955093,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 161
+  },
+  "verified": true,
+  "file": "reliquary-expedition.mp4",
+  "sha256": "ce2e9e8ab340938d33132c3b8e17f7a3c9939d569c40790eaca3a052f0cf3324",
+  "sentAt": "2026-10-10T04:17:43.510854+00:00"
+}

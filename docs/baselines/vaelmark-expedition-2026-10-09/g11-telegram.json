@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 905,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 7.896629,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 8
+  },
+  "verified": true,
+  "file": "bell-mechanism.mp4",
+  "sha256": "d3ca1bb458eddd043dca7da502827d56f9e10f53af829edb5c568b352c304565",
+  "sentAt": "2026-10-10T03:49:49.141424+00:00"
+}
