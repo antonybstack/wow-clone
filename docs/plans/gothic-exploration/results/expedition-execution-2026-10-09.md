@@ -3,7 +3,7 @@
 Started **2026-10-10 02:55 UTC / October 9 19:55 PDT**, from committed plan
 8a49da1. The active goal is implementation of the
 [24-hour plan](../next-24-hours-2026-10-09.md). Production remains held by its
-independent startup/resource gates. No completed expedition is claimed yet.
+independent startup/resource gates. Local episode closure now passes; the complete fresh episode and published game preview remain G17/G18.
 
 ## Milestone state
 
@@ -14,7 +14,7 @@ independent startup/resource gates. No completed expedition is claimed yet.
 | G11 west bell | Native implementation and reviewed motion pass | Six native cases, two camera-only cases, twelve focused checks; 184 triangles/zero collision, optional native audio. |
 | G12 reliquary/remembrance | Native implementation and reviewed connected motion pass | Four final native cases, twelve focused checks, unchanged packets/XP/watchman; Telegram906/verified VE. |
 | G13 readability | Native implementation and reviewed motion pass | 27 CPU checks, matched walking views/ordinary crypt circuit; corrected housing self-shadow, offset box, unchanged near bytes/two shadow maps; Telegram 907/VE. |
-| G14 Hollowmere closure | Pending | Altar acknowledgment and complete ordinary cathedral return. |
+| G14 Hollowmere closure | Native return/reload and reviewed motion pass | Three early clues, two accepted ordinary return/reload cases, 21 focused checks; one candle/30 triangles, same two maps; VE exact playback/seek passes. Telegram 908/verified VE. |
 | G15–G16 regional extensions | Pending | Ordered extensions; core and finishing reserve take priority. |
 | G17–G18 verification/delivery | Pending | Final native traversal, performance, sealed preview and reviewed motion; conditional production gates. |
 
@@ -83,3 +83,39 @@ no renderer. Final browser audit preserves Chrome NewTab and 15 unrelated Edge
 tabs, zero user game tabs. Chrome 98468/CDP 10037 and Vite 98362/98437/5873 remain
 root-owned idle for G14. Prepared provenance verified; zero new render/collision
 triangles. G14 altar closure is next; no final FPS/preview/production claim.
+
+G14 authoring prep owns PID 59571. The chapel altar uses the existing building
+transform/plinth datum; destination headings have a different local forward axis.
+Eight state/store CPU checks pass. Source-only Grok review uses existing reviewer
+session 01a1240f-6f05-70a1-ae36-3066824807b2, eight turns, no renderer. Root will
+survey early phases before capturing the connected cathedral-to-chapel return.
+G13 accepted source 750fc9e is pushed and Telegram 907 ledger is recorded there.
+
+G14 early-phase native survey passes three cases with God/Fly off, Havok active,
+zero recoveries and no recorded runtime/GPU errors. Source review found no
+consequential defect in progression, canonical metadata or Journal → Map.
+The ordinary live view exposed an unlit altar: one wall candle now reuses the
+existing stone/glow batches and shared two-slot local-light pool. Decorative
+geometry has no new collider, and emission sits below its opaque housing.
+Rebuild PID83637 is owned by root; no timing claim during authoring. Near-packet
+size/provenance and the complete return capture remain to be verified.
+
+G14 retains two failed traversal fixtures: first a straight route met the real
+well ring at z137.25; then the corrected return reached the altar/completion/map
+but a pursuing Lane Shade killed the mortal player at the chapel exit. Both
+contexts closed with zero recovery teleports. The helper now skirts the well
+and clears nearby town hostiles through ordinary Tab/Fire Blast controls. It
+checks unchanged XP/objective across the altar activation rather than treating
+legitimate spell kills as exploration rewards. No enemy HP, collision, visibility
+or God mode is altered to clear the path. Accepted motion remains pending.
+
+G14 accepted native motion is 60.542561 s / 753 frames / 1280×720 square pixels,
+with ordinary town combat, God/Fly off, native Havok and zero recoveries/errors.
+Exact public VE hash/MIME/range/decode/seek pass. Root Edge review tab1147996256
+closed; all native/public-video contexts closed. No media server was needed: Vite
+@fs supplies byte ranges. Grok source review ended, no renderer. Root Chrome98468
+/CDP10037 and Vite98362/98437/5873 remain owned idle; user Edge15/Chrome1 tabs
+preserved with zero game pages. G15 dispatch/lookout is next.
+
+Telegram908 validates 1280×720 and a 61 s API integer duration for the 60.542561 s
+file. Ledger must be associated with the finished G14 commit after commit.

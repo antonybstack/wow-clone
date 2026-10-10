@@ -55,7 +55,7 @@ function masonryTri(stone,a,b,c,color){
  *     it (this is the tavern-sign geometry, generalised so any building can carry one).
  *   - steeple: adds a small belfry stub with a tapered cap above the ridge; returns `steepleTop`
  *     (world Y of its apex) so a cross or finial can be seated on it precisely.
- * Returns {gy, front:[x,y,z], steepleTop?} — the floor height and a world point just outside the
+ * Returns {gy, front:[x,y,z], steepleTop?, altar?} — the terrain datum and a world point just outside the
  * door, for placing forges, signs and other kind-specific dressing next to the entrance.
  */
 export function building(ctx,spec){
@@ -83,6 +83,7 @@ export function building(ctx,spec){
  putBox(toWorld(0,plinthY+wallH/2,-d/2),[w,wallH,wallT],sideColor,yaw);
  putBox(toWorld(0,plinthY+wallH/2, d/2),[w,wallH,wallT],sideColor,yaw);
  putBox(toWorld(-w/2+wallT/2,plinthY+wallH/2,0),[wallT,wallH,d],backColor,yaw);
+ let altar;
  if(enterable){
   const opening=2.4,doorHeight=2.6;
   for(const side of [-1,1])putBox(toWorld(w/2-wallT/2,plinthY+wallH/2,side*(d+opening)/4),[wallT,wallH,(d-opening)/2],gableColor,yaw);
@@ -186,16 +187,27 @@ export function building(ctx,spec){
   for(const side of [-1,1]){putBox(toWorld(-.6,.52,side*2.35),[2.4,.6,.5],[.35,.33,.31,0],yaw);collision(-.6,.52,side*2.35,2.4,.6,.5);}
   if(kind==='chapel'){
    // A wall-side altar leaves the existing west doorway and central return clear.
-   // The same volumes feed Havok; no new lamp or material is needed.
+   // The same volumes feed Havok; the wall candle reuses stone and glow batches.
    // Design: docs/plans/gothic-exploration/g03-region-2026-10-09.md
    const piece=(lx,ly,lz,size,color)=>{putBox(toWorld(lx,ly,lz),size,color,yaw);collision(lx,ly,lz,...size);};
    piece(-w/2+.60,.66,0,[.72,.88,1.85],[.52,.50,.44,0]);
    piece(-w/2+.60,1.13,0,[.90,.18,2.10],[.82,.76,.62,0]);
    piece(-w/2+.20,2.18,0,[.12,1.15,.13],[.82,.76,.62,0]);
    piece(-w/2+.20,2.32,0,[.12,.13,.70],[.82,.76,.62,0]);
+   // The building's local +X doorway and the registry's +Z heading use different bases.
+   // Interaction shares the actual building transform.
+   // Its target is air in front of the solid cap; activation still checks Havok.
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/42-physics.md
+   const flame=toWorld(-w/2+.62,2.40,-1.10);
+   stone.tube(toWorld(-w/2+.20,2.40,-1.10),flame,.055,.055,[.35,.33,.29,0],5);
+   lanternGlow(glow,flame,{r:.07,h:.25,tint:[1,.64,.28],dim:.42,sides:5});
+   // Emission below the opaque housing prevents the fixture shadowing its own light.
+   // Shared candidate selection keeps the existing two-map budget:
+   // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/03-lights.md
+   altar={standingSurfaceY:gy+plinthY,stand:toWorld(-w/2+1.65,plinthY,0),interact:toWorld(-w/2+1.2,1.38,0),lamp:{id:'hollowmere-altar',position:toWorld(-w/2+.62,2.17,-1.10),strength:4}};
   }
  }else colliders.push({type:'box',position:{x,y:gy+wallTopY/2,z},size:{x:w+.3,y:wallTopY,z:d+.3},rotation:{y:yaw}});
- return {gy,front:toWorld(w/2+.5,0,0),steepleTop:typeof steepleTop!=='undefined'?steepleTop:undefined};
+ return {gy,front:toWorld(w/2+.5,0,0),steepleTop:typeof steepleTop!=='undefined'?steepleTop:undefined,altar};
 }
 
 /** A window: a warm bright pane, a larger and dimmer pane set back into the wall to fake a soft

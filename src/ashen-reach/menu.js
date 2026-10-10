@@ -88,6 +88,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
         <div data-journal><p role="status">Preparing the journal…</p></div>
         <div class="game-menu-buttons">
           <button type="button" data-action="journal-guide">Open Vaelmark guide</button>
+          <button type="button" data-action="journal-region-map">Open region map</button>
           <button type="button" data-action="hub">Back</button>
         </div>
       </div>
@@ -170,7 +171,7 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     open();showHub();hub.hidden=true;journalPane.hidden=false;
     root.setAttribute('aria-labelledby','journal-title');
     getJournal?.()?.open(journalPane.querySelector('[data-journal]'));
-    journalPane.querySelector('[data-action="journal-guide"]').disabled=!getRegionMap?.();
+    for(const button of journalPane.querySelectorAll('[data-action="journal-guide"],[data-action="journal-region-map"]'))button.disabled=!getRegionMap?.();
     focusFirst();
   }
 
@@ -362,8 +363,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       root.setAttribute('aria-labelledby','region-map-title');
       getRegionMap?.()?.openGuide(mapPane.querySelector('[data-region-map]'));focusFirst();
     }
-    else if (action === 'region-map') {
-      hub.hidden = keysPane.hidden = devPane.hidden = true;
+    else if (action === 'region-map'||action === 'journal-region-map') {
+      hub.hidden = keysPane.hidden = devPane.hidden = journalPane.hidden = true;
       mapPane.hidden = false;
       panel.classList.add('region-map-open');
       root.setAttribute('aria-labelledby', 'region-map-title');

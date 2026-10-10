@@ -1,0 +1,30 @@
+{
+  "before": {
+    "near": {
+      "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "encodedBytes": 149963,
+      "rawBytes": 641752
+    },
+    "skyline": 593034,
+    "regionIndex": 98510,
+    "localLightCandidates": 16,
+    "fixedTriangles": 478869
+  },
+  "after": {
+    "near": {
+      "sha256": "ccb9dc565ff6a8ad4796f63d88dba6998214e61c9894b538523a95481291969a",
+      "encodedBytes": 149963,
+      "rawBytes": 641752
+    },
+    "skyline": 592542,
+    "regionIndex": 99056,
+    "localLightCandidates": 17,
+    "fixedTriangles": 478899
+  },
+  "fullRegionEncodedBytes": 22408192,
+  "addedRenderTriangles": 30,
+  "addedCollisionTriangles": 0,
+  "newTextures": 0,
+  "localShadowMapSlots": 2,
+  "provenanceVerified": true
+}

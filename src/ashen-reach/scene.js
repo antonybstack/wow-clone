@@ -304,6 +304,8 @@ export async function buildChurchyard(engine,scene,{dataOnly=false}={}){
  const chapelWallH=3.2,chapelRoofH=2.4;
  const chapel=building(ctx,{x:pads[5].x,z:pads[5].z,w:6.6,d:7.6,yaw:EAST,wallH:chapelWallH,roofH:chapelRoofH,kind:'chapel',steeple:true,enterable:true,
   windows:[{wall:1,w:.8,h:1.05},{wall:-1,w:.8,h:1.05}]});
+ localLights.push(chapel.altar.lamp);
+ lights.push({position:chapel.altar.lamp.position,strength:1.4,falloff:.45,radius:8,shadowed:true});
  crossFinial(ctx,[pads[5].x,(chapel.steepleTop??(chapel.gy+.22+chapelWallH+chapelRoofH))+.05,pads[5].z]);
 
  building(ctx,{x:pads[6].x,z:pads[6].z,w:6.8,d:5.0,yaw:WEST,wallH:2.3,roofH:1.15,kind:'house',chimney:true,leanTo:1,ruin:true,
@@ -556,7 +558,7 @@ export async function buildChurchyard(engine,scene,{dataOnly=false}={}){
   append(farMountains,horizonMaterials[2],true,true);
   for(const batch of [regionStructures.collisionBatch,regionWorld.collisionBatch,cathedral.collisionBatch])append(batch,mats[0],false,true);
   const plain=value=>JSON.parse(JSON.stringify(value,(key,v)=>key==='collisionBatch'||typeof v==='function'?undefined:v));
-  return {schema:1,surfaces:mats,batches,boxes:colliders,woodland:tiles,metadata:plain({cathedral,regionWorld,regionStructures,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,lights,localLights,shafts,sourceStats:{horizonTriangles:horizonStats.triangles,farTriangles:farTris,scatterTrees,scatterRocks,shafts:shafts.length},extraFootprints,spawn:{x:0,z:0},fixedTriangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris})};
+  return {schema:1,surfaces:mats,batches,boxes:colliders,woodland:tiles,metadata:plain({cathedral,hollowmere:chapel,regionWorld,regionStructures,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,lights,localLights,shafts,sourceStats:{horizonTriangles:horizonStats.triangles,farTriangles:farTris,scatterTrees,scatterRocks,shafts:shafts.length},extraFootprints,spawn:{x:0,z:0},fixedTriangles:B.reduce((a,b)=>a+b.idx.length/3,0)+farTris})};
  }
  const meshes=B.map((b,i)=>b.commit(engine,scene,mats[i],lights)).filter(Boolean);
  meshes.push(...woodland.commit(engine,scene,mats[3],lights));
@@ -578,7 +580,7 @@ export async function buildChurchyard(engine,scene,{dataOnly=false}={}){
  const fixedTriangles=stats.triangles;
  Object.defineProperty(stats,'triangles',{enumerable:true,get:()=>fixedTriangles+woodland.state.triangles});
  stats.drawBatches+=woodland.tiles.size;
- const api={cathedral,woodland,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,regionStructures,regionWorld,localLights,meshes,colliders,groundHeight:surfaceHeight,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
+ const api={cathedral,hollowmere:chapel,woodland,landmarks:REGION_LANDMARKS,routes:REGION_ROUTES,regionStructures,regionWorld,localLights,meshes,colliders,groundHeight:surfaceHeight,spawn:{x:0,z:0},buildingPads,lights,foliage:null,stats,whenFoliage:null,update(t,playerPos){
   woodland.update();
   foliage?.update(t,playerPos);clouds.update(t);shaftPass?.update(t);motePass?.update(t);
   // surface() materials declare a time uniform. Nothing else writes it, so the

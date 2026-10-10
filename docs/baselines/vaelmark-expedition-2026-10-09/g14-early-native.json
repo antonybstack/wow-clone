@@ -1,0 +1,140 @@
+{
+  "cases": [
+    {
+      "case": "early unstarted altar offers clue with no credit or journal start",
+      "labelledPhaseSetup": false,
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "unstarted",
+        "discovered": []
+      },
+      "altar": {
+        "standingSurfaceY": 7.327808102899336,
+        "stand": [
+          9.05,
+          7.327808102899336,
+          114
+        ],
+        "interact": [
+          9.5,
+          8.487808102899336,
+          114
+        ],
+        "lamp": {
+          "id": "hollowmere-altar",
+          "position": [
+            10.08,
+            9.277808102899336,
+            115.1
+          ],
+          "strength": 4
+        }
+      },
+      "player": {
+        "x": 8.89430000025034,
+        "y": 8.209808380126953,
+        "z": 114,
+        "facing": 1.5707963267948966,
+        "feet": 7.335808380126953,
+        "god": false,
+        "flying": false,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "case": "early inscription-read altar offers clue with no credit or journal start",
+      "labelledPhaseSetup": true,
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "inscription-read",
+        "discovered": [
+          "vaelmark-inscription"
+        ]
+      },
+      "altar": {
+        "standingSurfaceY": 7.327808102899336,
+        "stand": [
+          9.05,
+          7.327808102899336,
+          114
+        ],
+        "interact": [
+          9.5,
+          8.487808102899336,
+          114
+        ],
+        "lamp": {
+          "id": "hollowmere-altar",
+          "position": [
+            10.08,
+            9.277808102899336,
+            115.1
+          ],
+          "strength": 4
+        }
+      },
+      "player": {
+        "x": 8.901999999999994,
+        "y": 8.209808380126953,
+        "z": 114,
+        "facing": 1.5707963267948966,
+        "feet": 7.335808380126953,
+        "god": false,
+        "flying": false,
+        "physics": true,
+        "recoveries": 0
+      }
+    },
+    {
+      "case": "early bell-rung altar offers clue with no credit or journal start",
+      "labelledPhaseSetup": true,
+      "record": {
+        "version": 1,
+        "episode": "vaelmark-bell-v1",
+        "phase": "bell-rung",
+        "discovered": [
+          "vaelmark-bell",
+          "vaelmark-inscription"
+        ]
+      },
+      "altar": {
+        "standingSurfaceY": 7.327808102899336,
+        "stand": [
+          9.05,
+          7.327808102899336,
+          114
+        ],
+        "interact": [
+          9.5,
+          8.487808102899336,
+          114
+        ],
+        "lamp": {
+          "id": "hollowmere-altar",
+          "position": [
+            10.08,
+            9.277808102899336,
+            115.1
+          ],
+          "strength": 4
+        }
+      },
+      "player": {
+        "x": 8.89920000016689,
+        "y": 8.209808380126953,
+        "z": 114,
+        "facing": 1.5707963267948966,
+        "feet": 7.335808380126953,
+        "god": false,
+        "flying": false,
+        "physics": true,
+        "recoveries": 0
+      }
+    }
+  ],
+  "errors": [],
+  "sourceReportOutcome": "later connected route failed at well; the three early cases passed"
+}

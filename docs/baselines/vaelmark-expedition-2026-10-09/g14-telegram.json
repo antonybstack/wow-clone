@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 908,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 60.542561,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 61
+  },
+  "verified": true,
+  "file": "hollowmere-return.mp4",
+  "sha256": "6c1ad9cf718943e80c163937be77e44d9e7e135b98faf5306c62af466aa3ddad",
+  "sentAt": "2026-10-10T05:24:14.502028+00:00"
+}

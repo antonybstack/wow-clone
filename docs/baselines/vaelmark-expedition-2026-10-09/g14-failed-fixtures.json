@@ -1,0 +1,70 @@
+[
+  {
+    "directory": "g14-final",
+    "failure": "Error: Blocked {\"x\":-0.018007873090617733,\"y\":8.934734375,\"z\":137.2515690431886,\"facing\":3.1415999995440216,\"feet\":8.060734375,\"god\":false,\"flying\":false,\"physics\":true,\"recoveries\":0} toward [0,6.648289564008291,114]\n    at go (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:26:61)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:61:147",
+    "passedCasesBeforeFailure": 3,
+    "cleanup": {
+      "owner": "root",
+      "browserPid": 98468,
+      "gpuHelperPids": [
+        98477
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5873/",
+      "purpose": "G14 ordinary cathedral-to-Hollowmere return, altar prerequisites/repeats/reload and journal map; no FPS claim",
+      "renderingClients": 0,
+      "active": false
+    }
+  },
+  {
+    "directory": "g14-accepted",
+    "failure": "Error: Blocked {\"x\":4.039324475118455,\"y\":8.200598689286599,\"z\":114.43969971973404,\"facing\":-1.8388050005167682,\"feet\":7.326598689286599,\"god\":false,\"flying\":false,\"physics\":true,\"recoveries\":0} toward [2.3,7.058891682490452,114]\n    at go (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:26:61)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:67:67",
+    "passedCasesBeforeFailure": 0,
+    "cleanup": {
+      "owner": "root",
+      "browserPid": 98468,
+      "gpuHelperPids": [
+        98477
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5873/",
+      "purpose": "G14 ordinary cathedral-to-Hollowmere return, altar prerequisites/repeats/reload and journal map; no FPS claim",
+      "renderingClients": 0,
+      "active": false
+    }
+  },
+  {
+    "directory": "g14-combat-return",
+    "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at clearNearbyHostiles (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:52:10)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:76:59",
+    "passedCasesBeforeFailure": 0,
+    "cleanup": {
+      "owner": "root",
+      "browserPid": 98468,
+      "gpuHelperPids": [
+        98477
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5873/",
+      "purpose": "G14 ordinary cathedral-to-Hollowmere return, altar prerequisites/repeats/reload and journal map; no FPS claim",
+      "renderingClients": 0,
+      "active": false
+    }
+  },
+  {
+    "directory": "g14-doorway-return",
+    "failure": "AssertionError [ERR_ASSERTION]: Ordinary hostile clearing did not finish\n    at clearNearbyHostiles (file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:48:3)\n    at async file:///Users/antbly/dev/wow-clone/scripts/ashen-reach/check-hollowmere-return.mjs:83:37",
+    "passedCasesBeforeFailure": 0,
+    "cleanup": {
+      "owner": "root",
+      "browserPid": 98468,
+      "gpuHelperPids": [
+        98477
+      ],
+      "cdpPort": 10037,
+      "url": "http://127.0.0.1:5873/",
+      "purpose": "G14 ordinary cathedral-to-Hollowmere return, altar prerequisites/repeats/reload and journal map; no FPS claim",
+      "renderingClients": 0,
+      "active": false
+    }
+  }
+]

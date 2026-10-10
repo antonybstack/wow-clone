@@ -224,3 +224,57 @@ Raw auditions and intermediate recordings remain under ignored
 `.cache/vaelmark-expedition-2026-10-09/g13-*`; reproduce with
 `ASHEN_CDP_PORT=10037 ASHEN_CAPTURE_DIR=<directory> ASHEN_READABILITY_CAPTURE=1
 node scripts/ashen-reach/check-vaelmark-readability.mjs`.
+
+
+## G14 Hollowmere acknowledgment
+
+The existing altar now offers an early clue without forcing or skipping the
+episode. With the remembrance claimed, X/nearby Read records `returned`, opens
+the completion journal and offers the ordinary Region map. Repeat readings do
+not duplicate credit. Chapel interaction coordinates derive from its authored
+building transform and plinth, shared by direct/prepared world metadata; the
+registry heading uses a different local axis. One original wall candle adds
+**30 render triangles / zero collision triangles**, existing stone/glow batches,
+one local-light candidate and no textures. The shadow budget remains two maps;
+emission below the opaque housing avoids the reproduced G13 self-shadow trap.
+
+Eight state/store and thirteen region geometry/layout checks pass. Three early
+native phase cases pass ([early receipt](g14-early-native.json)); their enclosing
+run later failed at the well and is retained honestly. The final two-case
+[return/reload receipt](g14-native.json.gz) passes on Chromium WebGPU,
+1280×720/DPR1: initial Developer nave placement and labelled `relic-claimed`
+save, then ordinary nave → terrace → bridge → well detour → chapel, acknowledgment,
+Journal → Region map/Bell Watch selection, repeat, exit and actual reload without
+fixture reseeding. God/Fly off, Havok active, zero recoveries or recorded
+runtime/GPU errors. The saved journal contains exactly four episode entries.
+Nearby town shades are cleared with actual Tab, sword and mana-aware Fire Blast;
+XP legitimately advances to level two. The altar activation itself leaves XP
+and the watchman objective unchanged; the whole journey is not an unchanged-XP
+claim. The current helper additionally guards its no-hostile T toggle and awaits
+attack enable/disable, tightening a capture-helper input race after the accepted
+recording; the integrated G17 run must exercise those guards.
+
+[Failed fixtures](g14-failed-fixtures.json) retain the blocked well centreline,
+pursuing-shade death, exhausted-mana attempt and out-of-range sword attempt.
+No enemy HP, collider, visibility or God-mode mutation was used to clear them.
+The two-map candle illuminates the approach in the native view; no whole-scene
+brightening. The [packet receipt](g14-packets.json) keeps the near packet's exact
+149,963 encoded bytes/SHA; full region rises 7,195 bytes to 22,408,192. Prepared
+provenance passes. Final performance and complete fresh-journal episode remain
+G17 checks, with published game preview in G18.
+
+Root reviewed advancing native MP4 playback, altar/completion and exit, plus the
+actual map capture. [Direct VE MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/hollowmere-return.mp4):
+60.542561 s encoded against 60.542938 s source timestamps, 753 frames,
+1280×720/SAR1:1/rotation0/H.264, 29,018,250 bytes.
+[Manifest](g14-capture.json.gz), [public receipt](g14-public-video.json) prove exact
+SHA-256, `video/mp4`, status200/range206, decoded advance and seek. Telegram
+**908** returns matching dimensions and 61 s integer duration for the 60.542561 s file
+([delivery receipt](g14-telegram.json)). Telegram application inline/fullscreen
+proportions remain unverified. [Grok source review](g14-review.md)
+finds no consequential scoped progression/metadata/menu defect; it cannot replace
+root native acceptance or the later helper guard check. Raw accepted/failure
+frames and original timestamps remain under `.cache/vaelmark-expedition-2026-10-09/g14-*`;
+reproduce with `ASHEN_CDP_PORT=10037 ASHEN_RETURN_MODE=capture
+ASHEN_CAPTURE_DIR=<owned-directory> node scripts/ashen-reach/check-hollowmere-return.mjs`
+on an isolated owned Vite5873/Chrome slot. `survey` covers early phase clues.

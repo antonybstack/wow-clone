@@ -37,7 +37,7 @@ export function interactionReachable(player,anchor){
 export function createExploration({engine,scene,player,world,input,canvas,audio,isNavigationReady,onOpenJournal}){
  const signal=sceneLifetime(scene),loaded=loadExploration();
  let record=loaded.record,warning=loaded.warning,sessionOnly=false,visible=true,scan=0,candidate=null,paintKey='',journalContent=null;
- let mechanism=null,reliquary=null,pendingReveal=false,bellCooldown=0,lastDead=false,feedback='',feedbackTime=0;
+ let mechanism=null,reliquary=null,pendingReveal=false,bellCooldown=0,lastDead=false,feedback='',feedbackFor='',feedbackTime=0;
  const prompt=document.createElement('div');prompt.id='exploration-prompt';prompt.hidden=true;prompt.setAttribute('data-world-interaction','');
  const label=document.createElement('span'),button=document.createElement('button'),response=document.createElement('small');button.type='button';button.textContent='Read · X';response.hidden=true;
  response.setAttribute('role','status');prompt.append(label,button,response);document.body.append(prompt);
@@ -58,10 +58,12 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
    if(record.phase==='bell-rung')return {id:'vaelmark-relic',action:'claim-relic',anchor,label:'Vaelmark remembrance',verb:reliquary?.snapshot().open?'Claim':'Opening…'};
    return {id:'vaelmark-inscription',action:'read-inscription',anchor,label:'Undercroft memorial',verb:'Read'};
   }
-  const bell=westBell();return interactionReachable(player,bell)?{id:'vaelmark-bell',action:'ring-bell',anchor:bell,label:'West bell rope',verb:'Ring'}:null;
+  const bell=westBell();if(interactionReachable(player,bell))return {id:'vaelmark-bell',action:'ring-bell',anchor:bell,label:'West bell rope',verb:'Ring'};
+  const altar=world.hollowmere?.altar;
+  return interactionReachable(player,altar)?{id:'hollowmere-return',action:'return-hollowmere',anchor:altar,label:'Hollowmere altar',verb:record.phase==='relic-claimed'?'Record remembrance':'Read'}:null;
  }
  function paint(){
-  const text=candidate?.id==='vaelmark-bell'&&feedbackTime>0?feedback:'';
+  const text=candidate?.id===feedbackFor&&feedbackTime>0?feedback:'';
   const key=`${candidate?.id??''}/${candidate?.verb??''}/${text}/${bellCooldown>0}`;if(key===paintKey)return;paintKey=key;prompt.hidden=!candidate;
   if(candidate){label.textContent=candidate.label;button.textContent=`${candidate.verb} · X`;button.disabled=candidate.id==='vaelmark-bell'&&bellCooldown>0||candidate.id==='vaelmark-relic'&&!reliquary?.snapshot().open;response.textContent=text;response.hidden=!text;}
  }
@@ -78,6 +80,12 @@ export function createExploration({engine,scene,player,world,input,canvas,audio,
     ['inscription-read','bell-rung'].includes(record.phase)?'The memorial has answered. Return by this stair, then descend from the west chapel.':
     'The bell carries remembrance over the valley. Return by the stair you climbed.';
    feedbackTime=5;
+   feedbackFor=candidate.id;
+  }
+  if(candidate.id==='hollowmere-return'&&!['relic-claimed','returned'].includes(record.phase)){
+   // An early chapel visit offers a clue without starting or skipping the episode.
+   feedback=record.phase==='unstarted'?'The keeper’s name is missing. Seek Vaelmark’s memorial beneath the west chapel.':explorationGoal(record.phase);
+   feedbackFor=candidate.id;feedbackTime=7;paint();return true;
   }
   const next=transitionExploration(record,candidate.action);record=next.record;
   // Only the live transition waits for the player's return to reveal. Reloads
