@@ -1,0 +1,14 @@
+{
+  "files": [
+    "src/ashen-reach/exploration-props.js",
+    "src/ashen-reach/exploration.js",
+    "src/ashen-reach/exploration-state.js",
+    "src/ashen-reach/exploration-content.js",
+    "src/ashen-reach/exploration-store.js"
+  ],
+  "rawModuleSourceBytes": 24820,
+  "gzipModuleSourceBytes": 8462,
+  "measurement": "new exploration module-source budget proxy, not emitted bundle delta",
+  "bellWavBytes": 158804,
+  "bellWavFile": "public/ashen-reach/exploration/vaelmark-bell.wav"
+}

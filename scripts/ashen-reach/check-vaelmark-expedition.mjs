@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import {CDP_URL} from '../lib/cdp.mjs';
 import {browserOwnership} from '../lib/browser-ownership.mjs';
 import {appendFrame,captureSurface,writeCaptureManifest} from '../lib/capture-manifest.mjs';
+const recording=process.env.ASHEN_RECORD!=='0';
 const dir=process.env.ASHEN_CAPTURE_DIR||'.cache/vaelmark-expedition-2026-10-09/g10-native';
 const url=process.env.ASHEN_TEST_URL||'http://127.0.0.1:5873/?dev&play&at=cathedral-undercroft';
 await fs.mkdir(`${dir}/frames`,{recursive:true});
@@ -35,9 +36,9 @@ async function entry(){await page.goto(url);await page.waitForFunction(()=>globa
 try{
  await entry();const start=await position();
  assert.equal(await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record.phase),'unstarted');
- manifest={version:1,...await captureSurface(page),frames};cdp=await context.newCDPSession(page);
+ manifest={version:1,...await captureSurface(page),frames};if(recording){cdp=await context.newCDPSession(page);
  cdp.on('Page.screencastFrame',e=>{cdp.send('Page.screencastFrameAck',{sessionId:e.sessionId}).catch(()=>{});if(captureError)return;try{const name=`frame-${String(frames.length).padStart(5,'0')}.jpg`,bytes=Buffer.from(e.data,'base64');if(appendFrame(manifest,{name,timestamp:e.metadata.timestamp,bytes}))writes.push(fs.writeFile(`${dir}/frames/${name}`,bytes).catch(error=>{captureError??=error;}));}catch(error){captureError??=error;}});
- await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});
+ await cdp.send('Page.startScreencast',{format:'jpeg',quality:90,maxWidth:1280,maxHeight:720,everyNthFrame:4});}
  const crypt=await page.evaluate(()=>ASHEN.world.cathedral.exploration.undercroft);
  assert(crypt.memorial);await walkTo([-10,crypt.floorY,334]);await walkTo(crypt.memorial.stand);
  await page.waitForFunction(()=>!document.querySelector('#exploration-prompt').hidden);
@@ -57,8 +58,7 @@ try{
  await page.keyboard.press('Tab');assert(await page.evaluate(()=>document.querySelector('.game-menu-journal').contains(document.activeElement)));
  await page.keyboard.press('Escape');const end=await position();assert.equal(end.recoveries,start.recoveries);
  report.cases.push({case:'native side-aisle walk, X read, guide, button reread, journal focus and return',start,end,snapshot:await page.evaluate(()=>ASHEN.combat.exploration.snapshot())});
- await cdp.send('Page.stopScreencast');cdp=null;await Promise.all(writes);if(captureError)throw captureError;
- await writeCaptureManifest(dir,manifest,await captureSurface(page));
+ if(cdp){await cdp.send('Page.stopScreencast');cdp=null;await Promise.all(writes);if(captureError)throw captureError;await writeCaptureManifest(dir,manifest,await captureSurface(page));}
  await entry();assert.equal(await page.evaluate(()=>ASHEN.combat.exploration.snapshot().record.phase),'inscription-read');
  report.cases.push({case:'reload restores journal without replay or duplicate credit',passed:true});
  await walkTo([-10,crypt.floorY,334]);await walkTo(crypt.memorial.stand);await page.waitForTimeout(300);

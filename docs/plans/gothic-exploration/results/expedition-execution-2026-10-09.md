@@ -185,3 +185,20 @@ MIME/range/native play/seek accepted, Telegram910. Review1147996264 closed.
 Root now owns Chrome56212/GPU56218/CDP10037 and Vite56163+56187/5873; one
 G17 fresh whole-episode native context, no other owned game pages. G17 extends
 the existing G12 helper; its pending change is excluded from the G16 commit.
+
+
+G16 pushed4f1771e, Telegram910 ledger recorded at that commit. G17's first fresh
+full episode/Hollowmere passed, then failed its unnecessary town clear: a respawned
+wraith was outside Tab's existing camera cone. No source change/bug claim; root
+removed that unnecessary stop and preserved the failure. Corrected compiled
+full return plus ordinary Bell Watch/repeat/return now passes, both real reloads
+and torso swap preserve five IDs/returned. The20-minute ordinary crypt soak
+and ten journal/map revisits are active; counts/listeners stable so far.
+71 CPU checks, seven native journal cases,20 diagnostic watchman checks, native
+map controls and five core default/failure/retry/disposal cases pass. Grok4.6/high
+source review ended10 turns/no consequential defect, zero renderers. No worker
+runs during future FPS. Staged four-flag build finished; compressed server99703/
+7074 owns finaldist, Vite56163+56187/5873 remains for media review. Root's only
+rendering game page is compiled G17 soak on Chrome56212/GPU56218/CDP10037.
+
+G17 complete: full capture-free five-case route/reload/appearance pass;1201s soak/110circuits/ten revisits stable, disposal zero. Final21 isolated raw FPS windows178.9–240.5/p99≤6.6ms/worst13.1ms, no material regression. Retained first summary-only flag omission and capture-influenced diagnostic window. New single fresh-process first-play8841.1ms/streaming2454.5ms failure reinforces production hold; no retry/cause attributed. G18 public desktop preview is next; root Chrome56212/CDP10037 idle, no game contexts.

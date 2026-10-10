@@ -351,3 +351,48 @@ texture atlas or maps. [Root motion review](g16-motion-review.md),
 [Direct MP4](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/regional-discoveries.mp4).
 API dimensions are verified; Telegram app playback is unclaimed. Final integrated
 performance and sealed game preview remain G17/G18.
+
+
+G17's single declared fresh-process moving-meadow streaming diagnostic failed
+first play at**8841.1ms** (50Mbps/10Mbps/40ms, HTTP cache disabled, uncapped native
+Chrome, God/Fly off, no recovery/runtime/GPU error). Engine-created2940ms;
+first render returned3046.7ms, first GPU completed8829.2ms. Navigation-window
+p99**204.9ms**, worst**2454.5ms**; later detail p99**22.4ms**, worst**261.9ms**.
+[Raw failed diagnostic](g17-streaming-tail.json.gz). This is a retained single
+startup/streaming failure, not a new acceptance cohort or an attributed episode
+regression. No retry or speculative correction; production remains held. The
+independent functional preview branch remains authorized by the plan.
+
+## G17 integrated acceptance completed
+
+The compiled fresh episode, Hollowmere completion, ordinary Bell Watch visit and
+return pass, God/Fly off, Havok active, zero recoveries/runtime/GPU errors. Both
+actual reloads and an ordinary torso change retain completion/five discoveries.
+The 1,201-second local crypt soak completes110 circuits and ten journal/map
+revisits; resource/listener counts remain equal, and scene/UI disposal reaches
+zero. This is a local circuit, not a continuous tour of every landmark or GPU
+memory proof.71 CPU checks and the native failure/watchman/map/core cases pass.
+
+Isolated M1 Max, uncapped Chromium WebGPU,1280×720/DPR1, seven enemies,
+three12-second windows per seven routes:178.9–240.5 FPS;53,831 retained raw
+intervals, maximum route p99 6.6ms, worst13.1ms, none over16.67ms. Standard
+routes reuse moving compiled fixtures; interior fixtures match the stationary
+Vite baseline. No capture or GPU timestamp queries. Route median change is
+−0.35% to+1.08%; maximum p99 rise0.2ms. These are RAF throughput measurements.
+[Comparison](g17-performance-comparison.json), [standard raw](g17-standard-fps.json.gz),
+[interior raw](g17-interior-fps.json.gz). The first standard summary campaign
+omitted raw arrays due to an operator flag omission; retained separately, then
+repeated once with ASHEN_FPS_RAW=1.
+
+A separate capture-free ordinary action path retains56,702 intervals, mean
+212.0 FPS/p99 6.2ms/worst23.4ms;24 intervals exceed16.67ms, none exceed33.33ms.
+Menus/traversal differ from settled windows. The soak's action window had still
+readbacks and is diagnostic only. [Action raw](g17-action-clean.json.gz).
+The first unnecessary test-only town fight failed Tab targeting after respawn;
+its report is retained and the stop removed. No product targeting change.
+
+The independent source review found no consequential defect; root completed
+the previously pending native/soak/timing gates. Cold-start qualification remains
+failed:8841.1ms in the single fresh-process diagnostic, with engine creation and
+first-GPU completion dominant. Streaming intervals reached2454.5ms. No supported
+cause/fix or production waiver. G18 delivers a functional desktop preview.

@@ -1,0 +1,89 @@
+{
+  "baseline": "core-adoption five-route receipt + execution-start interior raw receipt; matching fixtures and mode, no causal improvement claim",
+  "rows": [
+    {
+      "route": "meadow",
+      "baselineMedianFps": 203.4694795778612,
+      "finalMedianFps": 203.19412161635364,
+      "fpsDeltaFraction": -0.0013533133425162047,
+      "baselineMaxP99Ms": 6.300000011920929,
+      "finalMaxP99Ms": 6.399999976158142,
+      "p99RiseMs": 0.09999996423721313,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "town",
+      "baselineMedianFps": 192.06732772268978,
+      "finalMedianFps": 194.13269344492812,
+      "fpsDeltaFraction": 0.010753342313484682,
+      "baselineMaxP99Ms": 6.5,
+      "finalMaxP99Ms": 6.400000035762787,
+      "p99RiseMs": -0.09999996423721313,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "bridge",
+      "baselineMedianFps": 238.22220740960884,
+      "finalMedianFps": 237.8016264493343,
+      "fpsDeltaFraction": -0.0017654985437667303,
+      "baselineMaxP99Ms": 5.300000011920929,
+      "finalMaxP99Ms": 5.399999976158142,
+      "p99RiseMs": 0.09999996423721313,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "cathedral",
+      "baselineMedianFps": 224.5533928805031,
+      "finalMedianFps": 223.9496113365594,
+      "fpsDeltaFraction": -0.0026888106040108273,
+      "baselineMaxP99Ms": 5.399999976158142,
+      "finalMaxP99Ms": 5.5,
+      "p99RiseMs": 0.10000002384185791,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "forest",
+      "baselineMedianFps": 214.79932343981523,
+      "finalMedianFps": 217.0236518288648,
+      "fpsDeltaFraction": 0.010355378934295612,
+      "baselineMaxP99Ms": 5.599999964237213,
+      "finalMaxP99Ms": 5.600000023841858,
+      "p99RiseMs": 5.960464477539063e-08,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "cathedral-undercroft",
+      "baselineMedianFps": 179.2720820391709,
+      "finalMedianFps": 178.90324892335286,
+      "fpsDeltaFraction": -0.0020573929393949975,
+      "baselineMaxP99Ms": 6.400000035762787,
+      "finalMaxP99Ms": 6.599999964237213,
+      "p99RiseMs": 0.19999992847442627,
+      "diagnosisRequired": false
+    },
+    {
+      "route": "cathedral-west-bell",
+      "baselineMedianFps": 241.3422528044263,
+      "finalMedianFps": 240.48597165189256,
+      "fpsDeltaFraction": -0.003547995191822584,
+      "baselineMaxP99Ms": 5.100000023841858,
+      "finalMaxP99Ms": 5.100000023841858,
+      "p99RiseMs": 0.0,
+      "diagnosisRequired": false
+    }
+  ],
+  "rawReceipts": [
+    "g17-standard-fps.json.gz",
+    "g17-interior-fps.json.gz"
+  ],
+  "limits": "RAF throughput, not display refresh or GPU completed frame time; standard moving fixtures compiled7074, interiors stationary matching Vite5873 baseline. No recording or GPU timestamp queries.",
+  "summary": {
+    "windows": 21,
+    "samples": 53831,
+    "minFps": 178.85704765078307,
+    "maxFps": 240.52721031735365,
+    "maxP99Ms": 6.599999964237213,
+    "worstMs": 13.099999964237213,
+    "above16_667": 0
+  }
+}

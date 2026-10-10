@@ -1,0 +1,65 @@
+[
+  {
+    "test": "g17-test-touch-stick.mjs.log",
+    "tests": [
+      "# tests 2",
+      "# pass 2",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-touch-input-lifecycle.mjs.log",
+    "tests": [
+      "# tests 16",
+      "# pass 16",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-region-stream.mjs.log",
+    "tests": [
+      "# tests 8",
+      "# pass 8",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-cathedral-guide.mjs.log",
+    "tests": [
+      "# tests 4",
+      "# pass 4",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-prepared-region.mjs.log",
+    "tests": [
+      "# tests 21",
+      "# pass 21",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-region-structures.mjs.log",
+    "tests": [
+      "# tests 12",
+      "# pass 12",
+      "# fail 0"
+    ],
+    "pass": true
+  },
+  {
+    "test": "g17-test-exploration-state.mjs.log",
+    "tests": [
+      "# tests 8",
+      "# pass 8",
+      "# fail 0"
+    ],
+    "pass": true
+  }
+]

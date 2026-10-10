@@ -1,0 +1,268 @@
+{
+  "checks": [
+    "Objective is on ASHEN.combat.snapshot",
+    "Starts idle away from the gate",
+    "Four churchyard shade ids are loaded",
+    "Spawn does not show the watchman prompt",
+    "Dummy is not a churchyard shade",
+    "Dummy damage does not start or advance the objective",
+    "Gate proximity offers the objective",
+    "Prompt fires once at the watchman",
+    "HUD message line carries the watchman prompt",
+    "Player is inside the trigger radius",
+    "Leaving the gate does not drop an active objective",
+    "Two churchyard kills are tracked without completing",
+    "Tracked kills are grave-shade ids",
+    "Non-churchyard hostiles do not count toward completion",
+    "Clearing the four churchyard shades completes the beat",
+    "Completion count increments once",
+    "Completion message and bonus XP share the HUD line",
+    "Standing at the gate after completion does not re-prompt",
+    "Beat re-arms at the gate after the four shades respawn"
+  ],
+  "errors": [],
+  "state": {
+    "objective": {
+      "phase": "active",
+      "inside": true,
+      "promptCount": 2,
+      "completeCount": 1,
+      "lastMessage": "The watchman asks you to clear the churchyard shades.",
+      "killed": [],
+      "remaining": [
+        "grave-shade-1",
+        "grave-shade-2",
+        "grave-shade-3",
+        "grave-shade-4"
+      ],
+      "bonusXp": 100,
+      "watchman": {
+        "x": 0.3503803000354113,
+        "z": 77.4
+      },
+      "triggerRadius": 8
+    },
+    "progress": {
+      "level": 3,
+      "xp": 150,
+      "xpToNext": 300,
+      "mana": 130,
+      "manaMax": 130
+    },
+    "dummy": {
+      "hp": 1880,
+      "hpMax": 2000
+    },
+    "enemies": [
+      {
+        "id": "grave-shade-1",
+        "name": "Grave Shade",
+        "zone": "churchyard",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": 3.580394906355525,
+          "y": 0.45096486559287896,
+          "z": 16
+        },
+        "spawn": {
+          "x": 3.580394906355525,
+          "z": 16
+        },
+        "bounds": {
+          "xMin": -16,
+          "xMax": 16,
+          "zMin": 1,
+          "zMax": 69
+        }
+      },
+      {
+        "id": "grave-shade-2",
+        "name": "Ash Wight",
+        "zone": "churchyard",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": -3.8894697155169853,
+          "y": 0.8413259811026683,
+          "z": 30
+        },
+        "spawn": {
+          "x": -3.8894697155169853,
+          "z": 30
+        },
+        "bounds": {
+          "xMin": -16,
+          "xMax": 16,
+          "zMin": 1,
+          "zMax": 69
+        }
+      },
+      {
+        "id": "grave-shade-3",
+        "name": "Lych Stalker",
+        "zone": "churchyard",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": 2.928819246428747,
+          "y": 0.6433904652287835,
+          "z": 48
+        },
+        "spawn": {
+          "x": 2.928819246428747,
+          "z": 48
+        },
+        "bounds": {
+          "xMin": -16,
+          "xMax": 16,
+          "zMin": 1,
+          "zMax": 69
+        }
+      },
+      {
+        "id": "grave-shade-4",
+        "name": "Barrow Shade",
+        "zone": "churchyard",
+        "state": "chase",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Jog_Fwd_Loop",
+        "position": {
+          "x": -1.6519981975667295,
+          "y": 1.6750416765374927,
+          "z": 62.040863280690104
+        },
+        "spawn": {
+          "x": -1.652739280759643,
+          "z": 62
+        },
+        "bounds": {
+          "xMin": -16,
+          "xMax": 16,
+          "zMin": 1,
+          "zMax": 69
+        }
+      },
+      {
+        "id": "town-wraith-1",
+        "name": "Street Wraith",
+        "zone": "town",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": 1.7720018013288021,
+          "y": 4.043979606556348,
+          "z": 86
+        },
+        "spawn": {
+          "x": 1.7720018013288021,
+          "z": 86
+        },
+        "bounds": {
+          "xMin": -3.4,
+          "xMax": 3.4,
+          "zMin": 76,
+          "zMax": 138
+        }
+      },
+      {
+        "id": "town-wraith-2",
+        "name": "Lane Shade",
+        "zone": "town",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": -1.906665666750373,
+          "y": 5.32347632342876,
+          "z": 108
+        },
+        "spawn": {
+          "x": -1.906665666750373,
+          "z": 108
+        },
+        "bounds": {
+          "xMin": -3.4,
+          "xMax": 3.4,
+          "zMin": 76,
+          "zMax": 138
+        }
+      },
+      {
+        "id": "town-wraith-3",
+        "name": "Well Haunt",
+        "zone": "town",
+        "state": "idle",
+        "hp": 360,
+        "hpMax": 360,
+        "hostile": true,
+        "hidden": false,
+        "hits": 0,
+        "hitsLanded": 0,
+        "attackCooldown": 0,
+        "clip": "Idle_Loop",
+        "position": {
+          "x": 1.0306760737604208,
+          "y": 8.042054821409728,
+          "z": 126
+        },
+        "spawn": {
+          "x": 1.0306760737604208,
+          "z": 126
+        },
+        "bounds": {
+          "xMin": -3.4,
+          "xMax": 3.4,
+          "zMin": 76,
+          "zMax": 138
+        }
+      }
+    ],
+    "message": "The watchman asks you to clear the churchyard shades.",
+    "player": {
+      "x": -1.4496196999645887,
+      "y": 3.691264892998324,
+      "z": 73.2
+    }
+  }
+}

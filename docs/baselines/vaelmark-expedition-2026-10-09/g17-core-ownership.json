@@ -1,0 +1,12 @@
+{
+  "owner": "root",
+  "browserPid": 56212,
+  "gpuHelperPids": [
+    56218
+  ],
+  "cdpPort": 10037,
+  "url": "http://127.0.0.1:7074/?dev&play&pixelRatio=1",
+  "purpose": "Core-default correctness/fault injection and motion; no FPS/timing claim",
+  "renderingClients": 0,
+  "active": false
+}

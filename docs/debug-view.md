@@ -325,7 +325,7 @@ After editing the procedural world, its dependencies, starter source assets, or 
 ```sh
 ASHEN_TEST_URL='https://play.sparkify.dev/?play&clean&pixelRatio=1' ASHEN_PROBE_RUNS=20 ASHEN_PROBE_PROFILE=50mbps node scripts/ashen-reach/probe-playable-startup.mjs /tmp/playable-20.json
 ASHEN_TEST_URL='https://play.sparkify.dev/?play&clean&pixelRatio=1' ASHEN_PROBE_RUNS=3 ASHEN_PROBE_PROFILE=10mbps node scripts/ashen-reach/probe-playable-startup.mjs /tmp/playable-slow.json
-ASHEN_CDP_PORT=11237 ASHEN_TEST_URL='https://play.sparkify.dev/?play&clean&pixelRatio=1' node scripts/ashen-reach/measure-region-fps.mjs /tmp/region-fps.json
+ASHEN_CDP_PORT=11237 ASHEN_TEST_URL='https://play.sparkify.dev/?play&clean&pixelRatio=1' ASHEN_FPS_RAW=1 node scripts/ashen-reach/measure-region-fps.mjs /tmp/region-fps.json
 ```
 
 Use a verified owned uncapped harness for FPS. Run only one game measurement at a time. Close owned contexts and stop owned harnesses afterwards: disconnecting a CDP client leaves its page rendering. Two abandoned harness renderers reduced the same walking test from 173 to 96 FPS during this investigation. Preserve unrelated user browser sessions.
@@ -446,3 +446,7 @@ time includes RAF scheduling and uploads. Native prepared streaming uses the
 browser's response reader, with truncation, trailing-data and cancellation guards:
 [MDN stream consumption](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams).
 [Measured contract, rejected prototype and limitations](baselines/region-readiness-2026-10-09/README.md).
+
+Acceptance measurements using `measure-region-fps.mjs` must set
+`ASHEN_FPS_RAW=1`; the default removes raw interval arrays. Inspect current
+helper flags before launch and retain full windows, not only rolling summaries.

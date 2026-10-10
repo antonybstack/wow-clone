@@ -20,3 +20,8 @@ The previous skill described the separate root snow-demo engine. Duskwell is now
 - Verify in the live browser, inspect errors, review captures and measure frame times at the reported resolution. Use [Dream Loop](../dream-loop/SKILL.md) for visual iteration.
 
 If the user explicitly requests work on archived Duskwell, inspect its code and dependencies as a separate task; do not transplant either engine's API assumptions into the other.
+
+For acceptance with `scripts/ashen-reach/measure-region-fps.mjs`, always set
+`ASHEN_FPS_RAW=1`: its default deletes raw interval arrays. Check current helper
+arguments before launching. Capture-free action timing must also disable still
+readbacks; screenshot collection can produce diagnostic frame spikes.
