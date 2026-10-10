@@ -1,0 +1,11 @@
+{
+  "probe": {
+    "width": 1280,
+    "height": 720,
+    "level": 62,
+    "avg_frame_rate": "364000000/29444503",
+    "r_frame_rate": "1000000/1",
+    "duration": "29.444503"
+  },
+  "reason": "concat encoder inferred 1MHz input rate; align nominal codec fps with established capture encoder fps=60/1 while retaining VFR timestamps"
+}

@@ -25,3 +25,8 @@ For acceptance with `scripts/ashen-reach/measure-region-fps.mjs`, always set
 `ASHEN_FPS_RAW=1`: its default deletes raw interval arrays. Check current helper
 arguments before launching. Capture-free action timing must also disable still
 readbacks; screenshot collection can produce diagnostic frame spikes.
+
+For retained JSON receipts, inspect container type, count and first-row keys
+before selecting fields. Do not print a whole list or raw frame arrays into
+chat. Source-import diagnostics require Vite; verify public-helper compatibility
+before passing a Pages URL, and report omitted/local-only cases explicitly.

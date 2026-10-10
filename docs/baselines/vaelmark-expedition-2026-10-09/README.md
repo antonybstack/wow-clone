@@ -376,7 +376,8 @@ memory proof.71 CPU checks and the native failure/watchman/map/core cases pass.
 Isolated M1 Max, uncapped Chromium WebGPU,1280×720/DPR1, seven enemies,
 three12-second windows per seven routes:178.9–240.5 FPS;53,831 retained raw
 intervals, maximum route p99 6.6ms, worst13.1ms, none over16.67ms. Standard
-routes reuse moving compiled fixtures; interior fixtures match the stationary
+routes reuse moving compiled fixtures with diagnostic placement/God immunity;
+interior fixtures are mortal and match the stationary
 Vite baseline. No capture or GPU timestamp queries. Route median change is
 −0.35% to+1.08%; maximum p99 rise0.2ms. These are RAF throughput measurements.
 [Comparison](g17-performance-comparison.json), [standard raw](g17-standard-fps.json.gz),
@@ -396,3 +397,19 @@ the previously pending native/soak/timing gates. Cold-start qualification remain
 failed:8841.1ms in the single fresh-process diagnostic, with engine creation and
 first-GPU completion dominant. Streaming intervals reached2454.5ms. No supported
 cause/fix or production waiver. G18 delivers a functional desktop preview.
+
+## G18 public delivery completed
+
+Desktop preview **1c84608d /source4799023**, exact649-file seal,652 public
+checks, full fresh ordinary episode/Bell Watch/reload/appearance path, six
+public-compatible journal cases, five core failure/retry/disposal cases and
+desktop Chromium touch/depth fallback + WebKit smoke checks pass. The old
+Vite-only helper404 is retained; public adapter and local wall-ray scope are
+explicit. Production unchanged5723a4ab/source7d00c56 under startup hold.
+
+272.083s full and29.445s cut are root-reviewed live MP4, VE exact bytes/MIME/
+range/native play/seek, Telegram911/912 matching1280×720. App proportions and
+physical iPhone acceptance remain unverified. All owned processes/contexts closed.
+[Concise release, limits, reproduction and retrospective](../../plans/gothic-exploration/results/expedition-release-2026-10-10.md).
+Raw G18 native/integrity/manifest/seal are compressed alongside this receipt;
+media, edit decisions, public video, Telegram metadata and cleanup are retained.

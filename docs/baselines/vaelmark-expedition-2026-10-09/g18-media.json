@@ -1,0 +1,30 @@
+[
+  {
+    "file": "vaelmark-expedition.mp4",
+    "bytes": 40073478,
+    "sha256": "3366be40f0439746c5d0ca398075fe2d6fe8d6646c140f63e2140d26aebe317b",
+    "probe": {
+      "width": 1280,
+      "height": 720,
+      "duration": 272.083418,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "level": 32
+  },
+  {
+    "file": "vaelmark-presentation.mp4",
+    "bytes": 6510102,
+    "sha256": "9fa150d94266c8dcb33b986bbabef8b314ce9e01e8108b431d979e9f3800e682",
+    "probe": {
+      "width": 1280,
+      "height": 720,
+      "duration": 29.444503,
+      "sampleAspectRatio": "1:1",
+      "rotation": 0,
+      "codec": "h264"
+    },
+    "level": 32
+  }
+]

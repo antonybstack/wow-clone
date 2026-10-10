@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-10T07:52:52.007252+00:00",
+  "owner": "root",
+  "ownedFinalPids": [
+    {
+      "pid": 56163,
+      "alive": false
+    },
+    {
+      "pid": 56187,
+      "alive": false
+    },
+    {
+      "pid": 56212,
+      "alive": false
+    },
+    {
+      "pid": 56218,
+      "alive": false
+    },
+    {
+      "pid": 99703,
+      "alive": false
+    },
+    {
+      "pid": 35146,
+      "alive": false
+    }
+  ],
+  "ownedPortsClosed": [
+    5873,
+    10037,
+    7074
+  ],
+  "closedReviewTab": "Edge2931/tab1147996268",
+  "cuaFinalInventory": {
+    "Chrome": {
+      "tabs": 1,
+      "gameUrls": []
+    },
+    "Edge": {
+      "tabs": 15,
+      "gameUrls": []
+    }
+  },
+  "preserved": [
+    "user Chrome13883/New Tab",
+    "user Edge2931/fifteen unrelated tabs",
+    "Orca",
+    "unrelated Vite4000/10171+10205"
+  ],
+  "activeOwnedGameInstances": 0,
+  "note": "All G18 native/video contexts closed; harness slot7 stopped via native helper; compressed-preview99703 terminated. No active Grok/encoder jobs."
+}

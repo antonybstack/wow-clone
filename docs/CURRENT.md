@@ -2,72 +2,76 @@
 
 Updated **2026-10-10 PDT**. Read this before choosing work. Latest user direction
 controls scope; historical milestone lists are evidence, not an active queue.
-**Active direction: Gothic region and cathedral exploration. Mobile is backlogged.**
+**Direction: Gothic region and cathedral exploration. Mobile is backlogged.**
 
-## Active execution
+## Completed expedition and public preview
 
-The [24-hour Gothic expedition plan](plans/gothic-exploration/next-24-hours-2026-10-09.md)
-is active; started October9 19:55PDT / October10 02:55UTC. G09 bounded startup
-diagnosis closed without a supported fix. G10–G16 are implemented, locally played,
-reviewed in motion and pushed; latest product **4f1771e**, Telegram904–910 / VE.
-The inscription → west bell → reliquary → Hollowmere episode has a saved local
-journal; seven optional accounts/watchmarks remain independent of its sequence.
-Existing map routes stay available and mark known reads.
+The [24-hour plan](plans/gothic-exploration/next-24-hours-2026-10-09.md) completed
+its G09–G18 desktop-preview branch. G09 bounded startup diagnosis yielded no
+supported fix; G10–G16 implement the saved inscription → west bell → reliquary →
+Hollowmere episode and seven optional regional readings/map knowledge. Existing
+route availability, Havok movement, compatible animation and lighting budget remain.
+Added detail: 758 render triangles, zero collision; near packet 149,963 bytes.
 
-**G17 integrated acceptance is complete.** The compiled fresh ordinary-control
-journey now completes the episode, visits Bell Watch and returns, God/Fly off,
-Havok active and zero recoveries. Actual reload, ordinary equipment change and
-second reload retain completion.71 CPU, seven native journal/failure cases,
-20 diagnostic watchman checks, native map controls and five core failure/retry/
-disposal cases pass. Grok4.6/high bounded source review found no consequential
-product defect. Twenty-minute ordinary soak/ten journal-map revisits passes110 circuits;
-isolated seven-route FPS passes178.9–240.5 across21 windows (53,831 raw intervals,
-p99≤6.6ms/worst13.1ms); capture-free full action path passes with24 intervals
-over16.67ms/no interval over33.33ms. G18 sealed
-public preview and reviewed full/presentation motion remain pending.
+**[Play the desktop preview](https://1c84608d.fardel.pages.dev/?dev&play&at=cathedral-nave)**.
+Pages **1c84608d-a319-4a30-aa84-a5d05099441c / source 4799023** uploads the exact
+649-file sealed build, with 652 public artifact/MIME/cache/entry/404 checks passing.
+For the same initial placement, `?dev` → Menu → Developer tools → Destination →
+Vaelmark nave → Jump. The subsequent complete episode and Bell Watch return pass
+with ordinary controls, God/Fly off, Havok active, zero recoveries/runtime/GPU
+errors. Actual reloads and a torso swap retain progress.
 
-[Execution](plans/gothic-exploration/results/expedition-execution-2026-10-09.md),
-[baseline/results](baselines/vaelmark-expedition-2026-10-09/README.md),
+G17: 71 CPU tests, native journal/map/watchman/core failure checks, bounded Grok
+4.6/high source review, 1,201-second local crypt soak/110 circuits/ten revisits and
+disposal pass. Isolated M1 Max, uncapped Chromium 155 WebGPU, 1280×720/DPR 1, seven
+enemies, three 12-second windows per seven routes: **178.9–240.5 FPS**, maximum
+route p99 **6.6 ms**, worst **13.1 ms**, no interval over 16.67 ms. Raw intervals
+retained; no material matched-baseline regression. These are RAF throughput: standard moving fixtures use diagnostic placement/God
+immunity; stationary interior fixtures are mortal.
+Capture-free action timing is separate; public desktop touch/depth fallback and
+WebKit smoke checks also pass. Physical iPhone acceptance remains incomplete.
+
+[Full live journey](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/vaelmark-expedition.mp4),
+[short presentation](https://ve.sparkify.dev/wow-clone/ashen-reach/gothic-exploration/2026-10-09/vaelmark-presentation.mp4).
+Root-reviewed live playback, exact VE bytes/MIME/range/play/seek and Telegram
+**911/912** matching 1280×720 pass; application inline/fullscreen remains unverified.
+[Final result and retrospective](plans/gothic-exploration/results/expedition-release-2026-10-10.md),
+[raw receipts](baselines/vaelmark-expedition-2026-10-09/README.md),
 [long-term vision](plans/gothic-exploration/vision.md).
 
-## Production and independent hold
+## Production hold and next actionable work
 
-Production **7d00c56 / Pages5723a4ab-5dfd-4902-959b-7496948ea51f** remains unchanged:
-[play.sparkify.dev](https://play.sparkify.dev). Rollback source6004840 / Pages
-e39117b8-db74-4563-a6c0-b428c8d5d10e. The first valid Gothic cold qualification
-missed the inclusive1s target at1140.1ms; a separate invalid God fixture records
-4725.9ms concern. A newly declared one-row moving-meadow diagnostic now
-retains8841.1ms first play, with long engine creation/first-GPU completion and
-a2454.5ms region-navigation interval; no cause/fix attributed. Campaign stopped. The historical required-texture failure remains unexplained.
-Do not retry unchanged acceptance cohorts, add speculative retries or promote
-without an attributed correction and fresh exact-build gates. Finish the accepted
-desktop episode preview independently. [Release hold](baselines/gothic-production-2026-10-09/README.md),
-[bounded diagnosis](baselines/startup-completion-2026-10-09/README.md).
+Production **7d00c56 / Pages 5723a4ab-5dfd-4902-959b-7496948ea51f** is unchanged
+at [play.sparkify.dev](https://play.sparkify.dev). Rollback **6004840 /
+e39117b8-db74-4563-a6c0-b428c8d5d10e**. No promotion/rollback ran.
+The valid cold qualification missed the inclusive 1 s target at 1,140.1 ms; an
+invalid God fixture records 4,725.9 ms concern. A new single fresh-process diagnostic
+retains **8,841.1 ms first play**, with engine creation/first GPU completion
+dominant and a 2,454.5 ms region-navigation interval. No cause/fix attributed;
+campaign stopped. The historical required-texture failure is still unexplained.
 
-## Operating rules and ownership
+Next: discriminate fresh engine creation and first GPU completion using adapter,
+cache and trace context, then implement an attributed supported correction before
+new exact-build startup qualification. Do not retry unchanged 80-start cohorts or
+promote by waiver. Later game horizon: a meaningful regional encounter and
+replayable expedition variant. [Release contract](DEPLOY.md),
+[retained hold](baselines/gothic-production-2026-10-09/README.md).
 
-Root implements/accepts; only Grok4.6/high for bounded delegation. Preserve unrelated
+## Ownership and operating rules
+
+All owned game/video contexts and review tab 1147996268 are closed. Chrome 56212/
+GPU 56218, Vite 56163+56187, preview 99703 and WebKit 35146 are stopped; ports 10037/
+5873/7074 closed. User Chrome 13883/New Tab, Edge 2931/fifteen unrelated tabs, Orca
+and unrelated Vite 4000/10171+10205 preserved. Final inventory has no game URL.
+[Cleanup receipt](baselines/vaelmark-expedition-2026-10-09/g18-cleanup.json).
+
+Root implements/accepts; only Grok for bounded delegation. Preserve unrelated
 AGENTS.md / docs/plans/character-mmo/next-ten.md edits. Commit/push completed owned
-work. Visual cycles need root-reviewed live MP4 via tg file plus verified VE;
-API metadata is not Telegram application playback. Benchmark only isolated,
-uncapped1280×720/DPR1, seven enemies; report raw tails and conditions.
+work; review actual motion and send via tg file/verified VE. Benchmark an isolated
+owned game instance and close it afterward. [Ownership/capture](debug-view.md).
+Active root index.html / ashen-reach.html, ASHEN, Babylon Lite 1.31.1/WebGPU/Havok 1.3.14.
+[Previous detailed state](archive/current-before-expedition-closeout-2026-10-09.md).
 
-Root owns Chrome56212/GPU56218/CDP10037, Vite56163+56187/5873, compressed-preview
-server99703/7074. No owned game page is rendering; G17 contexts are closed. All motion
-review tabs and prior native contexts are closed; Grok review ended/zero renderers.
-User Edge2931/fifteen unrelated tabs, Chrome13883/New Tab, unrelated Vite4000
-10171+10205 and Orca are preserved. Audit before FPS; close owned contexts and
-stop all owned harnesses/services at closeout. [Ownership procedure](debug-view.md#browser-ownership-and-performance-isolation).
-
-Active root index.html / ashen-reach.html, src/ashen-reach/main.js exposes ASHEN;
-Babylon Lite1.31.1/WebGPU, Havok1.3.14, compatible source motion. Near geometry
-149963 encoded bytes remains exact. Physical-core region loading is the current
-qualified desktop-preview default; whole-packet diagnostic is in ?dev UI.
-[Developer reproduction](debug-view.md#reproduce-developer-navigation-from-the-ui),
-[deployment contract](DEPLOY.md). Earlier G01–G08 and core-adoption receipts are
-preserved in [previous detailed state](archive/current-before-expedition-closeout-2026-10-09.md).
-
-[Mobile backlog](backlog/mobile-2026-10-08.md): **iPhone14ProMax, iOS26.7.1,
-Safari, Low Power Mode off**. Startup/walking/rotation/background resume work;
-hood → dye → ponytail → unequip caused graphics-device loss. Physical acceptance
-is incomplete; mobile investigation is explicitly deferred.
+[Mobile backlog](backlog/mobile-2026-10-08.md): **iPhone 14 Pro Max, iOS 26.7.1, Safari,
+Low Power Mode off**. Startup/walking/rotation/background resume work;
+hood → dye → ponytail → unequip caused graphics-device loss. Explicitly deferred.

@@ -1,0 +1,52 @@
+{
+  "kind": "presentation with labelled hard cuts; original live recording, no sped-up motion or retouching",
+  "source": "vaelmark-expedition.mp4",
+  "sourceSha256": "3366be40f0439746c5d0ca398075fe2d6fe8d6646c140f63e2140d26aebe317b",
+  "sourceDuration": 272.083418,
+  "segments": [
+    {
+      "label": "nave descent",
+      "startSeconds": 0,
+      "endSeconds": 4
+    },
+    {
+      "label": "inscription",
+      "startSeconds": 16.349792003631592,
+      "endSeconds": 19.349792003631592
+    },
+    {
+      "label": "west bell",
+      "startSeconds": 76.84979200363159,
+      "endSeconds": 82.84979200363159
+    },
+    {
+      "label": "reliquary reveal",
+      "startSeconds": 135.5907919406891,
+      "endSeconds": 138.8907919406891
+    },
+    {
+      "label": "remembrance journal",
+      "startSeconds": 139.38279194831847,
+      "endSeconds": 142.30779209136963
+    },
+    {
+      "label": "Hollowmere completion and map",
+      "startSeconds": 214.5317919254303,
+      "endSeconds": 220.88879203796387
+    },
+    {
+      "label": "Bell Watch read",
+      "startSeconds": 245.2007920742035,
+      "endSeconds": 249.2007920742035
+    }
+  ],
+  "nominalSelectedSeconds": 29.582000255584745,
+  "encoded": {
+    "width": 1280,
+    "height": 720,
+    "duration": 29.444503,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  }
+}

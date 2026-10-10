@@ -1,0 +1,77 @@
+{
+  "errors": [],
+  "cases": [
+    {
+      "case": "native side-aisle walk, X read, guide, button reread, journal focus and return",
+      "start": {
+        "x": -7,
+        "y": 40.204265625000005,
+        "z": 337,
+        "facing": 3.141592653589793,
+        "physics": true,
+        "recoveries": 0
+      },
+      "end": {
+        "x": -9.596866790468969,
+        "y": 40.204265625000005,
+        "z": 329.15359762468404,
+        "facing": 3.1806076536201906,
+        "physics": true,
+        "recoveries": 0
+      },
+      "snapshot": {
+        "record": {
+          "version": 1,
+          "episode": "vaelmark-bell-v1",
+          "phase": "inscription-read",
+          "discovered": [
+            "vaelmark-inscription"
+          ]
+        },
+        "warning": null,
+        "sessionOnly": false,
+        "candidate": "vaelmark-inscription",
+        "bell": {
+          "active": false,
+          "time": 0,
+          "rings": 0,
+          "angle": 0,
+          "ropeY": 74.17268781190694
+        },
+        "reliquary": {
+          "time": 0,
+          "active": false,
+          "open": false,
+          "claimed": false,
+          "relicVisible": false,
+          "angle": 0
+        },
+        "propTriangles": 512
+      }
+    },
+    {
+      "case": "reload restores journal without replay or duplicate credit",
+      "passed": true
+    },
+    {
+      "case": "menu, armory and controlled dead-state reject activation",
+      "diagnosticDeadState": true,
+      "passed": true
+    },
+    {
+      "case": "developer rehearsal preserves save; nave-above activation rejected",
+      "diagnostic": true,
+      "passed": true
+    },
+    {
+      "case": "scene disposal removes owned prompt and journal",
+      "passed": true
+    },
+    {
+      "case": "controlled journal storage denial retains discovery and ordinary movement",
+      "passed": true
+    }
+  ],
+  "wallQuery": "Not re-run against public; G17 actual Havok query + exact public bytes retained",
+  "gpuErrors": []
+}

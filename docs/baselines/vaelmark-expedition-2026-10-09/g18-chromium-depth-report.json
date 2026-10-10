@@ -1,0 +1,85 @@
+{
+  "kind": "chromium",
+  "url": "https://1c84608d.fardel.pages.dev/?play&clean",
+  "injectDepthFailure": true,
+  "disableDepthFallback": false,
+  "device": "desktop engine with mobile viewport/touch emulation",
+  "errors": [],
+  "checks": [
+    {
+      "name": "native touch advances simulation and displayed world",
+      "traveled": 21.959852450622698,
+      "imageDelta": 19.8859375
+    },
+    {
+      "name": "capture-loss"
+    },
+    {
+      "name": "cancel"
+    },
+    {
+      "name": "modal"
+    },
+    {
+      "name": "blur"
+    }
+  ],
+  "loadedScripts": [
+    "https://1c84608d.fardel.pages.dev/assets/v2/ashenReach-hqqoTdi3.js",
+    "https://1c84608d.fardel.pages.dev/assets/v2/startupPreload-BL6F7Nn5.js"
+  ],
+  "runtime": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "physics": true,
+    "canvas": [
+      322,
+      550
+    ],
+    "post": {
+      "hdr": true,
+      "format": "rgba16float",
+      "bloom": true,
+      "notes": [],
+      "volumetric": {
+        "enabled": true,
+        "shadows": true,
+        "debug": 0,
+        "density": 0.006,
+        "sunPower": 3.4,
+        "height": 48,
+        "maxDistance": 850,
+        "steps": 48,
+        "mapSize": 2048,
+        "casters": 6,
+        "shadowVersion": 651,
+        "resolution": [
+          322,
+          550
+        ],
+        "integrationResolution": [
+          161,
+          275
+        ]
+      },
+      "display": {
+        "exposure": 0.9,
+        "saturation": 1.05,
+        "output": "srgb",
+        "toneMap": "ACES fitted",
+        "resolution": [
+          322,
+          550
+        ]
+      }
+    }
+  },
+  "compatibility": {
+    "depthBundle": "empty-fragment",
+    "probeError": "No pipeline set.\n - While encoding [RenderBundleEncoder (unlabeled)].Draw(3, 1, 0, 0).\n - While calling [RenderBundleEncoder (unlabeled)].Finish([RenderBundleDescriptor]).\n",
+    "fallbackError": null,
+    "errors": [],
+    "frames": 3963
+  },
+  "gpuFailures": [],
+  "passed": true
+}

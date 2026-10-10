@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 912,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 29.444503,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 30
+  },
+  "verified": true,
+  "file": "vaelmark-presentation.mp4",
+  "sha256": "9fa150d94266c8dcb33b986bbabef8b314ce9e01e8108b431d979e9f3800e682",
+  "sentAt": "2026-10-10T07:50:28.847049+00:00"
+}

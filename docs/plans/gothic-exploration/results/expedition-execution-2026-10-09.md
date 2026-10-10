@@ -202,3 +202,15 @@ runs during future FPS. Staged four-flag build finished; compressed server99703/
 rendering game page is compiled G17 soak on Chrome56212/GPU56218/CDP10037.
 
 G17 complete: full capture-free five-case route/reload/appearance pass;1201s soak/110circuits/ten revisits stable, disposal zero. Final21 isolated raw FPS windows178.9–240.5/p99≤6.6ms/worst13.1ms, no material regression. Retained first summary-only flag omission and capture-influenced diagnostic window. New single fresh-process first-play8841.1ms/streaming2454.5ms failure reinforces production hold; no retry/cause attributed. G18 public desktop preview is next; root Chrome56212/CDP10037 idle, no game contexts.
+
+G18 desktop-preview branch complete:4799023 exact sealed build -> immutable
+1c84608d,652 served-byte/MIME/cache/404 checks, fresh public ordinary whole
+episode and Bell Watch/reload/equipment pass. Public6 journal-compatible/5core
+fault/retry cases and desktop touch/depth/WebKit smoke pass. Retained original
+Vite-import helper404; no product error. Full272.083s and cut29.445s reviewed in
+native Edge chapter playback, VE play/seek/exact bytes and Telegram911/912 match
+1280×720. No production promotion: canonical5723a4ab/7d00c56 unchanged;8841.1ms
+firstplay/2454.5ms streaming diagnostic remains failed and un-attributed.
+Root stopped slot7Chrome56212/Vite56163+56187, preview99703 and WebKit35146;
+all contexts/reviewtab1147996268 closed, user Chrome/Edge/Orca/Vite4000 preserved.
+[Final concise result](expedition-release-2026-10-10.md).
