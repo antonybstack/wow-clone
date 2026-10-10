@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 916,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 24.271122,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 25
+  },
+  "verified": true,
+  "file": "c05-brand-final.mp4",
+  "sha256": "fdced649254fe342713358c1eef5aa4d2972a2dbe04a6496287a08fe0952e6cb",
+  "sentAt": "2026-10-10T20:30:31.529970+00:00"
+}

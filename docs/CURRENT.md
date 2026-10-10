@@ -15,7 +15,8 @@ M1 Max / uncapped Chromium WebGPU / 1280×720 DPR 1 / seven enemies: three
 median throughput change under 0.2%. Counts/tails/raw intervals are retained.
 C01's independent RAF callback FPS is not a comparable submitted-frame baseline.
 
-[C05](baselines/combat-c05-2026-10-10/README.md) adds Brand's six timed ticks,
+[C05](baselines/combat-c05-2026-10-10/README.md) is pushed (`f2ec30c`), with reviewed
+VE motion and Telegram **916**. It adds Brand's six timed ticks,
 late-refresh window and persisted lesson, plus one damage/kill owner. 73 focused
 CPU tests, build, native UI/tick/refresh/reload, zero-mana filler, mortal contact,
 and death → dummy recovery checks pass. A 90 s God-off dummy rhythm has 56 inputs,
@@ -96,8 +97,9 @@ Root closed the user Edge 5173 game tab with explicit authorization. C05 game
 contexts are closed; slot8 Chrome77674/Vite77625 (CDP10137/Vite5973) and control
 slot9 Chrome7221/Vite7144 (CDP10237/Vite6073) are stopped. The clean temporary C04
 worktree was removed. Other user tabs and Vite29712/5173 and Vite4000 10171/10205
-remain intact. Grok source review and build workers finished; the bounded final
-encoder owns no browser. Media delivery cleanup is recorded in the C05 receipt.
+remain intact. Grok source review/build/encode workers are finished. C05 video tabs and preview
+7075/PID91840 are closed/stopped; final Edge/Chrome inventory has no game or review
+pages. Media delivery cleanup is recorded in the C05 receipt.
 
 Root implements and accepts. Grok handles bounded operations/review; the latest
 user request explicitly permits Opus 5.5 for parallel combat VFX work. Preserve unrelated

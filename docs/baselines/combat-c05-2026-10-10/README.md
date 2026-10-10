@@ -1,6 +1,6 @@
 # C05 — Sustainable combat and Ashen Brand
 
-Implementation verified locally; release measurements and delivery are in progress. Production remains unchanged.
+Gameplay implementation committed/pushed as `f2ec30c`; strict performance release qualification remains open. Production remains unchanged.
 
 The first four slots are Fire Blast (free, 60 damage, 30 m), Lava Ball (12 mana,
 140 damage, 30 m), Pyre Burst (20 mana, 90 damage, 8 s cooldown), and Ashen Brand
@@ -136,3 +136,19 @@ Compressed receipts and executable helpers are adjacent to this document. The
 additional six auto-attack CPU tests pass; total 73. Performance release blockers
 are explicit above. Brand actor VFX, the distinct icon, final kit balance, C12
 100-input/20-minute/native-source/chapel checks and production are still pending.
+
+
+Final reviewed delivery: [C05 Brand motion](https://ve.sparkify.dev/wow-clone/ashen-reach/combat/2026-10-10/c05-brand-final.mp4),
+24.271122 s, 1280×720, H.264, square pixels, zero rotation, 6,878,782 bytes.
+This is the successful final capture including the HUD update; it supersedes
+`c05-brand.mp4` for delivery. Public byte identity, `video/mp4`, range 206,
+normal-speed playback and native seeking pass. Hash/dimensions are in `video.json`.
+Both game harnesses and their contexts are closed; no worker owns a game renderer.
+
+
+Telegram **916** delivered the final clip, with matching returned 1280×720 and
+rounded 25 s duration. Sanitized receipt: `telegram.json`. Telegram application
+inline/fullscreen playback is unverified; public VE playback/seek was reviewed.
+Root closed review tabs 1147996329 and 1147996338, stopped preview7075/PID91840,
+and confirmed all slot8/slot9 PIDs gone. Final Edge/Chrome inventory has no game
+or review pages. Grok workers are finished; no managed renderer remains.
