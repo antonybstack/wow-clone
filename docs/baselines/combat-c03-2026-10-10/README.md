@@ -6,7 +6,7 @@ Fire Blast now releases on acceptance while running or airborne. Pyre is instant
 
 **Verification:** 54 focused CPU tests and build pass; 12 native input checks pass (see compressed helper and result). Repress costs once, target switching preserves accepted Lava, Escape works while pointer locked, queue preempts cosmetic recovery, menu clears pending actions, moving Fire retains ~7 m/s, airborne Fire retains jump, air Pyre refuses, and movement cancels Lava without spending reserved mana.
 
-**Live motion:** root reviewed native Edge playback at normal and half speed. [16.68-second live check montage](https://ve.sparkify.dev/wow-clone/ashen-reach/combat/2026-10-10/c03-native-combat.mp4), 1280×720, square pixels, normalized rotation. Silent diagnostic resets between checks; capture overlay is not a performance measurement. Exact public bytes, video/mp4, HTTP206 and native play/seek pass. Telegram receipt follows.
+**Live motion:** root reviewed native Edge playback at normal and half speed. [16.68-second live check montage](https://ve.sparkify.dev/wow-clone/ashen-reach/combat/2026-10-10/c03-native-combat.mp4), 1280×720, square pixels, normalized rotation. Silent diagnostic resets between checks; capture overlay is not a performance measurement. Exact public bytes, video/mp4, HTTP206 and native play/seek pass. Telegram **914** returned matching1280×720 dimensions and17s rounded duration. Application inline/fullscreen remains unverified.
 
 ## Isolated submitted-frame measurement
 
@@ -40,3 +40,5 @@ Rejected suggestion to require a successful animation start before dealing melee
 damage: that would restore animation as gameplay authority and break valid
 missing-clip fallbacks. Gameplay checks grounded/range/facing/LOS and owns its
 single pinned contact; the clip is optional presentation.
+
+The new diagnostic restore unit fixture initially lacked its native root scaling stub; corrected and rerun: **5/5 enemy-contact tests pass** (review-fix-tests.txt). This was a test construction error, not a runtime exception.

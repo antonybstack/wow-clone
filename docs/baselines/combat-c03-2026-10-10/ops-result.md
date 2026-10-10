@@ -53,7 +53,7 @@ Non-fatal: Node `NO_COLOR` ignored because `FORCE_COLOR` is set.
 
 ## Encode / clip probe
 
-Clip: `.cache/combat-c03-2026-10-10/c03-native-combat.mp4`  
+Clip: `.cache/combat-c03-2026-10-10/c03-native-combat.mp4`
 Size: **4780344** bytes (4,780,344)
 
 Encoder already probed (same object as `scripts/lib/video_metadata.py` `probe_video`):

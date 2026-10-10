@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: enemy damage occurs once at contact after a visible windup
+ok 1 - enemy damage occurs once at contact after a visible windup
+  ---
+  duration_ms: 1.13725
+  type: 'test'
+  ...
+# Subtest: contact revalidates wall, vertical floor and range; unavailable collision fails closed
+ok 2 - contact revalidates wall, vertical floor and range; unavailable collision fails closed
+  ---
+  duration_ms: 0.410166
+  type: 'test'
+  ...
+# Subtest: death during enemy windup cancels the hit
+ok 3 - death during enemy windup cancels the hit
+  ---
+  duration_ms: 0.164458
+  type: 'test'
+  ...
+# Subtest: diagnostic restore cancels a pending punch rather than hitting from idle
+ok 4 - diagnostic restore cancels a pending punch rather than hitting from idle
+  ---
+  duration_ms: 0.151583
+  type: 'test'
+  ...
+# Subtest: player death during a windup cancels contact
+ok 5 - player death during a windup cancels contact
+  ---
+  duration_ms: 0.231833
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 197.50925

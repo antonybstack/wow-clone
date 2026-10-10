@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "messageId": 914,
+  "expected": {
+    "width": 1280,
+    "height": 720,
+    "duration": 16.681415,
+    "sampleAspectRatio": "1:1",
+    "rotation": 0,
+    "codec": "h264"
+  },
+  "returned": {
+    "width": 1280,
+    "height": 720,
+    "duration": 17
+  },
+  "verified": true,
+  "file": "c03-native-combat.mp4",
+  "sha256": "89d920bb9edb0eba8ea2e6205b0d48327cf2948d4864aeec1d681e4db2cd7f64",
+  "sentAt": "2026-10-10T18:03:32.797514+00:00"
+}

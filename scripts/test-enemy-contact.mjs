@@ -8,7 +8,7 @@ registerHooks({resolve(specifier, context, next) {
 }});
 const {updateEnemies,ENEMY_TUNING,syncDiagnosticEnemy}=await import('../src/ashen-reach/enemies.js');
 function fixture(){
- const enemy={id:'shade',position:{x:0,y:0,z:0},spawn:{x:0,z:0},state:'attack',stateAge:0,attackCooldown:0,attackWindup:null,hp:360,hpMax:360,yaw:0,diagnosticFloorY:0,root:{position:{set(){}},rotation:{set(){}}}};
+ const enemy={id:'shade',position:{x:0,y:0,z:0},spawn:{x:0,z:0},state:'attack',stateAge:0,attackCooldown:0,attackWindup:null,hp:360,hpMax:360,yaw:0,diagnosticFloorY:0,root:{position:{set(){}},rotation:{set(){}},scaling:{set(){}}}};
  const events=[],hits=[];
  const ctx={player:{body:{position:{x:0,y:.9,z:2}},capsuleHeight:1.8},world:{colliders:[]},raycast:()=>({hasHit:false}),playerDead:false,onPlayerHit:n=>hits.push(n),onCombatEvent:(type,e,detail)=>events.push({type,...detail})};
  return {enemy,ctx,events,hits,step:dt=>updateEnemies([enemy],dt,ctx)};

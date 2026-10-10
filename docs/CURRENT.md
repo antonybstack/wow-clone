@@ -75,8 +75,7 @@ fresh-process adapter/cache/trace context. [Release contract](DEPLOY.md),
 ## Ownership and operating rules
 
 C01 slot8 harness and root video-review tabs/preview are closed. Root took over the C02 worker’s
-slot8 Chrome45113/Vite45088, CDP10137/Vite5973 for C03 implementation/functional checks
-(no FPS). Seven C02 native checks and build pass; contexts are closed between runs.
+slot8 Chrome45113/Vite45088, CDP10137/Vite5973 for C04 native feedback/capture. C03 isolated submitted-frame measurements finished and its video tabs/preview are closed. C03 commit e2d4d2f is pushed, live clip Telegram914/verified VE. Contexts close between runs.
 [Receipt](baselines/combat-c02-2026-10-10/README.md).
 Root closed the user Edge5173 game tab with explicit authorization. Other user tabs
 and Vite29712/5173 and Vite4000 10171/10205 remain intact. Opus VFX and Grok
