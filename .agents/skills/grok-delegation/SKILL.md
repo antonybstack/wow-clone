@@ -32,6 +32,14 @@ One writer per shared path. Preserve live-checkout changes; do not assume a HEAD
 
 Require an early visible boot and one real operation for runtime changes. Reduce a stalled broad assignment to an observable slice instead of repeatedly increasing its turn cap.
 
+For repeatable live verification, hand over an executable prepared check and exact
+commands before asking the worker to explore source or author a new harness. The
+C02 combat pass consumed 18 turns on setup/discovery without running its first
+check. Booting an idle browser is setup, not a completed operation. If a bounded
+pass ends at setup, the parent reuses the owned harness and runs the check directly;
+do not spend another agent pass rediscovering the same APIs. Record cleanup even
+when the worker fails to produce its report.
+
 ## Launch and review
 
 Use [CLI notes](references/cli.md) or [Cursor notes](references/cursor-task.md) only for the selected transport. Do not launch both on the same owned files. For integration/harness pitfalls, read [integration review](references/integration-review.md).

@@ -6,7 +6,7 @@ import { FireBlast } from "../spells/fire-blast.js";
 import { LavaBall } from "../spells/lava-ball.js";
 import { GravePulse } from "../spells/grave-pulse.js";
 import { Targeting } from "../targeting.js";
-import { setInputEnabled, notifyActionInput, onActionInput } from "../input.js";
+import { setInputEnabled, notifyActionInput, onActionInput, onInputReset } from "../input.js";
 import { createCombatHud } from "./combat-hud.js";
 import { enemySnapshot, updateEnemies, syncDiagnosticEnemy } from "./enemies.js";
 import { createFireBlastAudio } from "./fire-blast-audio.js";
@@ -30,12 +30,15 @@ import { dev } from "./dev-tools.js";
 
 import { createCombatTrace } from './combat/combat-trace.js';
 import { createCombatScenarios } from './combat/combat-scenarios.js';
+import { createActionScheduler } from './combat/action-scheduler.js';
+import { createCombatClock } from './combat/combat-clock.js';
+import { createInputIntents } from './combat/input-intents.js';
+import { ABILITIES, ABILITY_SLOTS } from './combat/ability-definitions.js';
 import { devDestinations } from './dev-destinations.js';
 
 const PLAYER_HP = PLAYER_HP_BASE;
 const REGEN_DELAY = 6;
 const REGEN_PER_SEC = 4;
-const GCD = 1.5;
 const CAST_MOVE_SCALE = 0.4;
 
 export async function loadTrainingDummy(engine, scene, world, buffer) {
@@ -66,6 +69,7 @@ export async function loadTrainingDummy(engine, scene, world, buffer) {
     hp: 2000,
     hpMax: 2000,
     hits: 0,
+    generation: 1,
     meshes,
     root: asset.entities[0],
     recover: true,
@@ -214,10 +218,6 @@ export async function createCombat(
   };
   const trace = createCombatTrace({ enabled: () => dev.enabled });
   const record = (type, detail = {}) => trace.record(type, life.time, detail);
-  const unsubscribeTrace = onActionInput(action => {
-    if (action === 1) record('input', { slot: input.spellPressed, targetId: targeting.current?.id ?? null });
-  });
-  lifetime.addEventListener('abort', unsubscribeTrace, { once: true });
   const plantPlayer = () => {
     const x = 0,
       z = 0;
@@ -363,71 +363,98 @@ export async function createCombat(
       canvas.focus();
     });
   }
-  let queuedCast = 0;
-  const beginSpell = (key) => {
-    if (gcd > 0.04) {
-      record('reject', { slot: key, reason: 'Global cooldown', readyAt: life.time + gcd });
-      hud.message("Global cooldown");
-      return;
-    }
-    const ability = key === 2 ? lava : key === 3 ? pulse : spell,
-      target = targeting.current,
-      reason =
-        ability.validate(
-          key === 3
-            ? { position: player.body.position, grounded: player.getGrounded() && body.getState().phase !== "air", hostiles }
-            : castArgs(target),
-        ) || (dev.god ? "" : progression.refuseMana(key));
-    if (reason) {
-      record('reject', { slot: key, reason });
-      ability.lastResult = reason;
-      hud.message(reason);
-      return;
-    }
-    const pose = body.getState();
-    if (pose.castingShoot) {
-      if (pose.castElapsed + 0.02 >= pose.castReleaseTime && key !== 2) { queuedCast = key; record('queue', { slot: key, targetId: target?.id }); }
-      else hud.message("Finishing cast");
-      return;
-    }
-    if (key !== 3) {
-      const t = target.position,
-        p = player.body.position;
-      player.setFacing(Math.atan2(t.x - p.x, t.z - p.z));
-    }
-    input.castInstant = true;
-    input.castSpell = key === 2 ? "lava" : key === 3 ? "pulse" : null;
-    pending = { target, key, ability };
-    record('start', { slot: key, targetId: target?.id });
-    gcd = GCD;
-    player.setMoveScale?.(CAST_MOVE_SCALE);
-    ability.lastResult = "windup";
-    hud.message("");
-    if (key === 2) {
-      lavaFx.begin();
-      audio.lavaCharge();
-    } else if (key === 3) {
-      pulseFx.begin();
-      audio.lavaCharge();
-    } else fx.beginWindup();
-  };
-  const cancel = (reason) => {
-    queuedCast = 0;
-    if (!pending) return;
-    record('cancel', { slot: pending.key, reason });
-    player.setMoveScale?.(1);
-    if (pending.key === 2) {
-      lavaFx.cancel();
-      audio.lavaCancel();
-    } else if (pending.key === 3) {
-      pulseFx.cancel();
-      audio.lavaCancel();
-    } else fx.cancelWindup();
-    pending.ability.lastResult = reason;
-    pending = null;
-    body.cancelCast();
-    hud.message(reason);
-  };
+  const intents = createInputIntents();
+  const clock = createCombatClock();
+  let animationAction = null;
+  const abilityFor = id => id === 'lava-ball' ? lava : id === 'pyre-burst' ? pulse : spell;
+  const scheduler = createActionScheduler({
+    definitions: ABILITIES,
+    getTarget: id => hostiles.find(target => target.id === id),
+    resource: { get: () => progression.progress.mana, isCostExempt: () => dev.god,
+      spend: amount => { progression.progress.mana -= amount; } },
+    validate(action, definition, phase) {
+      if (life.dead || !visible) return 'Combat unavailable';
+      const target = hostiles.find(t => t.id === action.targetId);
+      const ability = abilityFor(action.abilityId);
+      // Cooldowns have one deadline owner. Reuse geometry validation without
+      // allowing the legacy countdown to veto a scheduler-approved start.
+      const cooldown = ability.cooldown;
+      ability.cooldown = 0;
+      let reason;
+      try {
+        reason = ability.validate(definition.slot === 3
+          ? { position: player.body.position, grounded: player.getGrounded() && body.getState().phase !== 'air', hostiles }
+          : castArgs(target));
+      } finally { ability.cooldown = cooldown; }
+      return reason;
+    },
+    emit(event) {
+      trace.record(event.type, event.time, event);
+      if (event.type === 'action-rejected' || event.type === 'queue-expired') hud.message(event.reason);
+    },
+    onStart(action) {
+      const key = action.definition.slot, target = hostiles.find(t => t.id === action.targetId);
+      pending = { target, key, ability: abilityFor(action.abilityId), action };
+      animationAction = action;
+      if (key !== 3) player.setFacing(yawTo(player.body.position, target.position));
+      input.castInstant = true; input.castSpell = key === 2 ? 'lava' : key === 3 ? 'pulse' : null;
+      player.setMoveScale?.(CAST_MOVE_SCALE);
+      pending.ability.lastResult = 'windup'; hud.message('');
+      if (key === 2) { lavaFx.begin(); audio.lavaCharge(); }
+      else if (key === 3) { pulseFx.begin(); audio.lavaCharge(); }
+      else fx.beginWindup();
+    },
+    onCancel(action, reason) {
+      const key = action.definition.slot;
+      pending = animationAction = null;
+      player.setMoveScale?.(1); body.cancelCast();
+      if (key === 2) { lavaFx.cancel(); audio.lavaCancel(); }
+      else if (key === 3) { pulseFx.cancel(); audio.lavaCancel(); }
+      else fx.cancelWindup();
+      abilityFor(action.abilityId).lastResult = reason; hud.message(reason);
+    },
+    onRelease(action) {
+      const key = action.definition.slot, target = hostiles.find(t => t.id === action.targetId);
+      pending = null; player.setMoveScale?.(1);
+      const ability = abilityFor(action.abilityId);
+      ability.cooldown = 0;
+      if (key === 2) {
+        const p = lavaFx.origin(), origin = { x: p[0], y: p[1], z: p[2] };
+        const result = lava.release(castArgs(target), origin);
+        if (result.ok) { markCombat(); lavaFx.launch(origin); audio.lavaRelease(); }
+        else { lavaFx.cancel(); audio.lavaCancel(); hud.message(result.reason); }
+      } else if (key === 3) {
+        const result = pulse.cast({ position: player.body.position, grounded: player.getGrounded(), hostiles });
+        if (result.ok) {
+          pulseFx.trigger(); audio.pulse(); rig?.impulse?.(.34); markCombat();
+          for (const hit of result.hits) {
+            record('hit', { actionId: action.actionId, abilityId: action.abilityId, targetId: hit.target.id, targetGeneration: hit.target.generation, amount: hit.damage });
+            hud.hit(hit.target, hit.damage);
+            if (hit.target === dummy) { hitDummy = true; hitAge = 0; hitScale = 2.2; hitDirection = { x: 0, z: 1 }; }
+            keepDummyRecovery(pulse);
+          }
+        } else hud.message(result.reason);
+      } else {
+        const result = spell.cast(castArgs(target));
+        if (result.ok) impact(result); else { fx.cancelWindup(); hud.message(result.reason); }
+      }
+    },
+  });
+  try { scheduler.setQueueWindow(Number(localStorage.getItem('ashen-combat-queue-window') ?? .3)); }
+  catch { /* Storage can be unavailable; the tested default remains usable. */ }
+  const cancel = reason => { const hadIntent = intents.size > 0; intents.clear(); return scheduler.cancel(reason) || hadIntent; };
+  const removeActionInput = onActionInput(action => {
+    if (action !== 1 || animationLab || !visible || life.dead) return;
+    const abilityId = ABILITY_SLOTS[input.spellPressed];
+    if (!abilityId) return;
+    const target = targeting.current;
+    if (!intents.push({ abilityId, targetId: target?.id ?? null, targetGeneration: target?.generation ?? 0,
+      inputAt: scheduler.now, receivedMs: performance.now() })) record('input-overflow', { rejected: intents.rejected });
+  });
+  const removeInputReset = onInputReset(() => cancel('Input released'));
+  lifetime.addEventListener('abort', () => {
+    removeActionInput(); removeInputReset(); intents.clear(); scheduler.dispose();
+  }, { once: true });
   const onPlayerHit = (amount) => {
     if (life.dead || dev.god) return;
     life.hp = Math.max(0, life.hp - amount);
@@ -437,8 +464,7 @@ export async function createCombat(
     if (!life.hp) die();
   };
   const tickLife = (dt) => {
-    life.time += dt;
-    gcd = Math.max(0, gcd - dt);
+    life.time = clock.time;
     const fighting = enemies.some(
       (e) => e.state === "chase" || e.state === "attack",
     );
@@ -553,7 +579,7 @@ export async function createCombat(
       else { dummy.root.rotation.x = 0; dummy.root.rotation.z = 0; }
     },
     reset() {
-      cancel('Diagnostic scenario reset'); targeting.clear(); body.cancelMelee?.();
+      cancel('Diagnostic scenario reset'); scheduler.reset(); targeting.clear(); body.cancelMelee?.();
       Object.assign(auto, { enabled: false, timer: 0, queued: false, pendingHit: false });
       gcd = meleeRecover = 0; hitAge = 10; lava.flight = null;
       for (const ability of [spell, lava, pulse]) {
@@ -565,7 +591,14 @@ export async function createCombat(
   });
   return {
     trace,
+    scheduler,
+    setQueueWindow(value) {
+      scheduler.setQueueWindow(value);
+      try { localStorage.setItem('ashen-combat-queue-window', String(value)); } catch {}
+    },
     scenarios,
+    advanceClock(dt, state) { return clock.step(dt, state); },
+    stopCasting(reason = 'Cast stopped') { return cancel(reason); },
     targeting,
     regionMap,
     exploration,
@@ -590,7 +623,7 @@ export async function createCombat(
       return hitAge;
     },
     get pending() {
-      return pending?.target.id || null;
+      return pending?.target?.id || null;
     },
     get pendingSpell() {
       return pending?.key || null;
@@ -600,7 +633,8 @@ export async function createCombat(
       life: { ...life },
       progress: progression.snapshot(),
       dev: { god: dev.god, flying: dev.flying },
-      gcd,
+      gcd: scheduler.gcdRemaining,
+      queue: scheduler.queued, reservedMana: scheduler.reserved, availableMana: scheduler.available, inputOverflow: intents.rejected,
       enemies: enemySnapshot(enemies),
       dummy: { hp: dummy.hp, hpMax: dummy.hpMax },
       target: targeting.current?.id || null,
@@ -714,94 +748,19 @@ export async function createCombat(
           });
         }
       }
-      const key = input.spellPressed;
       input.spellPressed = 0;
-      // Unimplemented slots remain animation diagnostics only under ?animationLab.
       if (!animationLab) {
-        input.castHold = false;
-        input.spellHeld2 = false;
-        input.castInstant = false;
-        if ((key === 1 || key === 2 || key === 3) && visible) {
-          if (pending) {
-            if (pending.key === key) {
-              record('repress-cancel', { slot: key });
-              cancel("Cast cancelled");
-              player.setMoveScale?.(1);
-            } else { record('reject', { slot: key, reason: 'Already casting' }); hud.message('Already casting'); }
-          } else beginSpell(key);
-        } else if (queuedCast && visible && !pending && !body.getState().castingShoot) {
-          const next = queuedCast;
-          queuedCast = 0;
-          beginSpell(next);
-        }
+        input.castHold = input.spellHeld2 = input.castInstant = false;
+        scheduler.advance(life.time);
+        intents.drain(intent => scheduler.request(intent));
+        gcd = scheduler.gcdRemaining;
+        for (const [id, ability] of [['fire-blast', spell], ['lava-ball', lava], ['pyre-burst', pulse]]) ability.cooldown = scheduler.cooldown(id);
+        if (animationAction) body.syncCombatCast?.(Math.max(0, life.time - animationAction.startedAt));
       }
       if (visible && !animationLab) tickAuto(dt);
     },
     afterAnimation(dt) {
-      if (pending) {
-        const state = body.getState();
-        if (life.dead || !visible)
-          cancel(life.dead ? "You have died" : "Cast interrupted");
-        else if (pending.key !== 3 && targeting.current !== pending.target)
-          cancel("Cast interrupted");
-        else if (state.castElapsed >= state.castReleaseTime) {
-          const request = pending;
-          record('release', { slot: request.key, targetId: request.target?.id, animationElapsed: state.castElapsed, animationDeadline: state.castReleaseTime });
-          pending = null;
-          player.setMoveScale?.(1);
-          if (request.key === 2) {
-            const p = lavaFx.origin(),
-              origin = { x: p[0], y: p[1], z: p[2] },
-              result = lava.release(castArgs(request.target), origin);
-            if (result.ok) {
-              if (!dev.god) progression.spendMana(2);
-              markCombat();
-              lavaFx.launch(origin);
-              audio.lavaRelease();
-            } else {
-              lavaFx.cancel();
-              audio.lavaCancel();
-              body.cancelCast();
-              hud.message(result.reason);
-            }
-          } else if (request.key === 3) {
-            const result = pulse.cast({
-              position: player.body.position,
-              grounded: true,
-              hostiles,
-            });
-            if (result.ok) {
-              if (!dev.god) progression.spendMana(3);
-              pulseFx.trigger();
-              audio.pulse();
-              rig?.impulse?.(0.34);
-              markCombat();
-              for (const hit of result.hits) {
-                record('hit', { slot: 3, targetId: hit.target.id, amount: hit.damage });
-                hud.hit(hit.target, hit.damage);
-                if (hit.target === dummy) {
-                  hitDummy = true;
-                  hitAge = 0;
-                  hitScale = 2.2;
-                  hitDirection = { x: 0, z: 1 };
-                }
-                keepDummyRecovery(pulse);
-              }
-            } else hud.message(result.reason);
-          } else {
-            const result = spell.cast(castArgs(request.target));
-            if (result.ok) {
-              if (!dev.god) progression.spendMana(1);
-              impact(result);
-            } else {
-              fx.cancelWindup();
-              hud.message(result.reason);
-            }
-          }
-        } else if (!state.castingShoot) {
-          cancel("Cast interrupted");
-        }
-      }
+      if (animationAction && !body.getState().castingShoot) animationAction = null;
       const collision = lava.advance(dt, player.raycast);
       if (collision) {
         lavaFx.explode(collision.position);
@@ -829,7 +788,7 @@ export async function createCombat(
       }
       if (meleeRecover > 0) {
         meleeRecover = Math.max(0, meleeRecover - dt);
-        if (!meleeRecover && dummy.hp <= 0) dummy.hp = dummy.hpMax;
+        if (!meleeRecover && dummy.hp <= 0) { dummy.hp = dummy.hpMax; dummy.generation++; }
       }
       fx.update(dt);
       lavaFx.update(dt, body.getState().castElapsed, lava.flight);
@@ -841,9 +800,9 @@ export async function createCombat(
         scene.camera,
         lava,
         pending?.key === 2
-          ? { elapsed: body.getState().castElapsed, name: "Lava Ball", castTime: 1.5 }
+          ? { elapsed: life.time - pending.action.startedAt, name: "Lava Ball", castTime: pending.action.releaseAt - pending.action.startedAt }
           : pending?.key === 3
-            ? { elapsed: body.getState().castElapsed, name: "Pyre Burst", castTime: 1.1 }
+            ? { elapsed: life.time - pending.action.startedAt, name: "Pyre Burst", castTime: pending.action.releaseAt - pending.action.startedAt }
             : null,
         gcd,
         pulse,

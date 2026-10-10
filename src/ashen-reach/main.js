@@ -330,7 +330,18 @@ async function main(){
  setView(params.has('play')||touchControlsWanted()?'play':'reference');
  const metrics=createAshenMetrics({engine,scene,world,canvas,samples,lite:{isGpuTimingSupported,setGpuTimingEnabled,resizeSurface,setEngineSize}});
  if(params.has('gpuTiming'))metrics.setGpuTiming(true);
- onBeforeRender(scene,ms=>{const dt=Math.min(.05,ms/1000);if(menu.isOpen){armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);return;}elapsed+=dt;player?.kinematicStep(dt);if(readyForPlay)combat?.beforeAnimation(dt);tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);if(readyForPlay)combat?.afterAnimation(dt);equipment?.update(dt);armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}});
+ onBeforeRender(scene,ms=>{
+  const dt=Math.min(.05,ms/1000);
+  const combatFrame=combat?.advanceClock(ms/1000,{ready:readyForPlay,paused:menu.isOpen||!!armory?.isOpen||view!=='play',hidden:document.hidden});
+  if(combatFrame?.pause)menu.open('Paused after a long frame. Resume when ready.');
+  if(menu.isOpen||document.hidden){armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);return;}
+  elapsed+=dt;player?.kinematicStep(dt);
+  if(readyForPlay&&combatFrame?.dt>0)combat?.beforeAnimation(combatFrame.dt);
+  tools.tick();body?.update(dt);world.update(elapsed,player?player.body.position:null);
+  if(readyForPlay&&combatFrame?.dt>0)combat?.afterAnimation(combatFrame.dt);
+  equipment?.update(dt);armory?.update(dt);syncPlayerVisibility();shadows.update();localLights.update(dt,player?.body.position);
+  if(readyForPlay&&elapsed>4&&ms>0){samples.push(ms);if(samples.length>600)samples.shift();metrics.sampleGpu();}
+ });
  const ashen={engine,scene,camera,reference,rig,world,input,setView,reset,metrics,capture:()=>captureScreenshot(engine),hostilesReady:noEnemies,presentMs:0,loadMs:0,ready:false,
   // ready/hostilesReady keep their existing "all of it" meaning for the suites
   // that already assert on them. Navigation needs visible routes and their solid

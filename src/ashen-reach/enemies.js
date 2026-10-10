@@ -268,6 +268,7 @@ function enter(enemy, state) {
 }
 
 function respawn(enemy) {
+  enemy.generation = (enemy.generation ?? 0) + 1;
   if (enemy.diagnosticFloorY === undefined) {
     enemy.position.x = enemy.spawn.x;
     enemy.position.z = enemy.spawn.z;
@@ -467,6 +468,7 @@ async function makeEnemy(engine, scene, world, spec, index) {
     xp: ENEMY_TUNING.xp,
     hits: 0,
     hitsLanded: 0,
+    generation: 1,
     meshes: actor.meshes,
     root: actor.anchor ?? actor.root,
     actor,

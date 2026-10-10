@@ -78,6 +78,9 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
           <p data-region-loading-mode></p>
           <button type="button" data-action="region-loading" disabled>Reload with whole-region loading</button>
           <p data-exploration-status role="status"></p>
+          <p data-render-resolution></p>
+          <button type="button" data-action="render-native">Render at viewport size (DPR 1)</button>
+          <button type="button" data-action="render-1280">Render 1280 pixels wide (keep aspect)</button>
           <label for="dev-combat-scenario">Combat rehearsal</label>
           <select id="dev-combat-scenario" aria-label="Combat rehearsal"></select>
           <p data-combat-status role="status"></p>
@@ -102,6 +105,13 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       </div>
       <div class="game-menu-keys" hidden>
         <h1>Keybindings</h1>
+        <label for="combat-queue-window">Spell queue window</label>
+        <select id="combat-queue-window" aria-label="Spell queue window">
+          <option value="0">Off</option><option value="0.1">100 ms</option>
+          <option value="0.2">200 ms</option><option value="0.3" selected>300 ms</option>
+          <option value="0.4">400 ms</option>
+        </select>
+        <p>Press your next spell near the end of a cast or cooldown to queue it. Escape stops your cast and clears its queued spell.</p>
         <ul class="desktop-keys">
           <li><span>Move / turn</span><kbd>WASD</kbd></li>
           <li><span>Look</span><kbd>RMB</kbd></li>
@@ -138,6 +148,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   const destinationSelect = root.querySelector("#dev-destination");
   const destinationLink = root.querySelector("#dev-destination-link");
   let destinationSource;
+  const queueSelect = root.querySelector('#combat-queue-window');
+  queueSelect.addEventListener('change', () => getCombat?.()?.setQueueWindow(Number(queueSelect.value)));
   const soundBtn = root.querySelector('[data-action="sound"]');
   const devBtn = root.querySelector('[data-action="dev"]');
   const metricsBtn = root.querySelector('[data-action="metrics"]');
@@ -228,6 +240,11 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       ? `Exploration: ${snap.record.phase}${snap.sessionOnly?' · session rehearsal':''}.`:'Exploration is preparing.';
     root.querySelector('[data-action="exploration-reset"]').disabled=!enabled||!exploration;
     const ready = enabled && !!tools?.navigationReady;
+    const canvas = document.getElementById('renderCanvas');
+    root.querySelector('[data-render-resolution]').textContent = canvas
+      ? 'Internal render: ' + canvas.width + ' × ' + canvas.height + '. Benchmark 1280 × 720 in a 16:9 viewport.'
+      : 'Renderer preparing.';
+    for (const action of ['render-native', 'render-1280']) root.querySelector('[data-action="' + action + '"]').disabled = !enabled || !globalThis.ASHEN?.metrics;
     const combat = getCombat?.();
     const scenarioSelect = root.querySelector('#dev-combat-scenario');
     if (!scenarioSelect.options.length && combat) {
@@ -321,9 +338,10 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
   const focusable = () => [...activePane().querySelectorAll("button,input,select")].filter(el => !el.disabled && !el.hidden && el.getClientRects().length);
   function focusFirst() { focusable()[0]?.focus(); }
 
-  function open() {
+  function open(reason = 'Paused') {
     if (visible || isArmoryOpen()) return;
     visible = true;
+    hub.querySelector('p').textContent = reason;
     showHub();
     paintSound();
     paintDev();
@@ -395,6 +413,8 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
     }
     else if (action === "sound") toggleSound();
     else if (action === "keys") {
+      queueSelect.value = String(getCombat?.()?.scheduler.queueWindow ?? .3);
+      queueSelect.disabled = !getCombat?.();
       const touch = document.body.classList.contains("touch-play");
       keysPane.querySelector(".desktop-keys").hidden = touch;
       keysPane.querySelector(".touch-keys").hidden = !touch;
@@ -406,6 +426,13 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       devPane.hidden = false;
       refreshDevTools();
       focusFirst();
+    } else if ((action === 'render-native' || action === 'render-1280') && devQueryOn()) {
+      const canvas = document.getElementById('renderCanvas');
+      if (canvas?.clientWidth && canvas?.clientHeight) {
+        const width = action === 'render-1280' ? 1280 : canvas.clientWidth;
+        globalThis.ASHEN?.metrics.setInternalResolution(width, Math.round(width * canvas.clientHeight / canvas.clientWidth));
+      }
+      refreshDevTools();
     } else if (action === 'combat-scenario' && devQueryOn()) {
       if (getCombat?.()?.scenarios.start(root.querySelector('#dev-combat-scenario').value)) close();
       else refreshDevTools();
@@ -457,6 +484,12 @@ export function createGameMenu({ onArmory, onSound, onDev, onMetrics, getDevTool
       }
       if (event.code === "Escape") {
         if (event.repeat) return;
+        // The menu capture listener runs before input's pointer-lock early return.
+        // Stop the action even when this same Escape also unlocks the mouse.
+        if (!visible && !isArmoryOpen() && getCombat?.()?.stopCasting('Cast stopped')) {
+          if (document.pointerLockElement) document.exitPointerLock();
+          event.preventDefault(); event.stopImmediatePropagation(); return;
+        }
         if (document.pointerLockElement) return;
         if (performance.now() - unlockedAt < UNLOCK_GUARD_MS) return;
         if (isArmoryOpen()) return;

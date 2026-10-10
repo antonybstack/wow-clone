@@ -21,6 +21,7 @@ export class FireBlast {
       this.resetIn = Math.max(0, this.resetIn - dt);
       if (!this.resetIn && this.damagedTarget) {
         this.damagedTarget.hp = this.damagedTarget.hpMax;
+        this.damagedTarget.generation = (this.damagedTarget.generation ?? 0) + 1;
         this.damagedTarget = null;
       }
     }

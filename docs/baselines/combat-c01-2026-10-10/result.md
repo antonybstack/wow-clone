@@ -121,3 +121,5 @@ Reviewed actual 62.94 s MP4 playback in Edge, including ordinary movement, attac
 **Performance qualification remains open.** Repeated17.7–17.8ms tails fail the proposed10ms p99 gate. Dummy#1 engine buffer reported147.5FPS/21.3ms p99, different from the separately scheduled RAF probe193.8FPS/17.7ms. These require a matched render-owner sample before claiming improvement/regression. The pack fixture rejected eight of nine inputs with “Target is blocked” and cast one Pyre; label it blocked-target/area workload, not a sustained spell storm. Keep these raw results, then validate a corrected workload during integrated acceptance. Do not rerun unchanged baseline cohorts.
 
 Ownership: C01 slot8 Chrome22340/Vite22295/CDP10137/5973 was closed by its worker. Root Edge review tab1147996305 and local preview7075 closed. Root explicitly closed user Edge5173 game tab under user authorization; unrelated user tabs/servers remain. C02 separately owns the next slot8 lifetime.
+
+Telegram913 returned1280×720/62.937s. Public MP4 native playback and seeking pass in Edge; review tab1147996309 closed. Telegram application inline/fullscreen was not inspected.

@@ -277,6 +277,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
     let landingElapsed = 0;
     let landingPeak = 0;
     let castElapsed = 0;
+    let combatSampleElapsed = null;
     let castLegWeight = 1;
     let castLegSuppressed = false;
     let activeCastShot = null, activeCastLower = null, activeCastProfile = def.castMotion;
@@ -833,7 +834,17 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             if (state.castingShoot) {
                 const shot = def.castMotion ? activeCastShot : (spellShoot?.isPlaying ? spellShoot : spellEnter);
                 if (def.castMotion && shot) {
-                    castElapsed += h;
+                    if (combatSampleElapsed !== null) {
+                        castElapsed = combatSampleElapsed;
+                        // Sample supported native playheads from gameplay time;
+                        // do not accumulate the Havok movement delta clamp.
+                        // https://github.com/BabylonJS/Babylon-Lite/blob/npm-lite-v1.31.1/docs/lite/architecture/07-animation.md
+                        for (const group of [shot, activeCastLower]) if (group) {
+                            group.currentTime = Math.min(group.duration, castElapsed);
+                            group.speedRatio = 0;
+                        }
+                        combatSampleElapsed = null;
+                    } else castElapsed += h;
                     const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); };
                     if (castCancelTime !== null) castCancelTime = Math.max(0,castCancelTime-h);
                     const release = activeCastProfile?.releaseTime ?? shot.duration ?? 0.3;
@@ -1210,6 +1221,7 @@ export async function attachBody(engine, scene, player, capsuleHeight, definitio
             updateCarry(0, { forward: 0, strafe: 0 }, false);
             evaluateHandAnimation(visual, 0);
         },
+        syncCombatCast(elapsed) { combatSampleElapsed = Math.max(0, elapsed); },
         cancelCast() { if (def.castMotion && state.castingShoot) castCancelTime = .16; },
         playMelee() {
             if (state.phase === "air" || state.castingShoot || state.channeling) return false;
